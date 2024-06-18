@@ -10,8 +10,8 @@ import type {RedirectFn} from '../types';
 
 // https://github.com/microsoft/TypeScript/issues/52784
 export const redirectFromHeaders: RedirectFn = (route, type) => {
-  redirect(
-    formatPathname(readChannelHeader(), readLocaleHeader(), route),
-    type,
-  );
+	redirect(
+		formatPathname(readChannelHeader(), readLocaleHeader(), route),
+		type,
+	);
 };

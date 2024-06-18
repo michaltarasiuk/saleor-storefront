@@ -11,33 +11,33 @@ import {Lines} from './components/lines';
 import {CheckoutTotal} from './components/total';
 
 const Summary_Query = graphql(/* GraphQL */ `
-  query Summary_Query($id: ID!, $languageCode: LanguageCodeEnum!) {
-    checkout(id: $id) {
-      ...Lines_CheckoutFragment
-      ...CheckoutTotal_CheckoutFragment
-    }
-  }
+	query Summary_Query($id: ID!, $languageCode: LanguageCodeEnum!) {
+		checkout(id: $id) {
+			...Lines_CheckoutFragment
+			...CheckoutTotal_CheckoutFragment
+		}
+	}
 `);
 
 export async function Summary() {
-  const {checkout} = await fetchQueryData(
-    Summary_Query,
-    {
-      id: getCheckoutId() ?? raise('Checkout id is not defined'),
-      languageCode: localeToLangCode(getLocale()),
-    },
-    {
-      fetchOptions: {
-        cache: 'no-cache',
-      },
-    },
-  );
-  invariant(checkout);
+	const {checkout} = await fetchQueryData(
+		Summary_Query,
+		{
+			id: getCheckoutId() ?? raise('Checkout id is not defined'),
+			languageCode: localeToLangCode(getLocale()),
+		},
+		{
+			fetchOptions: {
+				cache: 'no-cache',
+			},
+		},
+	);
+	invariant(checkout);
 
-  return (
-    <>
-      <Lines checkout={checkout} />
-      <CheckoutTotal checkout={checkout} />
-    </>
-  );
+	return (
+		<>
+			<Lines checkout={checkout} />
+			<CheckoutTotal checkout={checkout} />
+		</>
+	);
 }

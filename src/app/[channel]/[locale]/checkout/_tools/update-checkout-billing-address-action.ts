@@ -7,33 +7,33 @@ import {raise} from '@/lib/tools/raise';
 import {getCheckoutId} from '@/modules/checkout/tools/cookies';
 
 const UpdateCheckoutBillingAddressMutation = graphql(/* GraphQL */ `
-  mutation UpdateCheckoutBillingAddressMutation(
-    $id: ID!
-    $billingAddress: AddressInput!
-  ) {
-    checkoutBillingAddressUpdate(id: $id, billingAddress: $billingAddress) {
-      errors {
-        field
-        code
-      }
-    }
-  }
+	mutation UpdateCheckoutBillingAddressMutation(
+		$id: ID!
+		$billingAddress: AddressInput!
+	) {
+		checkoutBillingAddressUpdate(id: $id, billingAddress: $billingAddress) {
+			errors {
+				field
+				code
+			}
+		}
+	}
 `);
 
 export async function updateCheckoutBillingAddressAction(
-  billingAddress: AddressInput,
+	billingAddress: AddressInput,
 ) {
-  const {checkoutBillingAddressUpdate} = await fetchMutationData(
-    UpdateCheckoutBillingAddressMutation,
-    {
-      billingAddress,
-      id: getCheckoutId() ?? raise('Checkout id is not defined'),
-    },
-    {
-      fetchOptions: {
-        cache: 'no-cache',
-      },
-    },
-  );
-  return checkoutBillingAddressUpdate;
+	const {checkoutBillingAddressUpdate} = await fetchMutationData(
+		UpdateCheckoutBillingAddressMutation,
+		{
+			billingAddress,
+			id: getCheckoutId() ?? raise('Checkout id is not defined'),
+		},
+		{
+			fetchOptions: {
+				cache: 'no-cache',
+			},
+		},
+	);
+	return checkoutBillingAddressUpdate;
 }

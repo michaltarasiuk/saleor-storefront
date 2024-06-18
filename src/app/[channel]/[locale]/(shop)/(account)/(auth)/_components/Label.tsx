@@ -6,9 +6,9 @@ import {cn} from '@/lib/tools/cn';
 type LabelProps = Omit<ComponentProps<typeof Label_>, 'className'>;
 
 export function Label({children, ...restProps}: LabelProps) {
-  return (
-    <Label_ className={cn('font-medium')} {...restProps}>
-      {children}
-    </Label_>
-  );
+	return (
+		<Label_ className={cn('font-medium')} {...restProps}>
+			{children}
+		</Label_>
+	);
 }

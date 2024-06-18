@@ -7,29 +7,31 @@ import {formatPathname} from '@/lib/tools/format-pathname';
 import {NavLink} from './NavLink';
 
 export async function SidebarNav() {
-  const intl = await getIntl(getLocale());
+	const intl = await getIntl(getLocale());
 
-  return (
-    <nav>
-      <ul className={cn('flex flex-wrap gap-2 lg:flex-col')}>
-        <li>
-          <NavLink
-            href={formatPathname(...APP_ROUTES.DASHBOARD.ACCOUNT.USER_DETAILS)}>
-            {intl.formatMessage({
-              defaultMessage: 'Account',
-              id: 'TwyMau',
-            })}
-          </NavLink>
-        </li>
-        <li>
-          <NavLink href={formatPathname(...APP_ROUTES.ROOT)}>
-            {intl.formatMessage({
-              defaultMessage: 'Orders',
-              id: 'X7jl6w',
-            })}
-          </NavLink>
-        </li>
-      </ul>
-    </nav>
-  );
+	return (
+		<nav>
+			<ul className={cn('flex flex-wrap gap-2 lg:flex-col')}>
+				<li>
+					<NavLink
+						href={formatPathname(
+							...APP_ROUTES.DASHBOARD.ACCOUNT.USER_DETAILS,
+						)}>
+						{intl.formatMessage({
+							defaultMessage: 'Account',
+							id: 'TwyMau',
+						})}
+					</NavLink>
+				</li>
+				<li>
+					<NavLink href={formatPathname(...APP_ROUTES.ROOT)}>
+						{intl.formatMessage({
+							defaultMessage: 'Orders',
+							id: 'X7jl6w',
+						})}
+					</NavLink>
+				</li>
+			</ul>
+		</nav>
+	);
 }

@@ -7,42 +7,42 @@ import {createContext} from '@/lib/tools/create-context';
 import type {PropsWithChildren} from '@/lib/types/react';
 
 const [FormFieldNameContext, useFormFieldName] =
-  createContext<string>('formFieldName');
+	createContext<string>('formFieldName');
 
 export {useFormFieldName};
 
 interface FormFieldProps<
-  FormSchema extends FieldValues,
-  FieldName extends FieldPath<FormSchema>,
+	FormSchema extends FieldValues,
+	FieldName extends FieldPath<FormSchema>,
 > extends ControllerProps<FormSchema, FieldName> {}
 
 export function FormField<
-  FormSchema extends FieldValues,
-  FieldName extends FieldPath<FormSchema>,
+	FormSchema extends FieldValues,
+	FieldName extends FieldPath<FormSchema>,
 >(props: FormFieldProps<FormSchema, FieldName>) {
-  return (
-    <FormFieldNameContext.Provider value={props.name}>
-      <Controller {...props} />
-    </FormFieldNameContext.Provider>
-  );
+	return (
+		<FormFieldNameContext.Provider value={props.name}>
+			<Controller {...props} />
+		</FormFieldNameContext.Provider>
+	);
 }
 
 const [FormItemIdContext, useFormItemId] =
-  createContext<ReturnType<typeof useId>>('formItemId');
+	createContext<ReturnType<typeof useId>>('formItemId');
 
 export {useFormItemId};
 
 interface FormItemProps {
-  readonly className?: string;
+	readonly className?: string;
 }
 
 export function FormItem({
-  children,
-  className,
+	children,
+	className,
 }: PropsWithChildren<FormItemProps>) {
-  return (
-    <FormItemIdContext.Provider value={useId()}>
-      <div className={cn(className)}>{children}</div>
-    </FormItemIdContext.Provider>
-  );
+	return (
+		<FormItemIdContext.Provider value={useId()}>
+			<div className={cn(className)}>{children}</div>
+		</FormItemIdContext.Provider>
+	);
 }

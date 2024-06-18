@@ -1,3 +1,3 @@
 export function getCanonicalLocales(locale?: string | readonly string[]) {
-  return Intl.getCanonicalLocales(locale);
+	return Intl.getCanonicalLocales(locale);
 }

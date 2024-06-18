@@ -1,37 +1,37 @@
 {
-  "compilerOptions": {
-    "module": "esnext",
-    "allowImportingTsExtensions": true,
-    "moduleResolution": "bundler",
-    "paths": {"@/*": ["./src/*"]},
-    "noEmit": true,
-    "resolveJsonModule": true, // To match the webpack resolution
-    "allowJs": false,
-    "plugins": [{"name": "next"}],
-    "esModuleInterop": true, // Requirement for SWC/Babel
-    "isolatedModules": true, // Requirement for SWC/Babel
-    "forceConsistentCasingInFileNames": true,
-    "verbatimModuleSyntax": true,
-    "jsx": "preserve", // Next.js implements its own optimized JSX transformer
-    "lib": ["esnext", "dom", "dom.iterable"],
-    "target": "es6",
-    "useDefineForClassFields": true,
-    "skipLibCheck": true,
-    "incremental": true,
-    // Type checking
-    "allowUnreachableCode": false,
-    "allowUnusedLabels": false,
-    "exactOptionalPropertyTypes": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitOverride": true,
-    "noImplicitReturns": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noUncheckedIndexedAccess": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "strict": true,
-    "types": ["vitest/importMeta"]
-  },
-  "include": ["dist/types/**/*.ts", "next-env.d.ts", "./src/**/*"],
-  "exclude": ["node_modules"]
+	"compilerOptions": {
+		"module": "esnext",
+		"allowImportingTsExtensions": true,
+		"moduleResolution": "bundler",
+		"paths": {"@/*": ["./src/*"]},
+		"noEmit": true,
+		"resolveJsonModule": true, // To match the webpack resolution
+		"allowJs": false,
+		"plugins": [{"name": "next"}],
+		"esModuleInterop": true, // Requirement for SWC/Babel
+		"isolatedModules": true, // Requirement for SWC/Babel
+		"forceConsistentCasingInFileNames": true,
+		"verbatimModuleSyntax": true,
+		"jsx": "preserve", // Next.js implements its own optimized JSX transformer
+		"lib": ["esnext", "dom", "dom.iterable"],
+		"target": "es6",
+		"useDefineForClassFields": true,
+		"skipLibCheck": true,
+		"incremental": true,
+		// Type checking
+		"allowUnreachableCode": false,
+		"allowUnusedLabels": false,
+		"exactOptionalPropertyTypes": true,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitOverride": true,
+		"noImplicitReturns": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"noUncheckedIndexedAccess": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"strict": true,
+		"types": ["vitest/importMeta"]
+	},
+	"include": ["dist/types/**/*.ts", "next-env.d.ts", "./src/**/*"],
+	"exclude": ["node_modules"]
 }

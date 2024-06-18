@@ -9,12 +9,12 @@ import {refreshAccessToken} from '../tools/refresh-access-token';
 const refreshAccessTokenFn = cache(refreshAccessToken);
 
 export function useRefreshAccessToken() {
-  const response = use(refreshAccessTokenFn());
-  const intlRouter = useIntlRouter();
+	const response = use(refreshAccessTokenFn());
+	const intlRouter = useIntlRouter();
 
-  if (response.ok) {
-    intlRouter.refresh();
-  } else {
-    intlRouter.push(formatPathname(APP_ROUTES.LOGIN));
-  }
+	if (response.ok) {
+		intlRouter.refresh();
+	} else {
+		intlRouter.push(formatPathname(APP_ROUTES.LOGIN));
+	}
 }

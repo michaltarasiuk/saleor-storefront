@@ -1,54 +1,57 @@
 {
-  "root": true,
-  "parser": "@typescript-eslint/parser",
-  "extends": [
-    "plugin:@typescript-eslint/strict",
-    "next/core-web-vitals",
-    "prettier"
-  ],
-  "plugins": [
-    "@typescript-eslint",
-    "functional",
-    "formatjs",
-    "simple-import-sort"
-  ],
-  "rules": {
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": [
-      "error",
-      {
-        "argsIgnorePattern": "^_",
-        "varsIgnorePattern": "^_"
-      }
-    ],
-    "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
-    "@typescript-eslint/consistent-type-imports": [
-      "error",
-      {"fixStyle": "separate-type-imports"}
-    ],
-    "functional/prefer-readonly-type": "error",
-    "react/function-component-definition": [
-      "error",
-      {
-        "namedComponents": "function-declaration",
-        "unnamedComponents": "function-expression"
-      }
-    ],
-    "simple-import-sort/imports": "error",
-    "simple-import-sort/exports": "error",
-    "formatjs/enforce-id": [
-      "error",
-      {"idInterpolationPattern": "[sha512:contenthash:base64:6]"}
-    ],
-    "no-console": ["error", {"allow": ["error"]}]
-  },
-  "overrides": [
-    {
-      "files": "*.cjs",
-      "rules": {
-        "@typescript-eslint/no-var-requires": "off"
-      }
-    }
-  ],
-  "ignorePatterns": ["src/graphql/generated/**"]
+	"root": true,
+	"parser": "@typescript-eslint/parser",
+	"extends": [
+		"plugin:@typescript-eslint/strict",
+		"next/core-web-vitals",
+		"prettier"
+	],
+	"plugins": [
+		"@typescript-eslint",
+		"functional",
+		"formatjs",
+		"simple-import-sort"
+	],
+	"rules": {
+		"no-unused-vars": "off",
+		"@typescript-eslint/no-unused-vars": [
+			"error",
+			{
+				"argsIgnorePattern": "^_",
+				"varsIgnorePattern": "^_"
+			}
+		],
+		"@typescript-eslint/consistent-type-definitions": [
+			"error",
+			"interface"
+		],
+		"@typescript-eslint/consistent-type-imports": [
+			"error",
+			{"fixStyle": "separate-type-imports"}
+		],
+		"functional/prefer-readonly-type": "error",
+		"react/function-component-definition": [
+			"error",
+			{
+				"namedComponents": "function-declaration",
+				"unnamedComponents": "function-expression"
+			}
+		],
+		"simple-import-sort/imports": "error",
+		"simple-import-sort/exports": "error",
+		"formatjs/enforce-id": [
+			"error",
+			{"idInterpolationPattern": "[sha512:contenthash:base64:6]"}
+		],
+		"no-console": ["error", {"allow": ["error"]}]
+	},
+	"overrides": [
+		{
+			"files": "*.cjs",
+			"rules": {
+				"@typescript-eslint/no-var-requires": "off"
+			}
+		}
+	],
+	"ignorePatterns": ["src/graphql/generated/**"]
 }

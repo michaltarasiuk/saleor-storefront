@@ -9,9 +9,9 @@ import {isDefined} from '@/lib/tools/is-defined';
 import {CUSTOM_REQUEST_HEADERS} from '../set-base-path-headers-handler';
 
 export function readLocaleHeader() {
-  const locale = headers().get(CUSTOM_REQUEST_HEADERS.LOCALE);
-  invariant(isDefined(locale), "Locale isn't defined");
-  assertAvailableLocale(locale);
+	const locale = headers().get(CUSTOM_REQUEST_HEADERS.LOCALE);
+	invariant(isDefined(locale), "Locale isn't defined");
+	assertAvailableLocale(locale);
 
-  return locale;
+	return locale;
 }

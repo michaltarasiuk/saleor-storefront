@@ -14,65 +14,64 @@ import {ProductPriceRange} from '../ProductPriceRange';
 import {ProductThumbnail} from '../ProductThumbnail';
 
 const ProductItem_ProductFragment = graphql(/* GraphQL */ `
-  fragment ProductItem_ProductFragment on Product {
-    __typename
-    id
-    name
-    slug
-    translation(languageCode: $languageCode) {
-      __typename
-      id
-      name
-    }
-    thumbnail(format: WEBP, size: 4096) {
-      ...ProductThumbnail_ImageFragment
-    }
-    pricing {
-      ...ProductPriceRange_PricingInfoFragment
-    }
-    category {
-      ...ProductCategoryName_CategoryFragment
-    }
-    variants {
-      __typename
-      id
-    }
-  }
+	fragment ProductItem_ProductFragment on Product {
+		__typename
+		id
+		name
+		slug
+		translation(languageCode: $languageCode) {
+			__typename
+			id
+			name
+		}
+		thumbnail(format: WEBP, size: 4096) {
+			...ProductThumbnail_ImageFragment
+		}
+		pricing {
+			...ProductPriceRange_PricingInfoFragment
+		}
+		category {
+			...ProductCategoryName_CategoryFragment
+		}
+		variants {
+			__typename
+			id
+		}
+	}
 `);
 
 interface Props {
-  readonly product: FragmentType<typeof ProductItem_ProductFragment>;
+	readonly product: FragmentType<typeof ProductItem_ProductFragment>;
 }
 
 export function ProductItem({product}: Props) {
-  const {name, slug, thumbnail, pricing, category, variants} = applyTranslation(
-    getFragment(ProductItem_ProductFragment, product),
-  );
-  const searchParams = new URLSearchParams();
+	const {name, slug, thumbnail, pricing, category, variants} =
+		applyTranslation(getFragment(ProductItem_ProductFragment, product));
+	const searchParams = new URLSearchParams();
 
-  if (variants && variants.length === 1) {
-    const [variant] = variants;
-    invariant(variant, 'Product variant is not defined');
+	if (variants && variants.length === 1) {
+		const [variant] = variants;
+		invariant(variant, 'Product variant is not defined');
 
-    searchParams.set(PRODUCT_PAGE_SEARCH_PARAM_NAMES.VARIANT, variant.id);
-  }
+		searchParams.set(PRODUCT_PAGE_SEARCH_PARAM_NAMES.VARIANT, variant.id);
+	}
 
-  return (
-    <li>
-      <IntlLink
-        href={{
-          pathname: formatPathname(APP_ROUTES.PRODUCT, slug),
-          query: searchParams.toString(),
-        }}>
-        {thumbnail && <ProductThumbnail thumbnail={thumbnail} />}
-        <div className={cn('flex flex-col gap-1 text-sm')}>
-          <div className={cn('mt-2 flex justify-between')}>
-            <h4 className={cn('font-semibold')}>{name}</h4>
-            {pricing && <ProductPriceRange pricingInfo={pricing} />}
-          </div>
-          {category && <ProductCategoryName category={category} />}
-        </div>
-      </IntlLink>
-    </li>
-  );
+	return (
+		<li>
+			<IntlLink
+				href={{
+					pathname: formatPathname(APP_ROUTES.PRODUCT, slug),
+					query: searchParams.toString(),
+				}}>
+				{thumbnail && <ProductThumbnail thumbnail={thumbnail} />}
+				<div className={cn('flex flex-col gap-1 text-sm')}>
+					<div className={cn('mt-2 flex justify-between')}>
+						<h4 className={cn('font-semibold')}>{name}</h4>
+						{pricing && <ProductPriceRange pricingInfo={pricing} />}
+					</div>
+					{category && <ProductCategoryName category={category} />}
+				</div>
+			</IntlLink>
+		</li>
+	);
 }

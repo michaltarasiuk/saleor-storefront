@@ -10,57 +10,59 @@ import {LoadMoreFilters} from '../LoadMoreFilters';
 import {CollectionDropdownItem} from './CollectionDropdownItem';
 
 const CollectionDropdownItems_CategoriesQuery = graphql(/* GraphQL */ `
-  query CollectionDropdownItems_CategoriesQuery(
-    $first: Int
-    $after: String
-    $channel: String
-    $languageCode: LanguageCodeEnum!
-  ) {
-    collections(first: $first, after: $after, channel: $channel) {
-      edges {
-        node {
-          __typename
-          id
-          ...CollectionDropdownItem_CategoryFragment
-        }
-      }
-      pageInfo {
-        hasNextPage
-        endCursor
-        hasPreviousPage
-        startCursor
-      }
-    }
-  }
+	query CollectionDropdownItems_CategoriesQuery(
+		$first: Int
+		$after: String
+		$channel: String
+		$languageCode: LanguageCodeEnum!
+	) {
+		collections(first: $first, after: $after, channel: $channel) {
+			edges {
+				node {
+					__typename
+					id
+					...CollectionDropdownItem_CategoryFragment
+				}
+			}
+			pageInfo {
+				hasNextPage
+				endCursor
+				hasPreviousPage
+				startCursor
+			}
+		}
+	}
 `);
 
 type Props = {
-  readonly variables: CollectionDropdownItems_CategoriesQueryQueryVariables;
-  readonly isLastPage: boolean;
+	readonly variables: CollectionDropdownItems_CategoriesQueryQueryVariables;
+	readonly isLastPage: boolean;
 } & Pick<
-  UnionToIntersection<ReturnType<typeof usePaginationActions>[number]>,
-  'handleNextPage' | 'onNextPage'
+	UnionToIntersection<ReturnType<typeof usePaginationActions>[number]>,
+	'handleNextPage' | 'onNextPage'
 >;
 
 export function CollectionDropdownItems({
-  variables,
-  isLastPage,
-  ...actions
+	variables,
+	isLastPage,
+	...actions
 }: Props) {
-  const [{data}] = useQuery({
-    query: CollectionDropdownItems_CategoriesQuery,
-    variables,
-  });
-  const {edges, pageInfo} = data?.collections ?? {};
+	const [{data}] = useQuery({
+		query: CollectionDropdownItems_CategoriesQuery,
+		variables,
+	});
+	const {edges, pageInfo} = data?.collections ?? {};
 
-  useHandleNextPage({...(pageInfo && {pageInfo}), isLastPage, ...actions});
+	useHandleNextPage({...(pageInfo && {pageInfo}), isLastPage, ...actions});
 
-  return (
-    <>
-      {edges?.map(({node}) => (
-        <CollectionDropdownItem key={node.id} collection={node} />
-      ))}
-      {isLastPage && pageInfo?.hasNextPage && <LoadMoreFilters {...actions} />}
-    </>
-  );
+	return (
+		<>
+			{edges?.map(({node}) => (
+				<CollectionDropdownItem key={node.id} collection={node} />
+			))}
+			{isLastPage && pageInfo?.hasNextPage && (
+				<LoadMoreFilters {...actions} />
+			)}
+		</>
+	);
 }

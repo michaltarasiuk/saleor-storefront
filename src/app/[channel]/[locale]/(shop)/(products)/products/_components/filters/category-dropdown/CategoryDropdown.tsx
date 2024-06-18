@@ -12,36 +12,36 @@ import {FiltersDropdownTrigger} from '../filters-dropdown/FiltersDropdownTrigger
 import {CategoryDropdownItems} from './CategoryDropdownItems';
 
 const BASE_OPTIONS = {
-  defaultPageSize: DEFAULT_PAGE_SIZE,
-  updateSearchParams: false,
-  restoreFromUrl: false,
+	defaultPageSize: DEFAULT_PAGE_SIZE,
+	updateSearchParams: false,
+	restoreFromUrl: false,
 };
 
 export function CategoryDropdown() {
-  const languageCode = localeToLangCode(useLocale());
+	const languageCode = localeToLangCode(useLocale());
 
-  const [{variablesArray}, actions] = usePaginationActions({
-    queryVariables: {
-      languageCode,
-    },
-    ...BASE_OPTIONS,
-  });
+	const [{variablesArray}, actions] = usePaginationActions({
+		queryVariables: {
+			languageCode,
+		},
+		...BASE_OPTIONS,
+	});
 
-  return (
-    <FiltersDropdown>
-      <FiltersDropdownTrigger>
-        <FormattedMessage defaultMessage="Category" id="ccXLVi" />
-      </FiltersDropdownTrigger>
-      <FiltersDropdownContent>
-        {variablesArray.map((variables, idx) => (
-          <CategoryDropdownItems
-            key={idx}
-            variables={variables}
-            isLastPage={idx === variablesArray.length - 1}
-            {...actions}
-          />
-        ))}
-      </FiltersDropdownContent>
-    </FiltersDropdown>
-  );
+	return (
+		<FiltersDropdown>
+			<FiltersDropdownTrigger>
+				<FormattedMessage defaultMessage="Category" id="ccXLVi" />
+			</FiltersDropdownTrigger>
+			<FiltersDropdownContent>
+				{variablesArray.map((variables, idx) => (
+					<CategoryDropdownItems
+						key={idx}
+						variables={variables}
+						isLastPage={idx === variablesArray.length - 1}
+						{...actions}
+					/>
+				))}
+			</FiltersDropdownContent>
+		</FiltersDropdown>
+	);
 }

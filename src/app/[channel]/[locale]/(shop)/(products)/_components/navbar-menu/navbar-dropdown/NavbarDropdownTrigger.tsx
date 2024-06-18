@@ -10,34 +10,34 @@ import {cn} from '@/lib/tools/cn';
 import * as DropdownMenu from './DropdownMenu';
 
 const NavbarDropdownTrigger_MenuItemFragment = graphql(`
-  fragment NavbarDropdownTrigger_MenuItemFragment on MenuItem {
-    name
-    translation(languageCode: $languageCode) {
-      name
-    }
-  }
+	fragment NavbarDropdownTrigger_MenuItemFragment on MenuItem {
+		name
+		translation(languageCode: $languageCode) {
+			name
+		}
+	}
 `);
 
 interface Props {
-  readonly menuItem: FragmentType<
-    typeof NavbarDropdownTrigger_MenuItemFragment
-  >;
+	readonly menuItem: FragmentType<
+		typeof NavbarDropdownTrigger_MenuItemFragment
+	>;
 }
 
 export function NavbarDropdownTrigger({menuItem}: Props) {
-  const {name} = applyTranslation(
-    getFragment(NavbarDropdownTrigger_MenuItemFragment, menuItem),
-  );
+	const {name} = applyTranslation(
+		getFragment(NavbarDropdownTrigger_MenuItemFragment, menuItem),
+	);
 
-  return (
-    <DropdownMenu.Trigger className={cn('group flex items-center gap-0.5')}>
-      <span
-        className={cn(
-          'transition-colors hover:text-blue group-data-[state=open]:text-blue',
-        )}>
-        {name}
-      </span>
-      <ChevronDown className={cn('h-4 w-4 text-grey')} />
-    </DropdownMenu.Trigger>
-  );
+	return (
+		<DropdownMenu.Trigger className={cn('group flex items-center gap-0.5')}>
+			<span
+				className={cn(
+					'transition-colors hover:text-blue group-data-[state=open]:text-blue',
+				)}>
+				{name}
+			</span>
+			<ChevronDown className={cn('h-4 w-4 text-grey')} />
+		</DropdownMenu.Trigger>
+	);
 }

@@ -14,57 +14,57 @@ import {goToRoot} from '../_tools/go-to-root';
 import {InformationSection} from './_components/InformationSection';
 
 const InformationPage_CheckoutQuery = graphql(/* GraphQL */ `
-  query InformationPage_Query($id: ID!) {
-    checkout(id: $id) {
-      quantity
-      shippingAddress {
-        __typename
-      }
-      deliveryMethod {
-        __typename
-      }
-      billingAddress {
-        __typename
-      }
-      ...Breadcrumbs_CheckoutFragment
-      ...InformationSection_CheckoutFragment
-    }
-  }
+	query InformationPage_Query($id: ID!) {
+		checkout(id: $id) {
+			quantity
+			shippingAddress {
+				__typename
+			}
+			deliveryMethod {
+				__typename
+			}
+			billingAddress {
+				__typename
+			}
+			...Breadcrumbs_CheckoutFragment
+			...InformationSection_CheckoutFragment
+		}
+	}
 `);
 
 interface Props {
-  readonly searchParams?: {
-    readonly country?: string;
-  };
+	readonly searchParams?: {
+		readonly country?: string;
+	};
 }
 
 export default async function InformationPage({searchParams}: Props) {
-  const {checkout} = await fetchQueryData(
-    InformationPage_CheckoutQuery,
-    {
-      id: getCheckoutId() ?? goToRoot(),
-    },
-    {
-      fetchOptions: {
-        cache: 'no-cache',
-      },
-    },
-  );
-  if (!checkout?.quantity) goToRoot();
+	const {checkout} = await fetchQueryData(
+		InformationPage_CheckoutQuery,
+		{
+			id: getCheckoutId() ?? goToRoot(),
+		},
+		{
+			fetchOptions: {
+				cache: 'no-cache',
+			},
+		},
+	);
+	if (!checkout?.quantity) goToRoot();
 
-  const redirectUrl = getRedirectUrl(
-    checkout,
-    formatPathname(...APP_ROUTES.CHECKOUT.INFORMATION),
-  );
-  if (redirectUrl) redirect(redirectUrl);
+	const redirectUrl = getRedirectUrl(
+		checkout,
+		formatPathname(...APP_ROUTES.CHECKOUT.INFORMATION),
+	);
+	if (redirectUrl) redirect(redirectUrl);
 
-  return (
-    <div className={cn('space-y-7')}>
-      <Breadcrumbs checkout={checkout} />
-      <InformationSection
-        checkout={checkout}
-        country={extractCountryCode(searchParams)}
-      />
-    </div>
-  );
+	return (
+		<div className={cn('space-y-7')}>
+			<Breadcrumbs checkout={checkout} />
+			<InformationSection
+				checkout={checkout}
+				country={extractCountryCode(searchParams)}
+			/>
+		</div>
+	);
 }

@@ -9,59 +9,59 @@ import {getPaginationSearchParams} from '@/lib/tools/get-pagination-search-param
 import {updatePaginationSearchParams} from '@/lib/tools/update-pagination-search-params';
 
 export function usePaginationVariables<QueryVariables extends AnyVariables>({
-  queryVariables,
-  defaultPageSize,
-  updateSearchParams,
-  restoreFromUrl,
+	queryVariables,
+	defaultPageSize,
+	updateSearchParams,
+	restoreFromUrl,
 }: {
-  readonly queryVariables: QueryVariables;
-  readonly defaultPageSize: number;
-  readonly updateSearchParams: boolean;
-  readonly restoreFromUrl: boolean;
+	readonly queryVariables: QueryVariables;
+	readonly defaultPageSize: number;
+	readonly updateSearchParams: boolean;
+	readonly restoreFromUrl: boolean;
 }) {
-  const searchParams = useSearchParams();
+	const searchParams = useSearchParams();
 
-  const [data, dispatch] = usePagination(() =>
-    restoreFromUrl
-      ? getPaginationSearchParams(searchParams, defaultPageSize)
-      : {first: defaultPageSize},
-  );
-  const newSearchParams = useMemo(
-    () => updatePaginationSearchParams(searchParams, data.currentVariables),
-    [data.currentVariables, searchParams],
-  );
-  useUpdateSearchParmsOnMount({
-    newSearchParams,
-    shouldUpdate: updateSearchParams,
-  });
+	const [data, dispatch] = usePagination(() =>
+		restoreFromUrl
+			? getPaginationSearchParams(searchParams, defaultPageSize)
+			: {first: defaultPageSize},
+	);
+	const newSearchParams = useMemo(
+		() => updatePaginationSearchParams(searchParams, data.currentVariables),
+		[data.currentVariables, searchParams],
+	);
+	useUpdateSearchParmsOnMount({
+		newSearchParams,
+		shouldUpdate: updateSearchParams,
+	});
 
-  const currentVariables = useMemo(
-    () => ({...data.currentVariables, ...queryVariables}),
-    [data.currentVariables, queryVariables],
-  );
-  const variablesArray = useMemo(
-    () =>
-      data.variablesArray.map((variables) => ({
-        ...variables,
-        ...queryVariables,
-      })),
-    [data.variablesArray, queryVariables],
-  );
-  return [{currentVariables, variablesArray}, dispatch] as const;
+	const currentVariables = useMemo(
+		() => ({...data.currentVariables, ...queryVariables}),
+		[data.currentVariables, queryVariables],
+	);
+	const variablesArray = useMemo(
+		() =>
+			data.variablesArray.map((variables) => ({
+				...variables,
+				...queryVariables,
+			})),
+		[data.variablesArray, queryVariables],
+	);
+	return [{currentVariables, variablesArray}, dispatch] as const;
 }
 
 function useUpdateSearchParmsOnMount({
-  newSearchParams,
-  shouldUpdate,
+	newSearchParams,
+	shouldUpdate,
 }: {
-  readonly newSearchParams: URLSearchParams;
-  readonly shouldUpdate: boolean;
+	readonly newSearchParams: URLSearchParams;
+	readonly shouldUpdate: boolean;
 }) {
-  const router = useIntlRouter();
+	const router = useIntlRouter();
 
-  useEffect(() => {
-    if (shouldUpdate) {
-      router.push(`/${APP_ROUTES.PRODUCTS}/?${newSearchParams}`);
-    }
-  }, [router, newSearchParams, shouldUpdate]);
+	useEffect(() => {
+		if (shouldUpdate) {
+			router.push(`/${APP_ROUTES.PRODUCTS}/?${newSearchParams}`);
+		}
+	}, [router, newSearchParams, shouldUpdate]);
 }

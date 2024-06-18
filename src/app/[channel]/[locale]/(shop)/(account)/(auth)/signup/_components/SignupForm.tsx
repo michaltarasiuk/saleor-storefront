@@ -24,95 +24,104 @@ import {useSignupFormSchema} from '../_hooks/use-signup-form-schema';
 import {useSignupSubmit} from '../_hooks/use-signup-submit';
 
 export function SignupForm() {
-  const signupFormSchema = useSignupFormSchema();
-  const form = useForm<SignupFormSchema>({
-    resolver: zodResolver(signupFormSchema),
-  });
-  const {signupSubmit, pending} = useSignupSubmit(form);
+	const signupFormSchema = useSignupFormSchema();
+	const form = useForm<SignupFormSchema>({
+		resolver: zodResolver(signupFormSchema),
+	});
+	const {signupSubmit, pending} = useSignupSubmit(form);
 
-  const refMountCallback = useRefMountCallback<ElementRef<'input'>>();
+	const refMountCallback = useRefMountCallback<ElementRef<'input'>>();
 
-  const disabled = form.formState.isSubmitting || pending;
+	const disabled = form.formState.isSubmitting || pending;
 
-  return (
-    <Form form={form} onSubmit={form.handleSubmit(signupSubmit)}>
-      <FormField
-        name={FIELDS.EMAIL}
-        control={form.control}
-        render={({field: {ref, value = '', ...restField}}) => (
-          <FormItem>
-            <FormFieldLabel>
-              <Label>
-                <FormattedMessage defaultMessage="Email:" id="xpTPb3" />
-              </Label>
-            </FormFieldLabel>
-            <FormFieldControl>
-              <TextField
-                ref={refMountCallback(ref, deferInputFocus)}
-                value={value}
-                type="email"
-                placeholder="name@example.com"
-                autoComplete="email"
-                disabled={disabled}
-                required
-                {...restField}
-              />
-            </FormFieldControl>
-            <div>
-              <FormFieldDescription>
-                <FormFieldDescriptionText>
-                  <FormattedMessage
-                    defaultMessage="Email description"
-                    id="RVxG/0"
-                  />
-                </FormFieldDescriptionText>
-              </FormFieldDescription>
-              <FormFieldErrorMessage>
-                <ErrorText />
-              </FormFieldErrorMessage>
-            </div>
-          </FormItem>
-        )}
-      />
-      <FormField
-        name={FIELDS.PASSWORD}
-        control={form.control}
-        render={({field: {value = '', ...restField}}) => (
-          <FormItem>
-            <FormFieldLabel>
-              <Label>
-                <FormattedMessage defaultMessage="Password:" id="hagaYK" />
-              </Label>
-            </FormFieldLabel>
-            <FormFieldControl>
-              <TextField
-                value={value}
-                type="password"
-                autoComplete="new-password"
-                disabled={disabled}
-                required
-                {...restField}
-              />
-            </FormFieldControl>
-            <div>
-              <FormFieldDescription>
-                <FormFieldDescriptionText>
-                  <FormattedMessage
-                    defaultMessage="Password description"
-                    id="A4RrFD"
-                  />
-                </FormFieldDescriptionText>
-              </FormFieldDescription>
-              <FormFieldErrorMessage>
-                <ErrorText />
-              </FormFieldErrorMessage>
-            </div>
-          </FormItem>
-        )}
-      />
-      <SubmitButton disabled={disabled}>
-        <FormattedMessage defaultMessage="Sign up with email" id="pmu7Ih" />
-      </SubmitButton>
-    </Form>
-  );
+	return (
+		<Form form={form} onSubmit={form.handleSubmit(signupSubmit)}>
+			<FormField
+				name={FIELDS.EMAIL}
+				control={form.control}
+				render={({field: {ref, value = '', ...restField}}) => (
+					<FormItem>
+						<FormFieldLabel>
+							<Label>
+								<FormattedMessage
+									defaultMessage="Email:"
+									id="xpTPb3"
+								/>
+							</Label>
+						</FormFieldLabel>
+						<FormFieldControl>
+							<TextField
+								ref={refMountCallback(ref, deferInputFocus)}
+								value={value}
+								type="email"
+								placeholder="name@example.com"
+								autoComplete="email"
+								disabled={disabled}
+								required
+								{...restField}
+							/>
+						</FormFieldControl>
+						<div>
+							<FormFieldDescription>
+								<FormFieldDescriptionText>
+									<FormattedMessage
+										defaultMessage="Email description"
+										id="RVxG/0"
+									/>
+								</FormFieldDescriptionText>
+							</FormFieldDescription>
+							<FormFieldErrorMessage>
+								<ErrorText />
+							</FormFieldErrorMessage>
+						</div>
+					</FormItem>
+				)}
+			/>
+			<FormField
+				name={FIELDS.PASSWORD}
+				control={form.control}
+				render={({field: {value = '', ...restField}}) => (
+					<FormItem>
+						<FormFieldLabel>
+							<Label>
+								<FormattedMessage
+									defaultMessage="Password:"
+									id="hagaYK"
+								/>
+							</Label>
+						</FormFieldLabel>
+						<FormFieldControl>
+							<TextField
+								value={value}
+								type="password"
+								autoComplete="new-password"
+								disabled={disabled}
+								required
+								{...restField}
+							/>
+						</FormFieldControl>
+						<div>
+							<FormFieldDescription>
+								<FormFieldDescriptionText>
+									<FormattedMessage
+										defaultMessage="Password description"
+										id="A4RrFD"
+									/>
+								</FormFieldDescriptionText>
+							</FormFieldDescription>
+							<FormFieldErrorMessage>
+								<ErrorText />
+							</FormFieldErrorMessage>
+						</div>
+					</FormItem>
+				)}
+			/>
+			<SubmitButton disabled={disabled}>
+				<FormattedMessage
+					defaultMessage="Sign up with email"
+					id="pmu7Ih"
+				/>
+			</SubmitButton>
+		</Form>
+	);
 }

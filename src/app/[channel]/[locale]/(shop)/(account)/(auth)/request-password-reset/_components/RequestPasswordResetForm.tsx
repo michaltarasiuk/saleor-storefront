@@ -24,59 +24,67 @@ import {useRequestPasswordResetSchema} from '../_hooks/use-request-password-rese
 import {useRequestPasswordResetSubmit} from '../_hooks/use-request-password-reset-submit';
 
 export function RequestPasswordResetForm() {
-  const requestPasswordResetSchema = useRequestPasswordResetSchema();
-  const form = useForm<RequestPasswordResetSchema>({
-    resolver: zodResolver(requestPasswordResetSchema),
-  });
-  const requestPasswordResetSubmit = useRequestPasswordResetSubmit(form);
+	const requestPasswordResetSchema = useRequestPasswordResetSchema();
+	const form = useForm<RequestPasswordResetSchema>({
+		resolver: zodResolver(requestPasswordResetSchema),
+	});
+	const requestPasswordResetSubmit = useRequestPasswordResetSubmit(form);
 
-  const refMountCallback = useRefMountCallback<ElementRef<'input'>>();
+	const refMountCallback = useRefMountCallback<ElementRef<'input'>>();
 
-  const disabled = form.formState.isSubmitting;
+	const disabled = form.formState.isSubmitting;
 
-  return (
-    <Form form={form} onSubmit={form.handleSubmit(requestPasswordResetSubmit)}>
-      <FormField
-        name={FIELDS.EMAIL}
-        control={form.control}
-        render={({field: {ref, value = '', ...restField}}) => (
-          <FormItem>
-            <FormFieldLabel>
-              <Label>
-                <FormattedMessage defaultMessage="Email:" id="xpTPb3" />
-              </Label>
-            </FormFieldLabel>
-            <FormFieldControl>
-              <TextField
-                ref={refMountCallback(ref, deferInputFocus)}
-                value={value}
-                type="email"
-                placeholder="name@example.com"
-                autoComplete="email"
-                disabled={disabled}
-                required
-                {...restField}
-              />
-            </FormFieldControl>
-            <div>
-              <FormFieldDescription>
-                <FormFieldDescriptionText>
-                  <FormattedMessage
-                    defaultMessage="Email description"
-                    id="RVxG/0"
-                  />
-                </FormFieldDescriptionText>
-              </FormFieldDescription>
-              <FormFieldErrorMessage>
-                <ErrorText />
-              </FormFieldErrorMessage>
-            </div>
-          </FormItem>
-        )}
-      />
-      <SubmitButton disabled={disabled}>
-        <FormattedMessage defaultMessage="Send reset link" id="DkQ5Q8" />
-      </SubmitButton>
-    </Form>
-  );
+	return (
+		<Form
+			form={form}
+			onSubmit={form.handleSubmit(requestPasswordResetSubmit)}>
+			<FormField
+				name={FIELDS.EMAIL}
+				control={form.control}
+				render={({field: {ref, value = '', ...restField}}) => (
+					<FormItem>
+						<FormFieldLabel>
+							<Label>
+								<FormattedMessage
+									defaultMessage="Email:"
+									id="xpTPb3"
+								/>
+							</Label>
+						</FormFieldLabel>
+						<FormFieldControl>
+							<TextField
+								ref={refMountCallback(ref, deferInputFocus)}
+								value={value}
+								type="email"
+								placeholder="name@example.com"
+								autoComplete="email"
+								disabled={disabled}
+								required
+								{...restField}
+							/>
+						</FormFieldControl>
+						<div>
+							<FormFieldDescription>
+								<FormFieldDescriptionText>
+									<FormattedMessage
+										defaultMessage="Email description"
+										id="RVxG/0"
+									/>
+								</FormFieldDescriptionText>
+							</FormFieldDescription>
+							<FormFieldErrorMessage>
+								<ErrorText />
+							</FormFieldErrorMessage>
+						</div>
+					</FormItem>
+				)}
+			/>
+			<SubmitButton disabled={disabled}>
+				<FormattedMessage
+					defaultMessage="Send reset link"
+					id="DkQ5Q8"
+				/>
+			</SubmitButton>
+		</Form>
+	);
 }

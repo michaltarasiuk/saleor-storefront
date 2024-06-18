@@ -10,33 +10,36 @@ import {Heading} from '../_components/Heading';
 import {SetPasswordForm} from './_components/SetPasswordForm';
 
 interface Props {
-  readonly searchParams: {
-    readonly email?: string;
-    readonly token?: string;
-  };
+	readonly searchParams: {
+		readonly email?: string;
+		readonly token?: string;
+	};
 }
 
 export default async function SetPasswordPage({
-  searchParams: {email, token},
+	searchParams: {email, token},
 }: Props) {
-  if (!email || !token) {
-    redirect(formatPathname(APP_ROUTES.LOGIN));
-  }
+	if (!email || !token) {
+		redirect(formatPathname(APP_ROUTES.LOGIN));
+	}
 
-  return (
-    <>
-      <section className={cn('text-center')}>
-        <Heading>
-          <FormattedMessage defaultMessage="Set password" id="QOiG4E" />
-        </Heading>
-        <Description>
-          <FormattedMessage
-            defaultMessage="Enter your new password"
-            id="h/zqNr"
-          />
-        </Description>
-      </section>
-      <SetPasswordForm email={email} token={token} />
-    </>
-  );
+	return (
+		<>
+			<section className={cn('text-center')}>
+				<Heading>
+					<FormattedMessage
+						defaultMessage="Set password"
+						id="QOiG4E"
+					/>
+				</Heading>
+				<Description>
+					<FormattedMessage
+						defaultMessage="Enter your new password"
+						id="h/zqNr"
+					/>
+				</Description>
+			</section>
+			<SetPasswordForm email={email} token={token} />
+		</>
+	);
 }

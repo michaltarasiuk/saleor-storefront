@@ -3,26 +3,26 @@ import type {RequestPasswordResetMutationMutationVariables} from '@/graphql/gene
 import {fetchMutationData} from '@/lib/tools/get-client';
 
 const RequestPasswordResetMutation = graphql(/* GraphQL */ `
-  mutation RequestPasswordResetMutation(
-    $email: String!
-    $redirectUrl: String!
-    $channel: String!
-  ) {
-    requestPasswordReset(
-      email: $email
-      redirectUrl: $redirectUrl
-      channel: $channel
-    ) {
-      errors {
-        field
-        code
-      }
-    }
-  }
+	mutation RequestPasswordResetMutation(
+		$email: String!
+		$redirectUrl: String!
+		$channel: String!
+	) {
+		requestPasswordReset(
+			email: $email
+			redirectUrl: $redirectUrl
+			channel: $channel
+		) {
+			errors {
+				field
+				code
+			}
+		}
+	}
 `);
 
 export async function requestPasswordReset(
-  variables: RequestPasswordResetMutationMutationVariables,
+	variables: RequestPasswordResetMutationMutationVariables,
 ) {
-  return fetchMutationData(RequestPasswordResetMutation, variables);
+	return fetchMutationData(RequestPasswordResetMutation, variables);
 }

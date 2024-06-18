@@ -11,29 +11,38 @@ import {NavigationLink} from '../_components/NavigationLink';
 import {LoginForm} from './_components/LoginForm';
 
 export default function LoginPage() {
-  return (
-    <>
-      <NavigationLink href={formatPathname(APP_ROUTES.SIGNUP)}>
-        <FormattedMessage defaultMessage="Sign up" id="8HJxXG" />
-      </NavigationLink>
-      <section className={cn('text-center')}>
-        <Heading>
-          <FormattedMessage defaultMessage="Welcome back" id="UKxoV8" />
-        </Heading>
-        <Description>
-          <FormattedMessage
-            defaultMessage="Enter email and password to log in"
-            id="VxQzFj"
-          />
-        </Description>
-      </section>
-      <LoginForm />
-      <Divider>
-        <FormattedMessage defaultMessage="Or continue with" id="4cSA+G" />
-      </Divider>
-      <GoogleButton>
-        <FormattedMessage defaultMessage="Login with Google" id="hfuuOe" />
-      </GoogleButton>
-    </>
-  );
+	return (
+		<>
+			<NavigationLink href={formatPathname(APP_ROUTES.SIGNUP)}>
+				<FormattedMessage defaultMessage="Sign up" id="8HJxXG" />
+			</NavigationLink>
+			<section className={cn('text-center')}>
+				<Heading>
+					<FormattedMessage
+						defaultMessage="Welcome back"
+						id="UKxoV8"
+					/>
+				</Heading>
+				<Description>
+					<FormattedMessage
+						defaultMessage="Enter email and password to log in"
+						id="VxQzFj"
+					/>
+				</Description>
+			</section>
+			<LoginForm />
+			<Divider>
+				<FormattedMessage
+					defaultMessage="Or continue with"
+					id="4cSA+G"
+				/>
+			</Divider>
+			<GoogleButton>
+				<FormattedMessage
+					defaultMessage="Login with Google"
+					id="hfuuOe"
+				/>
+			</GoogleButton>
+		</>
+	);
 }

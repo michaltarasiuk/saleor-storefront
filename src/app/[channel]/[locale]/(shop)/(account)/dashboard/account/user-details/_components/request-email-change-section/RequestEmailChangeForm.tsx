@@ -22,92 +22,103 @@ import {useRequestEmailChangeSchema} from './hooks/use-request-email-change-sche
 import {useRequestEmailChangeSubmit} from './hooks/use-request-email-change-submit/use-request-email-change-submit';
 
 export function RequestEmailChangeForm() {
-  const requestEmailChangeSchema = useRequestEmailChangeSchema();
-  const form = useForm<RequestEmailChangeSchema>({
-    resolver: zodResolver(requestEmailChangeSchema),
-  });
-  const requestEmailChangeSubmit = useRequestEmailChangeSubmit(form);
+	const requestEmailChangeSchema = useRequestEmailChangeSchema();
+	const form = useForm<RequestEmailChangeSchema>({
+		resolver: zodResolver(requestEmailChangeSchema),
+	});
+	const requestEmailChangeSubmit = useRequestEmailChangeSubmit(form);
 
-  const disabled = form.formState.isSubmitting;
+	const disabled = form.formState.isSubmitting;
 
-  return (
-    <Form form={form} onSubmit={form.handleSubmit(requestEmailChangeSubmit)}>
-      <FormField
-        name={FIELDS.NEW_EMAIL}
-        control={form.control}
-        render={({field: {value = '', ...restField}}) => (
-          <FormItem>
-            <FormFieldLabel>
-              <Label>
-                <FormattedMessage defaultMessage="New email:" id="a4aUvK" />
-              </Label>
-            </FormFieldLabel>
-            <FormFieldControl>
-              <TextField
-                value={value}
-                type="email"
-                placeholder="name@example.com"
-                autoComplete="email"
-                disabled={disabled}
-                required
-                {...restField}
-              />
-            </FormFieldControl>
-            <div>
-              <FormFieldDescription>
-                <FormFieldDescriptionText>
-                  <FormattedMessage
-                    defaultMessage="New email description"
-                    id="3P1axg"
-                  />
-                </FormFieldDescriptionText>
-              </FormFieldDescription>
-              <FormFieldErrorMessage>
-                <ErrorText />
-              </FormFieldErrorMessage>
-            </div>
-          </FormItem>
-        )}
-      />
-      <FormField
-        name={FIELDS.PASSWORD}
-        control={form.control}
-        render={({field: {value = '', ...restField}}) => (
-          <FormItem>
-            <FormFieldLabel>
-              <Label>
-                <FormattedMessage defaultMessage="Password:" id="hagaYK" />
-              </Label>
-            </FormFieldLabel>
-            <FormFieldControl>
-              <TextField
-                value={value}
-                type="password"
-                autoComplete="password"
-                disabled={disabled}
-                required
-                {...restField}
-              />
-            </FormFieldControl>
-            <div>
-              <FormFieldDescription>
-                <FormFieldDescriptionText>
-                  <FormattedMessage
-                    defaultMessage="Password description"
-                    id="A4RrFD"
-                  />
-                </FormFieldDescriptionText>
-              </FormFieldDescription>
-              <FormFieldErrorMessage>
-                <ErrorText />
-              </FormFieldErrorMessage>
-            </div>
-          </FormItem>
-        )}
-      />
-      <Button disabled={disabled}>
-        <FormattedMessage defaultMessage="request email change" id="lBENL4" />
-      </Button>
-    </Form>
-  );
+	return (
+		<Form
+			form={form}
+			onSubmit={form.handleSubmit(requestEmailChangeSubmit)}>
+			<FormField
+				name={FIELDS.NEW_EMAIL}
+				control={form.control}
+				render={({field: {value = '', ...restField}}) => (
+					<FormItem>
+						<FormFieldLabel>
+							<Label>
+								<FormattedMessage
+									defaultMessage="New email:"
+									id="a4aUvK"
+								/>
+							</Label>
+						</FormFieldLabel>
+						<FormFieldControl>
+							<TextField
+								value={value}
+								type="email"
+								placeholder="name@example.com"
+								autoComplete="email"
+								disabled={disabled}
+								required
+								{...restField}
+							/>
+						</FormFieldControl>
+						<div>
+							<FormFieldDescription>
+								<FormFieldDescriptionText>
+									<FormattedMessage
+										defaultMessage="New email description"
+										id="3P1axg"
+									/>
+								</FormFieldDescriptionText>
+							</FormFieldDescription>
+							<FormFieldErrorMessage>
+								<ErrorText />
+							</FormFieldErrorMessage>
+						</div>
+					</FormItem>
+				)}
+			/>
+			<FormField
+				name={FIELDS.PASSWORD}
+				control={form.control}
+				render={({field: {value = '', ...restField}}) => (
+					<FormItem>
+						<FormFieldLabel>
+							<Label>
+								<FormattedMessage
+									defaultMessage="Password:"
+									id="hagaYK"
+								/>
+							</Label>
+						</FormFieldLabel>
+						<FormFieldControl>
+							<TextField
+								value={value}
+								type="password"
+								autoComplete="password"
+								disabled={disabled}
+								required
+								{...restField}
+							/>
+						</FormFieldControl>
+						<div>
+							<FormFieldDescription>
+								<FormFieldDescriptionText>
+									<FormattedMessage
+										defaultMessage="Password description"
+										id="A4RrFD"
+									/>
+								</FormFieldDescriptionText>
+							</FormFieldDescription>
+							<FormFieldErrorMessage>
+								<ErrorText />
+							</FormFieldErrorMessage>
+						</div>
+					</FormItem>
+				)}
+			/>
+			<Button disabled={disabled}>
+				<FormattedMessage
+					defaultMessage="request email change"
+					id="lBENL4"
+				/>
+			</Button>
+		</Form>
+	);
 }

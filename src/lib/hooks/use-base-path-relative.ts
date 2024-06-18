@@ -5,10 +5,10 @@ import {formatPathname} from '../tools/format-pathname';
 import {splitPathname} from '../tools/split-pathname';
 
 export function useBasePathRelative() {
-  const pathname = usePathname_();
+	const pathname = usePathname_();
 
-  return useMemo(
-    () => formatPathname(...splitPathname(pathname).slice(2)),
-    [pathname],
-  );
+	return useMemo(
+		() => formatPathname(...splitPathname(pathname).slice(2)),
+		[pathname],
+	);
 }

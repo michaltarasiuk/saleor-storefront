@@ -19,72 +19,76 @@ import {useAddressFieldsSchema as useBillingAddressFieldsSchema} from '../../../
 import {useBillingAddressSubmit} from './use-billing-address-submit';
 
 const BillingAddressForm_ChannelFragment = graphql(/* GraphQL */ `
-  fragment BillingAddressForm_ChannelFragment on Channel {
-    ...AddressFields_ChannelFragment
-  }
+	fragment BillingAddressForm_ChannelFragment on Channel {
+		...AddressFields_ChannelFragment
+	}
 `);
 
 const BillingAddressForm_AddressValidationDataFragment = graphql(/* GraphQL */ `
-  fragment BillingAddressForm_AddressValidationDataFragment on AddressValidationData {
-    postalCodeMatchers
-    postalCodeExamples
-    ...AddressFields_AddressValidationDataFragment
-  }
+	fragment BillingAddressForm_AddressValidationDataFragment on AddressValidationData {
+		postalCodeMatchers
+		postalCodeExamples
+		...AddressFields_AddressValidationDataFragment
+	}
 `);
 
 interface Props {
-  readonly channel: FragmentType<typeof BillingAddressForm_ChannelFragment>;
-  readonly addressValidationData: FragmentType<
-    typeof BillingAddressForm_AddressValidationDataFragment
-  >;
-  readonly defaultValues: Partial<AddressFieldsSchema>;
+	readonly channel: FragmentType<typeof BillingAddressForm_ChannelFragment>;
+	readonly addressValidationData: FragmentType<
+		typeof BillingAddressForm_AddressValidationDataFragment
+	>;
+	readonly defaultValues: Partial<AddressFieldsSchema>;
 }
 
 export function BillingAddressForm({
-  channel,
-  addressValidationData,
-  defaultValues,
+	channel,
+	addressValidationData,
+	defaultValues,
 }: Props) {
-  const channelFragment = getFragment(
-    BillingAddressForm_ChannelFragment,
-    channel,
-  );
-  const addressValidationDataFragment = getFragment(
-    BillingAddressForm_AddressValidationDataFragment,
-    addressValidationData,
-  );
+	const channelFragment = getFragment(
+		BillingAddressForm_ChannelFragment,
+		channel,
+	);
+	const addressValidationDataFragment = getFragment(
+		BillingAddressForm_AddressValidationDataFragment,
+		addressValidationData,
+	);
 
-  const billingAddressFieldsSchema = useBillingAddressFieldsSchema(
-    addressValidationDataFragment,
-  );
-  const form = useForm<AddressFieldsSchema>({
-    resolver: zodResolver(billingAddressFieldsSchema),
-    defaultValues,
-  });
-  const {billingAddressSubmit, pending} = useBillingAddressSubmit(form);
+	const billingAddressFieldsSchema = useBillingAddressFieldsSchema(
+		addressValidationDataFragment,
+	);
+	const form = useForm<AddressFieldsSchema>({
+		resolver: zodResolver(billingAddressFieldsSchema),
+		defaultValues,
+	});
+	const {billingAddressSubmit, pending} = useBillingAddressSubmit(form);
 
-  const disabled = form.formState.isSubmitting || pending;
+	const disabled = form.formState.isSubmitting || pending;
 
-  return (
-    <Form form={form} onSubmit={form.handleSubmit(billingAddressSubmit)}>
-      <AddressFields
-        channel={channelFragment}
-        addressValidationData={addressValidationDataFragment}
-        disabled={disabled}
-      />
-      <div className={cn('flex items-center justify-between')}>
-        <BackwardLink href={formatPathname(...APP_ROUTES.CHECKOUT.SHIPPING)}>
-          <FormattedMessage defaultMessage="Return to shipping" id="Akc1Gk" />
-        </BackwardLink>
-        <div className={cn('w-fit')}>
-          <SubmitButton disabled={disabled}>
-            <FormattedMessage
-              defaultMessage="Continue to payment"
-              id="+g+0OK"
-            />
-          </SubmitButton>
-        </div>
-      </div>
-    </Form>
-  );
+	return (
+		<Form form={form} onSubmit={form.handleSubmit(billingAddressSubmit)}>
+			<AddressFields
+				channel={channelFragment}
+				addressValidationData={addressValidationDataFragment}
+				disabled={disabled}
+			/>
+			<div className={cn('flex items-center justify-between')}>
+				<BackwardLink
+					href={formatPathname(...APP_ROUTES.CHECKOUT.SHIPPING)}>
+					<FormattedMessage
+						defaultMessage="Return to shipping"
+						id="Akc1Gk"
+					/>
+				</BackwardLink>
+				<div className={cn('w-fit')}>
+					<SubmitButton disabled={disabled}>
+						<FormattedMessage
+							defaultMessage="Continue to payment"
+							id="+g+0OK"
+						/>
+					</SubmitButton>
+				</div>
+			</div>
+		</Form>
+	);
 }

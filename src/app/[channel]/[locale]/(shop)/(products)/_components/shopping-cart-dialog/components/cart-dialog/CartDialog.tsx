@@ -13,51 +13,51 @@ import {CartBody} from './components/cart-body';
 import {CartFooter} from './components/cart-footer';
 
 const CartDialog_CheckoutQuery = graphql(/* GraphQL */ `
-  query CartDialog_CheckoutQuery($id: ID!, $languageCode: LanguageCodeEnum!) {
-    checkout(id: $id) {
-      quantity
-      ...ShoppingCartButton_CheckoutFragment
-      ...CartBody_CheckoutFragment
-      ...CartFooter_CheckoutFragment
-    }
-  }
+	query CartDialog_CheckoutQuery($id: ID!, $languageCode: LanguageCodeEnum!) {
+		checkout(id: $id) {
+			quantity
+			...ShoppingCartButton_CheckoutFragment
+			...CartBody_CheckoutFragment
+			...CartFooter_CheckoutFragment
+		}
+	}
 `);
 
 interface Props {
-  readonly id: string;
+	readonly id: string;
 }
 
 export async function CartDialog({id}: Props) {
-  const checkout =
-    (
-      await fetchQueryData(
-        CartDialog_CheckoutQuery,
-        {
-          id,
-          languageCode: localeToLangCode(getLocale()),
-        },
-        {
-          fetchOptions: {
-            cache: 'no-cache',
-          },
-        },
-      )
-    ).checkout ?? raise('`checkout` is not defined');
+	const checkout =
+		(
+			await fetchQueryData(
+				CartDialog_CheckoutQuery,
+				{
+					id,
+					languageCode: localeToLangCode(getLocale()),
+				},
+				{
+					fetchOptions: {
+						cache: 'no-cache',
+					},
+				},
+			)
+		).checkout ?? raise('`checkout` is not defined');
 
-  if (checkout.quantity) {
-    return (
-      <Dialog>
-        <DialogTrigger asChild>
-          <ShoppingCartButton checkout={checkout} />
-        </DialogTrigger>
-        <DialogContent>
-          <div className={cn('flex h-full flex-col justify-between')}>
-            <CartBody checkout={checkout} />
-            <CartFooter checkout={checkout} />
-          </div>
-        </DialogContent>
-      </Dialog>
-    );
-  }
-  return <EmptyCartDialog />;
+	if (checkout.quantity) {
+		return (
+			<Dialog>
+				<DialogTrigger asChild>
+					<ShoppingCartButton checkout={checkout} />
+				</DialogTrigger>
+				<DialogContent>
+					<div className={cn('flex h-full flex-col justify-between')}>
+						<CartBody checkout={checkout} />
+						<CartFooter checkout={checkout} />
+					</div>
+				</DialogContent>
+			</Dialog>
+		);
+	}
+	return <EmptyCartDialog />;
 }

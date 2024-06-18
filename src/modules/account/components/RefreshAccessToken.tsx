@@ -3,7 +3,7 @@
 import {useRefreshAccessToken} from '../hooks/use-refresh-access-token';
 
 export function RefreshAccessToken() {
-  useRefreshAccessToken();
+	useRefreshAccessToken();
 
-  return null;
+	return null;
 }

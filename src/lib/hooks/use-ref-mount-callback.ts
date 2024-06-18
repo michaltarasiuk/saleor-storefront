@@ -6,23 +6,23 @@ type MergedRefCallbacks = ReturnType<typeof mergeRefs>;
 
 // eslint-disable-next-line functional/prefer-readonly-type
 type Refs<Element extends HTMLElement> = Array<
-  React.MutableRefObject<Element> | React.LegacyRef<Element>
+	React.MutableRefObject<Element> | React.LegacyRef<Element>
 >;
 
 export const useRefMountCallback = <Element extends HTMLElement>() => {
-  const mergedRefCallbacks = useRef<MergedRefCallbacks | null>(null);
+	const mergedRefCallbacks = useRef<MergedRefCallbacks | null>(null);
 
-  const refCallback: RefCallback<Element> = useCallback(
-    (element) => mergedRefCallbacks.current?.(element),
-    [],
-  );
+	const refCallback: RefCallback<Element> = useCallback(
+		(element) => mergedRefCallbacks.current?.(element),
+		[],
+	);
 
-  return useCallback(
-    (...refs: Refs<Element>) => {
-      mergedRefCallbacks.current ??= mergeRefs(refs);
+	return useCallback(
+		(...refs: Refs<Element>) => {
+			mergedRefCallbacks.current ??= mergeRefs(refs);
 
-      return refCallback;
-    },
-    [refCallback],
-  );
+			return refCallback;
+		},
+		[refCallback],
+	);
 };

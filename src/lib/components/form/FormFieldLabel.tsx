@@ -5,7 +5,7 @@ import type {PropsWithChildren} from '@/lib/types/react';
 import {useFormField} from './form-field/use-form-field';
 
 export function FormFieldLabel({children}: PropsWithChildren) {
-  const {formItemId} = useFormField();
+	const {formItemId} = useFormField();
 
-  return <Slot id={formItemId}>{children}</Slot>;
+	return <Slot id={formItemId}>{children}</Slot>;
 }

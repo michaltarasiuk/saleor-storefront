@@ -12,45 +12,47 @@ import {PRODUCTS_PAGE_SEARCH_PARAM_NAMES} from '../../../_consts';
 import {FiltersDropdownItem} from '../filters-dropdown/FiltersDropdownItem';
 
 const CategoryDropdownItem_CategoryFragment = graphql(`
-  fragment CategoryDropdownItem_CategoryFragment on Category {
-    __typename
-    id
-    name
-    translation(languageCode: $languageCode) {
-      name
-    }
-    slug
-  }
+	fragment CategoryDropdownItem_CategoryFragment on Category {
+		__typename
+		id
+		name
+		translation(languageCode: $languageCode) {
+			name
+		}
+		slug
+	}
 `);
 
 interface Props {
-  readonly category: FragmentType<typeof CategoryDropdownItem_CategoryFragment>;
+	readonly category: FragmentType<
+		typeof CategoryDropdownItem_CategoryFragment
+	>;
 }
 
 export function CategoryDropdownItem({category}: Props) {
-  const {name, slug} = applyTranslation(
-    getFragment(CategoryDropdownItem_CategoryFragment, category),
-  );
-  const intlRouter = useIntlRouter();
+	const {name, slug} = applyTranslation(
+		getFragment(CategoryDropdownItem_CategoryFragment, category),
+	);
+	const intlRouter = useIntlRouter();
 
-  const searchParams = useSearchParams();
+	const searchParams = useSearchParams();
 
-  return (
-    <FiltersDropdownItem
-      checked={searchParams.has(
-        PRODUCTS_PAGE_SEARCH_PARAM_NAMES.CATEGORY,
-        slug,
-      )}
-      onSelect={() => {
-        intlRouter.push(
-          `${formatPathname(APP_ROUTES.PRODUCTS)}?${toggleSearchParam(
-            searchParams,
-            PRODUCTS_PAGE_SEARCH_PARAM_NAMES.CATEGORY,
-            slug,
-          )}`,
-        );
-      }}>
-      {name}
-    </FiltersDropdownItem>
-  );
+	return (
+		<FiltersDropdownItem
+			checked={searchParams.has(
+				PRODUCTS_PAGE_SEARCH_PARAM_NAMES.CATEGORY,
+				slug,
+			)}
+			onSelect={() => {
+				intlRouter.push(
+					`${formatPathname(APP_ROUTES.PRODUCTS)}?${toggleSearchParam(
+						searchParams,
+						PRODUCTS_PAGE_SEARCH_PARAM_NAMES.CATEGORY,
+						slug,
+					)}`,
+				);
+			}}>
+			{name}
+		</FiltersDropdownItem>
+	);
 }

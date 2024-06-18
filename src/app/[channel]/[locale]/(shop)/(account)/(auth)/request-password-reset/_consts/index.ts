@@ -1,3 +1,3 @@
 export const FIELDS = {
-  EMAIL: 'email',
+	EMAIL: 'email',
 } as const;

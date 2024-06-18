@@ -13,44 +13,44 @@ import {PageNavButton} from './PageNavButton';
 import {ProductItems_ProductsQuery} from './ProductItems';
 
 type Props = {
-  readonly variables: ProductItems_ProductsQueryQueryVariables;
+	readonly variables: ProductItems_ProductsQueryQueryVariables;
 } & Pick<
-  UnionToIntersection<ReturnType<typeof usePaginationActions>[number]>,
-  'handlePrevPage' | 'handleNextPage' | 'onNextPage'
+	UnionToIntersection<ReturnType<typeof usePaginationActions>[number]>,
+	'handlePrevPage' | 'handleNextPage' | 'onNextPage'
 >;
 
 export function PageNav({variables, ...actions}: Props) {
-  // This request gets deduplicated
-  const [{data}] = useQuery({query: ProductItems_ProductsQuery, variables});
+	// This request gets deduplicated
+	const [{data}] = useQuery({query: ProductItems_ProductsQuery, variables});
 
-  const {pageInfo} = data?.products ?? {};
+	const {pageInfo} = data?.products ?? {};
 
-  // Update page info for page nav handlers (`handleNextPage` and `handlePrevPage`)
-  useHandleNextPage({
-    ...(pageInfo && {pageInfo}),
-    isLastPage: true,
-    ...actions,
-  });
-  const pageSize = variables.first ?? variables.last ?? DEFAULT_PAGE_SIZE;
+	// Update page info for page nav handlers (`handleNextPage` and `handlePrevPage`)
+	useHandleNextPage({
+		...(pageInfo && {pageInfo}),
+		isLastPage: true,
+		...actions,
+	});
+	const pageSize = variables.first ?? variables.last ?? DEFAULT_PAGE_SIZE;
 
-  return USE_PAGINATION ? (
-    <div className={cn('flex w-full justify-between')}>
-      <PageNavButton
-        disabled={!pageInfo?.hasPreviousPage}
-        onClick={() => actions.handlePrevPage(pageSize)}>
-        <FormattedMessage defaultMessage="Previous page" id="k9hDFZ" />
-      </PageNavButton>
-      <PageNavButton
-        disabled={!pageInfo?.hasNextPage}
-        onClick={() => actions.handleNextPage(pageSize)}>
-        <FormattedMessage defaultMessage="Next page" id="rBj9Ib" />
-      </PageNavButton>
-    </div>
-  ) : (
-    <PageNavButton
-      disabled={!pageInfo?.hasNextPage}
-      onClick={() => actions.handleNextPage(pageSize)}>
-      <FormattedMessage defaultMessage="Load more" id="00LcfG" />
-    </PageNavButton>
-  );
+	return USE_PAGINATION ? (
+		<div className={cn('flex w-full justify-between')}>
+			<PageNavButton
+				disabled={!pageInfo?.hasPreviousPage}
+				onClick={() => actions.handlePrevPage(pageSize)}>
+				<FormattedMessage defaultMessage="Previous page" id="k9hDFZ" />
+			</PageNavButton>
+			<PageNavButton
+				disabled={!pageInfo?.hasNextPage}
+				onClick={() => actions.handleNextPage(pageSize)}>
+				<FormattedMessage defaultMessage="Next page" id="rBj9Ib" />
+			</PageNavButton>
+		</div>
+	) : (
+		<PageNavButton
+			disabled={!pageInfo?.hasNextPage}
+			onClick={() => actions.handleNextPage(pageSize)}>
+			<FormattedMessage defaultMessage="Load more" id="00LcfG" />
+		</PageNavButton>
+	);
 }

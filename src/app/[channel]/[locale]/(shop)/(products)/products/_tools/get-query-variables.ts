@@ -8,24 +8,24 @@ import {getCategoryIds} from './get-category-ids';
 import {getCollectionIds} from './get-collection-ids';
 
 export type QueryVariables = Omit<
-  ProductItems_ProductsQueryQueryVariables,
-  PageVariablesKey
+	ProductItems_ProductsQueryQueryVariables,
+	PageVariablesKey
 >;
 
 export async function getQueryVariables(
-  searchParams: URLSearchParams,
+	searchParams: URLSearchParams,
 ): Promise<QueryVariables> {
-  const basePath = getBasePath();
+	const basePath = getBasePath();
 
-  const [channel] = basePath;
+	const [channel] = basePath;
 
-  const [categoryIds, collectionIds] = await Promise.all([
-    getCategoryIds(searchParams),
-    getCollectionIds(searchParams, {channel}),
-  ]);
-  return {
-    ...basePathToQueryVariables(...basePath),
-    ...(isDefined(categoryIds) && {categoryIds}),
-    ...(isDefined(collectionIds) && {collectionIds}),
-  };
+	const [categoryIds, collectionIds] = await Promise.all([
+		getCategoryIds(searchParams),
+		getCollectionIds(searchParams, {channel}),
+	]);
+	return {
+		...basePathToQueryVariables(...basePath),
+		...(isDefined(categoryIds) && {categoryIds}),
+		...(isDefined(collectionIds) && {collectionIds}),
+	};
 }

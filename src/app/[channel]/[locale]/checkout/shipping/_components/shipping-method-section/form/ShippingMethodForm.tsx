@@ -21,79 +21,80 @@ import {ShippingMethodRadioItem, ShippingMethodRadioRoot} from './radio';
 import {useShippingMethodSubmit} from './use-shipping-method-submit/use-shipping-method-submit';
 
 const ShippingMethodForm_CheckoutFragment = graphql(/* GraphQL */ `
-  fragment ShippingMethodForm_CheckoutFragment on Checkout {
-    shippingMethod: deliveryMethod {
-      ... on ShippingMethod {
-        id
-      }
-    }
-    shippingMethods {
-      id
-      active
-      ...ShippingMethodRadioItem_ShippingMethod
-    }
-  }
+	fragment ShippingMethodForm_CheckoutFragment on Checkout {
+		shippingMethod: deliveryMethod {
+			... on ShippingMethod {
+				id
+			}
+		}
+		shippingMethods {
+			id
+			active
+			...ShippingMethodRadioItem_ShippingMethod
+		}
+	}
 `);
 
 interface Props {
-  readonly checkout: FragmentType<typeof ShippingMethodForm_CheckoutFragment>;
+	readonly checkout: FragmentType<typeof ShippingMethodForm_CheckoutFragment>;
 }
 
 export function ShippingMethodForm({checkout}: Props) {
-  const {shippingMethod, shippingMethods} = getFragment(
-    ShippingMethodForm_CheckoutFragment,
-    checkout,
-  );
+	const {shippingMethod, shippingMethods} = getFragment(
+		ShippingMethodForm_CheckoutFragment,
+		checkout,
+	);
 
-  const form = useForm<ShippingMethodSchema>({
-    resolver: zodResolver(shippingMethodSchema),
-  });
-  const {shippingMethodSubmit, pending} = useShippingMethodSubmit(form);
+	const form = useForm<ShippingMethodSchema>({
+		resolver: zodResolver(shippingMethodSchema),
+	});
+	const {shippingMethodSubmit, pending} = useShippingMethodSubmit(form);
 
-  const defaultValue =
-    shippingMethod && 'id' in shippingMethod
-      ? shippingMethod.id
-      : shippingMethods.at(0)?.id;
-  const disabled = form.formState.isSubmitting || pending;
+	const defaultValue =
+		shippingMethod && 'id' in shippingMethod
+			? shippingMethod.id
+			: shippingMethods.at(0)?.id;
+	const disabled = form.formState.isSubmitting || pending;
 
-  return (
-    <Form form={form} onSubmit={form.handleSubmit(shippingMethodSubmit)}>
-      <FormField
-        name={FIELDS.DELIVERY_METHOD_ID}
-        control={form.control}
-        {...(defaultValue && {defaultValue})}
-        render={({field: {value, onChange}}) => (
-          <ShippingMethodRadioRoot
-            value={value}
-            onValueChange={onChange}
-            disabled={disabled}>
-            {shippingMethods
-              .filter((shippingMethod) => shippingMethod.active)
-              .map((shippingMethod) => (
-                <ShippingMethodRadioItem
-                  key={shippingMethod.id}
-                  shippingMethod={shippingMethod}
-                />
-              ))}
-          </ShippingMethodRadioRoot>
-        )}
-      />
-      <div className={cn('flex items-center justify-between')}>
-        <BackwardLink href={formatPathname(...APP_ROUTES.CHECKOUT.INFORMATION)}>
-          <FormattedMessage
-            defaultMessage="Return to information"
-            id="k2CDuD"
-          />
-        </BackwardLink>
-        <div className={cn('w-fit')}>
-          <SubmitButton disabled={disabled}>
-            <FormattedMessage
-              defaultMessage="Continue to billing"
-              id="0s5kDf"
-            />
-          </SubmitButton>
-        </div>
-      </div>
-    </Form>
-  );
+	return (
+		<Form form={form} onSubmit={form.handleSubmit(shippingMethodSubmit)}>
+			<FormField
+				name={FIELDS.DELIVERY_METHOD_ID}
+				control={form.control}
+				{...(defaultValue && {defaultValue})}
+				render={({field: {value, onChange}}) => (
+					<ShippingMethodRadioRoot
+						value={value}
+						onValueChange={onChange}
+						disabled={disabled}>
+						{shippingMethods
+							.filter((shippingMethod) => shippingMethod.active)
+							.map((shippingMethod) => (
+								<ShippingMethodRadioItem
+									key={shippingMethod.id}
+									shippingMethod={shippingMethod}
+								/>
+							))}
+					</ShippingMethodRadioRoot>
+				)}
+			/>
+			<div className={cn('flex items-center justify-between')}>
+				<BackwardLink
+					href={formatPathname(...APP_ROUTES.CHECKOUT.INFORMATION)}>
+					<FormattedMessage
+						defaultMessage="Return to information"
+						id="k2CDuD"
+					/>
+				</BackwardLink>
+				<div className={cn('w-fit')}>
+					<SubmitButton disabled={disabled}>
+						<FormattedMessage
+							defaultMessage="Continue to billing"
+							id="0s5kDf"
+						/>
+					</SubmitButton>
+				</div>
+			</div>
+		</Form>
+	);
 }

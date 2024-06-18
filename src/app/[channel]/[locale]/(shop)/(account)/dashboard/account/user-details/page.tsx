@@ -11,24 +11,24 @@ import {LogOutSection} from './_components/log-out-section';
 import {RequestEmailChangeSection} from './_components/request-email-change-section';
 
 export default async function UserDetails() {
-  if (hasAccessToken()) {
-    return (
-      <div className={cn('space-y-6')}>
-        <Introduction />
-        <Separator />
-        <RequestEmailChangeSection />
-        <ChangePasswordSection />
-        <LogOutSection />
-      </div>
-    );
-  }
+	if (hasAccessToken()) {
+		return (
+			<div className={cn('space-y-6')}>
+				<Introduction />
+				<Separator />
+				<RequestEmailChangeSection />
+				<ChangePasswordSection />
+				<LogOutSection />
+			</div>
+		);
+	}
 
-  const fallback = <p>loading...</p>;
+	const fallback = <p>loading...</p>;
 
-  return (
-    <Suspense fallback={fallback}>
-      <RefreshAccessToken />
-      {fallback}
-    </Suspense>
-  );
+	return (
+		<Suspense fallback={fallback}>
+			<RefreshAccessToken />
+			{fallback}
+		</Suspense>
+	);
 }

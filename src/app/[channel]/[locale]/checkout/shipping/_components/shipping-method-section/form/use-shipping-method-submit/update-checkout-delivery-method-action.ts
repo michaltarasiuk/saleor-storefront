@@ -7,28 +7,31 @@ import {raise} from '@/lib/tools/raise';
 import {getCheckoutId} from '@/modules/checkout/tools/cookies';
 
 const UpdateCheckoutDeliveryMethodMutation = graphql(/* GraphQL */ `
-  mutation UpdateCheckoutDeliveryMethodMutation(
-    $id: ID!
-    $deliveryMethodId: ID!
-  ) {
-    checkoutDeliveryMethodUpdate(id: $id, deliveryMethodId: $deliveryMethodId) {
-      errors {
-        field
-        code
-      }
-    }
-  }
+	mutation UpdateCheckoutDeliveryMethodMutation(
+		$id: ID!
+		$deliveryMethodId: ID!
+	) {
+		checkoutDeliveryMethodUpdate(
+			id: $id
+			deliveryMethodId: $deliveryMethodId
+		) {
+			errors {
+				field
+				code
+			}
+		}
+	}
 `);
 
 export async function updateCheckoutDeliveryMethodAction(
-  deliveryMethodId: UpdateCheckoutDeliveryMethodMutationMutationVariables['deliveryMethodId'],
+	deliveryMethodId: UpdateCheckoutDeliveryMethodMutationMutationVariables['deliveryMethodId'],
 ) {
-  const {checkoutDeliveryMethodUpdate} = await fetchMutationData(
-    UpdateCheckoutDeliveryMethodMutation,
-    {
-      deliveryMethodId,
-      id: getCheckoutId() ?? raise('Checkout id is not defined'),
-    },
-  );
-  return checkoutDeliveryMethodUpdate;
+	const {checkoutDeliveryMethodUpdate} = await fetchMutationData(
+		UpdateCheckoutDeliveryMethodMutation,
+		{
+			deliveryMethodId,
+			id: getCheckoutId() ?? raise('Checkout id is not defined'),
+		},
+	);
+	return checkoutDeliveryMethodUpdate;
 }

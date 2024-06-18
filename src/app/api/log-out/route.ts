@@ -8,15 +8,15 @@ import {logOutFailed} from './_tools/log-out-failed';
 import {logOutSucceeded} from './_tools/log-out-succeeded';
 
 export async function POST() {
-  const accessToken = cookies().get(COOKIE_NAMES.ACCESS_TOKEN);
+	const accessToken = cookies().get(COOKIE_NAMES.ACCESS_TOKEN);
 
-  if (!isDefined(accessToken)) {
-    return logOutFailed('Missing access token');
-  }
-  try {
-    await deactivateAllTokens(accessToken.value);
-    return logOutSucceeded();
-  } catch {
-    return logOutFailed('Failed to log out');
-  }
+	if (!isDefined(accessToken)) {
+		return logOutFailed('Missing access token');
+	}
+	try {
+		await deactivateAllTokens(accessToken.value);
+		return logOutSucceeded();
+	} catch {
+		return logOutFailed('Failed to log out');
+	}
 }

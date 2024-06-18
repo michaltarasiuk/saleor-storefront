@@ -4,18 +4,18 @@ import {cn} from '@/lib/tools/cn';
 import type {PropsWithChildren} from '@/lib/types/react';
 
 interface Props {
-  readonly disabled: boolean;
+	readonly disabled: boolean;
 }
 
 export function SubmitButton({children, disabled}: PropsWithChildren<Props>) {
-  return (
-    <Button type="submit" disabled={disabled}>
-      {disabled && (
-        <span className={cn('mr-2')}>
-          <Spinner />
-        </span>
-      )}
-      {children}
-    </Button>
-  );
+	return (
+		<Button type="submit" disabled={disabled}>
+			{disabled && (
+				<span className={cn('mr-2')}>
+					<Spinner />
+				</span>
+			)}
+			{children}
+		</Button>
+	);
 }

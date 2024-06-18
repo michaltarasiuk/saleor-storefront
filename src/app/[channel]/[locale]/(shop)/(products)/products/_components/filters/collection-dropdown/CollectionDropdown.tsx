@@ -12,35 +12,35 @@ import {FiltersDropdownTrigger} from '../filters-dropdown/FiltersDropdownTrigger
 import {CollectionDropdownItems} from './CollectionDropdownItems';
 
 const BASE_OPTIONS = {
-  defaultPageSize: DEFAULT_PAGE_SIZE,
-  updateSearchParams: false,
-  restoreFromUrl: false,
+	defaultPageSize: DEFAULT_PAGE_SIZE,
+	updateSearchParams: false,
+	restoreFromUrl: false,
 };
 
 export function CollectionDropdown() {
-  const basePath = useBasePath();
+	const basePath = useBasePath();
 
-  const [{variablesArray}, actions] = usePaginationActions({
-    queryVariables: {
-      ...basePathToQueryVariables(...basePath),
-    },
-    ...BASE_OPTIONS,
-  });
-  return (
-    <FiltersDropdown>
-      <FiltersDropdownTrigger>
-        <FormattedMessage defaultMessage="Collection" id="phAZoj" />
-      </FiltersDropdownTrigger>
-      <FiltersDropdownContent>
-        {variablesArray.map((variables, idx) => (
-          <CollectionDropdownItems
-            key={idx}
-            variables={variables}
-            isLastPage={idx === variablesArray.length - 1}
-            {...actions}
-          />
-        ))}
-      </FiltersDropdownContent>
-    </FiltersDropdown>
-  );
+	const [{variablesArray}, actions] = usePaginationActions({
+		queryVariables: {
+			...basePathToQueryVariables(...basePath),
+		},
+		...BASE_OPTIONS,
+	});
+	return (
+		<FiltersDropdown>
+			<FiltersDropdownTrigger>
+				<FormattedMessage defaultMessage="Collection" id="phAZoj" />
+			</FiltersDropdownTrigger>
+			<FiltersDropdownContent>
+				{variablesArray.map((variables, idx) => (
+					<CollectionDropdownItems
+						key={idx}
+						variables={variables}
+						isLastPage={idx === variablesArray.length - 1}
+						{...actions}
+					/>
+				))}
+			</FiltersDropdownContent>
+		</FiltersDropdown>
+	);
 }

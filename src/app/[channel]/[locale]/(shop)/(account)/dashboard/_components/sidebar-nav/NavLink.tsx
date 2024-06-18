@@ -7,23 +7,23 @@ import {cn} from '@/lib/tools/cn';
 import type {PropsWithChildren} from '@/lib/types/react';
 
 interface Props {
-  readonly href: string;
+	readonly href: string;
 }
 
 export function NavLink({children, href}: PropsWithChildren<Props>) {
-  const basePathRelative = useBasePathRelative();
+	const basePathRelative = useBasePathRelative();
 
-  return (
-    <IntlLink
-      href={href}
-      className={cn(
-        buttonStyles({variant: 'ghost'}),
-        basePathRelative === href
-          ? 'pointer-events-none cursor-default bg-muted hover:bg-muted'
-          : 'hover:bg-transparent hover:underline',
-        'w-full justify-start',
-      )}>
-      {children}
-    </IntlLink>
-  );
+	return (
+		<IntlLink
+			href={href}
+			className={cn(
+				buttonStyles({variant: 'ghost'}),
+				basePathRelative === href
+					? 'pointer-events-none cursor-default bg-muted hover:bg-muted'
+					: 'hover:bg-transparent hover:underline',
+				'w-full justify-start',
+			)}>
+			{children}
+		</IntlLink>
+	);
 }

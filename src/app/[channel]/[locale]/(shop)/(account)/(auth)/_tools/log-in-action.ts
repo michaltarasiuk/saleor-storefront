@@ -9,22 +9,22 @@ import {setAccessToken, setRefreshToken} from '@/modules/account/tools/cookies';
 import {logIn} from './log-in';
 
 export async function logInAction(variables: LogInMutationMutationVariables) {
-  const {tokenCreate} = await logIn(variables);
-  const {token, refreshToken, csrfToken, errors} = tokenCreate ?? {};
+	const {tokenCreate} = await logIn(variables);
+	const {token, refreshToken, csrfToken, errors} = tokenCreate ?? {};
 
-  if (errors?.length) {
-    return {
-      type: 'error' as const,
-      result: errors,
-    };
-  }
-  invariant(token && refreshToken && csrfToken, 'Missing token');
+	if (errors?.length) {
+		return {
+			type: 'error' as const,
+			result: errors,
+		};
+	}
+	invariant(token && refreshToken && csrfToken, 'Missing token');
 
-  await setAccessToken(token);
-  setRefreshToken(refreshToken);
+	await setAccessToken(token);
+	setRefreshToken(refreshToken);
 
-  return {
-    type: 'success' as const,
-    result: {name: CSRF_TOKEN_NAME, value: csrfToken},
-  };
+	return {
+		type: 'success' as const,
+		result: {name: CSRF_TOKEN_NAME, value: csrfToken},
+	};
 }

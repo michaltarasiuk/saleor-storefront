@@ -6,6 +6,6 @@ import {raise} from '@/lib/tools/raise';
 const defaultCountryCode = localeToCountryCode(DEFAULT_LOCALE);
 
 export function findCountryCode(...values: readonly unknown[]) {
-  const countryCode = values.find(isCountryCode) ?? defaultCountryCode;
-  return countryCode ?? raise('Country code is not defined');
+	const countryCode = values.find(isCountryCode) ?? defaultCountryCode;
+	return countryCode ?? raise('Country code is not defined');
 }

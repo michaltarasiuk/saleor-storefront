@@ -9,8 +9,8 @@ const schema = process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT;
 invariant(schema, 'Schema is not defined.');
 
 const config: IGraphQLConfig = {
-  schema,
-  documents: 'src/**/*.{ts,tsx}',
+	schema,
+	documents: 'src/**/*.{ts,tsx}',
 };
 
 export default config;

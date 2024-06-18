@@ -9,26 +9,26 @@ import {NavigationLink} from '../_components/NavigationLink';
 import {RequestPasswordResetForm} from './_components/RequestPasswordResetForm';
 
 export default function RequestPasswordResetPage() {
-  return (
-    <>
-      <NavigationLink href={formatPathname(APP_ROUTES.LOGIN)}>
-        <FormattedMessage defaultMessage="Back" id="cyR7Kh" />
-      </NavigationLink>
-      <section className={cn('text-center')}>
-        <Heading>
-          <FormattedMessage
-            defaultMessage="Request password reset"
-            id="Wtffln"
-          />
-        </Heading>
-        <Description>
-          <FormattedMessage
-            defaultMessage="Enter your email to receive reset link"
-            id="9KlUdb"
-          />
-        </Description>
-      </section>
-      <RequestPasswordResetForm />
-    </>
-  );
+	return (
+		<>
+			<NavigationLink href={formatPathname(APP_ROUTES.LOGIN)}>
+				<FormattedMessage defaultMessage="Back" id="cyR7Kh" />
+			</NavigationLink>
+			<section className={cn('text-center')}>
+				<Heading>
+					<FormattedMessage
+						defaultMessage="Request password reset"
+						id="Wtffln"
+					/>
+				</Heading>
+				<Description>
+					<FormattedMessage
+						defaultMessage="Enter your email to receive reset link"
+						id="9KlUdb"
+					/>
+				</Description>
+			</section>
+			<RequestPasswordResetForm />
+		</>
+	);
 }

@@ -8,31 +8,34 @@ import {Heading} from '../../../_components/Heading';
 import {ShippingMethodForm} from './form';
 
 const ShippingMethodSection_CheckoutFragment = graphql(/* GraphQL */ `
-  fragment ShippingMethodSection_CheckoutFragment on Checkout {
-    ...ShippingMethodForm_CheckoutFragment
-  }
+	fragment ShippingMethodSection_CheckoutFragment on Checkout {
+		...ShippingMethodForm_CheckoutFragment
+	}
 `);
 
 interface Props {
-  readonly checkout: FragmentType<
-    typeof ShippingMethodSection_CheckoutFragment
-  >;
+	readonly checkout: FragmentType<
+		typeof ShippingMethodSection_CheckoutFragment
+	>;
 }
 
 export async function ShippingMethodSection({checkout}: Props) {
-  const intl = await getIntl(getLocale());
+	const intl = await getIntl(getLocale());
 
-  return (
-    <section className={cn('space-y-3')}>
-      <Heading>
-        {intl.formatMessage({
-          defaultMessage: 'Shipping method',
-          id: '4RD+CZ',
-        })}
-      </Heading>
-      <ShippingMethodForm
-        checkout={getFragment(ShippingMethodSection_CheckoutFragment, checkout)}
-      />
-    </section>
-  );
+	return (
+		<section className={cn('space-y-3')}>
+			<Heading>
+				{intl.formatMessage({
+					defaultMessage: 'Shipping method',
+					id: '4RD+CZ',
+				})}
+			</Heading>
+			<ShippingMethodForm
+				checkout={getFragment(
+					ShippingMethodSection_CheckoutFragment,
+					checkout,
+				)}
+			/>
+		</section>
+	);
 }

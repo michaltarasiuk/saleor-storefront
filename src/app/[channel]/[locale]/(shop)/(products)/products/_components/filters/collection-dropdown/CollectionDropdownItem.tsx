@@ -12,46 +12,46 @@ import {PRODUCTS_PAGE_SEARCH_PARAM_NAMES} from '../../../_consts';
 import {FiltersDropdownItem} from '../filters-dropdown/FiltersDropdownItem';
 
 const CollectionDropdownItem_CategoryFragment = graphql(`
-  fragment CollectionDropdownItem_CategoryFragment on Collection {
-    __typename
-    id
-    name
-    translation(languageCode: $languageCode) {
-      name
-    }
-    slug
-  }
+	fragment CollectionDropdownItem_CategoryFragment on Collection {
+		__typename
+		id
+		name
+		translation(languageCode: $languageCode) {
+			name
+		}
+		slug
+	}
 `);
 
 interface Props {
-  readonly collection: FragmentType<
-    typeof CollectionDropdownItem_CategoryFragment
-  >;
+	readonly collection: FragmentType<
+		typeof CollectionDropdownItem_CategoryFragment
+	>;
 }
 
 export function CollectionDropdownItem({collection}: Props) {
-  const {name, slug} = applyTranslation(
-    getFragment(CollectionDropdownItem_CategoryFragment, collection),
-  );
-  const intlRouter = useIntlRouter();
-  const searchParams = useSearchParams();
+	const {name, slug} = applyTranslation(
+		getFragment(CollectionDropdownItem_CategoryFragment, collection),
+	);
+	const intlRouter = useIntlRouter();
+	const searchParams = useSearchParams();
 
-  return (
-    <FiltersDropdownItem
-      checked={searchParams.has(
-        PRODUCTS_PAGE_SEARCH_PARAM_NAMES.COLLECTION,
-        slug,
-      )}
-      onSelect={() => {
-        intlRouter.push(
-          `${formatPathname(APP_ROUTES.PRODUCTS)}?${toggleSearchParam(
-            searchParams,
-            PRODUCTS_PAGE_SEARCH_PARAM_NAMES.COLLECTION,
-            slug,
-          )}`,
-        );
-      }}>
-      {name}
-    </FiltersDropdownItem>
-  );
+	return (
+		<FiltersDropdownItem
+			checked={searchParams.has(
+				PRODUCTS_PAGE_SEARCH_PARAM_NAMES.COLLECTION,
+				slug,
+			)}
+			onSelect={() => {
+				intlRouter.push(
+					`${formatPathname(APP_ROUTES.PRODUCTS)}?${toggleSearchParam(
+						searchParams,
+						PRODUCTS_PAGE_SEARCH_PARAM_NAMES.COLLECTION,
+						slug,
+					)}`,
+				);
+			}}>
+			{name}
+		</FiltersDropdownItem>
+	);
 }

@@ -7,11 +7,11 @@ import {cn} from '@/lib/tools/cn';
 import {formatPathname} from '@/lib/tools/format-pathname';
 
 export function LoginLink() {
-  return (
-    <IntlLink
-      href={formatPathname(APP_ROUTES.LOGIN)}
-      className={cn(buttonStyles({variant: 'ghost', size: 'icon'}))}>
-      <LockIcon className={cn('h-5 w-5')} />
-    </IntlLink>
-  );
+	return (
+		<IntlLink
+			href={formatPathname(APP_ROUTES.LOGIN)}
+			className={cn(buttonStyles({variant: 'ghost', size: 'icon'}))}>
+			<LockIcon className={cn('h-5 w-5')} />
+		</IntlLink>
+	);
 }

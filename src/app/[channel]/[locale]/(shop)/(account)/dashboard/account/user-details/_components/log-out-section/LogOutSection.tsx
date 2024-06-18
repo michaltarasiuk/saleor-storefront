@@ -5,14 +5,14 @@ import {UserDetailsSection} from '../UserDetailsSection';
 import {LogOutButton} from './LogOutButton';
 
 export async function LogOutSection() {
-  const intl = await getIntl();
+	const intl = await getIntl();
 
-  return (
-    <UserDetailsSection>
-      <SectionHeading>
-        {intl.formatMessage({defaultMessage: 'Controls', id: 'l3CDSb'})}
-      </SectionHeading>
-      <LogOutButton />
-    </UserDetailsSection>
-  );
+	return (
+		<UserDetailsSection>
+			<SectionHeading>
+				{intl.formatMessage({defaultMessage: 'Controls', id: 'l3CDSb'})}
+			</SectionHeading>
+			<LogOutButton />
+		</UserDetailsSection>
+	);
 }

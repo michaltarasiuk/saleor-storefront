@@ -3,31 +3,31 @@ import type {SetPasswordMutationMutationVariables} from '@/graphql/generated/gra
 import {fetchMutationData} from '@/lib/tools/get-client';
 
 const SetPasswordMutation = graphql(/* GraphQL */ `
-  mutation SetPasswordMutation(
-    $email: String!
-    $token: String!
-    $password: String!
-  ) {
-    setPassword(email: $email, token: $token, password: $password) {
-      token
-      refreshToken
-      csrfToken
-      errors {
-        field
-        code
-      }
-    }
-  }
+	mutation SetPasswordMutation(
+		$email: String!
+		$token: String!
+		$password: String!
+	) {
+		setPassword(email: $email, token: $token, password: $password) {
+			token
+			refreshToken
+			csrfToken
+			errors {
+				field
+				code
+			}
+		}
+	}
 `);
 
 export async function setPassword(
-  variables: SetPasswordMutationMutationVariables,
+	variables: SetPasswordMutationMutationVariables,
 ) {
-  return (
-    await fetchMutationData(SetPasswordMutation, variables, {
-      fetchOptions: {
-        cache: 'no-cache',
-      },
-    })
-  ).setPassword;
+	return (
+		await fetchMutationData(SetPasswordMutation, variables, {
+			fetchOptions: {
+				cache: 'no-cache',
+			},
+		})
+	).setPassword;
 }

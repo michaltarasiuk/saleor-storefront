@@ -6,14 +6,14 @@ import {preventFromVisitingHomePageHandler} from './middleware/prevent-from-visi
 import {setBasePathHeadersHandler} from './middleware/set-base-path-headers-handler';
 
 export default async function middleware(req: NextRequest) {
-  const {middleware, use} = createMiddleware();
-  use(basePathHandler);
-  use(preventFromVisitingHomePageHandler);
-  use(setBasePathHeadersHandler);
+	const {middleware, use} = createMiddleware();
+	use(basePathHandler);
+	use(preventFromVisitingHomePageHandler);
+	use(setBasePathHeadersHandler);
 
-  return middleware(req);
+	return middleware(req);
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|assets).*)'],
+	matcher: ['/((?!api|_next/static|_next/image|favicon.ico|assets).*)'],
 };

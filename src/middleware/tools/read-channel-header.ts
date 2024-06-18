@@ -9,9 +9,9 @@ import {isDefined} from '@/lib/tools/is-defined';
 import {CUSTOM_REQUEST_HEADERS} from '../set-base-path-headers-handler';
 
 export function readChannelHeader() {
-  const channel = headers().get(CUSTOM_REQUEST_HEADERS.CHANNEL);
-  invariant(isDefined(channel), "Channel isn't defined");
-  assertAvailableChannel(channel);
+	const channel = headers().get(CUSTOM_REQUEST_HEADERS.CHANNEL);
+	invariant(isDefined(channel), "Channel isn't defined");
+	assertAvailableChannel(channel);
 
-  return channel;
+	return channel;
 }

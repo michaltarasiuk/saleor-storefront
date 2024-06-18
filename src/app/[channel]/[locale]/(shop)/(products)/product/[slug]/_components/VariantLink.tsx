@@ -10,47 +10,47 @@ import {formatPathname} from '@/lib/tools/format-pathname';
 import {PRODUCT_PAGE_SEARCH_PARAM_NAMES} from '../_consts';
 
 const VariantLink_ProductVariantFragment = graphql(/* GraphQL */ `
-  fragment VariantLink_ProductVariantFragment on ProductVariant {
-    __typename
-    id
-    name
-    translation(languageCode: $languageCode) {
-      __typename
-      id
-      name
-    }
-    product {
-      __typename
-      id
-      slug
-    }
-  }
+	fragment VariantLink_ProductVariantFragment on ProductVariant {
+		__typename
+		id
+		name
+		translation(languageCode: $languageCode) {
+			__typename
+			id
+			name
+		}
+		product {
+			__typename
+			id
+			slug
+		}
+	}
 `);
 
 interface Props {
-  readonly variant: FragmentType<typeof VariantLink_ProductVariantFragment>;
-  readonly disabled: boolean;
+	readonly variant: FragmentType<typeof VariantLink_ProductVariantFragment>;
+	readonly disabled: boolean;
 }
 
 export function VariantLink({variant, disabled}: Props) {
-  const {id, name, product} = applyTranslation(
-    getFragment(VariantLink_ProductVariantFragment, variant),
-  );
-  const searchParams = new URLSearchParams();
+	const {id, name, product} = applyTranslation(
+		getFragment(VariantLink_ProductVariantFragment, variant),
+	);
+	const searchParams = new URLSearchParams();
 
-  searchParams.set(PRODUCT_PAGE_SEARCH_PARAM_NAMES.VARIANT, id);
+	searchParams.set(PRODUCT_PAGE_SEARCH_PARAM_NAMES.VARIANT, id);
 
-  return (
-    <IntlLink
-      href={{
-        pathname: formatPathname(APP_ROUTES.PRODUCT, product.slug),
-        query: searchParams.toString(),
-      }}
-      className={cn(
-        buttonStyles({variant: 'outline'}),
-        disabled && 'bg-blue-100',
-      )}>
-      {name}
-    </IntlLink>
-  );
+	return (
+		<IntlLink
+			href={{
+				pathname: formatPathname(APP_ROUTES.PRODUCT, product.slug),
+				query: searchParams.toString(),
+			}}
+			className={cn(
+				buttonStyles({variant: 'outline'}),
+				disabled && 'bg-blue-100',
+			)}>
+			{name}
+		</IntlLink>
+	);
 }

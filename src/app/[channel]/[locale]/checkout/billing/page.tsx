@@ -14,57 +14,57 @@ import {goToRoot} from '../_tools/go-to-root';
 import {BillingSection} from './_components/BillingSection';
 
 const BillingPage_CheckoutQuery = graphql(/* GraphQL */ `
-  query BillingPage_CheckoutQuery($id: ID!) {
-    checkout(id: $id) {
-      quantity
-      shippingAddress {
-        __typename
-      }
-      deliveryMethod {
-        __typename
-      }
-      billingAddress {
-        __typename
-      }
-      ...Breadcrumbs_CheckoutFragment
-      ...BillingSection_CheckoutFragment
-    }
-  }
+	query BillingPage_CheckoutQuery($id: ID!) {
+		checkout(id: $id) {
+			quantity
+			shippingAddress {
+				__typename
+			}
+			deliveryMethod {
+				__typename
+			}
+			billingAddress {
+				__typename
+			}
+			...Breadcrumbs_CheckoutFragment
+			...BillingSection_CheckoutFragment
+		}
+	}
 `);
 
 interface Props {
-  readonly searchParams?: {
-    readonly country?: string;
-  };
+	readonly searchParams?: {
+		readonly country?: string;
+	};
 }
 
 export default async function BillingPage({searchParams}: Props) {
-  const {checkout} = await fetchQueryData(
-    BillingPage_CheckoutQuery,
-    {
-      id: getCheckoutId() ?? goToRoot(),
-    },
-    {
-      fetchOptions: {
-        cache: 'no-cache',
-      },
-    },
-  );
-  if (!checkout?.quantity) goToRoot();
+	const {checkout} = await fetchQueryData(
+		BillingPage_CheckoutQuery,
+		{
+			id: getCheckoutId() ?? goToRoot(),
+		},
+		{
+			fetchOptions: {
+				cache: 'no-cache',
+			},
+		},
+	);
+	if (!checkout?.quantity) goToRoot();
 
-  const redirectUrl = getRedirectUrl(
-    checkout,
-    formatPathname(...APP_ROUTES.CHECKOUT.BILLING),
-  );
-  if (redirectUrl) redirect(redirectUrl);
+	const redirectUrl = getRedirectUrl(
+		checkout,
+		formatPathname(...APP_ROUTES.CHECKOUT.BILLING),
+	);
+	if (redirectUrl) redirect(redirectUrl);
 
-  return (
-    <div className={cn('space-y-7')}>
-      <Breadcrumbs checkout={checkout} />
-      <BillingSection
-        checkout={checkout}
-        country={extractCountryCode(searchParams)}
-      />
-    </div>
-  );
+	return (
+		<div className={cn('space-y-7')}>
+			<Breadcrumbs checkout={checkout} />
+			<BillingSection
+				checkout={checkout}
+				country={extractCountryCode(searchParams)}
+			/>
+		</div>
+	);
 }

@@ -10,28 +10,28 @@ import {isDefined} from '@/lib/tools/is-defined';
 import {addCheckoutLineAction} from '@/modules/checkout/tools/add-checkout-line-action';
 
 interface Props {
-  readonly variantId: string | undefined | null;
+	readonly variantId: string | undefined | null;
 }
 
 export function AddToCartButton({variantId}: Props) {
-  const {channel, languageCode} = basePathToQueryVariables(...useBasePath());
-  const router = useRouter();
+	const {channel, languageCode} = basePathToQueryVariables(...useBasePath());
+	const router = useRouter();
 
-  return (
-    <Button
-      variant="outline"
-      disabled={!isDefined(variantId)}
-      onClick={async () => {
-        if (isDefined(variantId)) {
-          await addCheckoutLineAction({
-            line: {quantity: 1, variantId},
-            channel,
-            languageCode,
-          });
-          router.refresh();
-        }
-      }}>
-      <FormattedMessage defaultMessage="Add to cart" id="ADKef8" />
-    </Button>
-  );
+	return (
+		<Button
+			variant="outline"
+			disabled={!isDefined(variantId)}
+			onClick={async () => {
+				if (isDefined(variantId)) {
+					await addCheckoutLineAction({
+						line: {quantity: 1, variantId},
+						channel,
+						languageCode,
+					});
+					router.refresh();
+				}
+			}}>
+			<FormattedMessage defaultMessage="Add to cart" id="ADKef8" />
+		</Button>
+	);
 }

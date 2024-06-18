@@ -8,15 +8,15 @@ import {EmptyCartDialog} from './components/EmptyCartDialog';
 import {ShoppingCartButton} from './components/ShoppingCartButton';
 
 export function ShoppingCartDialog() {
-  const checkoutId = getCheckoutId();
+	const checkoutId = getCheckoutId();
 
-  return (
-    <Suspense fallback={<ShoppingCartButton disabled />}>
-      {!isDefined(checkoutId) ? (
-        <EmptyCartDialog />
-      ) : (
-        <CartDialog id={checkoutId} />
-      )}
-    </Suspense>
-  );
+	return (
+		<Suspense fallback={<ShoppingCartButton disabled />}>
+			{!isDefined(checkoutId) ? (
+				<EmptyCartDialog />
+			) : (
+				<CartDialog id={checkoutId} />
+			)}
+		</Suspense>
+	);
 }

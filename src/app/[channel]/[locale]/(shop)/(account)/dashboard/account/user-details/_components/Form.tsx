@@ -8,41 +8,43 @@ import {cn} from '@/lib/tools/cn';
 import type {PropsWithChildren} from '@/lib/types/react';
 
 type FormProps<FormSchema extends FieldValues> = Omit<
-  FormProps_<FormSchema>,
-  'className'
+	FormProps_<FormSchema>,
+	'className'
 >;
 
 export function Form<FormSchema extends FieldValues>({
-  children,
-  ...restProps
+	children,
+	...restProps
 }: FormProps<FormSchema>) {
-  return (
-    <Form_ className={cn('space-y-2')} {...restProps}>
-      {children}
-    </Form_>
-  );
+	return (
+		<Form_ className={cn('space-y-2')} {...restProps}>
+			{children}
+		</Form_>
+	);
 }
 
 export function FormItem({children}: PropsWithChildren) {
-  return (
-    <FormItem_ className={cn('flex flex-col space-y-1')}>{children}</FormItem_>
-  );
+	return (
+		<FormItem_ className={cn('flex flex-col space-y-1')}>
+			{children}
+		</FormItem_>
+	);
 }
 
 type FormFieldDescriptionTextProps = Omit<
-  HTMLAttributes<HTMLParagraphElement>,
-  'className'
+	HTMLAttributes<HTMLParagraphElement>,
+	'className'
 >;
 
 export function FormFieldDescriptionText({
-  children,
-  ...restProps
+	children,
+	...restProps
 }: FormFieldDescriptionTextProps) {
-  return (
-    <p
-      className={cn('text-sm font-light text-muted-foreground')}
-      {...restProps}>
-      {children}
-    </p>
-  );
+	return (
+		<p
+			className={cn('text-sm font-light text-muted-foreground')}
+			{...restProps}>
+			{children}
+		</p>
+	);
 }

@@ -10,31 +10,31 @@ import * as DropdownMenu from './DropdownMenu';
 import {NavbarDropdownTrigger} from './NavbarDropdownTrigger';
 
 const NavbarDropdownContent = dynamic(() =>
-  import('./NavbarDropdownContent').then((mod) => mod.NavbarDropdownContent),
+	import('./NavbarDropdownContent').then((mod) => mod.NavbarDropdownContent),
 );
 
 const NavbarDropdown_MenuItemFragment = graphql(`
-  fragment NavbarDropdown_MenuItemFragment on MenuItem {
-    ...NavbarDropdownTrigger_MenuItemFragment
-    ...NavbarDropdownContent_MenuItemFragment
-  }
+	fragment NavbarDropdown_MenuItemFragment on MenuItem {
+		...NavbarDropdownTrigger_MenuItemFragment
+		...NavbarDropdownContent_MenuItemFragment
+	}
 `);
 
 interface Props {
-  readonly menuItem: FragmentType<typeof NavbarDropdown_MenuItemFragment>;
+	readonly menuItem: FragmentType<typeof NavbarDropdown_MenuItemFragment>;
 }
 
 export function NavbarDropdown({menuItem}: Props) {
-  const item = getFragment(NavbarDropdown_MenuItemFragment, menuItem);
+	const item = getFragment(NavbarDropdown_MenuItemFragment, menuItem);
 
-  const [isOpen, setIsOpen] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
 
-  return (
-    <DropdownMenu.Root onOpenChange={setIsOpen}>
-      <NavbarDropdownTrigger menuItem={item} />
-      <DropdownMenu.Portal>
-        {isOpen && <NavbarDropdownContent menuItem={item} />}
-      </DropdownMenu.Portal>
-    </DropdownMenu.Root>
-  );
+	return (
+		<DropdownMenu.Root onOpenChange={setIsOpen}>
+			<NavbarDropdownTrigger menuItem={item} />
+			<DropdownMenu.Portal>
+				{isOpen && <NavbarDropdownContent menuItem={item} />}
+			</DropdownMenu.Portal>
+		</DropdownMenu.Root>
+	);
 }

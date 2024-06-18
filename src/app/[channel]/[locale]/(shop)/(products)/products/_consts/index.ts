@@ -4,6 +4,6 @@ export const MAX_PAGE_SIZE = 100;
 export const USE_PAGINATION = true;
 
 export const PRODUCTS_PAGE_SEARCH_PARAM_NAMES = {
-  CATEGORY: 'category',
-  COLLECTION: 'collection',
+	CATEGORY: 'category',
+	COLLECTION: 'collection',
 };

@@ -7,22 +7,22 @@ import type {PropsWithChildren} from '@/lib/types/react';
 import {UrqlProvider} from '../_components/UrqlProvider';
 
 interface Props {
-  readonly channel: AvailableChannel;
-  readonly locale: AvailableLocale;
+	readonly channel: AvailableChannel;
+	readonly locale: AvailableLocale;
 }
 
 export function Providers({
-  children,
-  channel,
-  locale,
+	children,
+	channel,
+	locale,
 }: PropsWithChildren<Props>) {
-  return (
-    <ChannelContext.Provider value={channel}>
-      <LocaleContext.Provider value={locale}>
-        <IntlProvider locale={locale}>
-          <UrqlProvider>{children}</UrqlProvider>
-        </IntlProvider>
-      </LocaleContext.Provider>
-    </ChannelContext.Provider>
-  );
+	return (
+		<ChannelContext.Provider value={channel}>
+			<LocaleContext.Provider value={locale}>
+				<IntlProvider locale={locale}>
+					<UrqlProvider>{children}</UrqlProvider>
+				</IntlProvider>
+			</LocaleContext.Provider>
+		</ChannelContext.Provider>
+	);
 }

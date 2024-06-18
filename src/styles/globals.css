@@ -3,52 +3,52 @@
 @tailwind utilities;
 
 :root {
-  --ring: 240 5% 64.9%;
+	--ring: 240 5% 64.9%;
 
-  --border: 240 5.9% 90%;
+	--border: 240 5.9% 90%;
 
-  --input: 240 5.9% 90%;
+	--input: 240 5.9% 90%;
 
-  --white: 0 0% 100%;
+	--white: 0 0% 100%;
 
-  --background: 0 0% 98%;
+	--background: 0 0% 98%;
 
-  --faded-black: 0 0% 20%;
+	--faded-black: 0 0% 20%;
 
-  --subdued: 0 0% 51%;
-  --subdued-foreground: 0 0% 9%;
+	--subdued: 0 0% 51%;
+	--subdued-foreground: 0 0% 9%;
 
-  --muted: 240 4.8% 95.9%;
-  --muted-foreground: 240 3.8% 46.1%;
+	--muted: 240 4.8% 95.9%;
+	--muted-foreground: 240 3.8% 46.1%;
 
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
+	--destructive: 0 84.2% 60.2%;
+	--destructive-foreground: 0 0% 98%;
 
-  --grey: 240 5% 40%;
-  --grey-light: 0, 0%, 41%;
-  --grey-dark: 240 7% 14%;
-  --grey-foreground: 0, 0%, 51%;
+	--grey: 240 5% 40%;
+	--grey-light: 0, 0%, 41%;
+	--grey-dark: 240 7% 14%;
+	--grey-foreground: 0, 0%, 51%;
 
-  --primary: 240 5.9% 10%;
-  --primary-foreground: 0 0% 98%;
+	--primary: 240 5.9% 10%;
+	--primary-foreground: 0 0% 98%;
 
-  --accent: 240 4.8% 95.9%;
-  --accent-foreground: 240 5.9% 10%;
+	--accent: 240 4.8% 95.9%;
+	--accent-foreground: 240 5.9% 10%;
 
-  --blue: 212 100% 48%;
-  --blue-hovered: 221 100% 67%;
-  --blue-foreground: 213 100% 38%;
+	--blue: 212 100% 48%;
+	--blue-hovered: 221 100% 67%;
+	--blue-foreground: 213 100% 38%;
 
-  --radius: 0.5rem;
+	--radius: 0.5rem;
 
-  --toast-desktop-width: 365px;
-  --toast-mobile-width: calc(100% -32px);
+	--toast-desktop-width: 365px;
+	--toast-mobile-width: calc(100% -32px);
 
-  --popover: 0 0% 100%;
-  --popover-foreground: 240 10% 3.9%;
+	--popover: 0 0% 100%;
+	--popover-foreground: 240 10% 3.9%;
 }
 
 html,
 body {
-  height: 100%;
+	height: 100%;
 }

@@ -6,21 +6,21 @@ import type {PageInfo} from '@/graphql/generated/graphql';
 import type {usePaginationActions} from './use-pagination-actions';
 
 export function useHandleNextPage({
-  pageInfo,
-  isLastPage,
-  ...actions
+	pageInfo,
+	isLastPage,
+	...actions
 }: {
-  readonly pageInfo?: PageInfo;
-  readonly isLastPage: boolean;
+	readonly pageInfo?: PageInfo;
+	readonly isLastPage: boolean;
 } & Pick<
-  UnionToIntersection<ReturnType<typeof usePaginationActions>[number]>,
-  'onNextPage'
+	UnionToIntersection<ReturnType<typeof usePaginationActions>[number]>,
+	'onNextPage'
 >) {
-  const onNextPage = useEffectEvent(actions.onNextPage);
+	const onNextPage = useEffectEvent(actions.onNextPage);
 
-  useEffect(() => {
-    if (pageInfo && isLastPage) {
-      onNextPage(pageInfo);
-    }
-  }, [isLastPage, onNextPage, pageInfo]);
+	useEffect(() => {
+		if (pageInfo && isLastPage) {
+			onNextPage(pageInfo);
+		}
+	}, [isLastPage, onNextPage, pageInfo]);
 }

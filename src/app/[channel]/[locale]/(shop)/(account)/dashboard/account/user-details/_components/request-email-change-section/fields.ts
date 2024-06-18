@@ -1,4 +1,4 @@
 export const FIELDS = {
-  NEW_EMAIL: 'newEmail',
-  PASSWORD: 'password',
+	NEW_EMAIL: 'newEmail',
+	PASSWORD: 'password',
 } as const;

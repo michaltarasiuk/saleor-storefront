@@ -1,9 +1,9 @@
 import {deleteAllCookies} from '@/modules/account/tools/cookies';
 
 export async function logOutSucceeded() {
-  deleteAllCookies();
+	deleteAllCookies();
 
-  return new Response(null, {
-    status: 200,
-  });
+	return new Response(null, {
+		status: 200,
+	});
 }

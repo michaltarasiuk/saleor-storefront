@@ -13,84 +13,90 @@ import type {PropsWithChildren} from '@/lib/types/react';
 import {BreadcrumbLink} from './BreadcrumbLink';
 
 const Breadcrumbs_CheckoutFragment = graphql(/* GraphQL */ `
-  fragment Breadcrumbs_CheckoutFragment on Checkout {
-    shippingAddress {
-      __typename
-    }
-    deliveryMethod {
-      __typename
-    }
-    billingAddress {
-      __typename
-    }
-  }
+	fragment Breadcrumbs_CheckoutFragment on Checkout {
+		shippingAddress {
+			__typename
+		}
+		deliveryMethod {
+			__typename
+		}
+		billingAddress {
+			__typename
+		}
+	}
 `);
 
 interface Props {
-  readonly checkout: FragmentType<typeof Breadcrumbs_CheckoutFragment>;
+	readonly checkout: FragmentType<typeof Breadcrumbs_CheckoutFragment>;
 }
 
 export async function Breadcrumbs({checkout}: Props) {
-  const {shippingAddress, deliveryMethod, billingAddress} = getFragment(
-    Breadcrumbs_CheckoutFragment,
-    checkout,
-  );
-  const intl = await getIntl(getLocale());
+	const {shippingAddress, deliveryMethod, billingAddress} = getFragment(
+		Breadcrumbs_CheckoutFragment,
+		checkout,
+	);
+	const intl = await getIntl(getLocale());
 
-  return (
-    <nav aria-label="Breadcrumb">
-      <ol className={cn('flex gap-2')}>
-        <Breadcrumb>
-          <BreadcrumbLink
-            href={formatPathname(...APP_ROUTES.CHECKOUT.INFORMATION)}>
-            {intl.formatMessage({
-              defaultMessage: 'Information',
-              id: 'E80WrK',
-            })}
-          </BreadcrumbLink>
-          <BreadcrumbSeparator />
-        </Breadcrumb>
-        <Breadcrumb>
-          <BreadcrumbLink
-            href={formatPathname(...APP_ROUTES.CHECKOUT.SHIPPING)}
-            disabled={!shippingAddress}>
-            {intl.formatMessage({
-              defaultMessage: 'Shipping',
-              id: 'PRlD0A',
-            })}
-          </BreadcrumbLink>
-          <BreadcrumbSeparator />
-        </Breadcrumb>
-        <Breadcrumb>
-          <BreadcrumbLink
-            href={formatPathname(...APP_ROUTES.CHECKOUT.BILLING)}
-            disabled={!shippingAddress || !deliveryMethod}>
-            {intl.formatMessage({
-              defaultMessage: 'Billing',
-              id: 'Tbo377',
-            })}
-          </BreadcrumbLink>
-          <BreadcrumbSeparator />
-        </Breadcrumb>
-        <Breadcrumb>
-          <BreadcrumbLink
-            href={formatPathname(...APP_ROUTES.CHECKOUT.PAYMENT)}
-            disabled={!shippingAddress || !deliveryMethod || !billingAddress}>
-            {intl.formatMessage({
-              defaultMessage: 'Payment',
-              id: 'NmK6zy',
-            })}
-          </BreadcrumbLink>
-        </Breadcrumb>
-      </ol>
-    </nav>
-  );
+	return (
+		<nav aria-label="Breadcrumb">
+			<ol className={cn('flex gap-2')}>
+				<Breadcrumb>
+					<BreadcrumbLink
+						href={formatPathname(
+							...APP_ROUTES.CHECKOUT.INFORMATION,
+						)}>
+						{intl.formatMessage({
+							defaultMessage: 'Information',
+							id: 'E80WrK',
+						})}
+					</BreadcrumbLink>
+					<BreadcrumbSeparator />
+				</Breadcrumb>
+				<Breadcrumb>
+					<BreadcrumbLink
+						href={formatPathname(...APP_ROUTES.CHECKOUT.SHIPPING)}
+						disabled={!shippingAddress}>
+						{intl.formatMessage({
+							defaultMessage: 'Shipping',
+							id: 'PRlD0A',
+						})}
+					</BreadcrumbLink>
+					<BreadcrumbSeparator />
+				</Breadcrumb>
+				<Breadcrumb>
+					<BreadcrumbLink
+						href={formatPathname(...APP_ROUTES.CHECKOUT.BILLING)}
+						disabled={!shippingAddress || !deliveryMethod}>
+						{intl.formatMessage({
+							defaultMessage: 'Billing',
+							id: 'Tbo377',
+						})}
+					</BreadcrumbLink>
+					<BreadcrumbSeparator />
+				</Breadcrumb>
+				<Breadcrumb>
+					<BreadcrumbLink
+						href={formatPathname(...APP_ROUTES.CHECKOUT.PAYMENT)}
+						disabled={
+							!shippingAddress ||
+							!deliveryMethod ||
+							!billingAddress
+						}>
+						{intl.formatMessage({
+							defaultMessage: 'Payment',
+							id: 'NmK6zy',
+						})}
+					</BreadcrumbLink>
+				</Breadcrumb>
+			</ol>
+		</nav>
+	);
 }
 
 function Breadcrumb({children}: PropsWithChildren) {
-  return <li className={cn('flex items-center gap-2')}>{children}</li>;
+	return <li className={cn('flex items-center gap-2')}>{children}</li>;
 }
 
 function BreadcrumbSeparator() {
-  return <ChevronRightIcon size={15} className={cn('text-grey')} />;
+	return <ChevronRightIcon size={15} className={cn('text-grey')} />;
 }

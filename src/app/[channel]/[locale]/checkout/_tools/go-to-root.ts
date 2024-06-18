@@ -6,5 +6,5 @@ import {formatPathname} from '@/lib/tools/format-pathname';
 const ROOT_PATHNAME = formatPathname(APP_ROUTES.ROOT);
 
 export function goToRoot(): never {
-  redirect(ROOT_PATHNAME);
+	redirect(ROOT_PATHNAME);
 }

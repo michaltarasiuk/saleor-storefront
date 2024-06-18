@@ -11,44 +11,44 @@ import {logInAction} from '../../_tools/log-in-action';
 import type {LoginFormSchema} from './use-login-form-schema';
 
 export function useLoginSubmit(form: UseFormReturn<LoginFormSchema>) {
-  const intl = useIntl();
-  const intlRouter = useIntlRouter();
+	const intl = useIntl();
+	const intlRouter = useIntlRouter();
 
-  const [pending, startTransition] = useTransition();
+	const [pending, startTransition] = useTransition();
 
-  const loginSubmit = useCallback(
-    async ({email, password}: LoginFormSchema) => {
-      try {
-        const {type, result} = await logInAction({email, password});
+	const loginSubmit = useCallback(
+		async ({email, password}: LoginFormSchema) => {
+			try {
+				const {type, result} = await logInAction({email, password});
 
-        if (type === 'success') {
-          localStorage.setItem(result.name, result.value);
+				if (type === 'success') {
+					localStorage.setItem(result.name, result.value);
 
-          form.reset();
-          toast.default({
-            title: intl.formatMessage({
-              defaultMessage: 'Success',
-              id: 'xrKHS6',
-            }),
-            description: intl.formatMessage({
-              defaultMessage: 'Successfuly logged in.',
-              id: 'r/rQ02',
-            }),
-          });
+					form.reset();
+					toast.default({
+						title: intl.formatMessage({
+							defaultMessage: 'Success',
+							id: 'xrKHS6',
+						}),
+						description: intl.formatMessage({
+							defaultMessage: 'Successfuly logged in.',
+							id: 'r/rQ02',
+						}),
+					});
 
-          startTransition(() => {
-            intlRouter.push(formatPathname(...APP_ROUTES.ROOT));
-          });
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    },
-    [form, intl, intlRouter],
-  );
+					startTransition(() => {
+						intlRouter.push(formatPathname(...APP_ROUTES.ROOT));
+					});
+				}
+			} catch (error) {
+				console.error(error);
+			}
+		},
+		[form, intl, intlRouter],
+	);
 
-  return {
-    pending,
-    loginSubmit,
-  };
+	return {
+		pending,
+		loginSubmit,
+	};
 }

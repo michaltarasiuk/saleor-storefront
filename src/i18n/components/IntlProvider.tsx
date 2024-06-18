@@ -5,21 +5,21 @@ import type {AvailableLocale} from '../consts';
 import {getIntl} from '../get-intl';
 
 interface Props {
-  readonly locale: AvailableLocale;
+	readonly locale: AvailableLocale;
 }
 
 export async function IntlProvider({
-  locale,
-  children,
+	locale,
+	children,
 }: PropsWithChildren<Props>) {
-  const {defaultLocale, messages} = await getIntl(locale);
+	const {defaultLocale, messages} = await getIntl(locale);
 
-  return (
-    <ReactIntlProvider
-      locale={locale}
-      defaultLocale={defaultLocale}
-      messages={messages}>
-      {children}
-    </ReactIntlProvider>
-  );
+	return (
+		<ReactIntlProvider
+			locale={locale}
+			defaultLocale={defaultLocale}
+			messages={messages}>
+			{children}
+		</ReactIntlProvider>
+	);
 }
