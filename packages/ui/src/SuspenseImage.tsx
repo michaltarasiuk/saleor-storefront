@@ -24,7 +24,7 @@ function useSuspenseImage(src: string) {
   }
 }
 
-export function ImageSuspender({src, ...props}: ImageProps) {
+export function SuspenseImage({src, ...props}: ImageProps) {
   useSuspenseImage(getImageSource(src));
   return <NextImage src={src} {...props} />;
 }

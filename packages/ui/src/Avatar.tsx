@@ -4,7 +4,7 @@ import * as stylex from '@stylexjs/stylex';
 import {Suspense} from 'react';
 
 import {ProfileIcon} from './icons/ProfileIcon';
-import {ImageSuspender} from './ImageSuspender';
+import {SuspenseImage} from './SuspenseImage';
 import {baseColors, borderRadius} from './tokens.stylex';
 
 interface AvatarProps {
@@ -17,7 +17,7 @@ export function Avatar({src, alt, size = 'base'}: AvatarProps) {
   return (
     <div {...stylex.props(styles.base, sizeStyles[size])}>
       <Suspense fallback={<ProfileIcon />}>
-        <ImageSuspender src={src} alt={alt} fill />
+        <SuspenseImage src={src} alt={alt} fill />
       </Suspense>
     </div>
   );
