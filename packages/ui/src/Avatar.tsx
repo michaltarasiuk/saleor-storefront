@@ -2,6 +2,7 @@
 
 import * as stylex from '@stylexjs/stylex';
 import {Suspense} from 'react';
+import {ErrorBoundary} from 'react-error-boundary';
 
 import {ProfileIcon} from './icons/ProfileIcon';
 import {SuspenseImage} from './SuspenseImage';
@@ -16,9 +17,11 @@ interface AvatarProps {
 export function Avatar({src, alt, size = 'base'}: AvatarProps) {
   return (
     <div {...stylex.props(styles.base, sizeStyles[size])}>
-      <Suspense fallback={<ProfileIcon />}>
-        <SuspenseImage src={src} alt={alt} fill />
-      </Suspense>
+      <ErrorBoundary fallback={<ProfileIcon />}>
+        <Suspense fallback={<ProfileIcon />}>
+          <SuspenseImage src={src} alt={alt} fill />
+        </Suspense>
+      </ErrorBoundary>
     </div>
   );
 }
