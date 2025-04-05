@@ -1,6 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   transpilePackages: ['@stylexjs/open-props'],
+  images: {
+    remotePatterns: [
+      {
+        hostname: 'avatars.githubusercontent.com',
+      },
+    ],
+  },
   webpack(config, {dev}) {
     config.module.rules.push({
       test: /\.(js|jsx|ts|tsx)$/,
