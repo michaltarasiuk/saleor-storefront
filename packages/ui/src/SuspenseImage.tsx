@@ -5,12 +5,16 @@ const imageCache = new Set<string>();
 function useSuspenseImage(src: string) {
   try {
     if (!imageCache.has(src)) {
-      const {promise, resolve} = Promise.withResolvers();
+      const {promise, resolve, reject} = Promise.withResolvers();
       const img = new Image();
       img.src = src;
       img.onload = () => {
         imageCache.add(src);
         resolve(null);
+      };
+      img.onerror = () => {
+        imageCache.delete(src);
+        reject(new Error(`Failed to load image: ${src}`));
       };
       throw promise;
     }
@@ -25,11 +29,11 @@ function useSuspenseImage(src: string) {
 }
 
 export function SuspenseImage({src, ...props}: ImageProps) {
-  useSuspenseImage(getImageSource(src));
+  useSuspenseImage(resolveImageSource(src));
   return <NextImage src={src} {...props} />;
 }
 
-function getImageSource(src: ImageProps['src']) {
+function resolveImageSource(src: ImageProps['src']) {
   if (typeof src !== 'string') {
     if ('default' in src) {
       return src.default.src;
