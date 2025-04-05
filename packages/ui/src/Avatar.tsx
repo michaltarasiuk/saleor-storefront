@@ -4,6 +4,7 @@ import * as stylex from '@stylexjs/stylex';
 import {Suspense} from 'react';
 import {ErrorBoundary} from 'react-error-boundary';
 
+import {ClientGate} from './ClientGate';
 import {ProfileIcon} from './icons/ProfileIcon';
 import {SuspenseImage} from './SuspenseImage';
 import {baseColors, borderRadius} from './tokens.stylex';
@@ -17,11 +18,15 @@ interface AvatarProps {
 export function Avatar({src, alt, size = 'base'}: AvatarProps) {
   return (
     <div {...stylex.props(styles.base, sizeStyles[size])}>
-      <ErrorBoundary fallback={<ProfileIcon />}>
-        <Suspense fallback={<ProfileIcon />}>
-          <SuspenseImage src={src} alt={alt} fill />
-        </Suspense>
-      </ErrorBoundary>
+      <ClientGate fallback={<ProfileIcon />}>
+        {() => (
+          <ErrorBoundary fallback={<ProfileIcon />}>
+            <Suspense fallback={<ProfileIcon />}>
+              <SuspenseImage src={src} alt={alt} fill />
+            </Suspense>
+          </ErrorBoundary>
+        )}
+      </ClientGate>
     </div>
   );
 }

@@ -13,7 +13,7 @@ function useSuspenseImage(src: string) {
         resolve(null);
       };
       img.onerror = () => {
-        imageCache.delete(src);
+        imageCache.add(src);
         reject(new Error(`Failed to load image: ${src}`));
       };
       throw promise;
