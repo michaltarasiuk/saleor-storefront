@@ -2,7 +2,45 @@ import {ComponentProps} from 'react';
 
 import {baseColors} from '../tokens.stylex';
 
-export function ProfileIcon(props: ComponentProps<'svg'>) {
+export function ProfileIconBase(props: ComponentProps<'svg'>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="30"
+      height="30"
+      viewBox="0 0 30 30"
+      fill="none"
+      {...props}>
+      <path
+        d="M6.94026 22.1946C9.01739 20.3705 11.8622 19.2458 15.0001 19.2458C18.138 19.2458 20.9828 20.3705 23.0599 22.1946M26.3232 14.9997C26.3232 21.2533 21.2536 26.3228 15.0001 26.3228C8.74652 26.3228 3.677 21.2533 3.677 14.9997C3.677 8.74613 8.74652 3.67661 15.0001 3.67661C21.2536 3.67661 26.3232 8.74613 26.3232 14.9997ZM17.8308 12.1689C17.8308 13.7323 16.5635 14.9997 15.0001 14.9997C13.4367 14.9997 12.1693 13.7323 12.1693 12.1689C12.1693 10.6055 13.4367 9.33815 15.0001 9.33815C16.5635 9.33815 17.8308 10.6055 17.8308 12.1689Z"
+        stroke={baseColors.textSubdued}
+        strokeWidth="1.4"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+export function ProfileIconLarge(props: ComponentProps<'svg'>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="36"
+      height="36"
+      viewBox="0 0 36 36"
+      fill="none"
+      {...props}>
+      <path
+        d="M7.93695 26.9828C10.5304 24.7054 14.0823 23.3012 18.0001 23.3012C21.918 23.3012 25.4698 24.7054 28.0633 26.9828M32.1376 17.9996C32.1376 25.8075 25.808 32.1371 18.0001 32.1371C10.1922 32.1371 3.8626 25.8075 3.8626 17.9996C3.8626 10.1917 10.1922 3.86211 18.0001 3.86211C25.808 3.86211 32.1376 10.1917 32.1376 17.9996ZM21.5345 14.4652C21.5345 16.4172 19.9521 17.9996 18.0001 17.9996C16.0481 17.9996 14.4657 16.4172 14.4657 14.4652C14.4657 12.5133 16.0481 10.9309 18.0001 10.9309C19.9521 10.9309 21.5345 12.5133 21.5345 14.4652Z"
+        stroke={baseColors.textSubdued}
+        strokeWidth="1.4"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+export function ProfileIconExtraLarge(props: ComponentProps<'svg'>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
