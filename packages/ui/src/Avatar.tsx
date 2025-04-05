@@ -10,7 +10,6 @@ import {baseColors, borderRadius} from './tokens.stylex';
 interface AvatarProps {
   readonly src: string;
   readonly alt: string;
-  readonly initials?: string;
   readonly size?: keyof typeof sizeStyles;
 }
 
