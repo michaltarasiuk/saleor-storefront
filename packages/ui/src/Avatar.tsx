@@ -12,17 +12,22 @@ import {baseColors, borderRadius} from './tokens.stylex';
 interface AvatarProps {
   readonly src: string;
   readonly alt: string;
-  readonly size?: keyof typeof sizeStyles;
+  readonly size?: keyof typeof avatarSizeStyles;
 }
 
 export function Avatar({src, alt, size = 'base'}: AvatarProps) {
   return (
-    <div {...stylex.props(styles.base, sizeStyles[size])}>
+    <div {...stylex.props(avatarStyles.base, avatarSizeStyles[size])}>
       <ClientGate fallback={<ProfileIcon size={size} />}>
         {() => (
           <ErrorBoundary fallback={<ProfileIcon size={size} />}>
             <Suspense fallback={<ProfileIcon size={size} />}>
-              <SuspenseImage src={src} alt={alt} fill />
+              <SuspenseImage
+                src={src}
+                alt={alt}
+                fill
+                {...stylex.props(avatarImageStyles.base)}
+              />
             </Suspense>
           </ErrorBoundary>
         )}
@@ -31,7 +36,7 @@ export function Avatar({src, alt, size = 'base'}: AvatarProps) {
   );
 }
 
-const styles = stylex.create({
+const avatarStyles = stylex.create({
   base: {
     position: 'relative',
     display: 'flex',
@@ -43,7 +48,7 @@ const styles = stylex.create({
   },
 });
 
-const sizeStyles = stylex.create({
+const avatarSizeStyles = stylex.create({
   base: {
     width: '32px',
     height: '32px',
@@ -55,5 +60,11 @@ const sizeStyles = stylex.create({
   extraLarge: {
     width: '47px',
     height: '47px',
+  },
+});
+
+const avatarImageStyles = stylex.create({
+  base: {
+    flexShrink: 0,
   },
 });

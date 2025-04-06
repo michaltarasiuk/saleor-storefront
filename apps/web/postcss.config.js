@@ -56,6 +56,9 @@ export default {
               genConditionalClasses: true,
               treeshakeCompensation: true,
               unstable_moduleResolution: {type: 'commonJS'},
+              aliases: {
+                '@/*': [path.join(projectRoot, '*')],
+              },
             },
           ],
         ],
