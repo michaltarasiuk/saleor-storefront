@@ -1,6 +1,7 @@
 import {Avatar} from '@repo/ui/Avatar';
 import {Button} from '@repo/ui/Button';
 import {Container} from '@repo/ui/Container';
+import {spacing} from '@repo/ui/variables/tokens.stylex';
 import * as stylex from '@stylexjs/stylex';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -36,10 +37,13 @@ const globalNavStyles = stylex.create({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingBlock: '32px',
+    paddingBlock: spacing.large400,
   },
   userActions: {
     display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: spacing.large200,
   },
 });
 

@@ -11,7 +11,7 @@ import {
   criticalColors,
   primaryButtonColors,
 } from './variables/colors.stylex';
-import {cornerRadius} from './variables/tokens.stylex';
+import {borderWidth, cornerRadius, spacing} from './variables/tokens.stylex';
 
 interface ButtonProps extends AriaButtonProps {
   variant?: 'primary' | 'secondary' | 'plain';
@@ -47,6 +47,7 @@ const styles = stylex.create({
     alignItems: 'center',
     border: 'none',
     borderRadius: cornerRadius.base,
+    cursor: 'pointer',
   },
 });
 
@@ -66,13 +67,24 @@ const appearanceStyles = stylex.create({
     backgroundColor: criticalColors.critical,
   },
   disabled: {
-    border: `1px solid ${baseColors.textSubdued}`,
+    borderWidth: borderWidth.base,
+    borderStyle: 'solid',
+    borderColor: baseColors.textSubdued,
     backgroundColor: baseColors.backgroundSubdued,
   },
 });
 
 const sizeStyles = stylex.create({
-  small: {},
-  base: {},
-  large: {},
+  small: {
+    padding: spacing.small200,
+  },
+  base: {
+    padding: spacing.base,
+  },
+  large: {
+    padding: spacing.large200,
+  },
+  extraLarge: {
+    padding: spacing.large300,
+  },
 });
