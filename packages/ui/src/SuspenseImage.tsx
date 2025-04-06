@@ -7,8 +7,8 @@ import NextImage, {
 
 const imageCache = new Set<string>();
 
-const DefaultWidth = 640;
-const DefaultQuality = 75;
+const DefaultWidth = 640 satisfies ImageLoaderProps['width'];
+const DefaultQuality = 75 satisfies ImageLoaderProps['quality'];
 
 function imageLoader({src}: {src: ImageLoaderProps['src']}) {
   const url = new URL('/_next/image', window.location.origin);
