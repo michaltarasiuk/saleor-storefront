@@ -1,7 +1,7 @@
 import {assertNever} from '@repo/utils/assert-never';
 import {ComponentProps} from 'react';
 
-import {baseColors} from '../tokens.stylex';
+import {baseColors} from '../variables/colors.stylex';
 
 interface ProfileIconProps extends ComponentProps<'svg'> {
   size?: 'base' | 'large' | 'extraLarge';

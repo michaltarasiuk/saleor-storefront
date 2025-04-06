@@ -7,7 +7,8 @@ import {ErrorBoundary} from 'react-error-boundary';
 import {ClientBoundary} from './ClientBoundary';
 import {ProfileIcon} from './icons/ProfileIcon';
 import {SuspenseImage} from './SuspenseImage';
-import {baseColors, borderRadius} from './tokens.stylex';
+import {baseColors} from './variables/colors.stylex';
+import {cornerRadius} from './variables/tokens.stylex';
 
 interface AvatarProps {
   readonly src: string;
@@ -43,7 +44,7 @@ const avatarStyles = stylex.create({
     justifyContent: 'center',
     alignItems: 'center',
     overflow: 'hidden',
-    borderRadius: borderRadius.fullyRounded,
+    borderRadius: cornerRadius.fullyRounded,
     backgroundColor: baseColors.backgroundSubdued,
   },
 });

@@ -1,4 +1,5 @@
 import {Avatar} from '@repo/ui/Avatar';
+import {Button} from '@repo/ui/Button';
 import {Container} from '@repo/ui/Container';
 import * as stylex from '@stylexjs/stylex';
 import Image from 'next/image';
@@ -12,11 +13,14 @@ export function GlobalNav() {
       <Link href={Routes.Home} {...stylex.props(companyLogoLinkStyles.base)}>
         <CompanyLogo />
       </Link>
-      <Avatar
-        src="https://avatars.githubusercontent.com/u/69385846?v=4"
-        alt="User Avatar"
-        size="large"
-      />
+      <div {...stylex.props(globalNavStyles.userActions)}>
+        <Avatar
+          src="https://avatars.githubusercontent.com/u/69385846?v=4"
+          alt="User Avatar"
+          size="large"
+        />
+        <Button>Go to store</Button>
+      </div>
     </Container>
   );
 }
@@ -33,6 +37,9 @@ const globalNavStyles = stylex.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingBlock: '32px',
+  },
+  userActions: {
+    display: 'flex',
   },
 });
 

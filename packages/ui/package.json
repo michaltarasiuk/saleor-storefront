@@ -7,13 +7,11 @@
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
-    "generate:component": "turbo gen react-component",
     "check-types": "tsc --noEmit"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
-    "@turbo/gen": "^2.4.4",
     "@types/node": "^22.13.10",
     "@types/react": "19.0.12",
     "@types/react-dom": "19.0.4",
