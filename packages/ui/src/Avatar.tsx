@@ -5,32 +5,23 @@ import {Suspense} from 'react';
 import {ErrorBoundary} from 'react-error-boundary';
 
 import {ClientGate} from './ClientGate';
-import {
-  ProfileIconBase,
-  ProfileIconExtraLarge,
-  ProfileIconLarge,
-} from './icons/ProfileIcon';
+import {ProfileIcon} from './icons/ProfileIcon';
 import {SuspenseImage} from './SuspenseImage';
 import {baseColors, borderRadius} from './tokens.stylex';
-
-type Size = keyof typeof sizeStyles;
 
 interface AvatarProps {
   readonly src: string;
   readonly alt: string;
-  readonly size?: Size;
+  readonly size?: keyof typeof sizeStyles;
 }
 
-const DefaultSize: Size = 'base';
-
-export function Avatar({src, alt, size = DefaultSize}: AvatarProps) {
-  const profileIcon = <ProfileIcon size={size} />;
+export function Avatar({src, alt, size = 'base'}: AvatarProps) {
   return (
     <div {...stylex.props(styles.base, sizeStyles[size])}>
-      <ClientGate fallback={profileIcon}>
+      <ClientGate fallback={<ProfileIcon size={size} />}>
         {() => (
-          <ErrorBoundary fallback={profileIcon}>
-            <Suspense fallback={profileIcon}>
+          <ErrorBoundary fallback={<ProfileIcon size={size} />}>
+            <Suspense fallback={<ProfileIcon size={size} />}>
               <SuspenseImage src={src} alt={alt} fill />
             </Suspense>
           </ErrorBoundary>
@@ -38,21 +29,6 @@ export function Avatar({src, alt, size = DefaultSize}: AvatarProps) {
       </ClientGate>
     </div>
   );
-}
-
-interface ProfileIconProps {
-  readonly size: Size;
-}
-
-function ProfileIcon({size}: ProfileIconProps) {
-  switch (size) {
-    case 'large':
-      return <ProfileIconLarge />;
-    case 'extraLarge':
-      return <ProfileIconExtraLarge />;
-    default:
-      return <ProfileIconBase />;
-  }
 }
 
 const styles = stylex.create({
