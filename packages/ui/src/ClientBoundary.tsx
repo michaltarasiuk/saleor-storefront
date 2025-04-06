@@ -9,7 +9,7 @@ interface ClientGateProps {
   readonly fallback?: ReactNode;
 }
 
-export function ClientGate({children, fallback = null}: ClientGateProps) {
+export function ClientBoundary({children, fallback = null}: ClientGateProps) {
   const isServer = useSyncExternalStore(
     noopSubscribe,
     () => false,
