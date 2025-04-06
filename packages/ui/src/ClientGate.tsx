@@ -1,6 +1,6 @@
 import {ReactNode, useSyncExternalStore} from 'react';
 
-function subscribe() {
+function noopSubscribe() {
   return () => {};
 }
 
@@ -11,7 +11,7 @@ interface ClientGateProps {
 
 export function ClientGate({children, fallback = null}: ClientGateProps) {
   const isServer = useSyncExternalStore(
-    subscribe,
+    noopSubscribe,
     () => false,
     () => true,
   );
