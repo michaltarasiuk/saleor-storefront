@@ -35,7 +35,7 @@ export const typographySecondary = stylex.defineVars({
   bold: '700',
 });
 
-export const fontSize = stylex.defineVars({
+export const typographyFontSize = stylex.defineVars({
   extraLarge: '21px',
   large: '19px',
   medium: '16px',
