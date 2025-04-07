@@ -30,12 +30,7 @@ export function Avatar({src, alt, initials, size = 'base'}: AvatarProps) {
         {() => (
           <ErrorBoundary fallback={fallback}>
             <Suspense fallback={fallback}>
-              <SuspenseImage
-                src={src}
-                alt={alt}
-                fill
-                {...stylex.props(avatarImageStyles.base)}
-              />
+              <SuspenseImage src={src} alt={alt} fill />
             </Suspense>
           </ErrorBoundary>
         )}
@@ -51,6 +46,7 @@ const avatarStyles = stylex.create({
     justifyContent: 'center',
     alignItems: 'center',
     overflow: 'hidden',
+    flexShrink: 0,
     borderRadius: cornerRadius.fullyRounded,
     backgroundColor: baseColors.backgroundSubdued,
   },
@@ -68,11 +64,5 @@ const avatarSizeStyles = stylex.create({
   extraLarge: {
     width: '47px',
     height: '47px',
-  },
-});
-
-const avatarImageStyles = stylex.create({
-  base: {
-    flexShrink: 0,
   },
 });
