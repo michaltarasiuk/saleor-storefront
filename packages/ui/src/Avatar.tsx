@@ -15,7 +15,7 @@ interface AvatarProps {
   readonly src: string;
   readonly alt: string;
   readonly initials?: string;
-  readonly size?: keyof typeof avatarSizeStyles;
+  readonly size?: keyof typeof sizeStyles;
 }
 
 export function Avatar({src, alt, initials, size = 'base'}: AvatarProps) {
@@ -25,7 +25,7 @@ export function Avatar({src, alt, initials, size = 'base'}: AvatarProps) {
     <ProfileIcon size={size} />
   );
   return (
-    <div {...stylex.props(avatarStyles.base, avatarSizeStyles[size])}>
+    <div {...stylex.props(styles.base, sizeStyles[size])}>
       <ClientBoundary fallback={fallback}>
         {() => (
           <ErrorBoundary fallback={fallback}>
@@ -39,7 +39,7 @@ export function Avatar({src, alt, initials, size = 'base'}: AvatarProps) {
   );
 }
 
-const avatarStyles = stylex.create({
+const styles = stylex.create({
   base: {
     position: 'relative',
     display: 'flex',
@@ -52,7 +52,7 @@ const avatarStyles = stylex.create({
   },
 });
 
-const avatarSizeStyles = stylex.create({
+const sizeStyles = stylex.create({
   base: {
     width: '32px',
     height: '32px',
