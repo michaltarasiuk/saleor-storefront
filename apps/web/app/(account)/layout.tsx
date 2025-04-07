@@ -1,5 +1,6 @@
 import '../app.css';
 
+import {Heading, HeadingGroup} from '@repo/ui/Heading';
 import {Inter} from 'next/font/google';
 
 import {GlobalNav} from './_components/GlobalNav';
@@ -16,6 +17,10 @@ export default function AccountLayout({children}: AccountLayoutProps) {
       <body>
         <GlobalNav />
         {children}
+        <Heading>Hello</Heading>
+        <HeadingGroup>
+          <Heading>Hello 2</Heading>
+        </HeadingGroup>
       </body>
     </html>
   );
