@@ -14,9 +14,9 @@ import {
 import {borderWidth, cornerRadius, spacing} from './variables/tokens.stylex';
 
 interface ButtonProps extends AriaButtonProps {
-  variant?: 'primary' | 'secondary' | 'plain';
-  appearance?: 'default' | 'critical' | 'disabled';
-  size?: 'small' | 'base' | 'large';
+  variant?: keyof typeof variantStyles;
+  appearance?: keyof typeof appearanceStyles;
+  size?: keyof typeof sizeStyles;
 }
 
 export function Button({

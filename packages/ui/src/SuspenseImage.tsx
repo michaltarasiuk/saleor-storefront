@@ -1,8 +1,8 @@
 import {isBrowserEnvironment} from '@repo/utils/execution-environment';
 import NextImage, {
-  ImageLoaderProps,
+  type ImageLoaderProps,
   type ImageProps,
-  StaticImageData,
+  type StaticImageData,
 } from 'next/image';
 
 const imageCache = new Set<string>();
