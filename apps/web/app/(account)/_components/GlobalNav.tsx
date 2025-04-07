@@ -20,7 +20,6 @@ export function GlobalNav() {
           <Avatar
             src="https://avatars.githubusercontent.com/u/69385846?v=4"
             alt="User Avatar"
-            initials="UA"
             size="large"
           />
           <Button>Go to store</Button>
