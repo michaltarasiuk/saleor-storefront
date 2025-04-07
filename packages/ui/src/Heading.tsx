@@ -12,8 +12,8 @@ import {
 
 type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
-const MinHeadingLevel = 1;
-const MaxHeadingLevel = 6;
+const MinHeadingLevel: HeadingLevel = 1;
+const MaxHeadingLevel: HeadingLevel = 6;
 
 const headingLevelContext = createContext<HeadingLevel>(MinHeadingLevel);
 

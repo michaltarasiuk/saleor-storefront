@@ -1,6 +1,7 @@
 import {Avatar} from '@repo/ui/Avatar';
 import {Button} from '@repo/ui/Button';
 import {Container} from '@repo/ui/Container';
+import {baseColors} from '@repo/ui/variables/colors.stylex';
 import {spacing} from '@repo/ui/variables/tokens.stylex';
 import * as stylex from '@stylexjs/stylex';
 import Image from 'next/image';
@@ -10,20 +11,22 @@ import {Routes} from '@/consts/routes';
 
 export function GlobalNav() {
   return (
-    <Container tag="nav" style={globalNavStyles.base}>
-      <Link href={Routes.Home} {...stylex.props(companyLogoLinkStyles.base)}>
-        <CompanyLogo />
-      </Link>
-      <div {...stylex.props(globalNavStyles.userActions)}>
-        <Avatar
-          src="https://avatars.githubusercontent.com/u/69385846?v=4"
-          alt="User Avatar"
-          initials="UA"
-          size="large"
-        />
-        <Button>Go to store</Button>
-      </div>
-    </Container>
+    <div {...stylex.props(globalNavStyles.wrapper)}>
+      <Container style={globalNavStyles.base}>
+        <Link href={Routes.Home} {...stylex.props(companyLogoLinkStyles.base)}>
+          <CompanyLogo />
+        </Link>
+        <div {...stylex.props(globalNavStyles.userActions)}>
+          <Avatar
+            src="https://avatars.githubusercontent.com/u/69385846?v=4"
+            alt="User Avatar"
+            initials="UA"
+            size="large"
+          />
+          <Button>Go to store</Button>
+        </div>
+      </Container>
+    </div>
   );
 }
 
@@ -34,6 +37,9 @@ function CompanyLogo() {
 }
 
 const globalNavStyles = stylex.create({
+  wrapper: {
+    backgroundColor: baseColors.background,
+  },
   base: {
     display: 'flex',
     justifyContent: 'space-between',

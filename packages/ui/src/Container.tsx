@@ -1,14 +1,12 @@
 import * as stylex from '@stylexjs/stylex';
-import {JSX} from 'react';
 
 interface ContainerProps {
   readonly children: React.ReactNode;
-  readonly tag: keyof JSX.IntrinsicElements;
   readonly style?: stylex.StyleXStyles;
 }
 
-export function Container({children, style, tag: Tag = 'div'}: ContainerProps) {
-  return <Tag {...stylex.props(styles.base, style)}>{children}</Tag>;
+export function Container({children, style}: ContainerProps) {
+  return <div {...stylex.props(styles.base, style)}>{children}</div>;
 }
 
 const Breakpoints = {
