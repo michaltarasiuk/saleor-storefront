@@ -7,22 +7,29 @@ import {ErrorBoundary} from 'react-error-boundary';
 import {ClientBoundary} from './ClientBoundary';
 import {ProfileIcon} from './icons/ProfileIcon';
 import {SuspenseImage} from './SuspenseImage';
+import {TextBlock} from './TextBlock';
 import {baseColors} from './variables/colors.stylex';
 import {cornerRadius} from './variables/tokens.stylex';
 
 interface AvatarProps {
   readonly src: string;
   readonly alt: string;
+  readonly initials?: string;
   readonly size?: keyof typeof avatarSizeStyles;
 }
 
-export function Avatar({src, alt, size = 'base'}: AvatarProps) {
+export function Avatar({src, alt, initials, size = 'base'}: AvatarProps) {
+  const fallback = initials ? (
+    <TextBlock>{initials}</TextBlock>
+  ) : (
+    <ProfileIcon size={size} />
+  );
   return (
     <div {...stylex.props(avatarStyles.base, avatarSizeStyles[size])}>
-      <ClientBoundary fallback={<ProfileIcon size={size} />}>
+      <ClientBoundary fallback={fallback}>
         {() => (
-          <ErrorBoundary fallback={<ProfileIcon size={size} />}>
-            <Suspense fallback={<ProfileIcon size={size} />}>
+          <ErrorBoundary fallback={fallback}>
+            <Suspense fallback={fallback}>
               <SuspenseImage
                 src={src}
                 alt={alt}
