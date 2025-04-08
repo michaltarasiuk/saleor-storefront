@@ -1,9 +1,3 @@
-/**
- * The @stylex directive is used by the @stylexjs/postcss-plugin.
- * It is automatically replaced with generated CSS during builds.
- */
-@stylex;
-
 @layer resets {
   *,
   *::before,
@@ -73,3 +67,9 @@
     isolation: isolate;
   }
 }
+
+/**
+ * The @stylex directive is used by the @stylexjs/postcss-plugin.
+ * It is automatically replaced with generated CSS during builds.
+ */
+@stylex;

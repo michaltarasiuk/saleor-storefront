@@ -19,7 +19,7 @@ const Breakpoints = {
 
 const styles = stylex.create({
   base: {
-    margin: '0 auto !important', // Temporary important to override
+    margin: '0 auto',
     maxWidth: {
       [Breakpoints.Sm]: '40rem',
       [Breakpoints.Md]: '48rem',

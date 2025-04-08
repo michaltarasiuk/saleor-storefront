@@ -18,7 +18,7 @@ export function GlobalNav() {
         </Link>
         <div {...stylex.props(globalNavStyles.userActions)}>
           <Avatar
-            src="https://avatars.githubusercontent.com/u/69385846?v=4"
+            src="https://avatars.githubusercontent.com/u/63648"
             alt="User Avatar"
             size="large"
           />
