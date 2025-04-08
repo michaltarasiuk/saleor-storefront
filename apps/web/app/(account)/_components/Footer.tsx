@@ -1,3 +1,4 @@
+import {Container} from '@repo/ui/Container';
 import {TextBlock} from '@repo/ui/TextBlock';
 import {baseColors} from '@repo/ui/variables/colors.stylex';
 import {borderWidth, spacing} from '@repo/ui/variables/tokens.stylex';
@@ -5,7 +6,7 @@ import * as stylex from '@stylexjs/stylex';
 
 export function Footer() {
   return (
-    <footer {...stylex.props(styles.base)}>
+    <Container elementType="footer" style={styles.base}>
       <ul {...stylex.props(listStyles.base)}>
         <li>
           <TextBlock appearance="accent">Refund Policy</TextBlock>
@@ -20,12 +21,13 @@ export function Footer() {
           <TextBlock appearance="accent">Terms of Service</TextBlock>
         </li>
       </ul>
-    </footer>
+    </Container>
   );
 }
 
 const styles = stylex.create({
   base: {
+    width: '100%',
     marginBlockStart: 'auto',
     borderBlockStartWidth: borderWidth.base,
     borderBlockStartStyle: 'solid',
