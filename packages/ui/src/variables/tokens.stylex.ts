@@ -49,4 +49,5 @@ export const borderWidth = stylex.defineVars({
   thick: '5px',
   medium: '2px',
   base: '1px',
+  none: '0px',
 });

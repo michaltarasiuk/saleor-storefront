@@ -55,11 +55,23 @@ const styles = stylex.create({
 });
 
 const sizeStyles = stylex.create({
-  base: {
-    fontSize: typographyFontSize.small,
+  extraSmall: {
+    fontSize: typographyFontSize.extraSmall,
   },
   small: {
-    fontSize: typographyFontSize.extraSmall,
+    fontSize: typographyFontSize.small,
+  },
+  base: {
+    fontSize: typographyFontSize.base,
+  },
+  medium: {
+    fontSize: typographyFontSize.medium,
+  },
+  large: {
+    fontSize: typographyFontSize.large,
+  },
+  extraLarge: {
+    fontSize: typographyFontSize.extraLarge,
   },
 });
 
