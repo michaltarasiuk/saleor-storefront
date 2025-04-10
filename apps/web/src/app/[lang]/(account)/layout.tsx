@@ -6,7 +6,7 @@ import {spacing} from '@repo/ui/variables/tokens.stylex';
 import * as stylex from '@stylexjs/stylex';
 import {Inter} from 'next/font/google';
 
-import {brandedTheme} from '@/themes/branded';
+import {brandedTheme} from '@/src/themes/branded';
 
 import {Footer} from './_components/Footer';
 import {GlobalNav} from './_components/GlobalNav';
