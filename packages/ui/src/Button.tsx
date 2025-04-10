@@ -2,14 +2,16 @@
 
 import * as stylex from '@stylexjs/stylex';
 import {
-  Button as AriaButton,
-  type ButtonProps as AriaButtonProps,
+  Button as ButtonAria,
+  type ButtonProps as ButtonAriaProps,
 } from 'react-aria-components';
 
 import {
   baseColors,
+  controlColors,
   criticalColors,
   primaryButtonColors,
+  secondaryButtonColors,
 } from './variables/colors.stylex';
 import {
   borderWidth,
@@ -19,67 +21,95 @@ import {
   typographyPrimary,
 } from './variables/tokens.stylex';
 
-interface ButtonProps extends AriaButtonProps {
-  variant?: keyof typeof variantStyles;
-  appearance?: keyof typeof appearanceStyles;
-  size?: keyof typeof sizeStyles;
+interface ButtonProps extends ButtonAriaProps {
+  readonly variant?: keyof typeof variantStyles;
+  readonly appearance?: Exclude<keyof typeof appearanceStyles, 'disabled'>;
+  readonly size?: keyof typeof sizeStyles;
 }
 
 export function Button({
-  variant = 'primary',
-  appearance = 'default',
   size = 'base',
+  appearance = 'default',
+  variant = 'primary',
+  isDisabled,
   children,
   ...props
 }: ButtonProps) {
   return (
-    <AriaButton
+    <ButtonAria
       {...stylex.props(
         styles.base,
         variantStyles[variant],
-        appearanceStyles[appearance],
+        appearanceStyles[isDisabled ? 'disabled' : appearance],
         sizeStyles[size],
       )}
+      isDisabled={isDisabled}
       {...props}>
       {children}
-    </AriaButton>
+    </ButtonAria>
   );
 }
 
 const styles = stylex.create({
   base: {
+    cursor: 'pointer',
     display: 'inline-flex',
     justifyContent: 'center',
     alignItems: 'center',
-    border: 'none',
-    borderRadius: cornerRadius.base,
+    backgroundColor: 'var(--background-color)',
     fontFamily: typographyPrimary.fontFamily,
     fontSize: typographyFontSize.base,
-    fontWeight: typographyPrimary.bold,
-    cursor: 'pointer',
+    borderRadius: cornerRadius.base,
+    borderWidth: borderWidth.base,
+    borderStyle: 'solid',
+    borderColor: 'var(--border-color, var(--background-color))',
   },
 });
 
 const variantStyles = stylex.create({
-  primary: {},
-  secondary: {},
-  plain: {},
+  primary: {
+    '--background-color': 'var(--primary-background-color)',
+    '--border-color': 'var(--primary-border-color)',
+    color: 'var(--primary-text-color)',
+    fontWeight: typographyPrimary.bold,
+  },
+  secondary: {
+    '--border-color': 'var(--secondary-border-color)',
+    color: 'var(--secondary-text-color)',
+    fontWeight: typographyPrimary.bold,
+  },
+  plain: {
+    '--background-color': 'transparent',
+    color: 'var(--plain-text-color)',
+    textDecoration: 'underline',
+    textUnderlinePosition: 'from-font',
+    fontWeight: typographyPrimary.base,
+  },
 });
 
 const appearanceStyles = stylex.create({
   default: {
-    color: primaryButtonColors.text,
-    backgroundColor: primaryButtonColors.background,
+    '--primary-text-color': primaryButtonColors.text,
+    '--primary-background-color': primaryButtonColors.background,
+    '--secondary-text-color': secondaryButtonColors.text,
+    '--secondary-border-color': secondaryButtonColors.border,
+    '--plain-text-color': baseColors.accent,
   },
   critical: {
-    color: criticalColors.textContrast,
-    backgroundColor: criticalColors.critical,
+    '--primary-text-color': criticalColors.textContrast,
+    '--primary-background-color': criticalColors.critical,
+    '--secondary-text-color': criticalColors.critical,
+    '--secondary-border-color': criticalColors.critical,
+    '--plain-text-color': criticalColors.critical,
   },
   disabled: {
-    borderWidth: borderWidth.base,
-    borderStyle: 'solid',
-    borderColor: baseColors.textSubdued,
-    backgroundColor: baseColors.backgroundSubdued,
+    '--primary-text-color': baseColors.textSubdued,
+    '--primary-background-color': baseColors.backgroundSubdued,
+    '--primary-border-color': baseColors.border,
+    '--secondary-text-color': controlColors.textSubdued,
+    '--secondary-border-color': controlColors.border,
+    '--plain-text-color': controlColors.textSubdued,
+    cursor: 'default',
   },
 });
 
