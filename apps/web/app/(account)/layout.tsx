@@ -6,6 +6,8 @@ import {spacing} from '@repo/ui/variables/tokens.stylex';
 import * as stylex from '@stylexjs/stylex';
 import {Inter} from 'next/font/google';
 
+import {brandedTheme} from '@/themes/branded';
+
 import {Footer} from './_components/Footer';
 import {GlobalNav} from './_components/GlobalNav';
 
@@ -17,7 +19,7 @@ interface AccountLayoutProps {
 
 export default function AccountLayout({children}: AccountLayoutProps) {
   return (
-    <html lang="en" className={inter.className}>
+    <html lang="en" className={inter.className} {...brandedTheme()}>
       <body {...stylex.props(bodyStyles.base)}>
         <Header />
         <Container elementType="main" style={mainStyles.base}>
