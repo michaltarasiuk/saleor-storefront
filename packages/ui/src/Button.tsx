@@ -56,30 +56,29 @@ const styles = stylex.create({
     display: 'inline-flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'var(--background-color)',
+    backgroundColor: baseColors.background,
     fontFamily: typographyPrimary.fontFamily,
     fontSize: typographyFontSize.base,
     borderRadius: cornerRadius.base,
     borderWidth: borderWidth.base,
     borderStyle: 'solid',
-    borderColor: 'var(--border-color, var(--background-color))',
+    borderColor: baseColors.background,
   },
 });
 
 const variantStyles = stylex.create({
   primary: {
-    '--background-color': 'var(--primary-background-color)',
-    '--border-color': 'var(--primary-border-color)',
     color: 'var(--primary-text-color)',
+    backgroundColor: 'var(--primary-background-color)',
+    borderColor: 'var(--primary-border-color, var(--primary-background-color))',
     fontWeight: typographyPrimary.bold,
   },
   secondary: {
-    '--border-color': 'var(--secondary-border-color)',
     color: 'var(--secondary-text-color)',
+    borderColor: 'var(--secondary-border-color)',
     fontWeight: typographyPrimary.bold,
   },
   plain: {
-    '--background-color': 'transparent',
     color: 'var(--plain-text-color)',
     textDecoration: 'underline',
     textUnderlinePosition: 'from-font',
