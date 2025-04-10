@@ -1,6 +1,9 @@
 import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
+  experimental: {
+    swcPlugins: [['@lingui/swc-plugin', {}]],
+  },
   transpilePackages: ['@stylexjs/open-props'],
   images: {
     remotePatterns: [
@@ -10,6 +13,12 @@ const nextConfig: NextConfig = {
     ],
   },
   webpack(config, {dev}) {
+    config.module.rules.push({
+      test: /\.po$/,
+      use: {
+        loader: '@lingui/loader',
+      },
+    });
     config.module.rules.push({
       test: /\.(js|jsx|ts|tsx)$/,
       exclude: /node_modules(?!\/@stylexjs\/open-props)/,

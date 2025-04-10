@@ -1,4 +1,4 @@
-import '../app.css';
+import '@/src/app/app.css';
 
 import {Container} from '@repo/ui/Container';
 import {baseColors} from '@repo/ui/variables/colors.stylex';

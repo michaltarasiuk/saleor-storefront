@@ -1,4 +1,4 @@
-import '../app.css';
+import '@/src/app/app.css';
 
 interface ShopLayoutProps {
   readonly children: React.ReactNode;

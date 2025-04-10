@@ -8,13 +8,21 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint --max-warnings 0",
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit",
+    "intl:build": "bun intl:extract:all && bun intl:compile",
+    "intl:extract": "lingui extract --clean --locale en",
+    "intl:extract:all": "lingui extract --clean",
+    "intl:compile": "lingui compile",
+    "intl:pull": "crowdin download translations --verbose -b main",
+    "intl:push": "crowdin push translations --verbose -b main"
   },
   "dependencies": {
     "@repo/ui": "workspace:*",
+    "@repo/utils": "workspace:*",
     "@stylexjs/open-props": "^0.11.1",
     "@stylexjs/stylex": "^0.11.1",
     "@t3-oss/env-nextjs": "^0.12.0",
+    "negotiator": "^1.0.0",
     "next": "^15.2.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
@@ -22,9 +30,12 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
+    "@lingui/loader": "^5.3.0",
+    "@lingui/swc-plugin": "^5.5.1",
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@stylexjs/postcss-plugin": "^0.11.1",
+    "@types/negotiator": "^0.6.3",
     "@types/node": "^22.13.10",
     "@types/react": "19.0.12",
     "@types/react-dom": "19.0.4",
