@@ -45,8 +45,8 @@ export function Heading({
       {...stylex.props(
         styles.base,
         inlineAlignmentStyles[inlineAlignment],
-        Object.hasOwn(levelStyles, headingLevel) &&
-          levelStyles[headingLevel as keyof typeof levelStyles],
+        headingLevel in levelStyles &&
+          levelStyles[headingLevel as keyof typeof levelStyles]
       )}>
       {children}
     </Tag>

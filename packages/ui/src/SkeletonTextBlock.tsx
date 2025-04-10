@@ -17,7 +17,7 @@ export function SkeletonTextBlock({
     <div
       {...stylex.props(
         skeletonTextStyles.base,
-        skeletonTextStyles.gap(sizeToGap(size)),
+        skeletonTextStyles.gap(sizeToGap(size))
       )}>
       {Array.from({length: linesCount}, (_, i) => (
         <div key={i} {...stylex.props(lineStyles.base, lineSizeStyles[size])} />

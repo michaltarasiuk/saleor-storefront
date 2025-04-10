@@ -28,7 +28,7 @@ export function TextBlock({
         styles.base,
         apperanceStyles[appearance],
         fontSizeStyles[size],
-        emphasisStyles[emphasis],
+        emphasisStyles[emphasis]
       )}>
       {children}
     </p>

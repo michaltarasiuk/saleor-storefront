@@ -13,7 +13,7 @@ export function ClientBoundary({children, fallback = null}: ClientGateProps) {
   const isServer = useSyncExternalStore(
     noopSubscribe,
     () => false,
-    () => true,
+    () => true
   );
   return isServer ? fallback : children();
 }

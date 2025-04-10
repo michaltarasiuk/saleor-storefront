@@ -47,7 +47,7 @@ export function SuspenseImage(props: ImageProps) {
   useSuspenseImage(props);
   return (
     <NextImage
-      loader={(imageLoaderProps) =>
+      loader={imageLoaderProps =>
         imageLoader({...imageLoaderProps, width: DefaultWidth})
       }
       {...props}

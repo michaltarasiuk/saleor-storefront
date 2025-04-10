@@ -12,7 +12,7 @@ function getPackageIncludePaths(packageName, nodeModulePaths) {
     const packageJsonPath = path.resolve(
       nodeModulePath,
       packageName,
-      'package.json',
+      'package.json'
     );
     if (fs.existsSync(packageJsonPath)) {
       packagePath = path.dirname(packageJsonPath);

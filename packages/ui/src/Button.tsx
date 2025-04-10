@@ -41,7 +41,7 @@ export function Button({
         styles.base,
         variantStyles[variant],
         appearanceStyles[isDisabled ? 'disabled' : appearance],
-        sizeStyles[size],
+        sizeStyles[size]
       )}
       isDisabled={isDisabled}
       {...props}>
