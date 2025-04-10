@@ -2,8 +2,8 @@
 
 import * as stylex from '@stylexjs/stylex';
 import {
-  Button as ButtonAria,
-  type ButtonProps as ButtonAriaProps,
+  Button as AriaButton,
+  type ButtonProps as AriaButtonProps,
 } from 'react-aria-components';
 
 import {
@@ -21,7 +21,7 @@ import {
   typographyPrimary,
 } from './variables/tokens.stylex';
 
-interface ButtonProps extends ButtonAriaProps {
+interface ButtonProps extends AriaButtonProps {
   readonly variant?: keyof typeof variantStyles;
   readonly appearance?: keyof typeof appearanceStyles;
   readonly size?: keyof typeof sizeStyles;
@@ -36,7 +36,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   return (
-    <ButtonAria
+    <AriaButton
       {...stylex.props(
         styles.base,
         variantStyles[variant],
@@ -46,7 +46,7 @@ export function Button({
       isDisabled={isDisabled}
       {...props}>
       {children}
-    </ButtonAria>
+    </AriaButton>
   );
 }
 

@@ -37,9 +37,10 @@ export default {
   plugins: {
     '@stylexjs/postcss-plugin': {
       include: [
-        'app/**/*.{js,jsx,ts,tsx}',
-        'components/**/*.{js,jsx,ts,tsx}',
-        '../../packages/**/*.{js,jsx,ts,tsx}',
+        'app/**/*.{ts,tsx}',
+        'components/**/*.{ts,tsx}',
+        'themes/**/*.ts',
+        '../../packages/**/*.{ts,tsx}',
         ...openPropsIncludePaths,
       ],
       babelConfig: {
