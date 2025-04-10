@@ -23,7 +23,7 @@ import {
 
 interface ButtonProps extends ButtonAriaProps {
   readonly variant?: keyof typeof variantStyles;
-  readonly appearance?: Exclude<keyof typeof appearanceStyles, 'disabled'>;
+  readonly appearance?: keyof typeof appearanceStyles;
   readonly size?: keyof typeof sizeStyles;
 }
 
