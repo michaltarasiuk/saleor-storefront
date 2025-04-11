@@ -1,21 +1,21 @@
 import {useSyncExternalStore} from 'react';
 
-function getPrefersReducedMotionMediaQuery() {
+function getReducedMotionMediaQuery() {
   return window.matchMedia('(prefers-reduced-motion: reduce)');
 }
 
-function handleMediaQueryChange(onChange: () => void) {
-  const mediaQuery = getPrefersReducedMotionMediaQuery();
+function subscribeToMediaQueryChanges(onChange: () => void) {
+  const mediaQuery = getReducedMotionMediaQuery();
   mediaQuery.addEventListener('change', onChange);
-  return function cleanup() {
+  return function unsubscribe() {
     mediaQuery.removeEventListener('change', onChange);
   };
 }
 
-export function usePrefersReducedMotion() {
+export function useReducedMotionPreference() {
   const prefersReducedMotion = useSyncExternalStore(
-    handleMediaQueryChange,
-    () => getPrefersReducedMotionMediaQuery().matches,
+    subscribeToMediaQueryChanges,
+    () => getReducedMotionMediaQuery().matches,
     () => false
   );
   return prefersReducedMotion;
