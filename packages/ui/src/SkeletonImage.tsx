@@ -17,7 +17,6 @@ export function SkeletonImage({
   blockSize,
   inlineSize,
 }: SkeletonImageProps) {
-  assertValidProps({aspectRatio, blockSize, inlineSize});
   return (
     <div
       {...stylex.props(
@@ -49,31 +48,8 @@ const styles = stylex.create({
   }),
 });
 
-function assertValidProps({
-  aspectRatio,
-  blockSize,
-  inlineSize,
-}: SkeletonImageProps) {
-  if (aspectRatio) {
-    if (blockSize && inlineSize) {
-      throw new Error(
-        'Provide only one of "blockSize" or "inlineSize" with "aspectRatio".'
-      );
-    }
-    if (!blockSize && !inlineSize) {
-      throw new Error(
-        'Provide "blockSize" or "inlineSize" with "aspectRatio".'
-      );
-    }
-  }
-}
-
-function formatSize(size: Size) {
-  let formattedSize: CSSProperties['blockSize'] | CSSProperties['inlineSize'];
-  if (size === 'fill') {
-    formattedSize = '100%';
-  } else {
-    formattedSize = size;
-  }
-  return formattedSize;
+function formatSize(
+  size: Size
+): CSSProperties['blockSize'] | CSSProperties['inlineSize'] {
+  return size === 'fill' ? '100%' : size;
 }

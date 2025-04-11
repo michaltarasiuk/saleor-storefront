@@ -3,11 +3,11 @@ import * as stylex from '@stylexjs/stylex';
 
 import {borderWidth} from './variables/tokens.stylex';
 
-export function VisuallyHidden({
-  children,
-}: {
+interface VisuallyHiddenProps {
   readonly children: React.ReactNode;
-}) {
+}
+
+export function VisuallyHidden({children}: VisuallyHiddenProps) {
   return <Slot.Root {...stylex.props(styles.base)}>{children}</Slot.Root>;
 }
 

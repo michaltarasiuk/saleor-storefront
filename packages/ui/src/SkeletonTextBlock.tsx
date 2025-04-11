@@ -10,16 +10,16 @@ interface SkeletonTextBlockProps {
 }
 
 export function SkeletonTextBlock({
-  lines: linesCount,
+  lines,
   size = 'base',
 }: SkeletonTextBlockProps) {
   return (
     <div
       {...stylex.props(
         skeletonTextStyles.base,
-        skeletonTextStyles.gap(sizeToGap(size))
+        skeletonTextStyles.gap(mapSizeToGap(size))
       )}>
-      {Array.from({length: linesCount}, (_, i) => (
+      {Array.from({length: lines}, (_, i) => (
         <div key={i} {...stylex.props(lineStyles.base, lineSizeStyles[size])} />
       ))}
     </div>
@@ -41,9 +41,6 @@ const lineStyles = stylex.create({
     ':last-of-type': {
       width: '85%',
     },
-  },
-  last: {
-    width: '80%',
   },
 });
 
@@ -68,7 +65,7 @@ const lineSizeStyles = stylex.create({
   },
 });
 
-function sizeToGap(size: keyof typeof lineSizeStyles) {
+function mapSizeToGap(size: keyof typeof lineSizeStyles) {
   switch (size) {
     case 'extraSmall':
     case 'small': {
