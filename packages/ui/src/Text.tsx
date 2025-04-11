@@ -1,5 +1,6 @@
 import * as stylex from '@stylexjs/stylex';
 
+import type {AccessibilityVisibility} from './types/accessibility';
 import {
   baseColors,
   criticalColors,
@@ -9,11 +10,40 @@ import {
 } from './variables/colors.stylex';
 import {typographyFontSize, typographyPrimary} from './variables/tokens.stylex';
 
-interface TextBlockProps {
-  readonly children: React.ReactNode;
+interface StyleProps {
   readonly size?: keyof typeof fontSizeStyles;
   readonly appearance?: keyof typeof apperanceStyles;
   readonly emphasis?: keyof typeof emphasisStyles;
+}
+
+interface TextProps extends StyleProps {
+  readonly children: React.ReactNode;
+  readonly accessibilityVisibility?: AccessibilityVisibility;
+}
+
+export function Text({
+  children,
+  appearance = 'default',
+  size = 'base',
+  emphasis = 'base',
+  accessibilityVisibility,
+}: TextProps) {
+  return (
+    <span
+      aria-hidden={accessibilityVisibility === 'hidden'}
+      {...stylex.props(
+        styles.base,
+        apperanceStyles[appearance],
+        fontSizeStyles[size],
+        emphasisStyles[emphasis]
+      )}>
+      {children}
+    </span>
+  );
+}
+
+interface TextBlockProps extends StyleProps {
+  readonly children: React.ReactNode;
 }
 
 export function TextBlock({

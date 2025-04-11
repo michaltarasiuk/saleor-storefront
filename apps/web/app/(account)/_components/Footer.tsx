@@ -1,5 +1,5 @@
 import {Container} from '@repo/ui/Container';
-import {TextBlock} from '@repo/ui/TextBlock';
+import {Text} from '@repo/ui/Text';
 import {baseColors} from '@repo/ui/variables/colors.stylex';
 import {borderWidth, spacing} from '@repo/ui/variables/tokens.stylex';
 import * as stylex from '@stylexjs/stylex';
@@ -9,16 +9,16 @@ export function Footer() {
     <Container elementType="footer" style={styles.base}>
       <ul {...stylex.props(linkListStyles.list)}>
         <li>
-          <TextBlock appearance="accent">Refund Policy</TextBlock>
+          <Text appearance="accent">Refund Policy</Text>
         </li>
         <li>
-          <TextBlock appearance="accent">Shipping Policy</TextBlock>
+          <Text appearance="accent">Shipping Policy</Text>
         </li>
         <li>
-          <TextBlock appearance="accent">Privacy Policy</TextBlock>
+          <Text appearance="accent">Privacy Policy</Text>
         </li>
         <li>
-          <TextBlock appearance="accent">Terms of Service</TextBlock>
+          <Text appearance="accent">Terms of Service</Text>
         </li>
       </ul>
     </Container>

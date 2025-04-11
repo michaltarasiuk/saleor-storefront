@@ -30,19 +30,22 @@ export function HeadingGroup({children}: {readonly children: React.ReactNode}) {
 
 interface HeadingProps {
   readonly children: React.ReactNode;
-  readonly level?: HeadingLevel;
+  readonly accessibilityRole?: 'presentation';
   readonly inlineAlignment?: keyof typeof inlineAlignmentStyles;
+  readonly level?: HeadingLevel;
 }
 
 export function Heading({
   children,
-  level: staticHeadingLevel,
+  accessibilityRole,
   inlineAlignment = 'start',
+  level: staticHeadingLevel,
 }: HeadingProps) {
   const headingLevel = useContext(headingLevelContext);
   const Tag = `h${staticHeadingLevel ?? headingLevel}` as const;
   return (
     <Tag
+      role={accessibilityRole}
       {...stylex.props(
         styles.base,
         inlineAlignmentStyles[inlineAlignment],

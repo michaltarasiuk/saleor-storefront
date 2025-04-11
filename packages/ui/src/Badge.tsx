@@ -1,5 +1,6 @@
 import * as stylex from '@stylexjs/stylex';
 
+import type {AccessibilityVisibility} from './types/accessibility';
 import {baseColors, criticalColors} from './variables/colors.stylex';
 import {
   borderWidth,
@@ -14,7 +15,7 @@ interface BadgeProps {
   readonly tone?: keyof typeof toneStyles;
   readonly size?: keyof typeof sizeStyles;
   readonly accessibilityLabel?: string;
-  readonly accessibilityVisibility?: 'hidden';
+  readonly accessibilityVisibility?: AccessibilityVisibility;
 }
 
 export function Badge({

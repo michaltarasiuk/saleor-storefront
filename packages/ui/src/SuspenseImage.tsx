@@ -5,28 +5,16 @@ import NextImage, {
   type StaticImageData,
 } from 'next/image';
 
-const imageCache = new Set<string>();
-
 const DefaultWidth = 640 satisfies ImageLoaderProps['width'];
 const DefaultQuality = 75 satisfies ImageLoaderProps['quality'];
 
-export function SuspenseImage(props: ImageProps) {
-  useSuspenseImage(props);
-  return (
-    <NextImage
-      loader={imageLoaderProps =>
-        imageLoader({...imageLoaderProps, width: DefaultWidth})
-      }
-      {...props}
-    />
-  );
-}
+const imageCache = new Set<string>();
 
-function useSuspenseImage(props: Pick<ImageProps, 'src' | 'quality'>) {
+export function SuspenseImage(props: ImageProps) {
   if (!isBrowserEnvironment) {
     throw new Error('SuspenseImage can only be used in the browser.');
   }
-  const src = resolveImageSrc(props.src);
+  const src = getImageSrc(props.src);
   if (!imageCache.has(src)) {
     const {promise, resolve, reject} = Promise.withResolvers();
     const img = new Image();
@@ -45,6 +33,14 @@ function useSuspenseImage(props: Pick<ImageProps, 'src' | 'quality'>) {
     };
     throw promise;
   }
+  return (
+    <NextImage
+      loader={imageLoaderProps =>
+        imageLoader({...imageLoaderProps, width: DefaultWidth})
+      }
+      {...props}
+    />
+  );
 }
 
 function imageLoader({src, width, quality = DefaultQuality}: ImageLoaderProps) {
@@ -55,7 +51,7 @@ function imageLoader({src, width, quality = DefaultQuality}: ImageLoaderProps) {
   return String(url);
 }
 
-function resolveImageSrc(src: ImageProps['src']) {
+function getImageSrc(src: ImageProps['src']) {
   if (typeof src === 'string') {
     return src;
   }

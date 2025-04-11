@@ -7,7 +7,7 @@ import {ErrorBoundary} from 'react-error-boundary';
 import {ClientBoundary} from './ClientBoundary';
 import {ProfileIcon} from './icons/ProfileIcon';
 import {SuspenseImage} from './SuspenseImage';
-import {TextBlock} from './TextBlock';
+import {Text} from './Text';
 import {baseColors} from './variables/colors.stylex';
 import {cornerRadius} from './variables/tokens.stylex';
 
@@ -19,11 +19,7 @@ interface AvatarProps {
 }
 
 export function Avatar({src, alt, initials, size = 'base'}: AvatarProps) {
-  const fallback = initials ? (
-    <TextBlock>{initials}</TextBlock>
-  ) : (
-    <ProfileIcon />
-  );
+  const fallback = initials ? <Text>{initials}</Text> : <ProfileIcon />;
   return (
     <div {...stylex.props(styles.base, sizeStyles[size])}>
       <ClientBoundary fallback={fallback}>
