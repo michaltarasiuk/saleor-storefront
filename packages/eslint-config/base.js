@@ -30,6 +30,11 @@ export const config = [
     },
   },
   {
+    rules: {
+      'no-console': ['error', {allow: ['warn', 'error']}],
+    },
+  },
+  {
     plugins: {
       onlyWarn,
     },

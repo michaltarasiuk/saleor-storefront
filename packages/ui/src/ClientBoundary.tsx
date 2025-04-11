@@ -4,12 +4,15 @@ function noopSubscribe() {
   return () => {};
 }
 
-interface ClientGateProps {
+interface ClientBoundaryProps {
   readonly children: () => React.ReactNode;
   readonly fallback?: ReactNode;
 }
 
-export function ClientBoundary({children, fallback = null}: ClientGateProps) {
+export function ClientBoundary({
+  children,
+  fallback = null,
+}: ClientBoundaryProps) {
   const isServer = useSyncExternalStore(
     noopSubscribe,
     () => false,

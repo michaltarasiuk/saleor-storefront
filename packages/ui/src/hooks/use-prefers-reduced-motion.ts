@@ -18,6 +18,5 @@ export function usePrefersReducedMotion() {
     () => getPrefersReducedMotionMediaQuery().matches,
     () => false
   );
-  console.log('prefersReducedMotion', prefersReducedMotion);
   return prefersReducedMotion;
 }
