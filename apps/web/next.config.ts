@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
   },
   webpack(config, {dev}) {
     config.module.rules.push({
-      test: /\.(js|jsx|ts|tsx)$/,
+      test: /\.(ts|tsx)$/,
       exclude: /node_modules(?!\/@stylexjs\/open-props)/,
       use: [
         {

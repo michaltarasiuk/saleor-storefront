@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 
 import {env} from './env.js';
 
@@ -37,8 +37,7 @@ export default {
   plugins: {
     '@stylexjs/postcss-plugin': {
       include: [
-        'app/**/*.{ts,tsx}',
-        'themes/**/*.ts',
+        'src/**/*.{ts,tsx}',
         '../../packages/**/*.{ts,tsx}',
         ...openPropsIncludePaths,
       ],
@@ -57,7 +56,7 @@ export default {
               treeshakeCompensation: true,
               unstable_moduleResolution: {type: 'commonJS'},
               aliases: {
-                '@/*': [path.join(projectRoot, '*')],
+                '@/*': [path.join(projectRoot, 'src', '*')],
               },
             },
           ],
