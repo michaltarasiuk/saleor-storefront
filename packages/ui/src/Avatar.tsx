@@ -22,7 +22,7 @@ export function Avatar({src, alt, initials, size = 'base'}: AvatarProps) {
   const fallback = initials ? (
     <TextBlock>{initials}</TextBlock>
   ) : (
-    <ProfileIcon size={size} />
+    <ProfileIcon />
   );
   return (
     <div {...stylex.props(styles.base, sizeStyles[size])}>
@@ -56,13 +56,16 @@ const sizeStyles = stylex.create({
   base: {
     width: '32px',
     height: '32px',
+    padding: '3.711px',
   },
   large: {
     width: '39px',
     height: '39px',
+    padding: '3.656px',
   },
   extraLarge: {
     width: '47px',
     height: '47px',
+    padding: '3.692px',
   },
 });

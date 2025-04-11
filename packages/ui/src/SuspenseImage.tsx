@@ -10,12 +10,16 @@ const imageCache = new Set<string>();
 const DefaultWidth = 640 satisfies ImageLoaderProps['width'];
 const DefaultQuality = 75 satisfies ImageLoaderProps['quality'];
 
-function imageLoader({src, width, quality = DefaultQuality}: ImageLoaderProps) {
-  const url = new URL('/_next/image', window.location.origin);
-  url.searchParams.set('url', src);
-  url.searchParams.set('w', String(width));
-  url.searchParams.set('q', String(quality));
-  return String(url);
+export function SuspenseImage(props: ImageProps) {
+  useSuspenseImage(props);
+  return (
+    <NextImage
+      loader={imageLoaderProps =>
+        imageLoader({...imageLoaderProps, width: DefaultWidth})
+      }
+      {...props}
+    />
+  );
 }
 
 function useSuspenseImage(props: Pick<ImageProps, 'src' | 'quality'>) {
@@ -43,16 +47,12 @@ function useSuspenseImage(props: Pick<ImageProps, 'src' | 'quality'>) {
   }
 }
 
-export function SuspenseImage(props: ImageProps) {
-  useSuspenseImage(props);
-  return (
-    <NextImage
-      loader={imageLoaderProps =>
-        imageLoader({...imageLoaderProps, width: DefaultWidth})
-      }
-      {...props}
-    />
-  );
+function imageLoader({src, width, quality = DefaultQuality}: ImageLoaderProps) {
+  const url = new URL('/_next/image', window.location.origin);
+  url.searchParams.set('url', src);
+  url.searchParams.set('w', String(width));
+  url.searchParams.set('q', String(quality));
+  return String(url);
 }
 
 function resolveImageSrc(src: ImageProps['src']) {
