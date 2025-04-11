@@ -1,5 +1,6 @@
 'use client';
 
+import {isKeyOf} from '@repo/utils/is-keyof';
 import * as stylex from '@stylexjs/stylex';
 import {createContext, useContext} from 'react';
 
@@ -45,8 +46,7 @@ export function Heading({
       {...stylex.props(
         styles.base,
         inlineAlignmentStyles[inlineAlignment],
-        headingLevel in levelStyles &&
-          levelStyles[headingLevel as keyof typeof levelStyles]
+        isKeyOf(levelStyles, headingLevel) && levelStyles[headingLevel]
       )}>
       {children}
     </Tag>

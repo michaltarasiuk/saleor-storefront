@@ -12,7 +12,12 @@ export function GlobalNav() {
   return (
     <Container elementType="nav" style={globalNavStyles.base}>
       <Link href={Routes.Home} {...stylex.props(companyLogoLinkStyles.base)}>
-        <CompanyLogo />
+        <Image
+          src="/plant-logo.png"
+          alt="Company Logo"
+          width={112}
+          height={35}
+        />
       </Link>
       <div {...stylex.props(globalNavStyles.userActions)}>
         <Avatar
@@ -23,12 +28,6 @@ export function GlobalNav() {
         <Button>Go to store</Button>
       </div>
     </Container>
-  );
-}
-
-function CompanyLogo() {
-  return (
-    <Image src="/plant-logo.png" alt="Company Logo" width={112} height={35} />
   );
 }
 

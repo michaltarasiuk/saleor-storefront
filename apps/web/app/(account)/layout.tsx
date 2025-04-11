@@ -21,21 +21,15 @@ export default function AccountLayout({children}: AccountLayoutProps) {
   return (
     <html lang="en" className={inter.className} {...brandedTheme()}>
       <body {...stylex.props(bodyStyles.base)}>
-        <Header />
+        <header {...stylex.props(headerStyles.base)}>
+          <GlobalNav />
+        </header>
         <Container elementType="main" style={mainStyles.base}>
           {children}
         </Container>
         <Footer />
       </body>
     </html>
-  );
-}
-
-function Header() {
-  return (
-    <header {...stylex.props(headerStyles.base)}>
-      <GlobalNav />
-    </header>
   );
 }
 

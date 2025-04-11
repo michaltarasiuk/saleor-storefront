@@ -7,7 +7,7 @@ import * as stylex from '@stylexjs/stylex';
 export function Footer() {
   return (
     <Container elementType="footer" style={styles.base}>
-      <ul {...stylex.props(listStyles.base)}>
+      <ul {...stylex.props(linkListStyles.list)}>
         <li>
           <TextBlock appearance="accent">Refund Policy</TextBlock>
         </li>
@@ -36,8 +36,8 @@ const styles = stylex.create({
   },
 });
 
-const listStyles = stylex.create({
-  base: {
+const linkListStyles = stylex.create({
+  list: {
     display: 'flex',
     gap: spacing.large200,
     listStyleType: 'none',

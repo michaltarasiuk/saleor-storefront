@@ -38,7 +38,6 @@ export default {
     '@stylexjs/postcss-plugin': {
       include: [
         'app/**/*.{ts,tsx}',
-        'components/**/*.{ts,tsx}',
         'themes/**/*.ts',
         '../../packages/**/*.{ts,tsx}',
         ...openPropsIncludePaths,
