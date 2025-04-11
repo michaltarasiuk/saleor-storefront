@@ -1,3 +1,5 @@
+'use client';
+
 import {baseColors} from '@repo/ui/variables/colors.stylex';
 import {spacing} from '@repo/ui/variables/tokens.stylex';
 import * as stylex from '@stylexjs/stylex';
