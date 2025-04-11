@@ -1,6 +1,5 @@
 import * as stylex from '@stylexjs/stylex';
 
-import {InfoIcon} from './icons/InfoIcon';
 import {baseColors, criticalColors} from './variables/colors.stylex';
 import {
   borderWidth,
@@ -14,24 +13,23 @@ interface BadgeProps {
   readonly children: React.ReactNode;
   readonly tone?: keyof typeof toneStyles;
   readonly size?: keyof typeof sizeStyles;
-  readonly iconPosition?: 'start' | 'end';
+  readonly accessibilityLabel?: string;
+  readonly accessibilityVisibility?: 'hidden';
 }
 
 export function Badge({
   children,
   tone = 'default',
   size = 'base',
-  iconPosition = 'start',
+  accessibilityLabel,
+  accessibilityVisibility,
 }: BadgeProps) {
   return (
     <div
-      {...stylex.props(
-        styles.base,
-        sizeStyles[size],
-        toneStyles[tone],
-        iconPosition === 'end' && styles.reverse
-      )}>
-      <InfoIcon {...stylex.props(iconStyles[tone])} />
+      role={tone === 'critical' ? 'alert' : 'status'}
+      aria-label={accessibilityLabel}
+      aria-hidden={accessibilityVisibility === 'hidden'}
+      {...stylex.props(styles.base, sizeStyles[size], toneStyles[tone])}>
       {children}
     </div>
   );
@@ -48,9 +46,7 @@ const styles = stylex.create({
     borderRadius: cornerRadius.fullyRounded,
     fontFamily: typographyPrimary.fontFamily,
     fontWeight: typographyPrimary.bold,
-  },
-  reverse: {
-    flexDirection: 'row-reverse',
+    visibility: 'hidden',
   },
 });
 
@@ -90,17 +86,5 @@ const toneStyles = stylex.create({
     borderWidth: borderWidth.base,
     borderStyle: 'solid',
     borderColor: baseColors.border,
-  },
-});
-
-const iconStyles = stylex.create({
-  default: {
-    stroke: baseColors.textContrast,
-  },
-  critical: {
-    stroke: criticalColors.icon,
-  },
-  subdued: {
-    stroke: baseColors.icon,
   },
 });
