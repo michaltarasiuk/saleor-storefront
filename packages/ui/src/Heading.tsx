@@ -3,6 +3,7 @@
 import {isKeyOf} from '@repo/utils/is-keyof';
 import * as stylex from '@stylexjs/stylex';
 import {createContext, useContext} from 'react';
+import {Heading as AriaHeading} from 'react-aria-components';
 
 import {baseColors} from './variables/colors.stylex';
 import {
@@ -42,17 +43,17 @@ export function Heading({
   level: staticHeadingLevel,
 }: HeadingProps) {
   const headingLevel = useContext(headingLevelContext);
-  const Tag = `h${staticHeadingLevel ?? headingLevel}` as const;
   return (
-    <Tag
+    <AriaHeading
       role={accessibilityRole}
+      level={staticHeadingLevel ?? headingLevel}
       {...stylex.props(
         styles.base,
         inlineAlignmentStyles[inlineAlignment],
         isKeyOf(levelStyles, headingLevel) && levelStyles[headingLevel]
       )}>
       {children}
-    </Tag>
+    </AriaHeading>
   );
 }
 

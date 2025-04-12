@@ -11,6 +11,7 @@ import {
   controlColors,
   criticalColors,
   primaryButtonColors,
+  primaryButtonHoverColors,
   secondaryButtonColors,
 } from './variables/colors.stylex';
 import {
@@ -68,14 +69,33 @@ const styles = stylex.create({
 
 const variantStyles = stylex.create({
   primary: {
-    color: 'var(--primary-text-color)',
-    backgroundColor: 'var(--primary-background-color)',
-    borderColor: 'var(--primary-border-color, var(--primary-background-color))',
+    color: {
+      default: 'var(--primary-text)',
+      ':hover': 'var(--primary-text-hover)',
+    },
+    backgroundColor: {
+      default: 'var(--primary-background)',
+      ':hover': 'var(--primary-background-hover)',
+    },
+    borderColor: {
+      default: 'var(--primary-border)',
+      ':hover': 'var(--primary-border-hover)',
+    },
     fontWeight: typographyPrimary.bold,
   },
   secondary: {
-    color: 'var(--secondary-text-color)',
-    borderColor: 'var(--secondary-border-color)',
+    color: {
+      default: 'var(--secondary-text)',
+      ':hover': 'var(--secondary-text-hover)',
+    },
+    backgroundColor: {
+      default: 'var(--secondary-background)',
+      ':hover': 'var(--secondary-background-hover)',
+    },
+    borderColor: {
+      default: 'var(--secondary-border)',
+      ':hover': 'var(--secondary-border-hover)',
+    },
     fontWeight: typographyPrimary.bold,
   },
   plain: {
@@ -88,26 +108,34 @@ const variantStyles = stylex.create({
 
 const appearanceStyles = stylex.create({
   default: {
-    '--primary-text-color': primaryButtonColors.text,
-    '--primary-background-color': primaryButtonColors.background,
-    '--secondary-text-color': secondaryButtonColors.text,
-    '--secondary-border-color': secondaryButtonColors.border,
-    '--plain-text-color': baseColors.accent,
+    '--primary-text': primaryButtonColors.text,
+    '--primary-background': primaryButtonColors.background,
+    '--primary-border': primaryButtonColors.border,
+    '--primary-text-hover': primaryButtonHoverColors.text,
+    '--primary-background-hover': primaryButtonHoverColors.background,
+    '--primary-border-hover': primaryButtonHoverColors.border,
+    '--secondary-text': secondaryButtonColors.text,
+    '--secondary-background': secondaryButtonColors.background,
+    '--secondary-border': secondaryButtonColors.border,
+    '--secondary-text-hover': secondaryButtonColors.text,
+    '--secondary-background-hover': secondaryButtonColors.background,
+    '--secondary-border-hover': secondaryButtonColors.border,
+    '--plain-text': baseColors.accent,
   },
   critical: {
-    '--primary-text-color': criticalColors.textContrast,
-    '--primary-background-color': criticalColors.critical,
-    '--secondary-text-color': criticalColors.critical,
-    '--secondary-border-color': criticalColors.critical,
-    '--plain-text-color': criticalColors.critical,
+    '--primary-text': criticalColors.textContrast,
+    '--primary-background': criticalColors.critical,
+    '--secondary-text': criticalColors.critical,
+    '--secondary-border': criticalColors.critical,
+    '--plain-text': criticalColors.critical,
   },
   disabled: {
-    '--primary-text-color': baseColors.textSubdued,
-    '--primary-background-color': baseColors.backgroundSubdued,
-    '--primary-border-color': baseColors.border,
-    '--secondary-text-color': controlColors.textSubdued,
-    '--secondary-border-color': controlColors.border,
-    '--plain-text-color': controlColors.textSubdued,
+    '--primary-text': baseColors.textSubdued,
+    '--primary-background': baseColors.backgroundSubdued,
+    '--primary-border': baseColors.border,
+    '--secondary-text': controlColors.textSubdued,
+    '--secondary-border': controlColors.border,
+    '--plain-text': controlColors.textSubdued,
     cursor: 'default',
   },
 });
