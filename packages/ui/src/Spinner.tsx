@@ -9,16 +9,21 @@ import {Text} from './Text';
 import {animations} from './variables/animations.stylex';
 
 interface SpinnerProps {
-  readonly accessibilityLabel: string;
+  readonly accessibilityLabel?: string;
   readonly size?: keyof typeof sizeStyles;
+  readonly style?: stylex.StyleXStyles;
 }
 
-export function Spinner({accessibilityLabel, size = 'base'}: SpinnerProps) {
+export function Spinner({
+  accessibilityLabel,
+  size = 'base',
+  style,
+}: SpinnerProps) {
   const reducedMotionPreference = useReducedMotionPreference();
   if (!reducedMotionPreference) {
     return (
       <div {...stylex.props(styles.base, sizeStyles[size])}>
-        <SpinnerIcon aria-hidden="true" />
+        <SpinnerIcon aria-hidden="true" {...stylex.props(style)} />
         <Text style={visuallyHiddenStyle.base}>{accessibilityLabel}</Text>
       </div>
     );
@@ -28,6 +33,7 @@ export function Spinner({accessibilityLabel, size = 'base'}: SpinnerProps) {
 
 const styles = stylex.create({
   base: {
+    flexShrink: 0,
     animation: animations.spin,
     animationDuration: '1s',
     animationIterationCount: 'infinite',
