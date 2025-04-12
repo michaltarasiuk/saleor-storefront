@@ -1,5 +1,6 @@
 import {Container} from '@repo/ui/Container';
 import {Text} from '@repo/ui/Text';
+import {Breakpoints} from '@repo/ui/types/breakpoints';
 import {baseColors} from '@repo/ui/variables/colors.stylex';
 import {borderWidth, spacing} from '@repo/ui/variables/tokens.stylex';
 import * as stylex from '@stylexjs/stylex';
@@ -39,7 +40,15 @@ const styles = stylex.create({
 const linkListStyles = stylex.create({
   list: {
     display: 'flex',
-    gap: spacing.large200,
+    alignItems: 'center',
+    flexDirection: {
+      default: 'column',
+      ['@media (width >= 40rem)' satisfies Breakpoints['Sm']]: 'row',
+    },
+    gap: {
+      default: spacing.base,
+      ['@media (width >= 40rem)' satisfies Breakpoints['Sm']]: spacing.large200,
+    },
     listStyleType: 'none',
     padding: spacing.none,
   },

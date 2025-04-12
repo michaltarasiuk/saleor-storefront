@@ -5,6 +5,7 @@
   "exports": {
     "./*": "./src/*.tsx",
     "./hooks/*": "./src/hooks/*.ts",
+    "./types/*": "./src/types/*.ts",
     "./variables/*": "./src/variables/*.ts"
   },
   "scripts": {
