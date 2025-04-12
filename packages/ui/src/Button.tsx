@@ -73,7 +73,11 @@ export function Button({
         ) : (
           <Spinner
             accessibilityLabel={pendingLabel}
-            style={iconVariantsStyles[appearance]}
+            style={
+              typeof iconVariantsStyles[appearance] === 'function'
+                ? iconVariantsStyles[appearance](isHoverd)
+                : iconVariantsStyles[appearance]
+            }
           />
         )
       }
@@ -153,9 +157,9 @@ const primaryHoveredStyles = stylex.create({
 });
 
 const primaryIconStyles = stylex.create({
-  default: {
-    fill: primaryButtonColors.icon,
-  },
+  default: (isHoverd: boolean) => ({
+    fill: isHoverd ? primaryButtonHoverColors.icon : primaryButtonColors.icon,
+  }),
   critical: {
     fill: criticalColors.textContrast,
   },
@@ -193,9 +197,11 @@ const secondaryHoveredStyles = stylex.create({
 });
 
 const secondaryIconStyles = stylex.create({
-  default: {
-    fill: secondaryButtonColors.icon,
-  },
+  default: (isHoverd: boolean) => ({
+    fill: isHoverd
+      ? secondaryButtonHoverColors.icon
+      : secondaryButtonColors.icon,
+  }),
   critical: {
     fill: criticalColors.critical,
   },
