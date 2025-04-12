@@ -43,7 +43,7 @@ const brandedControlColors = stylex.createTheme(controlColors, {
   textSubdued: '#93A97C',
   textContrast: '#FFFFFF',
   accent: '#44691E',
-  accentContrast: '#44691E',
+  accentContrast: '#F7FAF5',
   decorative: '#44691E',
 });
 
@@ -90,7 +90,7 @@ const brandedPrimaryButtonHoverColors = stylex.createTheme(
 );
 
 const brandedSecondaryButtonColors = stylex.createTheme(secondaryButtonColors, {
-  background: '#44691E',
+  background: '#F7FAF5',
   backgroundSubdued: '#44691E',
   border: '#44691E',
   icon: '#44691E',

@@ -13,6 +13,7 @@ import {
   primaryButtonColors,
   primaryButtonHoverColors,
   secondaryButtonColors,
+  secondaryButtonHoverColors,
 } from './variables/colors.stylex';
 import {
   borderWidth,
@@ -117,9 +118,9 @@ const appearanceStyles = stylex.create({
     '--secondary-text': secondaryButtonColors.text,
     '--secondary-background': secondaryButtonColors.background,
     '--secondary-border': secondaryButtonColors.border,
-    '--secondary-text-hover': secondaryButtonColors.text,
+    '--secondary-text-hover': secondaryButtonHoverColors.text,
     '--secondary-background-hover': secondaryButtonColors.background,
-    '--secondary-border-hover': secondaryButtonColors.border,
+    '--secondary-border-hover': secondaryButtonHoverColors.border,
     '--plain-text': baseColors.accent,
   },
   critical: {
