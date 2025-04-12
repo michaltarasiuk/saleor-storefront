@@ -4,6 +4,7 @@ import * as stylex from '@stylexjs/stylex';
 
 import {useReducedMotionPreference} from './hooks/use-reduced-motion-preference';
 import {SpinnerIcon} from './icons/SpinnerIcon';
+import {visuallyHiddenStyle} from './styles/visually-hidden';
 import {Text} from './Text';
 import {animations} from './variables/animations.stylex';
 
@@ -16,10 +17,9 @@ export function Spinner({accessibilityLabel, size = 'base'}: SpinnerProps) {
   const reducedMotionPreference = useReducedMotionPreference();
   if (!reducedMotionPreference) {
     return (
-      <div
-        aria-label={accessibilityLabel}
-        {...stylex.props(styles.base, sizeStyles[size])}>
-        <SpinnerIcon />
+      <div {...stylex.props(styles.base, sizeStyles[size])}>
+        <SpinnerIcon aria-hidden="true" />
+        <Text style={visuallyHiddenStyle.base}>{accessibilityLabel}</Text>
       </div>
     );
   }

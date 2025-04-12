@@ -1,3 +1,4 @@
+import type {StyleXStyles} from '@stylexjs/stylex';
 import * as stylex from '@stylexjs/stylex';
 
 import type {AccessibilityVisibility} from './types/accessibility';
@@ -19,6 +20,7 @@ interface StyleProps {
 interface TextProps extends StyleProps {
   readonly children: React.ReactNode;
   readonly accessibilityVisibility?: AccessibilityVisibility;
+  readonly style?: StyleXStyles;
 }
 
 export function Text({
@@ -27,11 +29,13 @@ export function Text({
   size = 'base',
   emphasis = 'base',
   accessibilityVisibility,
+  style,
 }: TextProps) {
   return (
     <span
       aria-hidden={accessibilityVisibility === 'hidden'}
       {...stylex.props(
+        style,
         styles.base,
         apperanceStyles[appearance],
         fontSizeStyles[size],

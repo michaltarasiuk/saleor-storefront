@@ -29,7 +29,10 @@ export function Checkbox({children, ...props}: CheckboxProps) {
               isInvalid && checkboxStyles.invalid,
               isSelected && checkboxStyles.selected
             )}>
-            <CheckmarkIcon {...stylex.props(checkmarkStyles.base)} />
+            <CheckmarkIcon
+              aria-hidden="true"
+              {...stylex.props(checkmarkStyles.base)}
+            />
           </div>
           <Text>{children}</Text>
         </>
