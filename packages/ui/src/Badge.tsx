@@ -1,6 +1,8 @@
 import * as stylex from '@stylexjs/stylex';
 
+import {visuallyHiddenStyle} from './styles/visually-hidden';
 import type {AccessibilityVisibility} from './types/accessibility';
+import type {Visibility} from './types/visibility';
 import {baseColors, criticalColors} from './variables/colors.stylex';
 import {
   borderWidth,
@@ -16,6 +18,7 @@ interface BadgeProps {
   readonly size?: keyof typeof sizeStyles;
   readonly accessibilityLabel?: string;
   readonly accessibilityVisibility?: AccessibilityVisibility;
+  readonly visibility?: Visibility;
 }
 
 export function Badge({
@@ -24,13 +27,19 @@ export function Badge({
   size = 'base',
   accessibilityLabel,
   accessibilityVisibility,
+  visibility,
 }: BadgeProps) {
   return (
     <div
       role={tone === 'critical' ? 'alert' : 'status'}
       aria-label={accessibilityLabel}
       aria-hidden={accessibilityVisibility === 'hidden'}
-      {...stylex.props(styles.base, sizeStyles[size], toneStyles[tone])}>
+      {...stylex.props(
+        styles.base,
+        sizeStyles[size],
+        toneStyles[tone],
+        visibility === 'hidden' && visuallyHiddenStyle.base
+      )}>
       {children}
     </div>
   );
@@ -47,7 +56,6 @@ const styles = stylex.create({
     borderRadius: cornerRadius.fullyRounded,
     fontFamily: typographyPrimary.fontFamily,
     fontWeight: typographyPrimary.bold,
-    visibility: 'hidden',
   },
 });
 
