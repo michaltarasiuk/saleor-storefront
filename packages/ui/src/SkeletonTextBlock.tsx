@@ -14,11 +14,7 @@ export function SkeletonTextBlock({
   size = 'base',
 }: SkeletonTextBlockProps) {
   return (
-    <div
-      {...stylex.props(
-        skeletonTextStyles.base,
-        skeletonTextStyles.gap(mapSizeToGap(size))
-      )}>
+    <div {...stylex.props(styles.base, styles.gap(mapSizeToGap(size)))}>
       {Array.from({length: lines}, (_, i) => (
         <div key={i} {...stylex.props(lineStyles.base, lineSizeStyles[size])} />
       ))}
@@ -26,7 +22,7 @@ export function SkeletonTextBlock({
   );
 }
 
-const skeletonTextStyles = stylex.create({
+const styles = stylex.create({
   base: {
     display: 'flex',
     flexDirection: 'column',
