@@ -2,6 +2,7 @@ import * as stylex from '@stylexjs/stylex';
 import type {ElementType} from 'react';
 
 import {Breakpoints} from './types/breakpoints';
+import {spacing} from './variables/tokens.stylex';
 
 interface ContainerProps {
   readonly children: React.ReactNode;
@@ -22,6 +23,10 @@ export function Container({
 const styles = stylex.create({
   base: {
     margin: '0 auto',
+    paddingInline: {
+      default: spacing.large200,
+      ['@media (width >= 40rem)' satisfies Breakpoints['Sm']]: spacing.none,
+    },
     maxWidth: {
       ['@media (width >= 40rem)' satisfies Breakpoints['Sm']]: '40rem',
       ['@media (width >= 48rem)' satisfies Breakpoints['Md']]: '48rem',
