@@ -14,15 +14,16 @@ interface SpinnerProps {
 
 export function Spinner({accessibilityLabel, size = 'base'}: SpinnerProps) {
   const reducedMotionPreference = useReducedMotionPreference();
-  return (
-    <div {...stylex.props(styles.base, sizeStyles[size])}>
-      {reducedMotionPreference ? (
-        <Text>{accessibilityLabel}</Text>
-      ) : (
+  if (!reducedMotionPreference) {
+    return (
+      <div
+        aria-label={accessibilityLabel}
+        {...stylex.props(styles.base, sizeStyles[size])}>
         <SpinnerIcon />
-      )}
-    </div>
-  );
+      </div>
+    );
+  }
+  return <Text>{accessibilityLabel}</Text>;
 }
 
 const styles = stylex.create({
