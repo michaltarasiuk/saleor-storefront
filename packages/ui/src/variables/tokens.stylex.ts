@@ -51,8 +51,3 @@ export const borderWidth = stylex.defineVars({
   base: '1px',
   none: '0px',
 });
-
-export const transition = stylex.defineVars({
-  transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
-  transitionDuration: '150ms',
-});

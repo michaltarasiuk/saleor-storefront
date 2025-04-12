@@ -5,8 +5,9 @@ import {Checkbox as AriaCheckbox} from 'react-aria-components';
 
 import {CheckmarkIcon} from './icons/CheckmarkIcon';
 import {Text} from './Text';
+import {transition} from './variables/animations.stylex';
 import {controlColors, criticalColors} from './variables/colors.stylex';
-import {cornerRadius, spacing, transition} from './variables/tokens.stylex';
+import {cornerRadius, spacing} from './variables/tokens.stylex';
 
 interface CheckboxProps {
   readonly children: React.ReactNode;
