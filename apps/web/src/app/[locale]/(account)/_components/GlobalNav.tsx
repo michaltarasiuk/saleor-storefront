@@ -1,3 +1,6 @@
+'use client';
+
+import {Trans, useLingui} from '@lingui/react/macro';
 import {Avatar} from '@repo/ui/Avatar';
 import {Button} from '@repo/ui/Button';
 import {Container} from '@repo/ui/Container';
@@ -9,12 +12,13 @@ import Link from 'next/link';
 import {Routes} from '@/consts/routes';
 
 export function GlobalNav() {
+  const {t} = useLingui();
   return (
     <Container elementType="nav" style={globalNavStyles.base}>
       <Link href={Routes.Home} {...stylex.props(companyLogoLinkStyles.base)}>
         <Image
           src="/plant-logo.png"
-          alt="Company Logo"
+          alt={t`Company Logo`}
           width={112}
           height={35}
         />
@@ -22,10 +26,12 @@ export function GlobalNav() {
       <div {...stylex.props(globalNavStyles.userActions)}>
         <Avatar
           src="https://avatars.githubusercontent.com/u/63648"
-          alt="User Avatar"
+          alt={t`User Avatar`}
           size="large"
         />
-        <Button>Go to store</Button>
+        <Button>
+          <Trans>Go to store</Trans>
+        </Button>
       </div>
     </Container>
   );

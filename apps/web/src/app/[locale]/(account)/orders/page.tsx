@@ -1,13 +1,27 @@
+import type {Locale} from '@lingui/core';
+import {Trans} from '@lingui/react/macro';
 import {baseColors} from '@repo/ui/variables/colors.stylex';
 import {spacing} from '@repo/ui/variables/tokens.stylex';
 import * as stylex from '@stylexjs/stylex';
 
+import {setI18n} from '@/i18n/utils';
+
 import {PageTitle} from '../_components/PageTitle';
 
-export default function OrdersPage() {
+interface OrdersPageProps {
+  readonly params: Promise<{
+    readonly locale: Locale;
+  }>;
+}
+
+export default async function OrdersPage({params}: OrdersPageProps) {
+  const {locale} = await params;
+  setI18n(locale);
   return (
     <>
-      <PageTitle>Orders</PageTitle>
+      <PageTitle>
+        <Trans>Orders</Trans>
+      </PageTitle>
       <TabGroup />
     </>
   );

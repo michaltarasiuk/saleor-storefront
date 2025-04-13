@@ -1,3 +1,6 @@
+'use client';
+
+import {Trans} from '@lingui/react/macro';
 import {Container} from '@repo/ui/Container';
 import {Text} from '@repo/ui/Text';
 import {Breakpoints} from '@repo/ui/types/breakpoints';
@@ -10,16 +13,24 @@ export function Footer() {
     <Container elementType="footer" style={styles.base}>
       <ul {...stylex.props(linkListStyles.list)}>
         <li>
-          <Text appearance="accent">Refund Policy</Text>
+          <Text appearance="accent">
+            <Trans>Refund Policy</Trans>
+          </Text>
         </li>
         <li>
-          <Text appearance="accent">Shipping Policy</Text>
+          <Text appearance="accent">
+            <Trans>Shipping Policy</Trans>
+          </Text>
         </li>
         <li>
-          <Text appearance="accent">Privacy Policy</Text>
+          <Text appearance="accent">
+            <Trans>Privacy Policy</Trans>
+          </Text>
         </li>
         <li>
-          <Text appearance="accent">Terms of Service</Text>
+          <Text appearance="accent">
+            <Trans>Terms of Service</Trans>
+          </Text>
         </li>
       </ul>
     </Container>

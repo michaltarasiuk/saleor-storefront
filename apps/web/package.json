@@ -8,29 +8,40 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint --max-warnings 0",
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit",
+    "extract": "lingui extract"
   },
   "dependencies": {
+    "@lingui/core": "^5.3.0",
+    "@lingui/macro": "^5.3.0",
+    "@lingui/react": "^5.3.0",
     "@repo/ui": "workspace:*",
     "@stylexjs/open-props": "^0.11.1",
     "@stylexjs/stylex": "^0.11.1",
     "@t3-oss/env-nextjs": "^0.12.0",
-    "next": "^15.2.1",
+    "negotiator": "^1.0.0",
+    "next": "^15.3.1-canary.7",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "server-only": "^0.0.1",
     "styled-jsx": "^5.1.6",
     "zod": "^3.24.2"
   },
   "devDependencies": {
+    "@lingui/cli": "^5.3.0",
+    "@lingui/loader": "^5.3.0",
+    "@lingui/swc-plugin": "^5.5.1",
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@stylexjs/postcss-plugin": "^0.11.1",
+    "@types/negotiator": "^0.6.3",
     "@types/node": "^22.13.10",
     "@types/react": "19.0.12",
     "@types/react-dom": "19.0.4",
     "autoprefixer": "^10.4.21",
     "babel-loader": "^10.0.0",
     "eslint": "^9.23.0",
+    "eslint-plugin-lingui": "^0.10.0",
     "typescript": "5.8.2"
   }
 }
