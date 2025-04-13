@@ -1,7 +1,10 @@
 'use client';
 
 import * as stylex from '@stylexjs/stylex';
-import {Checkbox as AriaCheckbox} from 'react-aria-components';
+import {
+  Checkbox as AriaCheckbox,
+  type CheckboxProps as AriaCheckboxProps,
+} from 'react-aria-components';
 
 import {CheckmarkIcon} from './icons/CheckmarkIcon';
 import {Text} from './Text';
@@ -9,21 +12,18 @@ import {transition} from './variables/animations.stylex';
 import {controlColors, criticalColors} from './variables/colors.stylex';
 import {cornerRadius, spacing} from './variables/tokens.stylex';
 
-interface CheckboxProps {
+interface CheckboxProps extends AriaCheckboxProps {
   readonly children: React.ReactNode;
-  readonly name: string;
-  readonly isSelected: boolean;
-  readonly onChange: (value: boolean) => void;
 }
 
 export function Checkbox({children, ...props}: CheckboxProps) {
   return (
-    <AriaCheckbox {...stylex.props(containerStyles.base)} {...props}>
+    <AriaCheckbox {...stylex.props(wrapperStyles.base)} {...props}>
       {({isFocusVisible, isFocused, isInvalid, isPressed, isSelected}) => (
         <>
           <div
             {...stylex.props(
-              checkboxStyles.checkbox,
+              checkboxStyles.base,
               isFocusVisible && checkboxStyles.focusedVisible,
               isFocused && checkboxStyles.focused,
               isPressed && checkboxStyles.pressed,
@@ -32,7 +32,7 @@ export function Checkbox({children, ...props}: CheckboxProps) {
             )}>
             <CheckmarkIcon
               aria-hidden="true"
-              {...stylex.props(checkmarkStyles.base)}
+              {...stylex.props(iconStyles.base)}
             />
           </div>
           <Text>{children}</Text>
@@ -42,7 +42,7 @@ export function Checkbox({children, ...props}: CheckboxProps) {
   );
 }
 
-const containerStyles = stylex.create({
+const wrapperStyles = stylex.create({
   base: {
     display: 'flex',
     flexDirection: 'row',
@@ -54,7 +54,7 @@ const containerStyles = stylex.create({
 });
 
 const checkboxStyles = stylex.create({
-  checkbox: {
+  base: {
     '--box-shadow-color': controlColors.border,
     position: 'relative',
     height: '20px',
@@ -94,7 +94,7 @@ const checkboxStyles = stylex.create({
   },
 });
 
-const checkmarkStyles = stylex.create({
+const iconStyles = stylex.create({
   base: {
     stroke: controlColors.accentContrast,
   },
