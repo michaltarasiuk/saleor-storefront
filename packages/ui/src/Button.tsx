@@ -114,10 +114,10 @@ function mapVariantToIconStyles(variant: NonNullable<ButtonProps['variant']>) {
 
 const styles = stylex.create({
   base: {
-    cursor: 'pointer',
     display: 'inline-flex',
     justifyContent: 'center',
     alignItems: 'center',
+    cursor: 'pointer',
     backgroundColor: baseColors.background,
     fontFamily: typographyPrimary.fontFamily,
     fontSize: typographyFontSize.base,

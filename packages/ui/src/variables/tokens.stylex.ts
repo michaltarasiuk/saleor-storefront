@@ -20,6 +20,7 @@ export const spacing = stylex.defineVars({
   small300: '7px',
   small400: '5px',
   small500: '3px',
+  small600: '2px',
   none: '0px',
 });
 

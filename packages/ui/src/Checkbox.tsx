@@ -18,7 +18,7 @@ interface CheckboxProps extends AriaCheckboxProps {
 
 export function Checkbox({children, ...props}: CheckboxProps) {
   return (
-    <AriaCheckbox {...stylex.props(wrapperStyles.base)} {...props}>
+    <AriaCheckbox {...stylex.props(styles.base)} {...props}>
       {({isFocusVisible, isFocused, isInvalid, isPressed, isSelected}) => (
         <>
           <div
@@ -42,7 +42,7 @@ export function Checkbox({children, ...props}: CheckboxProps) {
   );
 }
 
-const wrapperStyles = stylex.create({
+const styles = stylex.create({
   base: {
     display: 'flex',
     flexDirection: 'row',
@@ -80,7 +80,7 @@ const checkboxStyles = stylex.create({
   },
   focusedVisible: {
     '::before': {
-      boxShadow: `0 0 0 .2rem ${controlColors.border}`,
+      boxShadow: `0 0 0 .2rem ${controlColors.accent}`,
     },
   },
   focused: {
