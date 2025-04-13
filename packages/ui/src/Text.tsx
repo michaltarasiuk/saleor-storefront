@@ -12,8 +12,10 @@ import {
 } from './variables/colors.stylex';
 import {typographyFontSize, typographyPrimary} from './variables/tokens.stylex';
 
+export type TextSize = keyof typeof fontSizeStyles;
+
 interface StyleProps {
-  readonly size?: keyof typeof fontSizeStyles;
+  readonly size?: TextSize;
   readonly appearance?: keyof typeof apperanceStyles;
   readonly emphasis?: keyof typeof emphasisStyles;
 }

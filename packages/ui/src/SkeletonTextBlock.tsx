@@ -1,12 +1,14 @@
 import {assertNever} from '@repo/utils/assert-never';
 import * as stylex from '@stylexjs/stylex';
 
-import {baseColors} from './variables/colors.stylex';
-import {cornerRadius, spacing} from './variables/tokens.stylex';
+import {SkeletonText} from './SkeletonText';
+import type {TextSize} from './Text';
+import {animations} from './variables/animations.stylex';
+import {spacing} from './variables/tokens.stylex';
 
 interface SkeletonTextBlockProps {
   readonly lines: number;
-  readonly size?: keyof typeof lineSizeStyles;
+  readonly size?: TextSize;
 }
 
 export function SkeletonTextBlock({
@@ -14,9 +16,11 @@ export function SkeletonTextBlock({
   size = 'base',
 }: SkeletonTextBlockProps) {
   return (
-    <div {...stylex.props(styles.base, styles.gap(mapSizeToGap(size)))}>
+    <div
+      aria-hidden="true"
+      {...stylex.props(styles.base, styles.gap(mapSizeToGap(size)))}>
       {Array.from({length: lines}, (_, i) => (
-        <div key={i} {...stylex.props(lineStyles.base, lineSizeStyles[size])} />
+        <SkeletonText key={i} size={size} />
       ))}
     </div>
   );
@@ -26,42 +30,14 @@ const styles = stylex.create({
   base: {
     display: 'flex',
     flexDirection: 'column',
+    animation: animations.pulse,
+    animationDuration: '2s',
+    animationIterationCount: 'infinite',
   },
   gap: (gap: string) => ({gap}),
 });
 
-const lineStyles = stylex.create({
-  base: {
-    borderRadius: cornerRadius.base,
-    backgroundColor: baseColors.border,
-    ':last-of-type': {
-      width: '85%',
-    },
-  },
-});
-
-const lineSizeStyles = stylex.create({
-  extraSmall: {
-    height: '11.5px',
-  },
-  small: {
-    height: '14px',
-  },
-  base: {
-    height: '16.5px',
-  },
-  medium: {
-    height: '21px',
-  },
-  large: {
-    height: '28px',
-  },
-  extraLarge: {
-    height: '35px',
-  },
-});
-
-function mapSizeToGap(size: keyof typeof lineSizeStyles) {
+function mapSizeToGap(size: TextSize) {
   switch (size) {
     case 'extraSmall':
     case 'small': {

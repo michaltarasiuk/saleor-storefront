@@ -1,31 +1,27 @@
 import * as stylex from '@stylexjs/stylex';
 import {CSSProperties} from 'react';
 
+import {animations} from './variables/animations.stylex';
 import {baseColors} from './variables/colors.stylex';
 import {cornerRadius} from './variables/tokens.stylex';
 
 type Size = number | `${number}%` | 'fill';
 
 interface SkeletonImageProps {
-  readonly aspectRatio?: number;
   readonly blockSize?: Size;
   readonly inlineSize?: Size;
 }
 
 export function SkeletonImage({
-  aspectRatio,
-  blockSize,
-  inlineSize,
+  blockSize = 'fill',
+  inlineSize = 'fill',
 }: SkeletonImageProps) {
   return (
     <div
+      aria-hidden="true"
       {...stylex.props(
         styles.base,
-        styles.size(
-          blockSize && formatSize(blockSize),
-          inlineSize && formatSize(inlineSize)
-        ),
-        styles.aspectRatio(aspectRatio)
+        styles.size(formatSize(blockSize), formatSize(inlineSize))
       )}
     />
   );
@@ -35,6 +31,9 @@ const styles = stylex.create({
   base: {
     backgroundColor: baseColors.border,
     borderRadius: cornerRadius.base,
+    animation: animations.pulse,
+    animationDuration: '2s',
+    animationIterationCount: 'infinite',
   },
   size: (
     blockSize: CSSProperties['blockSize'],
@@ -42,9 +41,6 @@ const styles = stylex.create({
   ) => ({
     blockSize,
     inlineSize,
-  }),
-  aspectRatio: (aspectRatio: CSSProperties['aspectRatio']) => ({
-    aspectRatio,
   }),
 });
 
