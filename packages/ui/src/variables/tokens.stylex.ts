@@ -51,3 +51,8 @@ export const borderWidth = stylex.defineVars({
   base: '1px',
   none: '0px',
 });
+
+export const opacity = stylex.defineVars({
+  25: '0.25',
+  50: '0.5',
+});

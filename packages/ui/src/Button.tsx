@@ -22,6 +22,7 @@ import {
 import {
   borderWidth,
   cornerRadius,
+  opacity,
   spacing,
   typographyFontSize,
   typographyPrimary,
@@ -224,7 +225,7 @@ const plainStyles = stylex.create({
   },
   disabled: {
     cursor: 'default',
-    opacity: 0.5,
+    opacity: opacity[50],
   },
 });
 
