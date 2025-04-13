@@ -21,6 +21,7 @@ export function GlobalNav() {
           alt={t`Company Logo`}
           width={112}
           height={35}
+          priority
         />
       </Link>
       <div {...stylex.props(globalNavStyles.userActions)}>
