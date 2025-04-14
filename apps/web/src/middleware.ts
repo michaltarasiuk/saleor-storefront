@@ -18,7 +18,7 @@ export function middleware(request: NextRequest) {
         localeByAcceptLanguageHeader ?? i18nConfig.defaultLocale,
         ...splitPathname(request.nextUrl.pathname)
       ),
-      request.nextUrl
+      request.nextUrl.origin
     );
     return isLocaleInvalid
       ? NextResponse.redirect(nextUrlWithLocale)
@@ -48,7 +48,7 @@ function getLocaleByAcceptLanguageHeader(
 ) {
   const acceptLanguageHeader = requestHeaders.get('accept-language');
   if (!acceptLanguageHeader) {
-    return defaultLocale;
+    return;
   }
   const negotiator = new Negotiator({
     headers: {
@@ -60,11 +60,7 @@ function getLocaleByAcceptLanguageHeader(
   const sortedLocales = availableLocales.toSorted(
     (a, b) => b.length - a.length
   );
-  try {
-    return matchLocale(requestedLocales, sortedLocales, defaultLocale);
-  } catch {
-    return;
-  }
+  return matchLocale(requestedLocales, sortedLocales, defaultLocale);
 }
 
 export const config = {
