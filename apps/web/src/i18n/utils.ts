@@ -3,55 +3,55 @@ import {setI18n as setLinguiI18n} from '@lingui/react/server';
 
 import linguiConfig from '../../lingui.config';
 
-export const i18nConfig = {
+export const linguiConfigHelpers = {
   get defaultLocale() {
     if (!linguiConfig.sourceLocale) {
       throw new Error('Default locale is not defined in Lingui config.');
     }
     return linguiConfig.sourceLocale;
   },
-  get locales() {
+  get supportedLocales() {
     if (!linguiConfig.locales) {
-      throw new Error('Locales are not defined in lingui config.');
+      throw new Error('Locales are not defined in Lingui config.');
     }
     return linguiConfig.locales;
   },
 };
 
-const catalogs = await Promise.all(
-  i18nConfig.locales.map(async locale => {
+const localeCatalogs = await Promise.all(
+  linguiConfigHelpers.supportedLocales.map(async locale => {
     const catalog = await import(`./locales/${locale}/messages.po`);
     return [locale, catalog.messages as Messages] as const;
   })
 );
-const catalogsMap = Object.fromEntries(catalogs);
+const localeCatalogMap = Object.fromEntries(localeCatalogs);
 
-const i18nInstances: Record<Locale, I18n> = {};
-for (const locale of i18nConfig.locales) {
-  i18nInstances[locale] = setupI18n({
+const i18nInstancesByLocale: Record<Locale, I18n> = {};
+for (const locale of linguiConfigHelpers.supportedLocales) {
+  i18nInstancesByLocale[locale] = setupI18n({
     locale,
-    messages: {[locale]: getMessages(locale)},
+    messages: {[locale]: getLocaleMessages(locale)},
   });
 }
 
-export function getMessages(locale: Locale) {
-  const messages = catalogsMap[locale];
+export function getLocaleMessages(locale: Locale) {
+  const messages = localeCatalogMap[locale];
   if (!messages) {
     throw new Error(`No messages found for locale: ${locale}`);
   }
   return messages;
 }
 
-export function getI18n(locale: Locale) {
-  const i18n = i18nInstances[locale];
+export function getI18nInstance(locale: Locale) {
+  const i18n = i18nInstancesByLocale[locale];
   if (!i18n) {
     throw new Error(`No i18n instance found for locale: ${locale}`);
   }
   return i18n;
 }
 
-export function setI18n(locale: Locale) {
-  const i18n = getI18n(locale);
+export function setActiveI18nInstance(locale: Locale) {
+  const i18n = getI18nInstance(locale);
   setLinguiI18n(i18n);
   return i18n;
 }

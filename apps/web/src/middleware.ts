@@ -3,7 +3,7 @@ import {joinPathname, splitPathname} from '@repo/utils/pathname';
 import Negotiator from 'negotiator';
 import {NextRequest, NextResponse} from 'next/server';
 
-import {i18nConfig} from './i18n/utils';
+import {linguiConfigHelpers} from './i18n/utils';
 
 export function middleware(request: NextRequest) {
   const localeValidationResult = validateLocaleInPathname(
@@ -15,7 +15,7 @@ export function middleware(request: NextRequest) {
     );
     const nextUrlWithLocale = new URL(
       joinPathname(
-        localeByAcceptLanguageHeader ?? i18nConfig.defaultLocale,
+        localeByAcceptLanguageHeader ?? linguiConfigHelpers.defaultLocale,
         ...splitPathname(request.nextUrl.pathname)
       ),
       request.nextUrl.origin
@@ -29,7 +29,7 @@ export function middleware(request: NextRequest) {
 
 function validateLocaleInPathname(
   nextUrlPathName: string,
-  availableLocales = i18nConfig.locales
+  availableLocales = linguiConfigHelpers.supportedLocales
 ) {
   const [requestedLocale] = splitPathname(nextUrlPathName);
   if (!requestedLocale) {
@@ -43,8 +43,8 @@ function validateLocaleInPathname(
 
 function getLocaleByAcceptLanguageHeader(
   requestHeaders: Headers,
-  defaultLocale = i18nConfig.defaultLocale,
-  availableLocales = i18nConfig.locales
+  defaultLocale = linguiConfigHelpers.defaultLocale,
+  availableLocales = linguiConfigHelpers.supportedLocales
 ) {
   const acceptLanguageHeader = requestHeaders.get('accept-language');
   if (!acceptLanguageHeader) {

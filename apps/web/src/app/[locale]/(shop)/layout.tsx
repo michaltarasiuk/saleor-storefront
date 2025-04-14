@@ -3,7 +3,11 @@ import '@/app/app.css';
 import type {Locale} from '@lingui/core';
 
 import {I18nProvider} from '@/i18n/I18nProvider';
-import {getMessages, i18nConfig, setI18n} from '@/i18n/utils';
+import {
+  getLocaleMessages,
+  linguiConfigHelpers,
+  setActiveI18nInstance,
+} from '@/i18n/utils';
 
 interface Params {
   readonly locale: Locale;
@@ -16,11 +20,11 @@ interface ShopLayoutProps {
 
 export default async function ShopLayout({children, params}: ShopLayoutProps) {
   const {locale} = await params;
-  setI18n(locale);
+  setActiveI18nInstance(locale);
   return (
     <html lang={locale}>
       <body>
-        <I18nProvider locale={locale} messages={getMessages(locale)}>
+        <I18nProvider locale={locale} messages={getLocaleMessages(locale)}>
           {children}
         </I18nProvider>
       </body>
@@ -29,5 +33,5 @@ export default async function ShopLayout({children, params}: ShopLayoutProps) {
 }
 
 export function generateStaticParams(): Params[] {
-  return i18nConfig.locales.map(locale => ({locale}));
+  return linguiConfigHelpers.supportedLocales.map(locale => ({locale}));
 }
