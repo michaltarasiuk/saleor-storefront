@@ -54,7 +54,7 @@ export function Button({
   const [variantStyles, variantHoverStyles] = mapVariantToStyles(variant);
   const iconVariantsStyles = mapVariantToIconStyles(variant);
   const hasHoverStyles =
-    variantHoverStyles !== undefined && isKeyOf(variantHoverStyles, appearance);
+    variantHoverStyles && isKeyOf(variantHoverStyles, appearance);
   return (
     <AriaButton
       {...stylex.props(
