@@ -60,7 +60,11 @@ function getLocaleByAcceptLanguageHeader(
   const sortedLocales = availableLocales.toSorted(
     (a, b) => b.length - a.length
   );
-  return matchLocale(requestedLocales, sortedLocales, defaultLocale);
+  try {
+    return matchLocale(requestedLocales, sortedLocales, defaultLocale);
+  } catch {
+    return;
+  }
 }
 
 export const config = {
@@ -72,7 +76,8 @@ export const config = {
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico, sitemap.xml, robots.txt (metadata files)
+     * - monitoring (used by Sentry)
      */
-    '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)',
+    '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|monitoring).*)',
   ],
 };
