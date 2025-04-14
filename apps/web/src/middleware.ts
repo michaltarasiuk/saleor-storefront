@@ -1,5 +1,4 @@
 import {match as matchLocale} from '@formatjs/intl-localematcher';
-import type {Locale} from '@lingui/core';
 import {joinPathname, splitPathname} from '@repo/utils/pathname';
 import Negotiator from 'negotiator';
 import {NextRequest, NextResponse} from 'next/server';
@@ -7,9 +6,10 @@ import {NextRequest, NextResponse} from 'next/server';
 import {i18nConfig} from './i18n/utils';
 
 export function middleware(request: NextRequest) {
-  const localeByPathname = getLocaleByPathname(request.nextUrl.pathname);
-  if (!localeByPathname) {
-    const isLocaleInvalid = localeByPathname === false;
+  const localeValidationResult = validateLocaleInPathname(
+    request.nextUrl.pathname
+  );
+  if (localeValidationResult.status !== 'matched') {
     const localeByAcceptLanguageHeader = getLocaleByAcceptLanguageHeader(
       request.headers
     );
@@ -20,25 +20,25 @@ export function middleware(request: NextRequest) {
       ),
       request.nextUrl.origin
     );
-    return isLocaleInvalid
+    return localeValidationResult.status === 'invalid'
       ? NextResponse.redirect(nextUrlWithLocale)
       : NextResponse.rewrite(nextUrlWithLocale);
   }
   return NextResponse.next();
 }
 
-/**
- * @returns The matched locale if found, `false` if the locale is invalid, or `undefined` if no locale is specified.
- */
-function getLocaleByPathname(
+function validateLocaleInPathname(
   nextUrlPathName: string,
   availableLocales = i18nConfig.locales
-): Locale | false | undefined {
+) {
   const [requestedLocale] = splitPathname(nextUrlPathName);
   if (!requestedLocale) {
-    return;
+    return {status: 'unspecified'} as const;
   }
-  return availableLocales.includes(requestedLocale) && requestedLocale;
+  if (!availableLocales.includes(requestedLocale)) {
+    return {status: 'invalid'} as const;
+  }
+  return {status: 'matched'} as const;
 }
 
 function getLocaleByAcceptLanguageHeader(
