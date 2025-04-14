@@ -9,15 +9,18 @@ import {i18nConfig} from './i18n/utils';
 export function middleware(request: NextRequest) {
   const localeByPathname = getLocaleByPathname(request.nextUrl.pathname);
   if (!localeByPathname) {
-    const isLocaleUnavailable = localeByPathname === false;
+    const isLocaleInvalid = localeByPathname === false;
+    const localeByAcceptLanguageHeader = getLocaleByAcceptLanguageHeader(
+      request.headers
+    );
     const nextUrlWithLocale = new URL(
       joinPathname(
-        getLocaleByAcceptLanguageHeader(request.headers),
+        localeByAcceptLanguageHeader ?? i18nConfig.defaultLocale,
         ...splitPathname(request.nextUrl.pathname)
       ),
       request.nextUrl
     );
-    return isLocaleUnavailable
+    return isLocaleInvalid
       ? NextResponse.redirect(nextUrlWithLocale)
       : NextResponse.rewrite(nextUrlWithLocale);
   }
@@ -25,21 +28,17 @@ export function middleware(request: NextRequest) {
 }
 
 /**
- * @returns Locale if found, `false` if no available locale is found, or `undefined` if the locale is not defined.
+ * @returns The matched locale if found, `false` if the locale is invalid, or `undefined` if no locale is specified.
  */
 function getLocaleByPathname(
   nextUrlPathName: string,
   availableLocales = i18nConfig.locales
 ): Locale | false | undefined {
-  const requestedLocale = splitPathname(nextUrlPathName).at(0);
+  const [requestedLocale] = splitPathname(nextUrlPathName);
   if (!requestedLocale) {
     return;
   }
-  const availableLocaleRe = new RegExp(availableLocales.join('|'));
-  if (!availableLocaleRe.test(requestedLocale)) {
-    return false;
-  }
-  return requestedLocale;
+  return availableLocales.includes(requestedLocale) && requestedLocale;
 }
 
 function getLocaleByAcceptLanguageHeader(
@@ -64,7 +63,7 @@ function getLocaleByAcceptLanguageHeader(
   try {
     return matchLocale(requestedLocales, sortedLocales, defaultLocale);
   } catch {
-    return defaultLocale;
+    return;
   }
 }
 
