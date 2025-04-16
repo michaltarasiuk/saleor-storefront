@@ -1,9 +1,7 @@
 import '@/app/app.css';
 
 import type {Locale} from '@lingui/core';
-import {Container} from '@repo/ui/Container';
 import {baseColors} from '@repo/ui/variables/colors.stylex';
-import {spacing} from '@repo/ui/variables/tokens.stylex';
 import * as stylex from '@stylexjs/stylex';
 import {Inter} from 'next/font/google';
 
@@ -15,8 +13,8 @@ import {
 } from '@/i18n/utils';
 import {brandedTheme} from '@/themes/branded';
 
-import {Footer} from './_components/Footer';
-import {GlobalNav} from './_components/GlobalNav';
+import {PageLayout} from './_components/PageLayout';
+import {QueryClientProvider} from './QueryClientProvider';
 
 const inter = Inter({subsets: ['latin']});
 
@@ -36,16 +34,15 @@ export default async function AccountLayout({
   const {locale} = await params;
   setActiveI18nInstance(locale);
   return (
-    <html lang={locale} className={inter.className} {...brandedTheme()}>
+    <html
+      lang={locale}
+      className={inter.className}
+      {...stylex.props(...brandedTheme())}>
       <body {...stylex.props(bodyStyles.base)}>
         <I18nProvider locale={locale} messages={getLocaleMessages(locale)}>
-          <header {...stylex.props(headerStyles.base)}>
-            <GlobalNav />
-          </header>
-          <Container elementType="main" style={mainStyles.base}>
-            {children}
-          </Container>
-          <Footer />
+          <QueryClientProvider>
+            <PageLayout>{children}</PageLayout>
+          </QueryClientProvider>
         </I18nProvider>
       </body>
     </html>
@@ -61,21 +58,5 @@ const bodyStyles = stylex.create({
     display: 'flex',
     flexDirection: 'column',
     backgroundColor: baseColors.backgroundSubdued,
-  },
-});
-
-const headerStyles = stylex.create({
-  base: {
-    backgroundColor: baseColors.background,
-    paddingBlock: spacing.large400,
-  },
-});
-
-const mainStyles = stylex.create({
-  base: {
-    display: 'flex',
-    flexDirection: 'column',
-    flexGrow: 1,
-    width: '100%',
   },
 });

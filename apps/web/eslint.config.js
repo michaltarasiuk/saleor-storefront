@@ -1,5 +1,10 @@
 import {nextJsConfig} from '@repo/eslint-config/next-js';
-import linguiPlugin from 'eslint-plugin-lingui';
+import pluginQuery from '@tanstack/eslint-plugin-query';
+import pluginLingui from 'eslint-plugin-lingui';
 
 /** @type {import("eslint").Linter.Config} */
-export default [...nextJsConfig, linguiPlugin.configs['flat/recommended']];
+export default [
+  ...nextJsConfig,
+  ...pluginQuery.configs['flat/recommended'],
+  pluginLingui.configs['flat/recommended'],
+];

@@ -28,7 +28,7 @@ export default async function OrdersPage({params}: OrdersPageProps) {
 }
 
 function TabGroup() {
-  return <div {...stylex.props(tabGroupStyles.base)}></div>;
+  return <div {...stylex.props(tabGroupStyles.base)} />;
 }
 
 const tabGroupStyles = stylex.create({

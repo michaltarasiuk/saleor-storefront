@@ -10,15 +10,15 @@ import {
 import * as stylex from '@stylexjs/stylex';
 
 export function brandedTheme() {
-  return stylex.props(
+  return [
     brandedBaseColors,
     brandedControlColors,
     brandedControlSelectedColors,
     brandedPrimaryButtonColors,
     brandedPrimaryButtonHoverColors,
     brandedSecondaryButtonColors,
-    brandedSecondaryButtonHoverColors
-  );
+    brandedSecondaryButtonHoverColors,
+  ] as const;
 }
 
 const brandedBaseColors = stylex.createTheme(baseColors, {

@@ -2,7 +2,7 @@ import * as Slot from '@radix-ui/react-slot';
 import type {StyleXStyles} from '@stylexjs/stylex';
 import * as stylex from '@stylexjs/stylex';
 
-import type {AccessibilityVisibility} from './types/accessibility';
+import type {AccessibilityVisibility} from './types/visibility';
 import {
   baseColors,
   criticalColors,
@@ -36,9 +36,9 @@ export function Text({
   asChild,
   style,
 }: TextProps) {
-  const Comp = asChild ? Slot.Root : 'span';
+  const Element = asChild ? Slot.Root : 'span';
   return (
-    <Comp
+    <Element
       aria-hidden={accessibilityVisibility === 'hidden'}
       {...stylex.props(
         style,
@@ -48,7 +48,7 @@ export function Text({
         emphasisStyles[emphasis]
       )}>
       {children}
-    </Comp>
+    </Element>
   );
 }
 

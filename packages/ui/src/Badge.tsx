@@ -1,7 +1,7 @@
 import * as stylex from '@stylexjs/stylex';
 
 import {visuallyHiddenStyle} from './styles/visually-hidden';
-import type {AccessibilityVisibility} from './types/accessibility';
+import type {AccessibilityVisibility} from './types/visibility';
 import type {Visibility} from './types/visibility';
 import {baseColors, criticalColors} from './variables/colors.stylex';
 import {
