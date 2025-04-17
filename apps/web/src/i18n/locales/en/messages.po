@@ -17,7 +17,7 @@ msgstr ""
 msgid "Company Logo"
 msgstr "Company Logo"
 
-#: src/app/[locale]/(account)/_components/GlobalNav.tsx:33
+#: src/app/[locale]/(account)/_components/GlobalNav.tsx:34
 msgid "Go to store"
 msgstr "Go to store"
 
@@ -25,7 +25,7 @@ msgstr "Go to store"
 msgid "Orders"
 msgstr "Orders"
 
-#: src/app/[locale]/(account)/_components/Footer.tsx:25
+#: src/app/[locale]/(account)/_components/Footer.tsx:27
 msgid "Privacy Policy"
 msgstr "Privacy Policy"
 
@@ -33,18 +33,18 @@ msgstr "Privacy Policy"
 msgid "Profile"
 msgstr "Profile"
 
-#: src/app/[locale]/(account)/_components/Footer.tsx:15
+#: src/app/[locale]/(account)/_components/Footer.tsx:17
 msgid "Refund Policy"
 msgstr "Refund Policy"
 
-#: src/app/[locale]/(account)/_components/Footer.tsx:20
+#: src/app/[locale]/(account)/_components/Footer.tsx:22
 msgid "Shipping Policy"
 msgstr "Shipping Policy"
 
-#: src/app/[locale]/(account)/_components/Footer.tsx:30
+#: src/app/[locale]/(account)/_components/Footer.tsx:32
 msgid "Terms of Service"
 msgstr "Terms of Service"
 
-#: src/app/[locale]/(account)/_components/GlobalNav.tsx:29
+#: src/app/[locale]/(account)/_components/GlobalNav.tsx:30
 msgid "User Avatar"
 msgstr "User Avatar"
