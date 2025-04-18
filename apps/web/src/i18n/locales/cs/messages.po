@@ -17,9 +17,9 @@ msgstr ""
 msgid "Company Logo"
 msgstr ""
 
-#: src/app/[locale]/(account)/orders/_components/OrderTabs.tsx:26
-#~ msgid "Confirmed"
-#~ msgstr ""
+#: src/app/[locale]/(account)/orders/_components/OrderTabs.tsx:27
+msgid "Confirmed"
+msgstr ""
 
 #: src/app/[locale]/(account)/orders/@confirmed/page.tsx:20
 msgid "Confirmed orders"
@@ -33,7 +33,6 @@ msgstr ""
 msgid "Orders"
 msgstr ""
 
-#: src/app/[locale]/(account)/orders/_components/OrderTabs.tsx:27
 #: src/app/[locale]/(account)/orders/_components/OrderTabs.tsx:33
 msgid "Pending"
 msgstr ""

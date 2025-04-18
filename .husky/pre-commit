@@ -1,1 +1,1 @@
-bun run --filter 'web' extract
+bun run --filter 'web' extract && git add apps/web/src/i18n/locales

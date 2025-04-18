@@ -24,7 +24,7 @@ export function OrderTabs({confirmedTab, pendingTab}: OrderTabsProps) {
           id={confirmedTabId}
           icon={({color}) => <OrderBoxIcon aria-hidden="true" stroke={color} />}
           isSelected={selectedTab === confirmedTabId}>
-          {t`Pending`}
+          {t`Confirmed`}
         </Tab>
         <Tab
           id={pendingTabId}
