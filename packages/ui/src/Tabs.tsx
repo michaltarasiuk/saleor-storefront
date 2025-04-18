@@ -53,8 +53,8 @@ const tabListStyles = stylex.create({
 });
 
 interface TabProps extends React.ComponentProps<typeof AriaTab> {
-  readonly children: React.ReactNode;
-  readonly isSelected?: boolean;
+  readonly children: string;
+  readonly isSelected: boolean;
   readonly icon: (props: {readonly color: string}) => React.ReactNode;
 }
 
@@ -68,7 +68,9 @@ export function Tab({isSelected, ...props}: TabProps) {
           color: isSelected ? baseColors.accent : baseColors.textSubdued,
         })}
       </Slot.Root>
-      {props.children}
+      <span data-text={props.children} {...stylex.props(tabStyles.content)}>
+        {props.children}
+      </span>
     </AriaTab>
   );
 }
@@ -87,9 +89,21 @@ const tabStyles = stylex.create({
     cursor: 'pointer',
     borderRadius: cornerRadius.base,
   },
+  content: {
+    display: 'inline-flex',
+    flexDirection: 'column',
+    '::after': {
+      content: 'attr(data-text) / ""',
+      fontWeight: typographyPrimary.bold,
+      height: 0,
+      visibility: 'hidden',
+      overflow: 'hidden',
+    },
+  },
   selected: {
     color: baseColors.accent,
     backgroundColor: baseColors.backgroundSubdued,
+    fontWeight: typographyPrimary.bold,
   },
 });
 

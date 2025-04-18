@@ -1,6 +1,6 @@
 'use client';
 
-import {Trans} from '@lingui/react/macro';
+import {useLingui} from '@lingui/react/macro';
 import {ClockIcon} from '@repo/ui/icons/ClockIcon';
 import {OrderBoxIcon} from '@repo/ui/icons/OrderBoxIcon';
 import {Tab, TabList, TabPanel, Tabs} from '@repo/ui/Tabs';
@@ -13,6 +13,7 @@ interface OrderTabsProps {
 }
 
 export function OrderTabs({confirmedTab, pendingTab}: OrderTabsProps) {
+  const {t} = useLingui();
   const confirmedTabId = useId();
   const pendingTabId = useId();
   const [selectedTab, setSelectedTab] = useState<Key>(confirmedTabId);
@@ -23,13 +24,13 @@ export function OrderTabs({confirmedTab, pendingTab}: OrderTabsProps) {
           id={confirmedTabId}
           icon={({color}) => <OrderBoxIcon aria-hidden="true" stroke={color} />}
           isSelected={selectedTab === confirmedTabId}>
-          <Trans>Confirmed</Trans>
+          {t`Pending`}
         </Tab>
         <Tab
           id={pendingTabId}
           icon={({color}) => <ClockIcon aria-hidden="true" fill={color} />}
           isSelected={selectedTab === pendingTabId}>
-          <Trans>Pending</Trans>
+          {t`Pending`}
         </Tab>
       </TabList>
       <TabPanel id={confirmedTabId}>{confirmedTab}</TabPanel>
