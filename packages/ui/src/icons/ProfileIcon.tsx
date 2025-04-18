@@ -1,8 +1,6 @@
-import type {ComponentProps} from 'react';
-
 import {baseColors} from '../variables/colors.stylex';
 
-export function ProfileIcon(props: ComponentProps<'svg'>) {
+export function ProfileIcon(props: React.ComponentProps<'svg'>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
