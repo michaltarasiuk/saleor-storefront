@@ -20,10 +20,13 @@ const MaxHeadingLevel: HeadingLevel = 6;
 const headingLevelContext = createContext<HeadingLevel>(MinHeadingLevel);
 
 export function HeadingGroup({children}: {readonly children: React.ReactNode}) {
-  const headingLevel = useContext(headingLevelContext);
+  const parentHeadingLevel = useContext(headingLevelContext);
+  const nextHeadingLevel = Math.min(
+    parentHeadingLevel + 1,
+    MaxHeadingLevel
+  ) as HeadingLevel;
   return (
-    <headingLevelContext.Provider
-      value={Math.max(headingLevel + 1, MaxHeadingLevel) as HeadingLevel}>
+    <headingLevelContext.Provider value={nextHeadingLevel}>
       {children}
     </headingLevelContext.Provider>
   );
