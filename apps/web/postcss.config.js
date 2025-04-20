@@ -50,7 +50,7 @@ export default {
           [
             '@stylexjs/babel-plugin',
             {
-              dev: env.NODE_ENV !== 'production',
+              dev: env.NODE_ENV === 'development',
               runtimeInjection: false,
               genConditionalClasses: true,
               treeshakeCompensation: true,

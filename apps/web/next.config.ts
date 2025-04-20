@@ -10,11 +10,7 @@ const nextConfig: NextConfig = {
   },
   transpilePackages: ['@stylexjs/open-props'],
   images: {
-    remotePatterns: [
-      {
-        hostname: 'avatars.githubusercontent.com',
-      },
-    ],
+    remotePatterns: [{hostname: 'avatars.githubusercontent.com'}],
   },
   webpack(config, {dev}) {
     config.module.rules.push({
