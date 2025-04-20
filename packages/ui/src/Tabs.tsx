@@ -63,11 +63,13 @@ export function Tab({isSelected, ...props}: TabProps) {
     <AriaTab
       {...stylex.props(tabStyles.base, isSelected && tabStyles.selected)}
       {...props}>
-      <Slot.Root {...stylex.props(tabIconStyles.base)}>
-        {props.icon({
-          color: isSelected ? baseColors.accent : baseColors.textSubdued,
-        })}
-      </Slot.Root>
+      <span {...stylex.props(tabIconStyles.wrapper)}>
+        <Slot.Root {...stylex.props(tabIconStyles.base)}>
+          {props.icon({
+            color: isSelected ? baseColors.accent : baseColors.textSubdued,
+          })}
+        </Slot.Root>
+      </span>
       <span data-text={props.children} {...stylex.props(tabStyles.content)}>
         {props.children}
       </span>
@@ -114,5 +116,8 @@ const tabIconStyles = stylex.create({
       ['@media (width >= 40rem)' satisfies Breakpoints['Sm']]: 'inline',
     },
     flexShrink: 0,
+  },
+  wrapper: {
+    height: '18px',
   },
 });
