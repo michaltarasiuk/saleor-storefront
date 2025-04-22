@@ -10,7 +10,7 @@ export const env = createEnv({
     CI: z.enum(['1', '0']).default('0').transform(Number),
   },
   client: {
-    NEXT_PUBLIC_GRAPHQL_ENDPOINT: z.string().url(),
+    NEXT_PUBLIC_GRAPHQL_ENDPOINT: z.url(),
   },
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,

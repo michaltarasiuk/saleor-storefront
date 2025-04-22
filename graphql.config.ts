@@ -3,7 +3,7 @@ import type {IGraphQLConfig} from 'graphql-config';
 import {z} from 'zod';
 
 const WebAppEnvironmentVariablesSchema = z.object({
-  NEXT_PUBLIC_GRAPHQL_ENDPOINT: z.string().url(),
+  NEXT_PUBLIC_GRAPHQL_ENDPOINT: z.url(),
 });
 
 const webAppEnvironmentVariables = {};
