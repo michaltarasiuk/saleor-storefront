@@ -1,11 +1,12 @@
 import * as stylex from '@stylexjs/stylex';
+
 import {
   paddingBlockEndStyles,
   paddingBlockStartStyles,
   paddingInlineEndStyles,
   paddingInlineStartStyles,
 } from './styles/padding';
-import {spacingRowStyles, spacingColumnStyles} from './styles/spacing';
+import {spacingColumnStyles, spacingRowStyles} from './styles/spacing';
 
 type RowSpacing = keyof typeof spacingRowStyles;
 type ColumnSpacing = keyof typeof spacingColumnStyles;

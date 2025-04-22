@@ -1,10 +1,11 @@
 'use client';
 
-import {
-  ToggleButtonGroup as AriaToggleButtonGroup,
-  ToggleButton as AriaToggleButton,
-} from 'react-aria-components';
 import * as stylex from '@stylexjs/stylex';
+import {
+  ToggleButton as AriaToggleButton,
+  ToggleButtonGroup as AriaToggleButtonGroup,
+} from 'react-aria-components';
+
 import {cornerRadius, spacing} from './variables/tokens.stylex';
 
 export function ToggleButtonGroup(

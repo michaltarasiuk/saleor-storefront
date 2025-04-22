@@ -1,4 +1,5 @@
 import * as stylex from '@stylexjs/stylex';
+
 import {typographyFontSize} from '../variables/tokens.stylex';
 
 export const fontSizeStyles = stylex.create({

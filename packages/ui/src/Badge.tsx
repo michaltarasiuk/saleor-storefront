@@ -1,5 +1,6 @@
 import * as stylex from '@stylexjs/stylex';
 
+import {fontSizeStyles as sizeStyles} from './styles/font-size';
 import {visuallyHiddenStyle} from './styles/visually-hidden';
 import type {AccessibilityVisibility} from './types/visibility';
 import type {Visibility} from './types/visibility';
@@ -10,7 +11,6 @@ import {
   spacing,
   typographyPrimary,
 } from './variables/tokens.stylex';
-import {fontSizeStyles as sizeStyles} from './styles/font-size';
 
 interface BadgeProps {
   readonly children: React.ReactNode;

@@ -4,12 +4,12 @@ import {Trans, useLingui} from '@lingui/react/macro';
 import {Avatar} from '@repo/ui/Avatar';
 import {Button} from '@repo/ui/Button';
 import {Container} from '@repo/ui/Container';
+import {InlineStack} from '@repo/ui/InlineStack';
 import * as stylex from '@stylexjs/stylex';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import {Routes} from '@/consts/routes';
-import {InlineStack} from '@repo/ui/InlineStack';
 
 export function GlobalNav() {
   const {t} = useLingui();

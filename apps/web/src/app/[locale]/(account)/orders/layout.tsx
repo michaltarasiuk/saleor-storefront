@@ -5,8 +5,8 @@ import {InlineStack} from '@repo/ui/InlineStack';
 
 import {setActiveI18nInstance} from '@/i18n/utils';
 
-import {OrderTabs} from './_components/OrderTabs';
 import {OrdersView, OrdersViewToggle} from './_components/OrdersViewToggle';
+import {OrderTabs} from './_components/OrderTabs';
 
 interface Params {
   readonly locale: Locale;

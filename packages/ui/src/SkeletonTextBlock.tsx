@@ -2,9 +2,9 @@ import {assertNever} from '@repo/utils/assert-never';
 import * as stylex from '@stylexjs/stylex';
 
 import {SkeletonText} from './SkeletonText';
+import {fontSizeStyles} from './styles/font-size';
 import {animations} from './variables/animations.stylex';
 import {spacing} from './variables/tokens.stylex';
-import {fontSizeStyles} from './styles/font-size';
 
 interface SkeletonTextBlockProps {
   readonly lines: number;

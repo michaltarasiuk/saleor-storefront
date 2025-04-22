@@ -2,6 +2,7 @@ import * as Slot from '@radix-ui/react-slot';
 import type {StyleXStyles} from '@stylexjs/stylex';
 import * as stylex from '@stylexjs/stylex';
 
+import {fontSizeStyles} from './styles/font-size';
 import type {AccessibilityVisibility} from './types/visibility';
 import {
   baseColors,
@@ -11,7 +12,6 @@ import {
   warningColors,
 } from './variables/colors.stylex';
 import {typographyPrimary} from './variables/tokens.stylex';
-import {fontSizeStyles} from './styles/font-size';
 
 interface StyleProps {
   readonly size?: keyof typeof fontSizeStyles;
