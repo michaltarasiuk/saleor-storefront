@@ -29,8 +29,20 @@ msgstr ""
 msgid "Go to store"
 msgstr ""
 
-#: src/app/[locale]/(account)/orders/layout.tsx:30
+#: src/app/[locale]/(account)/orders/_components/OrdersViewToggle.tsx:41
+msgid "Grid View"
+msgstr ""
+
+#: src/app/[locale]/(account)/orders/_components/OrdersViewToggle.tsx:47
+msgid "List View"
+msgstr ""
+
+#: src/app/[locale]/(account)/orders/layout.tsx:35
 msgid "Orders"
+msgstr ""
+
+#: src/app/[locale]/(account)/orders/_components/OrdersViewToggle.tsx:32
+msgid "Orders View Toggle"
 msgstr ""
 
 #: src/app/[locale]/(account)/orders/_components/OrderTabs.tsx:33
@@ -46,8 +58,8 @@ msgid "Privacy Policy"
 msgstr ""
 
 #: src/app/[locale]/(account)/profile/page.tsx:20
-msgid "Profile"
-msgstr ""
+#~ msgid "Profile"
+#~ msgstr ""
 
 #: src/app/[locale]/(account)/_components/Footer.tsx:17
 msgid "Refund Policy"

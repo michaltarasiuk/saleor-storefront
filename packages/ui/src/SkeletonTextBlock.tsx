@@ -2,13 +2,13 @@ import {assertNever} from '@repo/utils/assert-never';
 import * as stylex from '@stylexjs/stylex';
 
 import {SkeletonText} from './SkeletonText';
-import type {TextSize} from './Text';
 import {animations} from './variables/animations.stylex';
 import {spacing} from './variables/tokens.stylex';
+import {fontSizeStyles} from './styles/font-size';
 
 interface SkeletonTextBlockProps {
   readonly lines: number;
-  readonly size?: TextSize;
+  readonly size?: keyof typeof fontSizeStyles;
 }
 
 export function SkeletonTextBlock({
@@ -37,7 +37,7 @@ const styles = stylex.create({
   gap: (gap: string) => ({gap}),
 });
 
-function mapSizeToGap(size: TextSize) {
+function mapSizeToGap(size: keyof typeof fontSizeStyles) {
   switch (size) {
     case 'extraSmall':
     case 'small': {

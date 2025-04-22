@@ -4,12 +4,12 @@ import {Trans, useLingui} from '@lingui/react/macro';
 import {Avatar} from '@repo/ui/Avatar';
 import {Button} from '@repo/ui/Button';
 import {Container} from '@repo/ui/Container';
-import {spacing} from '@repo/ui/variables/tokens.stylex';
 import * as stylex from '@stylexjs/stylex';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import {Routes} from '@/consts/routes';
+import {InlineStack} from '@repo/ui/InlineStack';
 
 export function GlobalNav() {
   const {t} = useLingui();
@@ -24,7 +24,7 @@ export function GlobalNav() {
           priority
         />
       </Link>
-      <div {...stylex.props(globalNavStyles.userActions)}>
+      <InlineStack blockAligment="center" spacing="base">
         <Avatar
           src="https://avatars.githubusercontent.com/u/63648"
           alt={t`User Avatar`}
@@ -33,7 +33,7 @@ export function GlobalNav() {
         <Button>
           <Trans>Go to store</Trans>
         </Button>
-      </div>
+      </InlineStack>
     </Container>
   );
 }
@@ -43,12 +43,6 @@ const globalNavStyles = stylex.create({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-  },
-  userActions: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: spacing.large200,
   },
 });
 

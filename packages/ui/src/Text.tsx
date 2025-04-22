@@ -10,12 +10,11 @@ import {
   successColors,
   warningColors,
 } from './variables/colors.stylex';
-import {typographyFontSize, typographyPrimary} from './variables/tokens.stylex';
-
-export type TextSize = keyof typeof fontSizeStyles;
+import {typographyPrimary} from './variables/tokens.stylex';
+import {fontSizeStyles} from './styles/font-size';
 
 interface StyleProps {
-  readonly size?: TextSize;
+  readonly size?: keyof typeof fontSizeStyles;
   readonly appearance?: keyof typeof apperanceStyles;
   readonly emphasis?: keyof typeof emphasisStyles;
 }
@@ -79,27 +78,6 @@ const styles = stylex.create({
   base: {
     fontFamily: typographyPrimary.fontFamily,
     fontWeight: typographyPrimary.base,
-  },
-});
-
-const fontSizeStyles = stylex.create({
-  extraSmall: {
-    fontSize: typographyFontSize.extraSmall,
-  },
-  small: {
-    fontSize: typographyFontSize.small,
-  },
-  base: {
-    fontSize: typographyFontSize.base,
-  },
-  medium: {
-    fontSize: typographyFontSize.medium,
-  },
-  large: {
-    fontSize: typographyFontSize.large,
-  },
-  extraLarge: {
-    fontSize: typographyFontSize.extraLarge,
   },
 });
 

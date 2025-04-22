@@ -1,12 +1,13 @@
 import * as stylex from '@stylexjs/stylex';
 
-import {Text, type TextSize} from './Text';
+import {Text} from './Text';
 import {animations} from './variables/animations.stylex';
 import {baseColors} from './variables/colors.stylex';
 import {cornerRadius} from './variables/tokens.stylex';
+import {fontSizeStyles} from './styles/font-size';
 
 interface SkeletonTextProps {
-  readonly size?: TextSize;
+  readonly size?: keyof typeof fontSizeStyles;
 }
 
 export function SkeletonText({size = 'base'}: SkeletonTextProps) {

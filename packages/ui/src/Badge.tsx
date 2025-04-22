@@ -8,9 +8,9 @@ import {
   borderWidth,
   cornerRadius,
   spacing,
-  typographyFontSize,
   typographyPrimary,
 } from './variables/tokens.stylex';
+import {fontSizeStyles as sizeStyles} from './styles/font-size';
 
 interface BadgeProps {
   readonly children: React.ReactNode;
@@ -56,27 +56,6 @@ const styles = stylex.create({
     borderRadius: cornerRadius.fullyRounded,
     fontFamily: typographyPrimary.fontFamily,
     fontWeight: typographyPrimary.bold,
-  },
-});
-
-const sizeStyles = stylex.create({
-  extraSmall: {
-    fontSize: typographyFontSize.extraSmall,
-  },
-  small: {
-    fontSize: typographyFontSize.small,
-  },
-  base: {
-    fontSize: typographyFontSize.base,
-  },
-  medium: {
-    fontSize: typographyFontSize.medium,
-  },
-  large: {
-    fontSize: typographyFontSize.large,
-  },
-  extraLarge: {
-    fontSize: typographyFontSize.extraLarge,
   },
 });
 

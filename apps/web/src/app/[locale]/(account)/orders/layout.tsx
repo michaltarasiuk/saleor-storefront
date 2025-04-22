@@ -1,11 +1,12 @@
 import type {Locale} from '@lingui/core';
 import {Trans} from '@lingui/react/macro';
-import {HeadingGroup} from '@repo/ui/Heading';
+import {Heading, HeadingGroup} from '@repo/ui/Heading';
+import {InlineStack} from '@repo/ui/InlineStack';
 
 import {setActiveI18nInstance} from '@/i18n/utils';
 
-import {PageTitle} from '../_components/PageTitle';
 import {OrderTabs} from './_components/OrderTabs';
+import {OrdersView, OrdersViewToggle} from './_components/OrdersViewToggle';
 
 interface Params {
   readonly locale: Locale;
@@ -25,13 +26,19 @@ export default async function OrdersLayout({
   const {locale} = await params;
   setActiveI18nInstance(locale);
   return (
-    <>
-      <PageTitle>
-        <Trans>Orders</Trans>
-      </PageTitle>
+    <OrdersView>
+      <InlineStack
+        blockAligment="center"
+        inlineAligment="spaceBetween"
+        padding={['none', 'loose']}>
+        <Heading>
+          <Trans>Orders</Trans>
+        </Heading>
+        <OrdersViewToggle />
+      </InlineStack>
       <HeadingGroup>
         <OrderTabs confirmedTab={confirmed} pendingTab={pending} />
       </HeadingGroup>
-    </>
+    </OrdersView>
   );
 }
