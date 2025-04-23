@@ -2,7 +2,7 @@
 
 import {isKeyOf} from '@repo/utils/is-keyof';
 import * as stylex from '@stylexjs/stylex';
-import {createContext, useContext} from 'react';
+import {createContext, use} from 'react';
 import {Heading as AriaHeading} from 'react-aria-components';
 
 import {baseColors} from './variables/colors.stylex';
@@ -17,18 +17,18 @@ type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 const MinHeadingLevel: HeadingLevel = 1;
 const MaxHeadingLevel: HeadingLevel = 6;
 
-const headingLevelContext = createContext<HeadingLevel>(MinHeadingLevel);
+const HeadingLevelContext = createContext<HeadingLevel>(MinHeadingLevel);
 
 export function HeadingGroup({children}: {readonly children: React.ReactNode}) {
-  const parentHeadingLevel = useContext(headingLevelContext);
+  const parentHeadingLevel = use(HeadingLevelContext);
   const nextHeadingLevel = Math.min(
     parentHeadingLevel + 1,
     MaxHeadingLevel
   ) as HeadingLevel;
   return (
-    <headingLevelContext.Provider value={nextHeadingLevel}>
+    <HeadingLevelContext value={nextHeadingLevel}>
       {children}
-    </headingLevelContext.Provider>
+    </HeadingLevelContext>
   );
 }
 
@@ -45,7 +45,7 @@ export function Heading({
   inlineAlignment = 'start',
   level: staticHeadingLevel,
 }: HeadingProps) {
-  const headingLevel = useContext(headingLevelContext);
+  const headingLevel = use(HeadingLevelContext);
   return (
     <AriaHeading
       role={accessibilityRole}
