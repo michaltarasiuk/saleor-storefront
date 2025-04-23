@@ -1,7 +1,7 @@
 import type {Locale} from '@lingui/core';
 import {Trans} from '@lingui/react/macro';
 import {Heading, HeadingGroup} from '@repo/ui/Heading';
-import {InlineStack} from '@repo/ui/InlineStack';
+import {InlineStack} from '@repo/ui/Stack';
 
 import {setActiveI18nInstance} from '@/i18n/utils';
 

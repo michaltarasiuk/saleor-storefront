@@ -5,6 +5,7 @@ import * as stylex from '@stylexjs/stylex';
 import {createContext, use} from 'react';
 import {Heading as AriaHeading} from 'react-aria-components';
 
+import type {AccessibilityRole} from './types/accessibility';
 import {baseColors} from './variables/colors.stylex';
 import {
   typographyFontSize,
@@ -34,7 +35,7 @@ export function HeadingGroup({children}: {readonly children: React.ReactNode}) {
 
 interface HeadingProps {
   readonly children: React.ReactNode;
-  readonly accessibilityRole?: 'presentation';
+  readonly accessibilityRole?: Extract<AccessibilityRole, 'presentation'>;
   readonly inlineAlignment?: keyof typeof inlineAlignmentStyles;
   readonly level?: HeadingLevel;
 }

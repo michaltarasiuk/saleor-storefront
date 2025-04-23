@@ -32,8 +32,19 @@ type DetailedPadding = readonly [
   PaddingInlineEnd,
 ];
 
-interface InlineStackProps {
+type StackVariantsProps = Omit<StackProps, 'direction'>;
+
+export function BlockStack(props: StackVariantsProps) {
+  return <Stack direction="block" {...props} />;
+}
+
+export function InlineStack(props: StackVariantsProps) {
+  return <Stack direction="inline" {...props} />;
+}
+
+interface StackProps {
   readonly children: React.ReactNode;
+  readonly direction: keyof typeof directionStyles;
   readonly accessibilityLabel?: string;
   readonly accessibilityRole?: NonPresentationalAccessibilityRole;
   readonly blockAligment?: keyof typeof blockAligmentStyles;
@@ -42,15 +53,16 @@ interface InlineStackProps {
   readonly spacing?: Spacing | CombinedSpacing;
 }
 
-export function InlineStack({
+function Stack({
   children,
+  direction,
   accessibilityLabel,
   accessibilityRole,
   blockAligment = 'start',
   inlineAligment = 'start',
   padding = 'none',
   spacing = 'none',
-}: InlineStackProps) {
+}: StackProps) {
   const [
     paddingInlineStart,
     paddingBlockStart,
@@ -64,6 +76,7 @@ export function InlineStack({
       role={accessibilityRole}
       {...stylex.props(
         styles.base,
+        directionStyles[direction],
         blockAligmentStyles[blockAligment],
         inlineAligmentStyles[inlineAligment],
         paddingInlineStartStyles[paddingInlineStart],
@@ -81,6 +94,14 @@ export function InlineStack({
 const styles = stylex.create({
   base: {
     display: 'flex',
+  },
+});
+
+const directionStyles = stylex.create({
+  block: {
+    flexDirection: 'column',
+  },
+  inline: {
     flexDirection: 'row',
   },
 });

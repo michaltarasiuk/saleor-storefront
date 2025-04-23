@@ -1,6 +1,6 @@
 export type AccessibilityVisibility = 'hidden';
 
-export type NonPresentationalAccessibilityRole =
+export type AccessibilityRole =
   | 'main'
   | 'header'
   | 'footer'
@@ -12,4 +12,11 @@ export type NonPresentationalAccessibilityRole =
   | 'unorderedList'
   | 'separator'
   | 'status'
-  | 'alert';
+  | 'alert'
+  | 'decorative'
+  | 'presentation';
+
+export type NonPresentationalAccessibilityRole = Exclude<
+  AccessibilityRole,
+  'decorative' | 'presentation'
+>;
