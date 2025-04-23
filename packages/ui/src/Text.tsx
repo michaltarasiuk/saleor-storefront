@@ -3,7 +3,7 @@ import type {StyleXStyles} from '@stylexjs/stylex';
 import * as stylex from '@stylexjs/stylex';
 
 import {fontSizeStyles} from './styles/font-size';
-import type {AccessibilityVisibility} from './types/visibility';
+import type {AccessibilityVisibility} from './types/accessibility';
 import {
   baseColors,
   criticalColors,

@@ -7,6 +7,7 @@ import {
   paddingInlineStartStyles,
 } from './styles/padding';
 import {spacingColumnStyles, spacingRowStyles} from './styles/spacing';
+import type {NonPresentationalAccessibilityRole} from './types/accessibility';
 
 type RowSpacing = keyof typeof spacingRowStyles;
 type ColumnSpacing = keyof typeof spacingColumnStyles;
@@ -33,6 +34,8 @@ type DetailedPadding = readonly [
 
 interface InlineStackProps {
   readonly children: React.ReactNode;
+  readonly accessibilityLabel?: string;
+  readonly accessibilityRole?: NonPresentationalAccessibilityRole;
   readonly blockAligment?: keyof typeof blockAligmentStyles;
   readonly inlineAligment?: keyof typeof inlineAligmentStyles;
   readonly padding?: Padding | CombinedPadding | DetailedPadding;
@@ -41,6 +44,8 @@ interface InlineStackProps {
 
 export function InlineStack({
   children,
+  accessibilityLabel,
+  accessibilityRole,
   blockAligment = 'start',
   inlineAligment = 'start',
   padding = 'none',
@@ -55,6 +60,8 @@ export function InlineStack({
   const [rowSpacing, columnSpacing] = parseSpacing(spacing);
   return (
     <div
+      aria-label={accessibilityLabel}
+      role={accessibilityRole}
       {...stylex.props(
         styles.base,
         blockAligmentStyles[blockAligment],
@@ -108,19 +115,24 @@ const inlineAligmentStyles = stylex.create({
   },
 });
 
-function parsePadding(padding: Padding | CombinedPadding | DetailedPadding) {
-  if (typeof padding === 'string') {
-    return [padding, padding, padding, padding] as const;
+function parseSpacing(spacing: Spacing | CombinedSpacing) {
+  let detailedSpacing: CombinedSpacing;
+  if (typeof spacing === 'string') {
+    detailedSpacing = [spacing, spacing] as const;
+  } else {
+    detailedSpacing = spacing;
   }
-  if (padding.length === 2) {
-    return [padding[0], padding[1], padding[0], padding[1]] as const;
-  }
-  return padding;
+  return detailedSpacing;
 }
 
-function parseSpacing(spacing: Spacing | CombinedSpacing) {
-  if (typeof spacing === 'string') {
-    return [spacing, spacing] as const;
+function parsePadding(padding: Padding | CombinedPadding | DetailedPadding) {
+  let detailedPadding: DetailedPadding;
+  if (typeof padding === 'string') {
+    detailedPadding = [padding, padding, padding, padding] as const;
+  } else if (padding.length === 2) {
+    detailedPadding = [padding[0], padding[1], padding[0], padding[1]] as const;
+  } else {
+    detailedPadding = padding;
   }
-  return spacing;
+  return detailedPadding;
 }
