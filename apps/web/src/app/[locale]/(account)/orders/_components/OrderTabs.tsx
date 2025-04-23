@@ -19,7 +19,7 @@ export function OrderTabs({confirmedTab, pendingTab}: OrderTabsProps) {
   const {t} = useLingui();
   return (
     <Tabs selectedKey={selectedTab} onSelectionChange={setSelectedTab}>
-      <TabList aria-label="Order Tabs">
+      <TabList aria-label={t`Order Tabs`}>
         <Tab
           id={confirmedTabId}
           icon={({color}) => <OrderBoxIcon aria-hidden="true" stroke={color} />}

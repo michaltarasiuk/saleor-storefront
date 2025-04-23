@@ -37,6 +37,10 @@ msgstr ""
 msgid "List View"
 msgstr ""
 
+#: src/app/[locale]/(account)/orders/_components/OrderTabs.tsx:22
+msgid "Order Tabs"
+msgstr ""
+
 #: src/app/[locale]/(account)/orders/layout.tsx:35
 msgid "Orders"
 msgstr ""
