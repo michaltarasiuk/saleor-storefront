@@ -1,10 +1,10 @@
 'use client';
 
 import * as stylex from '@stylexjs/stylex';
+import {useVisuallyHidden} from 'react-aria';
 
 import {useReducedMotionPreference} from './hooks/use-reduced-motion-preference';
 import {SpinnerIcon} from './icons/SpinnerIcon';
-import {visuallyHiddenStyle} from './styles/visually-hidden';
 import {Text} from './Text';
 import {animations} from './variables/animations.stylex';
 
@@ -20,11 +20,14 @@ export function Spinner({
   style,
 }: SpinnerProps) {
   const reducedMotionPreference = useReducedMotionPreference();
+  const {visuallyHiddenProps} = useVisuallyHidden();
   if (!reducedMotionPreference) {
     return (
       <div {...stylex.props(styles.base, sizeStyles[size])}>
         <SpinnerIcon aria-hidden="true" {...stylex.props(style)} />
-        <Text style={visuallyHiddenStyle.base}>{accessibilityLabel}</Text>
+        <div {...visuallyHiddenProps}>
+          <Text>{accessibilityLabel}</Text>
+        </div>
       </div>
     );
   }

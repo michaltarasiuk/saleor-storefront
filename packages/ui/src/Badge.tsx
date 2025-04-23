@@ -1,7 +1,7 @@
 import * as stylex from '@stylexjs/stylex';
+import {useVisuallyHidden} from 'react-aria';
 
 import {fontSizeStyles as sizeStyles} from './styles/font-size';
-import {visuallyHiddenStyle} from './styles/visually-hidden';
 import type {AccessibilityVisibility} from './types/accessibility';
 import type {Visibility} from './types/visibility';
 import {baseColors, criticalColors} from './variables/colors.stylex';
@@ -29,17 +29,14 @@ export function Badge({
   accessibilityVisibility,
   visibility,
 }: BadgeProps) {
+  const {visuallyHiddenProps} = useVisuallyHidden();
   return (
     <div
       role={tone === 'critical' ? 'alert' : 'status'}
       aria-label={accessibilityLabel}
       aria-hidden={accessibilityVisibility === 'hidden'}
-      {...stylex.props(
-        styles.base,
-        sizeStyles[size],
-        toneStyles[tone],
-        visibility === 'hidden' && visuallyHiddenStyle.base
-      )}>
+      {...(visibility === 'hidden' ? visuallyHiddenProps : {})}
+      {...stylex.props(styles.base, sizeStyles[size], toneStyles[tone])}>
       {children}
     </div>
   );
