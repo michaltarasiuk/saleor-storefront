@@ -1,3 +1,4 @@
+import optimizeLocales from '@react-aria/optimize-locales-plugin';
 import {withSentryConfig} from '@sentry/nextjs';
 import type {NextConfig} from 'next';
 
@@ -12,13 +13,17 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [{hostname: 'avatars.githubusercontent.com'}],
   },
-  webpack(config, {dev}) {
+  webpack(config, {dev, isServer}) {
     config.module.rules.push({
       test: /\.po$/,
       use: {
         loader: '@lingui/loader',
       },
     });
+    if (!isServer) {
+      config.plugins.push(optimizeLocales.webpack({locales: []}));
+    }
+
     config.module.rules.push({
       test: /\.(ts|tsx)$/,
       exclude: /node_modules(?!\/@stylexjs\/open-props)/,

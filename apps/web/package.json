@@ -37,9 +37,11 @@
   },
   "devDependencies": {
     "@graphql-codegen/cli": "5.0.5",
+    "@graphql-codegen/client-preset": "4.8.0",
     "@lingui/cli": "^5.3.0",
     "@lingui/loader": "^5.3.0",
     "@lingui/swc-plugin": "^5.5.1",
+    "@react-aria/optimize-locales-plugin": "^1.1.4",
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@stylexjs/postcss-plugin": "^0.11.1",
@@ -53,7 +55,6 @@
     "eslint": "^9.23.0",
     "eslint-plugin-lingui": "^0.10.0",
     "husky": "^9.1.7",
-    "typescript": "^5.8.3",
-    "@graphql-codegen/client-preset": "4.8.0"
+    "typescript": "^5.8.3"
   }
 }

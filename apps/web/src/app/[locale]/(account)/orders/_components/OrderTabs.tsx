@@ -13,10 +13,10 @@ interface OrderTabsProps {
 }
 
 export function OrderTabs({confirmedTab, pendingTab}: OrderTabsProps) {
-  const {t} = useLingui();
   const confirmedTabId = useId();
   const pendingTabId = useId();
   const [selectedTab, setSelectedTab] = useState<Key>(confirmedTabId);
+  const {t} = useLingui();
   return (
     <Tabs selectedKey={selectedTab} onSelectionChange={setSelectedTab}>
       <TabList aria-label="Order Tabs">

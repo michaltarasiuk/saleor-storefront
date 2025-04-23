@@ -24,16 +24,6 @@ export function QueryClientProvider({children}: QueryClientProviderProps) {
   );
 }
 
-function makeQueryClient() {
-  return new QueryClient({
-    defaultOptions: {
-      queries: {
-        staleTime: 60 * 1000,
-      },
-    },
-  });
-}
-
 let browserQueryClient: QueryClient | undefined = undefined;
 
 function getQueryClient() {
@@ -43,4 +33,14 @@ function getQueryClient() {
     browserQueryClient ??= makeQueryClient();
     return browserQueryClient;
   }
+}
+
+function makeQueryClient() {
+  return new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 60 * 1000,
+      },
+    },
+  });
 }

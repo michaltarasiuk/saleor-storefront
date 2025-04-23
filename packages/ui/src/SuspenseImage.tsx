@@ -1,9 +1,10 @@
-import {isBrowserEnvironment} from '@repo/utils/execution-environment';
+'use client';
 import NextImage, {
   type ImageLoaderProps,
   type ImageProps,
   type StaticImageData,
 } from 'next/image';
+import {useIsSSR} from 'react-aria';
 
 const DefaultWidth = 640 satisfies ImageLoaderProps['width'];
 const DefaultQuality = 75 satisfies ImageLoaderProps['quality'];
@@ -11,7 +12,8 @@ const DefaultQuality = 75 satisfies ImageLoaderProps['quality'];
 const imageCache = new Set<string>();
 
 export function SuspenseImage(props: ImageProps) {
-  if (!isBrowserEnvironment) {
+  const isSSR = useIsSSR();
+  if (isSSR) {
     throw new Error('SuspenseImage can only be used in the browser.');
   }
   const src = getImageSrc(props.src);

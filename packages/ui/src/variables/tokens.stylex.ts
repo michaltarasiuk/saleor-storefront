@@ -37,12 +37,12 @@ export const typographySecondary = stylex.defineVars({
 });
 
 export const typographyFontSize = stylex.defineVars({
-  extraLarge: 'calc(2.1rem * 0.625)',
-  large: 'calc(1.9rem * 0.625)',
-  medium: 'calc(1.6rem * 0.625)',
-  base: 'calc(1.4rem * 0.625)',
-  small: 'calc(1.2rem * 0.625)',
-  extraSmall: 'calc(1rem * 0.625)',
+  extraLarge: 'calc(2.1rem * 0.625)', // 21px
+  large: 'calc(1.9rem * 0.625)', // 19px
+  medium: 'calc(1.6rem * 0.625)', // 16px
+  base: 'calc(1.4rem * 0.625)', // 14px
+  small: 'calc(1.2rem * 0.625)', // 12px
+  extraSmall: 'calc(1rem * 0.625)', // 10px
 });
 
 export const borderWidth = stylex.defineVars({

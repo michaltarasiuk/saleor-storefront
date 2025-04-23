@@ -1,9 +1,9 @@
 import '@/app/app.css';
 
 import type {Locale} from '@lingui/core';
+import {RouterProvider} from '@repo/ui/providers/RouterProvider';
 import {baseColors} from '@repo/ui/variables/colors.stylex';
 import * as stylex from '@stylexjs/stylex';
-import {Inter} from 'next/font/google';
 
 import {I18nProvider} from '@/i18n/I18nProvider';
 import {
@@ -13,10 +13,9 @@ import {
 } from '@/i18n/utils';
 import {brandedTheme} from '@/themes/branded';
 
+import {Html} from '../_components/Html';
 import {PageLayout} from './_components/PageLayout';
-import {QueryClientProvider} from './QueryClientProvider';
-
-const inter = Inter({subsets: ['latin']});
+import {QueryClientProvider} from './_providers/QueryClientProvider';
 
 interface Params {
   readonly locale: Locale;
@@ -34,18 +33,17 @@ export default async function AccountLayout({
   const {locale} = await params;
   setActiveI18nInstance(locale);
   return (
-    <html
-      lang={locale}
-      className={inter.className}
-      {...stylex.props(...brandedTheme())}>
-      <body {...stylex.props(bodyStyles.base)}>
-        <I18nProvider locale={locale} messages={getLocaleMessages(locale)}>
-          <QueryClientProvider>
-            <PageLayout>{children}</PageLayout>
-          </QueryClientProvider>
-        </I18nProvider>
-      </body>
-    </html>
+    <I18nProvider locale={locale} messages={getLocaleMessages(locale)}>
+      <RouterProvider>
+        <QueryClientProvider>
+          <Html>
+            <body {...stylex.props(bodyStyles.base, ...brandedTheme())}>
+              <PageLayout>{children}</PageLayout>
+            </body>
+          </Html>
+        </QueryClientProvider>
+      </RouterProvider>
+    </I18nProvider>
   );
 }
 
