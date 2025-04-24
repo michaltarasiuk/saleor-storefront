@@ -1,27 +1,19 @@
 import '@/app/app.css';
 
-import type {Locale} from '@lingui/core';
 import {Container} from '@repo/ui/Container';
 import {RouterProvider} from '@repo/ui/RouterProvider';
 import {baseColors} from '@repo/ui/variables/colors.stylex';
 import * as stylex from '@stylexjs/stylex';
 
 import {I18nProvider} from '@/i18n/I18nProvider';
-import {
-  getLocaleMessages,
-  linguiConfigHelpers,
-  setActiveI18nInstance,
-} from '@/i18n/utils';
+import {getLocaleMessages, setActiveI18nInstance} from '@/i18n/utils';
 import {brandedTheme} from '@/themes/branded';
 
 import {Html} from '../_components/Html';
+import type {Params} from '../generate-static-params';
 import {Footer} from './_components/Footer';
 import {Header} from './_components/Header';
 import {QueryClientProvider} from './_components/QueryClientProvider';
-
-interface Params {
-  readonly locale: Locale;
-}
 
 interface AccountLayoutProps {
   readonly children: React.ReactNode;
@@ -53,9 +45,7 @@ export default async function AccountLayout({
   );
 }
 
-export function generateStaticParams(): Params[] {
-  return linguiConfigHelpers.supportedLocales.map(locale => ({locale}));
-}
+export {generateStaticParams} from '../generate-static-params';
 
 const bodyStyles = stylex.create({
   base: {

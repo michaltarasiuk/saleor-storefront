@@ -8,6 +8,7 @@ export const env = createEnv({
       .default('development'),
     NEXT_RUNTIME: z.enum(['nodejs', 'edge']).default('nodejs'),
     CI: z.enum(['1', '0']).default('0').transform(Number),
+    APP_TOKEN: z.string(),
   },
   client: {
     NEXT_PUBLIC_GRAPHQL_ENDPOINT: z.url(),
@@ -17,5 +18,6 @@ export const env = createEnv({
     NEXT_RUNTIME: process.env.NEXT_RUNTIME,
     NEXT_PUBLIC_GRAPHQL_ENDPOINT: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,
     CI: process.env.CI,
+    APP_TOKEN: process.env.APP_TOKEN,
   },
 });

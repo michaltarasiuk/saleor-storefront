@@ -1,20 +1,12 @@
 import '@/app/app.css';
 
-import type {Locale} from '@lingui/core';
 import {RouterProvider} from '@repo/ui/RouterProvider';
 
 import {I18nProvider} from '@/i18n/I18nProvider';
-import {
-  getLocaleMessages,
-  linguiConfigHelpers,
-  setActiveI18nInstance,
-} from '@/i18n/utils';
+import {getLocaleMessages, setActiveI18nInstance} from '@/i18n/utils';
 
 import {Html} from '../_components/Html';
-
-interface Params {
-  readonly locale: Locale;
-}
+import type {Params} from '../generate-static-params';
 
 interface ShopLayoutProps {
   readonly children: React.ReactNode;
@@ -35,6 +27,4 @@ export default async function ShopLayout({children, params}: ShopLayoutProps) {
   );
 }
 
-export function generateStaticParams(): Params[] {
-  return linguiConfigHelpers.supportedLocales.map(locale => ({locale}));
-}
+export {generateStaticParams} from '../generate-static-params';
