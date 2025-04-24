@@ -19,7 +19,11 @@ interface AvatarProps {
 }
 
 export function Avatar({src, alt, initials, size = 'base'}: AvatarProps) {
-  const fallback = initials ? <Text>{initials}</Text> : <ProfileIcon />;
+  const fallback = initials ? (
+    <Text size={size}>{initials}</Text>
+  ) : (
+    <ProfileIcon />
+  );
   return (
     <div {...stylex.props(styles.base, sizeStyles[size])}>
       <ClientBoundary fallback={fallback}>
