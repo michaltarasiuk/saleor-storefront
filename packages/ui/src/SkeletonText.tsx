@@ -8,11 +8,12 @@ import {cornerRadius} from './variables/tokens.stylex';
 
 interface SkeletonTextProps {
   readonly size?: keyof typeof fontSizeStyles;
+  readonly style?: stylex.StyleXStyles;
 }
 
-export function SkeletonText({size = 'base'}: SkeletonTextProps) {
+export function SkeletonText({size = 'base', style}: SkeletonTextProps) {
   return (
-    <div aria-hidden="true" {...stylex.props(styles.base)}>
+    <div aria-hidden="true" {...stylex.props(styles.base, style)}>
       <Text size={size}>{'\u200B'}</Text>
     </div>
   );

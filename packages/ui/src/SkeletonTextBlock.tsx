@@ -18,15 +18,18 @@ export function SkeletonTextBlock({
   return (
     <div
       aria-hidden="true"
-      {...stylex.props(styles.base, styles.gap(mapSizeToGap(size)))}>
+      {...stylex.props(
+        skeletonTextBlockStyles.base,
+        skeletonTextBlockStyles.gap(mapSizeToGap(size))
+      )}>
       {Array.from({length: lines}, (_, i) => (
-        <SkeletonText key={i} size={size} />
+        <SkeletonText key={i} size={size} style={skeletonTextStyles.base} />
       ))}
     </div>
   );
 }
 
-const styles = stylex.create({
+const skeletonTextBlockStyles = stylex.create({
   base: {
     display: 'flex',
     flexDirection: 'column',
@@ -35,6 +38,15 @@ const styles = stylex.create({
     animationIterationCount: 'infinite',
   },
   gap: (gap: string) => ({gap}),
+});
+
+const skeletonTextStyles = stylex.create({
+  base: {
+    width: {
+      default: '100%',
+      ':last-child': '85%',
+    },
+  },
 });
 
 function mapSizeToGap(size: keyof typeof fontSizeStyles) {
