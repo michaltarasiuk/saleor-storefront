@@ -13,6 +13,11 @@ export const config = [
   eslintConfigPrettier,
   ...tseslint.configs.recommended,
   {
+    rules: {
+      '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
+    },
+  },
+  {
     plugins: {
       turbo: turboPlugin,
     },
