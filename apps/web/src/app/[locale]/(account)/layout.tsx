@@ -1,6 +1,7 @@
 import '@/app/app.css';
 
 import type {Locale} from '@lingui/core';
+import {Container} from '@repo/ui/Container';
 import {RouterProvider} from '@repo/ui/RouterProvider';
 import {baseColors} from '@repo/ui/variables/colors.stylex';
 import * as stylex from '@stylexjs/stylex';
@@ -14,7 +15,8 @@ import {
 import {brandedTheme} from '@/themes/branded';
 
 import {Html} from '../_components/Html';
-import {PageLayout} from './_components/PageLayout';
+import {Footer} from './_components/Footer';
+import {Header} from './_components/Header';
 import {QueryClientProvider} from './_components/QueryClientProvider';
 
 interface Params {
@@ -38,7 +40,11 @@ export default async function AccountLayout({
         <QueryClientProvider>
           <Html>
             <body {...stylex.props(bodyStyles.base, ...brandedTheme())}>
-              <PageLayout>{children}</PageLayout>
+              <Header />
+              <Container elementType="main" style={mainStyles.base}>
+                {children}
+              </Container>
+              <Footer />
             </body>
           </Html>
         </QueryClientProvider>
@@ -56,5 +62,14 @@ const bodyStyles = stylex.create({
     display: 'flex',
     flexDirection: 'column',
     backgroundColor: baseColors.backgroundSubdued,
+  },
+});
+
+const mainStyles = stylex.create({
+  base: {
+    display: 'flex',
+    flexDirection: 'column',
+    flexGrow: 1,
+    width: '100%',
   },
 });

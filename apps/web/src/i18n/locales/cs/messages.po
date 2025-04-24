@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/app/[locale]/(account)/_components/GlobalNav.tsx:21
+#: src/app/[locale]/(account)/_components/Header.tsx:31
 msgid "Company Logo"
 msgstr ""
 
@@ -25,7 +25,7 @@ msgstr ""
 msgid "Confirmed orders"
 msgstr ""
 
-#: src/app/[locale]/(account)/_components/GlobalNav.tsx:34
+#: src/app/[locale]/(account)/_components/Header.tsx:44
 msgid "Go to store"
 msgstr ""
 
@@ -77,6 +77,6 @@ msgstr ""
 msgid "Terms of Service"
 msgstr ""
 
-#: src/app/[locale]/(account)/_components/GlobalNav.tsx:30
+#: src/app/[locale]/(account)/_components/Header.tsx:40
 msgid "User Avatar"
 msgstr ""

@@ -22,7 +22,7 @@ export function Avatar({src, alt, initials, size = 'base'}: AvatarProps) {
   const fallback = initials ? (
     <Text size={size}>{initials}</Text>
   ) : (
-    <ProfileIcon />
+    <ProfileIcon aria-hidden="true" />
   );
   return (
     <div {...stylex.props(styles.base, sizeStyles[size])}>

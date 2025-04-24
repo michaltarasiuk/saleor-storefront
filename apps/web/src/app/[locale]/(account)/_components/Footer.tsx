@@ -12,7 +12,7 @@ import {Routes} from '@/consts/routes';
 
 export function Footer() {
   return (
-    <Container elementType="footer" style={styles.base}>
+    <Container elementType="footer" style={footerStyles.base}>
       <ul {...stylex.props(linkListStyles.list)}>
         <li>
           <Link href={Routes.RefundPolicy}>
@@ -39,7 +39,7 @@ export function Footer() {
   );
 }
 
-const styles = stylex.create({
+const footerStyles = stylex.create({
   base: {
     width: '100%',
     marginBlockStart: 'auto',

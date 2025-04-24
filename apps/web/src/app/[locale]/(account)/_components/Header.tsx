@@ -5,13 +5,23 @@ import {Avatar} from '@repo/ui/Avatar';
 import {Button} from '@repo/ui/Button';
 import {Container} from '@repo/ui/Container';
 import {InlineStack} from '@repo/ui/Stack';
+import {baseColors} from '@repo/ui/variables/colors.stylex';
+import {spacing} from '@repo/ui/variables/tokens.stylex';
 import * as stylex from '@stylexjs/stylex';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import {Routes} from '@/consts/routes';
 
-export function GlobalNav() {
+export function Header() {
+  return (
+    <header {...stylex.props(headerStyles.base)}>
+      <GlobalNav />
+    </header>
+  );
+}
+
+function GlobalNav() {
   const {t} = useLingui();
   return (
     <Container elementType="nav" style={globalNavStyles.base}>
@@ -37,6 +47,13 @@ export function GlobalNav() {
     </Container>
   );
 }
+
+const headerStyles = stylex.create({
+  base: {
+    backgroundColor: baseColors.background,
+    paddingBlock: spacing.large400,
+  },
+});
 
 const globalNavStyles = stylex.create({
   base: {
