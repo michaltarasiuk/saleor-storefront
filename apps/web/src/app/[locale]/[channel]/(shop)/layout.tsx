@@ -8,6 +8,10 @@ import {getLocaleMessages, setActiveI18nInstance} from '@/i18n/utils';
 import {Html} from '../_components/Html';
 import type {Params} from '../generate-static-params';
 
+export {generateStaticParams} from '../generate-static-params';
+
+export const dynamicParams = false;
+
 interface ShopLayoutProps {
   readonly children: React.ReactNode;
   readonly params: Promise<Params>;
@@ -26,6 +30,3 @@ export default async function ShopLayout({children, params}: ShopLayoutProps) {
     </I18nProvider>
   );
 }
-
-export {generateStaticParams} from '../generate-static-params';
-export const dynamicParams = false;
