@@ -1,7 +1,8 @@
 import {match as matchLocale} from '@formatjs/intl-localematcher';
 import {joinPathname, splitPathname} from '@repo/utils/pathname';
 import Negotiator from 'negotiator';
-import {NextRequest, NextResponse} from 'next/server';
+import type {NextRequest} from 'next/server';
+import {NextResponse} from 'next/server';
 
 import {linguiConfigHelpers} from './i18n/utils';
 

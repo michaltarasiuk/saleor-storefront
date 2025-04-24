@@ -1,5 +1,5 @@
 import * as stylex from '@stylexjs/stylex';
-import {CSSProperties} from 'react';
+import type {CSSProperties} from 'react';
 
 import {animations} from './variables/animations.stylex';
 import {baseColors} from './variables/colors.stylex';

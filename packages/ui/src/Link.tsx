@@ -1,5 +1,6 @@
 import * as stylex from '@stylexjs/stylex';
-import {Link as AriaLink, LinkProps} from 'react-aria-components';
+import type { LinkProps} from 'react-aria-components';
+import {Link as AriaLink} from 'react-aria-components';
 
 import {baseColors} from './variables/colors.stylex';
 import {typographyFontSize, typographyPrimary} from './variables/tokens.stylex';

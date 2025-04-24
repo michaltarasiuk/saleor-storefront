@@ -15,6 +15,10 @@ export const config = [
   {
     rules: {
       '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
+      '@typescript-eslint/consistent-type-imports': [
+        'error',
+        {fixStyle: 'separate-type-imports'},
+      ],
     },
   },
   {

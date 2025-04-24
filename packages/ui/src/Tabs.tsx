@@ -8,7 +8,7 @@ import {
   Tabs as AriaTabs,
 } from 'react-aria-components';
 
-import {Breakpoints} from './types/breakpoints';
+import type {Breakpoints} from './types/breakpoints';
 import {baseColors} from './variables/colors.stylex';
 import {
   cornerRadius,

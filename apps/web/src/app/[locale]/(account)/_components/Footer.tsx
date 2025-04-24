@@ -3,7 +3,7 @@
 import {Trans} from '@lingui/react/macro';
 import {Container} from '@repo/ui/Container';
 import {Link} from '@repo/ui/Link';
-import {Breakpoints} from '@repo/ui/types/breakpoints';
+import type {Breakpoints} from '@repo/ui/types/breakpoints';
 import {baseColors} from '@repo/ui/variables/colors.stylex';
 import {borderWidth, spacing} from '@repo/ui/variables/tokens.stylex';
 import * as stylex from '@stylexjs/stylex';

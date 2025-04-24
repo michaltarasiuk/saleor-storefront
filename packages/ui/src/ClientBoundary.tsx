@@ -1,4 +1,5 @@
-import {ReactNode, useSyncExternalStore} from 'react';
+import type {ReactNode} from 'react';
+import {useSyncExternalStore} from 'react';
 
 function noopSubscribe() {
   return () => {};
