@@ -18,17 +18,17 @@ interface CheckboxProps extends AriaCheckboxProps {
 
 export function Checkbox({children, ...props}: CheckboxProps) {
   return (
-    <AriaCheckbox {...stylex.props(styles.base)} {...props}>
+    <AriaCheckbox {...stylex.props(containerStyles.base)} {...props}>
       {({isFocusVisible, isFocused, isInvalid, isPressed, isSelected}) => (
         <>
           <div
             {...stylex.props(
-              checkboxStyles.base,
-              isFocusVisible && checkboxStyles.focusedVisible,
-              isFocused && checkboxStyles.focused,
-              isPressed && checkboxStyles.pressed,
-              isInvalid && checkboxStyles.invalid,
-              isSelected && checkboxStyles.selected
+              boxStyles.base,
+              isFocusVisible && boxStyles.focusVisible,
+              isFocused && boxStyles.focus,
+              isPressed && boxStyles.pressed,
+              isInvalid && boxStyles.invalid,
+              isSelected && boxStyles.selected
             )}>
             <CheckmarkIcon
               aria-hidden="true"
@@ -42,7 +42,7 @@ export function Checkbox({children, ...props}: CheckboxProps) {
   );
 }
 
-const styles = stylex.create({
+const containerStyles = stylex.create({
   base: {
     display: 'flex',
     flexDirection: 'row',
@@ -53,7 +53,7 @@ const styles = stylex.create({
   },
 });
 
-const checkboxStyles = stylex.create({
+const boxStyles = stylex.create({
   base: {
     position: 'relative',
     height: '20px',
@@ -78,12 +78,12 @@ const checkboxStyles = stylex.create({
       transitionTimingFunction: transition.transitionTimingFunction,
     },
   },
-  focusedVisible: {
+  focusVisible: {
     '::before': {
       boxShadow: `0 0 0 .2rem ${controlColors.accent}`,
     },
   },
-  focused: {
+  focus: {
     boxShadow: `inset 0 0 0 1px ${controlColors.accent}`,
   },
   pressed: {

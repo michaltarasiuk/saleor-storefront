@@ -1,11 +1,11 @@
 import * as stylex from '@stylexjs/stylex';
 import type {CSSProperties} from 'react';
 
+import type {Size} from './utils/format-size';
+import {formatSize} from './utils/format-size';
 import {animations} from './variables/animations.stylex';
 import {baseColors} from './variables/colors.stylex';
 import {cornerRadius} from './variables/tokens.stylex';
-
-type Size = number | `${number}%` | 'fill';
 
 interface SkeletonImageProps {
   readonly blockSize?: Size;
@@ -43,9 +43,3 @@ const styles = stylex.create({
     inlineSize,
   }),
 });
-
-function formatSize(
-  size: Size
-): CSSProperties['blockSize'] | CSSProperties['inlineSize'] {
-  return size === 'fill' ? '100%' : size;
-}

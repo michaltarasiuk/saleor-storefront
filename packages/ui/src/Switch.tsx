@@ -19,18 +19,21 @@ export function Switch({children, isDisabled, ...props}: SwitchProps) {
   return (
     <AriaSwitch
       isDisabled={isDisabled}
-      {...stylex.props(styles.base, isDisabled && styles.disabled)}
+      {...stylex.props(
+        containerStyles.base,
+        isDisabled && containerStyles.disabled
+      )}
       {...props}>
       {({isFocusVisible, isFocused, isPressed, isSelected}) => (
         <>
           <Text>{children}</Text>
           <div
             {...stylex.props(
-              indicatorStyles.base,
-              isFocusVisible && indicatorStyles.focusedVisible,
-              isFocused && indicatorStyles.focused,
-              isPressed && indicatorStyles.pressed,
-              isSelected && indicatorStyles.selected
+              toggleStyles.base,
+              isFocusVisible && toggleStyles.focusVisible,
+              isFocused && toggleStyles.focus,
+              isPressed && toggleStyles.pressed,
+              isSelected && toggleStyles.selected
             )}
           />
         </>
@@ -39,7 +42,7 @@ export function Switch({children, isDisabled, ...props}: SwitchProps) {
   );
 }
 
-const styles = stylex.create({
+const containerStyles = stylex.create({
   base: {
     width: 'fit-content',
     display: 'flex',
@@ -53,7 +56,7 @@ const styles = stylex.create({
   },
 });
 
-const indicatorStyles = stylex.create({
+const toggleStyles = stylex.create({
   base: {
     position: 'relative',
     width: '40px',
@@ -67,7 +70,7 @@ const indicatorStyles = stylex.create({
     transitionTimingFunction: transition.transitionTimingFunction,
     '::before': {
       content: '""',
-      position: 'absotlute',
+      position: 'absolute',
       inset: 0,
       width: '100%',
       height: '100%',
@@ -88,12 +91,12 @@ const indicatorStyles = stylex.create({
       transitionTimingFunction: transition.transitionTimingFunction,
     },
   },
-  focusedVisible: {
+  focusVisible: {
     '::before': {
       boxShadow: `0 0 0 .2rem ${controlColors.accent}`,
     },
   },
-  focused: {
+  focus: {
     boxShadow: `inset 0 0 0 1px ${controlColors.accent}`,
   },
   pressed: {

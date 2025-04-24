@@ -4,12 +4,12 @@ import * as stylex from '@stylexjs/stylex';
 import {Suspense} from 'react';
 import {ErrorBoundary} from 'react-error-boundary';
 
-import {ClientBoundary} from './ClientBoundary';
+import {ClientGate} from './ClientGate';
 import {ProfileIcon} from './icons/ProfileIcon';
 import {SuspenseImage} from './SuspenseImage';
 import {Text} from './Text';
 import {baseColors} from './variables/colors.stylex';
-import {cornerRadius} from './variables/tokens.stylex';
+import {cornerRadius, spacing} from './variables/tokens.stylex';
 
 interface AvatarProps {
   readonly src: string;
@@ -26,7 +26,7 @@ export function Avatar({src, alt, initials, size = 'base'}: AvatarProps) {
   );
   return (
     <div {...stylex.props(styles.base, sizeStyles[size])}>
-      <ClientBoundary fallback={fallback}>
+      <ClientGate fallback={fallback}>
         {() => (
           <ErrorBoundary fallback={fallback}>
             <Suspense fallback={fallback}>
@@ -34,7 +34,7 @@ export function Avatar({src, alt, initials, size = 'base'}: AvatarProps) {
             </Suspense>
           </ErrorBoundary>
         )}
-      </ClientBoundary>
+      </ClientGate>
     </div>
   );
 }
@@ -45,8 +45,9 @@ const styles = stylex.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    overflow: 'hidden',
     flexShrink: 0,
+    overflow: 'hidden',
+    padding: spacing.small500,
     borderRadius: cornerRadius.fullyRounded,
     backgroundColor: baseColors.backgroundSubdued,
   },
@@ -56,16 +57,13 @@ const sizeStyles = stylex.create({
   base: {
     width: '32px',
     height: '32px',
-    padding: '3.711px',
   },
   large: {
     width: '39px',
     height: '39px',
-    padding: '3.656px',
   },
   extraLarge: {
     width: '47px',
     height: '47px',
-    padding: '3.692px',
   },
 });

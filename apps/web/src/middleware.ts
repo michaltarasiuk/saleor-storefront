@@ -7,47 +7,44 @@ import {NextResponse} from 'next/server';
 import {linguiConfigHelpers} from './i18n/utils';
 
 export function middleware(request: NextRequest) {
-  const localeValidationResult = validateLocaleInPathname(
-    request.nextUrl.pathname
-  );
-  if (localeValidationResult.status !== 'matched') {
-    const localeByAcceptLanguageHeader = getLocaleByAcceptLanguageHeader(
+  const {status} = checkLocaleInPathname(request.nextUrl.pathname);
+  if (status !== 'matched') {
+    const detectedLocale = detectLocaleFromAcceptLanguageHeader(
       request.headers
     );
-    const nextUrlWithLocale = new URL(
+    const updatedUrlWithLocale = new URL(
       joinPathname(
-        localeByAcceptLanguageHeader ?? linguiConfigHelpers.defaultLocale,
+        detectedLocale ?? linguiConfigHelpers.defaultLocale,
         ...splitPathname(request.nextUrl.pathname)
       ),
       request.nextUrl.origin
     );
-    return localeValidationResult.status === 'invalid'
-      ? NextResponse.redirect(nextUrlWithLocale)
-      : NextResponse.rewrite(nextUrlWithLocale);
+    return status === 'invalid'
+      ? NextResponse.redirect(updatedUrlWithLocale)
+      : NextResponse.rewrite(updatedUrlWithLocale);
   }
   return NextResponse.next();
 }
 
-function validateLocaleInPathname(
-  nextUrlPathName: string,
-  availableLocales = linguiConfigHelpers.supportedLocales
+function checkLocaleInPathname(
+  pathname: string,
+  supportedLocales = linguiConfigHelpers.supportedLocales
 ) {
-  const [requestedLocale] = splitPathname(nextUrlPathName);
-  if (!requestedLocale) {
+  const [localeFromPath] = splitPathname(pathname);
+  if (!localeFromPath) {
     return {status: 'unspecified'} as const;
   }
-  if (!availableLocales.includes(requestedLocale)) {
-    return {status: 'invalid'} as const;
-  }
-  return {status: 'matched'} as const;
+  return supportedLocales.includes(localeFromPath)
+    ? ({status: 'matched'} as const)
+    : ({status: 'invalid'} as const);
 }
 
-function getLocaleByAcceptLanguageHeader(
-  requestHeaders: Headers,
+function detectLocaleFromAcceptLanguageHeader(
+  headers: Headers,
   defaultLocale = linguiConfigHelpers.defaultLocale,
-  availableLocales = linguiConfigHelpers.supportedLocales
+  supportedLocales = linguiConfigHelpers.supportedLocales
 ) {
-  const acceptLanguageHeader = requestHeaders.get('accept-language');
+  const acceptLanguageHeader = headers.get('accept-language');
   if (!acceptLanguageHeader) {
     return;
   }
@@ -57,8 +54,7 @@ function getLocaleByAcceptLanguageHeader(
     },
   });
   const requestedLocales = negotiator.languages();
-  // https://github.com/formatjs/formatjs/issues/4469
-  const sortedLocales = availableLocales.toSorted(
+  const sortedLocales = supportedLocales.toSorted(
     (a, b) => b.length - a.length
   );
   try {

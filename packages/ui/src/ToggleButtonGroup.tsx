@@ -6,6 +6,7 @@ import {
   ToggleButtonGroup as AriaToggleButtonGroup,
 } from 'react-aria-components';
 
+import {baseColors} from './variables/colors.stylex';
 import {cornerRadius, spacing} from './variables/tokens.stylex';
 
 export function ToggleButtonGroup(
@@ -55,6 +56,6 @@ const toggleButtonStyles = stylex.create({
     cursor: 'pointer',
   },
   selected: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: baseColors.background,
   },
 });
