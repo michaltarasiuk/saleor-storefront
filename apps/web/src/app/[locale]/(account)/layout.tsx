@@ -15,7 +15,7 @@ import {brandedTheme} from '@/themes/branded';
 
 import {Html} from '../_components/Html';
 import {PageLayout} from './_components/PageLayout';
-import {QueryClientProvider} from './_providers/QueryClientProvider';
+import {QueryClientProvider} from './_components/QueryClientProvider';
 
 interface Params {
   readonly locale: Locale;
