@@ -28,3 +28,4 @@ export default async function ShopLayout({children, params}: ShopLayoutProps) {
 }
 
 export {generateStaticParams} from '../generate-static-params';
+export const dynamicParams = false;

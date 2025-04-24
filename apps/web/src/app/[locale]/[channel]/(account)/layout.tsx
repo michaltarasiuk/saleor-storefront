@@ -1,18 +1,16 @@
 import '@/app/app.css';
 
-import {Container} from '@repo/ui/Container';
 import {RouterProvider} from '@repo/ui/RouterProvider';
-import {baseColors} from '@repo/ui/variables/colors.stylex';
-import * as stylex from '@stylexjs/stylex';
 
 import {I18nProvider} from '@/i18n/I18nProvider';
 import {getLocaleMessages, setActiveI18nInstance} from '@/i18n/utils';
-import {brandedTheme} from '@/themes/branded';
 
 import {Html} from '../_components/Html';
 import type {Params} from '../generate-static-params';
+import {Body} from './_components/Body';
 import {Footer} from './_components/Footer';
 import {Header} from './_components/Header';
+import {Main} from './_components/Main';
 import {QueryClientProvider} from './_components/QueryClientProvider';
 
 interface AccountLayoutProps {
@@ -31,13 +29,11 @@ export default async function AccountLayout({
       <RouterProvider>
         <QueryClientProvider>
           <Html>
-            <body {...stylex.props(bodyStyles.base, ...brandedTheme())}>
+            <Body>
               <Header />
-              <Container elementType="main" style={mainStyles.base}>
-                {children}
-              </Container>
+              <Main>{children}</Main>
               <Footer />
-            </body>
+            </Body>
           </Html>
         </QueryClientProvider>
       </RouterProvider>
@@ -46,20 +42,4 @@ export default async function AccountLayout({
 }
 
 export {generateStaticParams} from '../generate-static-params';
-
-const bodyStyles = stylex.create({
-  base: {
-    display: 'flex',
-    flexDirection: 'column',
-    backgroundColor: baseColors.backgroundSubdued,
-  },
-});
-
-const mainStyles = stylex.create({
-  base: {
-    display: 'flex',
-    flexDirection: 'column',
-    flexGrow: 1,
-    width: '100%',
-  },
-});
+export const dynamicParams = false;

@@ -13,8 +13,6 @@ export interface Params {
   readonly channel: string;
 }
 
-const {supportedLocales} = linguiConfigHelpers;
-
 export async function generateStaticParams(): Promise<Params[]> {
   const {channels} = await client
     .setHeader('Authorization', `Bearer ${env.APP_TOKEN}`)
@@ -23,15 +21,15 @@ export async function generateStaticParams(): Promise<Params[]> {
       ChannelsQueryVariables
     >(ChannelsQueryDocumentString);
 
-  const activeChannels = channels?.filter(channel => channel.isActive) ?? [];
-  const params = supportedLocales.reduce<Params[]>((acc, locale) => {
-    const localeParams = activeChannels.map(channel => ({
-      locale,
-      channel: channel.slug,
-    }));
-    return acc.concat(localeParams);
-  }, []);
-
+  const params: Params[] = [];
+  for (const channel of channels ?? []) {
+    if (!channel.isActive) {
+      continue;
+    }
+    for (const locale of linguiConfigHelpers.supportedLocales) {
+      params.push({locale, channel: channel.slug});
+    }
+  }
   return params;
 }
 
