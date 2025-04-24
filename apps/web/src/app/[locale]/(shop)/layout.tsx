@@ -1,7 +1,7 @@
 import '@/app/app.css';
 
 import type {Locale} from '@lingui/core';
-import {RouterProvider} from '@repo/ui/providers/RouterProvider';
+import {RouterProvider} from '@repo/ui/RouterProvider';
 
 import {I18nProvider} from '@/i18n/I18nProvider';
 import {

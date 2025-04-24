@@ -1,7 +1,7 @@
 import '@/app/app.css';
 
 import type {Locale} from '@lingui/core';
-import {RouterProvider} from '@repo/ui/providers/RouterProvider';
+import {RouterProvider} from '@repo/ui/RouterProvider';
 import {baseColors} from '@repo/ui/variables/colors.stylex';
 import * as stylex from '@stylexjs/stylex';
 
