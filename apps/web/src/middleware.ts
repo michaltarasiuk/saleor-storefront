@@ -1,4 +1,5 @@
 import {match as matchLocale} from '@formatjs/intl-localematcher';
+import {assertNever} from '@repo/utils/assert-never';
 import {prependSegment, splitPathname} from '@repo/utils/pathname';
 import Negotiator from 'negotiator';
 import type {NextRequest} from 'next/server';
@@ -30,8 +31,11 @@ export function middleware(request: NextRequest) {
       }
       return response;
     }
-    default:
+    case 'valid': {
       return NextResponse.next();
+    }
+    default:
+      assertNever(pathnameLocaleStatus);
   }
 }
 
