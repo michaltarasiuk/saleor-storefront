@@ -11,17 +11,16 @@ export const linguiConfigHelpers = {
       raise('Default locale is not defined in Lingui config.')
     );
   },
-  get supportedLocales() {
+  get locales() {
     return (
-      linguiConfig.locales ??
-      raise('Supported locales are not defined in Lingui config.')
+      linguiConfig.locales ?? raise('Locales are not defined in Lingui config.')
     );
   },
 };
 
 const localeMessagesByLocale = Object.fromEntries(
   await Promise.all(
-    linguiConfigHelpers.supportedLocales.map(async locale => [
+    linguiConfigHelpers.locales.map(async locale => [
       locale,
       (await import(`./locales/${locale}/messages.po`)).messages as Messages,
     ])
@@ -29,7 +28,7 @@ const localeMessagesByLocale = Object.fromEntries(
 );
 
 const i18nInstancesByLocale = Object.fromEntries(
-  linguiConfigHelpers.supportedLocales.map(locale => [
+  linguiConfigHelpers.locales.map(locale => [
     locale,
     setupI18n({
       locale,

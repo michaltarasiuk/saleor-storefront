@@ -28,13 +28,13 @@ export function middleware(request: NextRequest) {
 
 function checkLocaleInPathname(
   pathname: string,
-  supportedLocales = linguiConfigHelpers.supportedLocales
+  locales = linguiConfigHelpers.locales
 ) {
   const [localeFromPath] = splitPathname(pathname);
   if (!localeFromPath) {
     return {status: 'unspecified'} as const;
   }
-  return supportedLocales.includes(localeFromPath)
+  return locales.includes(localeFromPath)
     ? ({status: 'matched'} as const)
     : ({status: 'invalid'} as const);
 }
@@ -42,7 +42,7 @@ function checkLocaleInPathname(
 function detectLocaleFromAcceptLanguageHeader(
   headers: Headers,
   defaultLocale = linguiConfigHelpers.defaultLocale,
-  supportedLocales = linguiConfigHelpers.supportedLocales
+  locales = linguiConfigHelpers.locales
 ) {
   const acceptLanguageHeader = headers.get('accept-language');
   if (!acceptLanguageHeader) {
@@ -54,9 +54,7 @@ function detectLocaleFromAcceptLanguageHeader(
     },
   });
   const requestedLocales = negotiator.languages();
-  const sortedLocales = supportedLocales.toSorted(
-    (a, b) => b.length - a.length
-  );
+  const sortedLocales = locales.toSorted((a, b) => b.length - a.length);
   try {
     return matchLocale(requestedLocales, sortedLocales, defaultLocale);
   } catch {

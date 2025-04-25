@@ -10,12 +10,12 @@ import {getLocaleMessages, setActiveI18nInstance} from '@/i18n/utils';
 import {brandedTheme} from '@/themes/branded';
 
 import {Html} from '../_components/Html';
-import type {Params} from '../generate-static-params';
+import type {Params} from '../params';
 import {Footer} from './_components/Footer';
 import {Header} from './_components/Header';
 import {QueryClientProvider} from './_components/QueryClientProvider';
 
-export {generateStaticParams} from '../generate-static-params';
+export {generateStaticParams} from '../params';
 
 export const dynamicParams = false;
 
