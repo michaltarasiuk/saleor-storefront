@@ -10,20 +10,25 @@ export function middleware(request: NextRequest) {
   const pathnameLocaleStatus = determineLocaleStatusInPathname(
     request.nextUrl.pathname
   );
-  const preferredLocale = getPreferredLocale(request.headers);
-  const updatedUrlWithLocale = new URL(
-    prependSegment(
-      request.nextUrl.pathname,
-      preferredLocale ?? linguiConfigHelpers.defaultLocale
-    ),
-    request.nextUrl.origin
-  );
   switch (pathnameLocaleStatus) {
+    case 'missing':
     case 'invalid': {
-      return NextResponse.redirect(updatedUrlWithLocale);
-    }
-    case 'missing': {
-      return NextResponse.rewrite(updatedUrlWithLocale);
+      const preferredLocale = getPreferredLocale(request.headers);
+      const updatedUrlWithLocale = new URL(
+        prependSegment(
+          request.nextUrl.pathname,
+          preferredLocale ?? linguiConfigHelpers.defaultLocale
+        ),
+        request.nextUrl.origin
+      );
+
+      let response: NextResponse;
+      if (pathnameLocaleStatus === 'missing') {
+        response = NextResponse.rewrite(updatedUrlWithLocale);
+      } else {
+        response = NextResponse.redirect(updatedUrlWithLocale);
+      }
+      return response;
     }
     default:
       return NextResponse.next();
