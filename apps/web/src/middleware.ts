@@ -1,5 +1,5 @@
 import {match as matchLocale} from '@formatjs/intl-localematcher';
-import {joinPathname, splitPathname} from '@repo/utils/pathname';
+import {prependSegment, splitPathname} from '@repo/utils/pathname';
 import Negotiator from 'negotiator';
 import type {NextRequest} from 'next/server';
 import {NextResponse} from 'next/server';
@@ -7,39 +7,46 @@ import {NextResponse} from 'next/server';
 import {linguiConfigHelpers} from './i18n/utils';
 
 export function middleware(request: NextRequest) {
-  const {status} = checkLocaleInPathname(request.nextUrl.pathname);
-  if (status !== 'matched') {
-    const detectedLocale = detectLocaleFromAcceptLanguageHeader(
-      request.headers
-    );
-    const updatedUrlWithLocale = new URL(
-      joinPathname(
-        detectedLocale ?? linguiConfigHelpers.defaultLocale,
-        ...splitPathname(request.nextUrl.pathname)
-      ),
-      request.nextUrl.origin
-    );
-    return status === 'invalid'
-      ? NextResponse.redirect(updatedUrlWithLocale)
-      : NextResponse.rewrite(updatedUrlWithLocale);
+  const pathnameLocaleStatus = determineLocaleStatusInPathname(
+    request.nextUrl.pathname
+  );
+  const preferredLocale = getPreferredLocale(request.headers);
+  const updatedUrlWithLocale = new URL(
+    prependSegment(
+      request.nextUrl.pathname,
+      preferredLocale ?? linguiConfigHelpers.defaultLocale
+    ),
+    request.nextUrl.origin
+  );
+  switch (pathnameLocaleStatus) {
+    case 'invalid': {
+      return NextResponse.redirect(updatedUrlWithLocale);
+    }
+    case 'missing': {
+      return NextResponse.rewrite(updatedUrlWithLocale);
+    }
+    default:
+      return NextResponse.next();
   }
-  return NextResponse.next();
 }
 
-function checkLocaleInPathname(
+function determineLocaleStatusInPathname(
   pathname: string,
   locales = linguiConfigHelpers.locales
 ) {
   const [localeFromPath] = splitPathname(pathname);
+  let status: 'valid' | 'invalid' | 'missing';
   if (!localeFromPath) {
-    return {status: 'unspecified'} as const;
+    status = 'missing';
+  } else if (locales.includes(localeFromPath)) {
+    status = 'valid';
+  } else {
+    status = 'invalid';
   }
-  return locales.includes(localeFromPath)
-    ? ({status: 'matched'} as const)
-    : ({status: 'invalid'} as const);
+  return status;
 }
 
-function detectLocaleFromAcceptLanguageHeader(
+function getPreferredLocale(
   headers: Headers,
   defaultLocale = linguiConfigHelpers.defaultLocale,
   locales = linguiConfigHelpers.locales
