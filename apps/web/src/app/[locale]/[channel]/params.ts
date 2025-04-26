@@ -1,11 +1,6 @@
-import {gql} from 'graphql-request';
-
 import {env} from '@/env';
 import {client} from '@/graphql/client';
-import type {
-  ChannelsQuery,
-  ChannelsQueryVariables,
-} from '@/graphql/codegen/graphql';
+import {graphql} from '@/graphql/codegen';
 import {linguiConfigHelpers} from '@/i18n/utils';
 
 export interface Params extends Record<string, string> {
@@ -27,22 +22,19 @@ export async function generateStaticParams() {
   return params;
 }
 
-const ChannelsQueryDocumentString = gql`
+const ChannelsQueryDocument = graphql(`
   query Channels {
     channels {
       slug
       isActive
     }
   }
-`;
+`);
 
 async function* getActiveChannels() {
   const {channels} = await client
     .setHeader('Authorization', `Bearer ${env.APP_TOKEN}`)
-    .request<
-      ChannelsQuery,
-      ChannelsQueryVariables
-    >(ChannelsQueryDocumentString);
+    .request(ChannelsQueryDocument);
 
   for (const channel of channels ?? []) {
     if (channel.isActive) {
