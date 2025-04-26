@@ -8,7 +8,7 @@ import type {
 } from '@/graphql/codegen/graphql';
 import {linguiConfigHelpers} from '@/i18n/utils';
 
-export interface Params {
+export interface Params extends Record<string, string> {
   readonly locale: string;
   readonly channel: string;
 }

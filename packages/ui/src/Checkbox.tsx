@@ -10,7 +10,12 @@ import {CheckmarkIcon} from './icons/CheckmarkIcon';
 import {Text} from './Text';
 import {transition} from './variables/animations.stylex';
 import {controlColors, criticalColors} from './variables/colors.stylex';
-import {cornerRadius, opacity, spacing} from './variables/tokens.stylex';
+import {
+  borderWidth,
+  cornerRadius,
+  opacity,
+  spacing,
+} from './variables/tokens.stylex';
 
 interface CheckboxProps extends AriaCheckboxProps {
   readonly children: React.ReactNode;
@@ -61,7 +66,7 @@ const boxStyles = stylex.create({
     backgroundColor: controlColors.background,
     borderRadius: cornerRadius.base,
     padding: spacing.small400,
-    boxShadow: `inset 0 0 0 1px ${controlColors.border}`,
+    boxShadow: `inset 0 0 0 ${borderWidth.base} ${controlColors.border}`,
     transitionProperty: 'box-shadow',
     transitionDuration: transition.transitionDuration,
     transitionTimingFunction: transition.transitionTimingFunction,
@@ -84,13 +89,13 @@ const boxStyles = stylex.create({
     },
   },
   focus: {
-    boxShadow: `inset 0 0 0 1px ${controlColors.accent}`,
+    boxShadow: `inset 0 0 0 ${borderWidth.base} ${controlColors.accent}`,
   },
   pressed: {
-    boxShadow: `inset 0 0 0 1px ${controlColors.accent}`,
+    boxShadow: `inset 0 0 0 ${borderWidth.base} ${controlColors.accent}`,
   },
   invalid: {
-    boxShadow: `inset 0 0 0 2px ${criticalColors.critical}`,
+    boxShadow: `inset 0 0 0 ${borderWidth.medium} ${criticalColors.critical}`,
   },
   selected: {
     boxShadow: `inset 0 0 0 1.6rem ${controlColors.decorative}`,

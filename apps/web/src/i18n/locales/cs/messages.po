@@ -13,6 +13,10 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: src/app/[locale]/[channel]/(account)/register/page.tsx:30
+msgid "Account Register"
+msgstr ""
+
 #: src/app/[locale]/[channel]/(account)/_components/Header.tsx:31
 msgid "Company Logo"
 msgstr ""
@@ -25,12 +29,24 @@ msgstr ""
 msgid "Confirmed orders"
 msgstr ""
 
+#: src/app/[locale]/[channel]/(account)/register/page.tsx:76
+msgid "Email Address"
+msgstr ""
+
+#: src/app/[locale]/[channel]/(account)/register/page.tsx:64
+msgid "First Name"
+msgstr ""
+
 #: src/app/[locale]/[channel]/(account)/_components/Header.tsx:44
 msgid "Go to store"
 msgstr ""
 
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrdersViewToggle.tsx:44
 msgid "Grid View"
+msgstr ""
+
+#: src/app/[locale]/[channel]/(account)/register/page.tsx:70
+msgid "Last Name"
 msgstr ""
 
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrdersViewToggle.tsx:50
@@ -41,12 +57,16 @@ msgstr ""
 msgid "Order Tabs"
 msgstr ""
 
-#: src/app/[locale]/[channel]/(account)/orders/layout.tsx:31
+#: src/app/[locale]/[channel]/(account)/orders/layout.tsx:29
 msgid "Orders"
 msgstr ""
 
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrdersViewToggle.tsx:35
 msgid "Orders View Toggle"
+msgstr ""
+
+#: src/app/[locale]/[channel]/(account)/register/page.tsx:82
+msgid "Password"
 msgstr ""
 
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrderTabs.tsx:33
@@ -67,6 +87,10 @@ msgstr ""
 
 #: src/app/[locale]/[channel]/(account)/_components/Footer.tsx:19
 msgid "Refund Policy"
+msgstr ""
+
+#: src/app/[locale]/[channel]/(account)/register/page.tsx:98
+msgid "Register"
 msgstr ""
 
 #: src/app/[locale]/[channel]/(account)/_components/Footer.tsx:24

@@ -5,6 +5,7 @@ import {Label, ProgressBar} from 'react-aria-components';
 
 import {Text} from './Text';
 import {baseColors, criticalColors} from './variables/colors.stylex';
+import {borderWidth} from './variables/tokens.stylex';
 
 interface ProgressProps {
   readonly accessibilityLabel: string;
@@ -51,7 +52,7 @@ const barStyles = stylex.create({
     height: '5px',
     backgroundColor: baseColors.backgroundSubdued,
     borderRadius: '30px',
-    boxShadow: `inset 0 0 0 1px ${baseColors.border}`,
+    boxShadow: `inset 0 0 0 ${borderWidth.base} ${baseColors.border}`,
   },
 });
 

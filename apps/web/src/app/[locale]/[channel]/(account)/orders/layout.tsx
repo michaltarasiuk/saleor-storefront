@@ -1,6 +1,7 @@
 import {Trans} from '@lingui/react/macro';
 import {Heading, HeadingGroup} from '@repo/ui/Heading';
 import {InlineStack} from '@repo/ui/Stack';
+import * as stylex from '@stylexjs/stylex';
 
 import {setActiveI18nInstance} from '@/i18n/utils';
 
@@ -23,14 +24,13 @@ export default async function OrdersLayout({
   setActiveI18nInstance(locale);
   return (
     <OrdersView>
-      <InlineStack
-        blockAligment="center"
-        inlineAligment="spaceBetween"
-        padding={['none', 'loose']}>
+      <InlineStack blockAligment="center" padding={['none', 'loose']}>
         <Heading>
           <Trans>Orders</Trans>
         </Heading>
-        <OrdersViewToggle />
+        <div {...stylex.props(viewToggleContainerStyles.base)}>
+          <OrdersViewToggle />
+        </div>
       </InlineStack>
       <HeadingGroup>
         <OrderTabs confirmedTab={confirmed} pendingTab={pending} />
@@ -38,3 +38,9 @@ export default async function OrdersLayout({
     </OrdersView>
   );
 }
+
+const viewToggleContainerStyles = stylex.create({
+  base: {
+    marginInlineStart: 'auto',
+  },
+});

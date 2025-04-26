@@ -1,11 +1,11 @@
 import {match as matchLocale} from '@formatjs/intl-localematcher';
+import {assertNever} from '@repo/utils/assert-never';
 import {prependSegment, splitPathname} from '@repo/utils/pathname';
 import Negotiator from 'negotiator';
 import type {NextRequest} from 'next/server';
 import {NextResponse} from 'next/server';
 
 import {linguiConfigHelpers} from './i18n/utils';
-import {assertNever} from '@repo/utils/assert-never';
 
 export function middleware(request: NextRequest) {
   const {status} = determineLocaleStatusInPathname(request.nextUrl.pathname);

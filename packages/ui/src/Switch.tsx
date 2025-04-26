@@ -9,7 +9,12 @@ import {
 import {Text} from './Text';
 import {transition} from './variables/animations.stylex';
 import {controlColors} from './variables/colors.stylex';
-import {cornerRadius, opacity, spacing} from './variables/tokens.stylex';
+import {
+  borderWidth,
+  cornerRadius,
+  opacity,
+  spacing,
+} from './variables/tokens.stylex';
 
 interface SwitchProps extends AriaSwitchProps {
   readonly children: React.ReactNode;
@@ -65,7 +70,7 @@ const toggleStyles = stylex.create({
     alignItems: 'center',
     backgroundColor: controlColors.background,
     borderRadius: cornerRadius.fullyRounded,
-    boxShadow: `inset 0 0 0 1px ${controlColors.border}`,
+    boxShadow: `inset 0 0 0 ${borderWidth.base} ${controlColors.border}`,
     transitionDuration: transition.transitionDuration,
     transitionTimingFunction: transition.transitionTimingFunction,
     '::before': {
@@ -97,10 +102,10 @@ const toggleStyles = stylex.create({
     },
   },
   focus: {
-    boxShadow: `inset 0 0 0 1px ${controlColors.accent}`,
+    boxShadow: `inset 0 0 0 ${borderWidth.base} ${controlColors.accent}`,
   },
   pressed: {
-    boxShadow: `inset 0 0 0 1px ${controlColors.accent}`,
+    boxShadow: `inset 0 0 0 ${borderWidth.base} ${controlColors.accent}`,
   },
   selected: {
     boxShadow: `inset 0 0 0 1.6rem ${controlColors.accent}`,
