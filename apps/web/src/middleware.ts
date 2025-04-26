@@ -1,5 +1,4 @@
 import {match as matchLocale} from '@formatjs/intl-localematcher';
-import {assertNever} from '@repo/utils/assert-never';
 import {prependSegment, splitPathname} from '@repo/utils/pathname';
 import Negotiator from 'negotiator';
 import type {NextRequest} from 'next/server';
@@ -11,32 +10,20 @@ export function middleware(request: NextRequest) {
   const pathnameLocaleStatus = determineLocaleStatusInPathname(
     request.nextUrl.pathname
   );
-  switch (pathnameLocaleStatus) {
-    case 'missing':
-    case 'invalid': {
-      const preferredLocale = getPreferredLocale(request.headers);
-      const updatedUrlWithLocale = new URL(
-        prependSegment(
-          request.nextUrl.pathname,
-          preferredLocale ?? linguiConfigHelpers.defaultLocale
-        ),
-        request.nextUrl.origin
-      );
-
-      let response: NextResponse;
-      if (pathnameLocaleStatus === 'missing') {
-        response = NextResponse.rewrite(updatedUrlWithLocale);
-      } else {
-        response = NextResponse.redirect(updatedUrlWithLocale);
-      }
-      return response;
-    }
-    case 'valid': {
-      return NextResponse.next();
-    }
-    default:
-      assertNever(pathnameLocaleStatus);
+  if (pathnameLocaleStatus === 'valid') {
+    return NextResponse.next();
   }
+
+  const preferredLocale =
+    getPreferredLocale(request.headers) ?? linguiConfigHelpers.defaultLocale;
+  const updatedUrlWithLocale = new URL(
+    prependSegment(request.nextUrl.pathname, preferredLocale),
+    request.nextUrl.origin
+  );
+
+  return pathnameLocaleStatus === 'missing'
+    ? NextResponse.rewrite(updatedUrlWithLocale)
+    : NextResponse.redirect(updatedUrlWithLocale);
 }
 
 function determineLocaleStatusInPathname(
@@ -44,15 +31,10 @@ function determineLocaleStatusInPathname(
   locales = linguiConfigHelpers.locales
 ) {
   const [localeFromPath] = splitPathname(pathname);
-  let status: 'valid' | 'invalid' | 'missing';
   if (!localeFromPath) {
-    status = 'missing';
-  } else if (locales.includes(localeFromPath)) {
-    status = 'valid';
-  } else {
-    status = 'invalid';
+    return 'missing';
   }
-  return status;
+  return locales.includes(localeFromPath) ? 'valid' : 'invalid';
 }
 
 function getPreferredLocale(
