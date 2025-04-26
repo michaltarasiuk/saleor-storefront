@@ -1,4 +1,5 @@
 import {assertNever} from '@repo/utils/assert-never';
+import {isArray} from '@repo/utils/is-array';
 import * as stylex from '@stylexjs/stylex';
 
 import {
@@ -132,18 +133,18 @@ const inlineAligmentStyles = stylex.create({
 });
 
 function normalizeSpacing(spacing: StackProps['spacing'] = 'none') {
-  return typeof spacing === 'string' ? ([spacing, spacing] as const) : spacing;
+  return !isArray(spacing) ? [spacing, spacing] : spacing;
 }
 
 function normalizePadding(padding: StackProps['padding'] = 'none') {
-  if (typeof padding === 'string') {
-    return [padding, padding, padding, padding] as const;
+  if (!isArray(padding)) {
+    return [padding, padding, padding, padding];
   }
   switch (padding.length) {
     case 2:
       return [padding[0], padding[1], padding[0], padding[1]] as const;
     case 4:
-      return [padding[0], padding[1], padding[2], padding[3]] as const;
+      return [padding[0], padding[1], padding[0], padding[1]] as const;
     default:
       assertNever(padding);
   }
