@@ -8,12 +8,13 @@ export const linguiConfigHelpers = {
   get defaultLocale() {
     return (
       linguiConfig.sourceLocale ??
-      raise('Default locale is not defined in Lingui config.')
+      raise('The default locale is not defined in the Lingui configuration.')
     );
   },
   get locales() {
     return (
-      linguiConfig.locales ?? raise('Locales are not defined in Lingui config.')
+      linguiConfig.locales ??
+      raise('No locales are defined in the Lingui configuration.')
     );
   },
 };
