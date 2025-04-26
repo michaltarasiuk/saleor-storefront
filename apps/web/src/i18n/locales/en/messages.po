@@ -14,8 +14,8 @@ msgstr ""
 "Plural-Forms: \n"
 
 #: src/app/[locale]/[channel]/(account)/register/page.tsx:30
-msgid "Account Register"
-msgstr "Account Register"
+#~ msgid "Account Register"
+#~ msgstr "Account Register"
 
 #: src/app/[locale]/[channel]/(account)/_components/Header.tsx:31
 msgid "Company Logo"
@@ -30,12 +30,12 @@ msgid "Confirmed orders"
 msgstr "Confirmed orders"
 
 #: src/app/[locale]/[channel]/(account)/register/page.tsx:76
-msgid "Email Address"
-msgstr "Email Address"
+#~ msgid "Email Address"
+#~ msgstr "Email Address"
 
 #: src/app/[locale]/[channel]/(account)/register/page.tsx:64
-msgid "First Name"
-msgstr "First Name"
+#~ msgid "First Name"
+#~ msgstr "First Name"
 
 #: src/app/[locale]/[channel]/(account)/_components/Header.tsx:44
 msgid "Go to store"
@@ -46,8 +46,8 @@ msgid "Grid View"
 msgstr "Grid View"
 
 #: src/app/[locale]/[channel]/(account)/register/page.tsx:70
-msgid "Last Name"
-msgstr "Last Name"
+#~ msgid "Last Name"
+#~ msgstr "Last Name"
 
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrdersViewToggle.tsx:50
 msgid "List View"
@@ -66,8 +66,8 @@ msgid "Orders View Toggle"
 msgstr "Orders View Toggle"
 
 #: src/app/[locale]/[channel]/(account)/register/page.tsx:82
-msgid "Password"
-msgstr "Password"
+#~ msgid "Password"
+#~ msgstr "Password"
 
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrderTabs.tsx:33
 msgid "Pending"
@@ -90,8 +90,8 @@ msgid "Refund Policy"
 msgstr "Refund Policy"
 
 #: src/app/[locale]/[channel]/(account)/register/page.tsx:98
-msgid "Register"
-msgstr "Register"
+#~ msgid "Register"
+#~ msgstr "Register"
 
 #: src/app/[locale]/[channel]/(account)/_components/Footer.tsx:24
 msgid "Shipping Policy"
