@@ -28,7 +28,7 @@ export default async function OrdersLayout({
         <Heading>
           <Trans>Orders</Trans>
         </Heading>
-        <div {...stylex.props(viewToggleContainerStyles.base)}>
+        <div {...stylex.props(ordersViewToggleStyles.base)}>
           <OrdersViewToggle />
         </div>
       </InlineStack>
@@ -39,7 +39,7 @@ export default async function OrdersLayout({
   );
 }
 
-const viewToggleContainerStyles = stylex.create({
+const ordersViewToggleStyles = stylex.create({
   base: {
     marginInlineStart: 'auto',
   },
