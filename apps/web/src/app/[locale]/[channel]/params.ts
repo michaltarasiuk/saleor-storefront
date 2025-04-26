@@ -15,10 +15,14 @@ export interface Params {
 
 const {locales} = linguiConfigHelpers;
 
-export async function generateStaticParams(): Promise<Params[]> {
+export async function generateStaticParams() {
+  const channels = await Array.fromAsync(getActiveChannels());
+
   const params: Params[] = [];
-  for await (const channel of getActiveChannels()) {
-    params.push(...locales.map(locale => ({locale, channel: channel.slug})));
+  for (const locale of locales) {
+    for (const channel of channels) {
+      params.push({locale, channel});
+    }
   }
   return params;
 }
@@ -42,7 +46,7 @@ async function* getActiveChannels() {
 
   for (const channel of channels ?? []) {
     if (channel.isActive) {
-      yield channel;
+      yield channel.slug;
     }
   }
 }
