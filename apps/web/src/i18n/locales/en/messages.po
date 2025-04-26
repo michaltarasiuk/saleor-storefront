@@ -21,7 +21,7 @@ msgstr "Company Logo"
 msgid "Confirmed"
 msgstr "Confirmed"
 
-#: src/app/[locale]/[channel]/(account)/orders/@confirmed/page.tsx:20
+#: src/app/[locale]/[channel]/(account)/orders/@confirmed/page.tsx:19
 msgid "Confirmed orders"
 msgstr "Confirmed orders"
 
@@ -41,7 +41,7 @@ msgstr "List View"
 msgid "Order Tabs"
 msgstr "Order Tabs"
 
-#: src/app/[locale]/[channel]/(account)/orders/layout.tsx:35
+#: src/app/[locale]/[channel]/(account)/orders/layout.tsx:31
 msgid "Orders"
 msgstr "Orders"
 
@@ -53,7 +53,7 @@ msgstr "Orders View Toggle"
 msgid "Pending"
 msgstr "Pending"
 
-#: src/app/[locale]/[channel]/(account)/orders/@pending/page.tsx:20
+#: src/app/[locale]/[channel]/(account)/orders/@pending/page.tsx:19
 msgid "Pending orders"
 msgstr "Pending orders"
 

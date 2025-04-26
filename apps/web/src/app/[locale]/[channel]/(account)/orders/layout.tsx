@@ -1,16 +1,12 @@
-import type {Locale} from '@lingui/core';
 import {Trans} from '@lingui/react/macro';
 import {Heading, HeadingGroup} from '@repo/ui/Heading';
 import {InlineStack} from '@repo/ui/Stack';
 
 import {setActiveI18nInstance} from '@/i18n/utils';
 
+import type {Params} from '../../params';
 import {OrdersView, OrdersViewToggle} from './_components/OrdersViewToggle';
 import {OrderTabs} from './_components/OrderTabs';
-
-interface Params {
-  readonly locale: Locale;
-}
 
 interface OrdersLayoutProps {
   readonly confirmed: React.ReactNode;

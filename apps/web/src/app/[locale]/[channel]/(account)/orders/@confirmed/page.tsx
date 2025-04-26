@@ -1,13 +1,12 @@
-import type {Locale} from '@lingui/core';
 import {Trans} from '@lingui/react/macro';
 import {Heading} from '@repo/ui/Heading';
 
 import {setActiveI18nInstance} from '@/i18n/utils';
 
+import type {Params} from '../../../params';
+
 interface ConfirmedOrdersPageProps {
-  readonly params: Promise<{
-    readonly locale: Locale;
-  }>;
+  readonly params: Promise<Params>;
 }
 
 export default async function ConfirmedOrdersPage({

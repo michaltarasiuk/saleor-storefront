@@ -21,7 +21,7 @@ msgstr ""
 msgid "Confirmed"
 msgstr ""
 
-#: src/app/[locale]/[channel]/(account)/orders/@confirmed/page.tsx:20
+#: src/app/[locale]/[channel]/(account)/orders/@confirmed/page.tsx:19
 msgid "Confirmed orders"
 msgstr ""
 
@@ -41,7 +41,7 @@ msgstr ""
 msgid "Order Tabs"
 msgstr ""
 
-#: src/app/[locale]/[channel]/(account)/orders/layout.tsx:35
+#: src/app/[locale]/[channel]/(account)/orders/layout.tsx:31
 msgid "Orders"
 msgstr ""
 
@@ -53,7 +53,7 @@ msgstr ""
 msgid "Pending"
 msgstr ""
 
-#: src/app/[locale]/[channel]/(account)/orders/@pending/page.tsx:20
+#: src/app/[locale]/[channel]/(account)/orders/@pending/page.tsx:19
 msgid "Pending orders"
 msgstr ""
 
