@@ -35,7 +35,7 @@ export function Badge({
       role={tone === 'critical' ? 'alert' : 'status'}
       aria-label={accessibilityLabel}
       aria-hidden={accessibilityVisibility === 'hidden'}
-      {...(visibility === 'hidden' ? visuallyHiddenProps : {})}
+      {...(visibility === 'hidden' && visuallyHiddenProps)}
       {...stylex.props(styles.base, sizeStyles[size], toneStyles[tone])}>
       {children}
     </div>

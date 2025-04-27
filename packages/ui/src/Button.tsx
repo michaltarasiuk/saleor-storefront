@@ -3,7 +3,6 @@
 import {assertNever} from '@repo/utils/assert-never';
 import {isKeyOf} from '@repo/utils/is-keyof';
 import * as stylex from '@stylexjs/stylex';
-import {useState} from 'react';
 import {
   Button as AriaButton,
   type ButtonProps as AriaButtonProps,
@@ -49,27 +48,25 @@ export function Button({
   pendingLabel,
   ...props
 }: ButtonProps) {
-  const [isHoverd, setIsHoverd] = useState(false);
   const [variantStyles, variantHoverStyles] = mapVariantToStyles(variant);
   const iconVariantsStyles = mapVariantToIconStyles(variant);
   const hasHoverStyles =
     variantHoverStyles && isKeyOf(variantHoverStyles, appearance);
   return (
     <AriaButton
-      className={({isDisabled}) => {
+      className={({isDisabled, isHovered}) => {
         const {className = ''} = stylex.props(
           styles.base,
           variantStyles.base,
           variantStyles[appearance],
           sizeStyles[size],
           isDisabled && variantStyles.disabled,
-          hasHoverStyles && isHoverd && variantHoverStyles[appearance]
+          hasHoverStyles && isHovered && variantHoverStyles[appearance]
         );
         return className;
       }}
-      onHoverChange={setIsHoverd}
       {...props}>
-      {({isPending}) =>
+      {({isHovered, isPending}) =>
         !isPending ? (
           children
         ) : (
@@ -77,7 +74,7 @@ export function Button({
             accessibilityLabel={pendingLabel}
             style={
               typeof iconVariantsStyles[appearance] === 'function'
-                ? iconVariantsStyles[appearance](isHoverd)
+                ? iconVariantsStyles[appearance](isHovered)
                 : iconVariantsStyles[appearance]
             }
           />
