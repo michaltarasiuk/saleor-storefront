@@ -1,14 +1,13 @@
 import {isArray} from '@repo/utils/is-array';
 import * as stylex from '@stylexjs/stylex';
 
+import type {MaybeShorthandProperty} from '../types/shorthand';
 import {spacing} from '../variables/tokens.stylex';
 
 type RowSpacing = keyof typeof spacingRowStyles;
 type ColumnSpacing = keyof typeof spacingColumnStyles;
 
-export type Spacing =
-  | (RowSpacing & ColumnSpacing)
-  | readonly [RowSpacing, ColumnSpacing];
+export type Spacing = MaybeShorthandProperty<RowSpacing & ColumnSpacing>;
 
 export function getSpacingStyles(spacing: Spacing) {
   const [rowSpacing, columnSpacing] = normalizeSpacing(spacing);

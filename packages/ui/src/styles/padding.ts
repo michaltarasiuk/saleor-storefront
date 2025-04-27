@@ -2,6 +2,7 @@ import {assertNever} from '@repo/utils/assert-never';
 import {isArray} from '@repo/utils/is-array';
 import * as stylex from '@stylexjs/stylex';
 
+import type {MaybeShorthandProperty} from '../types/shorthand';
 import {spacing} from '../variables/tokens.stylex';
 
 type PaddingBlockStart = keyof typeof paddingBlockStartStyles;
@@ -12,15 +13,7 @@ type PaddingInlineEnd = keyof typeof paddingInlineEndStyles;
 type PaddingBlock = PaddingBlockStart & PaddingBlockEnd;
 type PaddingInline = PaddingInlineStart & PaddingInlineEnd;
 
-export type Padding =
-  | (PaddingBlock & PaddingInline)
-  | readonly [PaddingBlock, PaddingInline]
-  | readonly [
-      PaddingBlockStart,
-      PaddingBlockEnd,
-      PaddingInlineStart,
-      PaddingInlineEnd,
-    ];
+export type Padding = MaybeShorthandProperty<PaddingBlock & PaddingInline>;
 
 export function getPaddingStyles(padding: Padding) {
   const [
@@ -45,7 +38,7 @@ function normalizePadding(padding: Padding) {
     case 2:
       return [padding[0], padding[1], padding[0], padding[1]] as const;
     case 4:
-      return [padding[0], padding[1], padding[0], padding[1]] as const;
+      return padding;
     default:
       assertNever(padding);
   }

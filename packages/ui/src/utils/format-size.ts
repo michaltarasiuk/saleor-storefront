@@ -3,9 +3,7 @@ import type {Property} from 'csstype';
 
 export type Size = number | `${number}%` | 'fill';
 
-export function formatSize(
-  size: Size
-): Property.InlineSize | Property.BlockSize {
+export function formatSize(size: Size) {
   let formattedSize: Property.InlineSize | Property.BlockSize;
   switch (typeof size) {
     case 'string':

@@ -2,6 +2,8 @@ import {assertNever} from '@repo/utils/assert-never';
 import {isArray} from '@repo/utils/is-array';
 import * as stylex from '@stylexjs/stylex';
 
+import type {MaybeShorthandProperty} from '../types/shorthand';
+
 type BorderBlockStartStyle = keyof typeof borderBlockStartStyleStyles;
 type BorderBlockEndStyle = keyof typeof borderBlockEndStyleStyles;
 type BorderInlineStartStyle = keyof typeof borderInlineStartStyleStyles;
@@ -10,15 +12,9 @@ type BorderInlineEndStyle = keyof typeof borderInlineEndStyleStyles;
 type BorderBlockStyle = BorderBlockStartStyle & BorderBlockEndStyle;
 type BorderInlineStyle = BorderInlineStartStyle & BorderInlineEndStyle;
 
-export type BorderStyle =
-  | (BorderBlockStyle & BorderInlineStyle)
-  | readonly [BorderBlockStyle, BorderInlineStyle]
-  | readonly [
-      BorderBlockStartStyle,
-      BorderBlockEndStyle,
-      BorderInlineStartStyle,
-      BorderInlineEndStyle,
-    ];
+export type BorderStyle = MaybeShorthandProperty<
+  BorderBlockStyle & BorderInlineStyle
+>;
 
 export function getBorderStyleStyles(borderStyle: BorderStyle) {
   const [
@@ -48,12 +44,7 @@ function normalizeBorderStyle(borderStyle: BorderStyle) {
         borderStyle[1],
       ] as const;
     case 4:
-      return [
-        borderStyle[0],
-        borderStyle[1],
-        borderStyle[2],
-        borderStyle[3],
-      ] as const;
+      return borderStyle;
     default:
       assertNever(borderStyle);
   }
