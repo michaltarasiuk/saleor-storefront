@@ -18,17 +18,13 @@ export type BorderWidth = MaybeShorthandProperty<
 >;
 
 export function getBorderWidthStyles(borderWidth: BorderWidth) {
-  const [
-    borderBlockStartWidth,
-    borderBlockEndWidth,
-    borderInlineStartWidth,
-    borderInlineEndWidth,
-  ] = normalizeBorderWidth(borderWidth);
+  const [blockStart, inlineEnd, blockEnd, inlineStart] =
+    normalizeBorderWidth(borderWidth);
   return [
-    borderBlockStartWidthStyles[borderBlockStartWidth],
-    borderBlockEndWidthStyles[borderBlockEndWidth],
-    borderInlineStartWidthStyles[borderInlineStartWidth],
-    borderInlineEndWidthStyles[borderInlineEndWidth],
+    borderBlockStartWidthStyles[blockStart],
+    borderInlineEndWidthStyles[inlineEnd],
+    borderBlockEndWidthStyles[blockEnd],
+    borderInlineStartWidthStyles[inlineStart],
   ];
 }
 
@@ -39,10 +35,10 @@ function normalizeBorderWidth(borderWidth: BorderWidth) {
   switch (borderWidth.length) {
     case 2:
       return [
-        borderWidth[0],
         borderWidth[1],
         borderWidth[0],
         borderWidth[1],
+        borderWidth[0],
       ] as const;
     case 4:
       return borderWidth;

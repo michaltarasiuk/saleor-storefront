@@ -17,17 +17,13 @@ export type BorderStyle = MaybeShorthandProperty<
 >;
 
 export function getBorderStyleStyles(borderStyle: BorderStyle) {
-  const [
-    borderBlockStartStyle,
-    borderBlockEndStyle,
-    borderInlineStartStyle,
-    borderInlineEndStyle,
-  ] = normalizeBorderStyle(borderStyle);
+  const [blockStart, inlineEnd, blockEnd, inlineStart] =
+    normalizeBorderStyle(borderStyle);
   return [
-    borderBlockStartStyleStyles[borderBlockStartStyle],
-    borderBlockEndStyleStyles[borderBlockEndStyle],
-    borderInlineStartStyleStyles[borderInlineStartStyle],
-    borderInlineEndStyleStyles[borderInlineEndStyle],
+    borderBlockStartStyleStyles[blockStart],
+    borderInlineEndStyleStyles[inlineEnd],
+    borderBlockEndStyleStyles[blockEnd],
+    borderInlineStartStyleStyles[inlineStart],
   ];
 }
 
@@ -38,10 +34,10 @@ function normalizeBorderStyle(borderStyle: BorderStyle) {
   switch (borderStyle.length) {
     case 2:
       return [
-        borderStyle[0],
         borderStyle[1],
         borderStyle[0],
         borderStyle[1],
+        borderStyle[0],
       ] as const;
     case 4:
       return borderStyle;

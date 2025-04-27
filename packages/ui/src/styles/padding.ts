@@ -16,17 +16,13 @@ type PaddingInline = PaddingInlineStart & PaddingInlineEnd;
 export type Padding = MaybeShorthandProperty<PaddingBlock & PaddingInline>;
 
 export function getPaddingStyles(padding: Padding) {
-  const [
-    paddingBlockStart,
-    paddingBlockEnd,
-    paddingInlineStart,
-    paddingInlineEnd,
-  ] = normalizePadding(padding);
+  const [blockStart, inlineEnd, blockEnd, inlineStart] =
+    normalizePadding(padding);
   return [
-    paddingBlockStartStyles[paddingBlockStart],
-    paddingBlockEndStyles[paddingBlockEnd],
-    paddingInlineStartStyles[paddingInlineStart],
-    paddingInlineEndStyles[paddingInlineEnd],
+    paddingBlockStartStyles[blockStart],
+    paddingInlineEndStyles[inlineEnd],
+    paddingBlockEndStyles[blockEnd],
+    paddingInlineStartStyles[inlineStart],
   ];
 }
 
@@ -36,7 +32,7 @@ function normalizePadding(padding: Padding) {
   }
   switch (padding.length) {
     case 2:
-      return [padding[0], padding[1], padding[0], padding[1]] as const;
+      return [padding[1], padding[0], padding[1], padding[0]] as const;
     case 4:
       return padding;
     default:
