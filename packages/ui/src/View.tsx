@@ -94,6 +94,7 @@ export function View({
     paddingInlineEnd,
     paddingBlockEnd,
   ] = normalizePadding(padding);
+
   return (
     <div
       aria-label={accessibilityLabel}

@@ -89,6 +89,7 @@ function Stack({
     paddingBlockEnd,
   ] = normalizePadding(padding);
   const [rowSpacing, columnSpacing] = normalizeSpacing(spacing);
+
   return (
     <div
       aria-label={accessibilityLabel}
