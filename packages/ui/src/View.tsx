@@ -1,4 +1,7 @@
+'use client';
+
 import * as stylex from '@stylexjs/stylex';
+import {useVisuallyHidden} from 'react-aria';
 
 import {inlineAlignmentStyles} from './styles/aligment';
 import {blockAlignmentStyles} from './styles/aligment';
@@ -19,57 +22,59 @@ import {
   type BorderWidth,
   normalizeBorderWidth,
 } from './styles/border-width';
-import type {Padding} from './styles/padding';
+import {opacityStyles} from './styles/opacity';
+import {overflowStyles} from './styles/overflow';
 import {
   normalizePadding,
+  type Padding,
   paddingBlockEndStyles,
   paddingBlockStartStyles,
   paddingInlineEndStyles,
   paddingInlineStartStyles,
 } from './styles/padding';
-import type {Spacing} from './styles/spacing';
-import {
-  normalizeSpacing,
-  spacingColumnStyles,
-  spacingRowStyles,
-} from './styles/spacing';
 import type {NonPresentationalAccessibilityRole} from './types/accessibility';
+import type {Visibility} from './types/visibility';
+import {formatSize, type Size} from './utils/format-size';
 
-export function BlockStack(props: Omit<StackProps, 'direction'>) {
-  return <Stack direction="block" {...props} />;
-}
-
-export function InlineStack(props: Omit<StackProps, 'direction'>) {
-  return <Stack direction="inline" {...props} />;
-}
-
-interface StackProps {
+interface ViewProps {
   readonly children: React.ReactNode;
-  readonly direction: keyof typeof directionStyles;
   readonly accessibilityLabel?: string;
   readonly accessibilityRole?: NonPresentationalAccessibilityRole;
   readonly background?: keyof typeof backgroundStyles;
-  readonly blockAligment?: keyof typeof blockAlignmentStyles;
+  readonly blockAlignment?: keyof typeof blockAlignmentStyles;
   readonly border?: BorderStyle;
   readonly borderWidth?: BorderWidth;
-  readonly inlineAligment?: keyof typeof inlineAlignmentStyles;
+  readonly inlineAlignment?: keyof typeof inlineAlignmentStyles;
+  readonly inlineSize?: Extract<Size, 'fill'>;
+  readonly maxBlockSize?: Size;
+  readonly maxInlineSize?: Size;
+  readonly minBlockSize?: Size;
+  readonly minInlineSize?: Size;
+  readonly opacity?: keyof typeof opacityStyles;
+  readonly overflow?: keyof typeof overflowStyles;
   readonly padding?: Padding;
-  readonly spacing?: Spacing;
+  readonly visibility?: Visibility;
 }
 
-function Stack({
+export function View({
   children,
-  direction,
   accessibilityLabel,
   accessibilityRole,
   background = 'transparent',
-  blockAligment = 'start',
+  blockAlignment = 'start',
   border = 'none',
   borderWidth = 'base',
-  inlineAligment = 'start',
+  inlineAlignment = 'start',
+  inlineSize,
+  maxBlockSize,
+  maxInlineSize,
+  minBlockSize,
+  minInlineSize,
+  opacity,
+  overflow = 'visible',
   padding = 'none',
-  spacing = 'none',
-}: StackProps) {
+  visibility,
+}: ViewProps) {
   const [
     borderBlockStartStyle,
     borderBlockEndStyle,
@@ -82,22 +87,29 @@ function Stack({
     borderInlineStartWidth,
     borderInlineEndWidth,
   ] = normalizeBorderWidth(borderWidth);
+  const {visuallyHiddenProps} = useVisuallyHidden();
   const [
     paddingInlineStart,
     paddingBlockStart,
     paddingInlineEnd,
     paddingBlockEnd,
   ] = normalizePadding(padding);
-  const [rowSpacing, columnSpacing] = normalizeSpacing(spacing);
   return (
     <div
       aria-label={accessibilityLabel}
       role={accessibilityRole}
+      {...(visibility === 'hidden' && visuallyHiddenProps)}
       {...stylex.props(
         styles.base,
-        directionStyles[direction],
+        styles.size(
+          inlineSize && formatSize(inlineSize),
+          maxBlockSize && formatSize(maxBlockSize),
+          maxInlineSize && formatSize(maxInlineSize),
+          minBlockSize && formatSize(minBlockSize),
+          minInlineSize && formatSize(minInlineSize)
+        ),
         backgroundStyles[background],
-        blockAlignmentStyles[blockAligment],
+        blockAlignmentStyles[blockAlignment],
         borderBlockStartStyleStyles[borderBlockStartStyle],
         borderBlockEndStyleStyles[borderBlockEndStyle],
         borderInlineStartStyleStyles[borderInlineStartStyle],
@@ -106,13 +118,13 @@ function Stack({
         borderBlockEndWidthStyles[borderBlockEndWidth],
         borderInlineStartWidthStyles[borderInlineStartWidth],
         borderInlineEndWidthStyles[borderInlineEndWidth],
-        inlineAlignmentStyles[inlineAligment],
+        inlineAlignmentStyles[inlineAlignment],
+        opacity && opacityStyles[opacity],
+        overflowStyles[overflow],
         paddingInlineStartStyles[paddingInlineStart],
         paddingBlockStartStyles[paddingBlockStart],
         paddingInlineEndStyles[paddingInlineEnd],
-        paddingBlockEndStyles[paddingBlockEnd],
-        spacingRowStyles[rowSpacing],
-        spacingColumnStyles[columnSpacing]
+        paddingBlockEndStyles[paddingBlockEnd]
       )}>
       {children}
     </div>
@@ -121,15 +133,20 @@ function Stack({
 
 const styles = stylex.create({
   base: {
-    display: 'flex',
-  },
-});
-
-const directionStyles = stylex.create({
-  block: {
+    displayInside: 'flex',
     flexDirection: 'column',
   },
-  inline: {
-    flexDirection: 'row',
-  },
+  size: (
+    inlineSize?: React.CSSProperties['inlineSize'],
+    maxBlockSize?: React.CSSProperties['maxBlockSize'],
+    maxInlineSize?: React.CSSProperties['maxInlineSize'],
+    minBlockSize?: React.CSSProperties['minBlockSize'],
+    minInlineSize?: React.CSSProperties['minInlineSize']
+  ) => ({
+    inlineSize,
+    maxBlockSize,
+    maxInlineSize,
+    minBlockSize,
+    minInlineSize,
+  }),
 });

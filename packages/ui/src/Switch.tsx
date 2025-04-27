@@ -81,7 +81,7 @@ const toggleStyles = stylex.create({
       inset: 0,
       width: '100%',
       height: '100%',
-      opacity: opacity[25],
+      opacity: opacity[30],
       borderRadius: cornerRadius.fullyRounded,
       transitionDuration: transition.transitionDuration,
       transitionTimingFunction: transition.transitionTimingFunction,

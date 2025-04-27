@@ -1,5 +1,4 @@
 import * as stylex from '@stylexjs/stylex';
-import type {CSSProperties} from 'react';
 
 import type {Size} from './utils/format-size';
 import {formatSize} from './utils/format-size';
@@ -36,8 +35,8 @@ const styles = stylex.create({
     animationIterationCount: 'infinite',
   },
   size: (
-    blockSize: CSSProperties['blockSize'],
-    inlineSize: CSSProperties['blockSize']
+    blockSize: React.CSSProperties['blockSize'],
+    inlineSize: React.CSSProperties['blockSize']
   ) => ({
     blockSize,
     inlineSize,

@@ -76,7 +76,7 @@ const boxStyles = stylex.create({
       inset: 0,
       width: '100%',
       height: '100%',
-      opacity: opacity[25],
+      opacity: opacity[30],
       borderRadius: cornerRadius.base,
       transitionProperty: 'box-shadow',
       transitionDuration: transition.transitionDuration,

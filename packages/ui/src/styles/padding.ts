@@ -1,6 +1,40 @@
+import {assertNever} from '@repo/utils/assert-never';
+import {isArray} from '@repo/utils/is-array';
 import * as stylex from '@stylexjs/stylex';
 
 import {spacing} from '../variables/tokens.stylex';
+
+type PaddingBlockStart = keyof typeof paddingBlockStartStyles;
+type PaddingBlockEnd = keyof typeof paddingBlockEndStyles;
+type PaddingInlineStart = keyof typeof paddingInlineStartStyles;
+type PaddingInlineEnd = keyof typeof paddingInlineEndStyles;
+
+type PaddingBlock = PaddingBlockStart & PaddingBlockEnd;
+type PaddingInline = PaddingInlineStart & PaddingInlineEnd;
+
+export type Padding =
+  | (PaddingBlock & PaddingInline)
+  | readonly [PaddingBlock, PaddingInline]
+  | readonly [
+      PaddingBlockStart,
+      PaddingBlockEnd,
+      PaddingInlineStart,
+      PaddingInlineEnd,
+    ];
+
+export function normalizePadding(padding: Padding) {
+  if (!isArray(padding)) {
+    return [padding, padding, padding, padding];
+  }
+  switch (padding.length) {
+    case 2:
+      return [padding[0], padding[1], padding[0], padding[1]] as const;
+    case 4:
+      return [padding[0], padding[1], padding[0], padding[1]] as const;
+    default:
+      assertNever(padding);
+  }
+}
 
 export const paddingBlockStartStyles = stylex.create({
   none: {

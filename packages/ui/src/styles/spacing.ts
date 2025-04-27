@@ -1,6 +1,18 @@
+import {isArray} from '@repo/utils/is-array';
 import * as stylex from '@stylexjs/stylex';
 
 import {spacing} from '../variables/tokens.stylex';
+
+type RowSpacing = keyof typeof spacingRowStyles;
+type ColumnSpacing = keyof typeof spacingColumnStyles;
+
+export type Spacing =
+  | (RowSpacing & ColumnSpacing)
+  | readonly [RowSpacing, ColumnSpacing];
+
+export function normalizeSpacing(spacing: Spacing) {
+  return !isArray(spacing) ? [spacing, spacing] : spacing;
+}
 
 export const spacingRowStyles = stylex.create({
   none: {
