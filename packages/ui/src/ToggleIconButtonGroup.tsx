@@ -11,11 +11,19 @@ import {ToggleButton, ToggleButtonGroup} from 'react-aria-components';
 import {controlColors, controlSelectedColors} from './variables/colors.stylex';
 import {cornerRadius, spacing} from './variables/tokens.stylex';
 
-export function ToggleIconButtonGroup(props: ToggleButtonGroupProps) {
+interface ToggleIconButtonGroupProps
+  extends Omit<ToggleButtonGroupProps, 'style'> {
+  readonly style?: stylex.StyleXStyles;
+}
+
+export function ToggleIconButtonGroup({
+  style,
+  ...props
+}: ToggleIconButtonGroupProps) {
   return (
     <ToggleButtonGroup
       {...props}
-      {...stylex.props(toggleIconButtonGroupStyles.base)}>
+      {...stylex.props(toggleIconButtonGroupStyles.base, style)}>
       {props.children}
     </ToggleButtonGroup>
   );

@@ -7,6 +7,7 @@ import {
   ToggleIconButton,
   ToggleIconButtonGroup,
 } from '@repo/ui/ToggleIconButtonGroup';
+import type * as stylex from '@stylexjs/stylex';
 import {createContext, use, useState} from 'react';
 
 type OrdersViewType = 'grid' | 'list';
@@ -27,7 +28,11 @@ export function OrdersView({children}: {readonly children: React.ReactNode}) {
   );
 }
 
-export function OrdersViewToggle() {
+interface OrdersViewToggleProps {
+  readonly style: stylex.StyleXStyles;
+}
+
+export function OrdersViewToggle(props: OrdersViewToggleProps) {
   const {viewType, setViewType} = use(OrdersViewContext);
   const {t} = useLingui();
   return (
@@ -39,7 +44,8 @@ export function OrdersViewToggle() {
         if (newViewType) {
           setViewType?.(newViewType as OrdersViewType);
         }
-      }}>
+      }}
+      {...props}>
       <ToggleIconButton
         aria-label={t`Grid View`}
         id={'grid' satisfies OrdersViewType}

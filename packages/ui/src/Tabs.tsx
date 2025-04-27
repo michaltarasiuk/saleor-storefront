@@ -58,19 +58,29 @@ interface TabProps extends React.ComponentProps<typeof AriaTab> {
   readonly icon: (props: {readonly color: string}) => React.ReactNode;
 }
 
-export function Tab({isSelected, ...props}: TabProps) {
+export function Tab(props: TabProps) {
   return (
     <AriaTab
-      {...stylex.props(tabStyles.base, isSelected && tabStyles.selected)}
+      className={({isSelected}) => {
+        const {className = ''} = stylex.props(
+          tabStyles.base,
+          isSelected && tabStyles.selected
+        );
+        return className;
+      }}
       {...props}>
-      <Slot.Root {...stylex.props(tabIconStyles.base)}>
-        {props.icon({
-          color: isSelected ? baseColors.accent : baseColors.textSubdued,
-        })}
-      </Slot.Root>
-      <span data-text={props.children} {...stylex.props(tabStyles.content)}>
-        {props.children}
-      </span>
+      {({isSelected}) => (
+        <>
+          <Slot.Root {...stylex.props(tabIconStyles.base)}>
+            {props.icon({
+              color: isSelected ? baseColors.accent : baseColors.textSubdued,
+            })}
+          </Slot.Root>
+          <span data-text={props.children} {...stylex.props(tabStyles.content)}>
+            {props.children}
+          </span>
+        </>
+      )}
     </AriaTab>
   );
 }

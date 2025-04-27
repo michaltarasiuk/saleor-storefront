@@ -4,6 +4,6 @@ export type Size = number | `${number}%` | 'fill';
 
 export function formatSize(
   size: Size
-): CSSProperties['blockSize'] | CSSProperties['inlineSize'] {
+): CSSProperties['blockSize' | 'inlineSize'] {
   return size === 'fill' ? '100%' : size;
 }

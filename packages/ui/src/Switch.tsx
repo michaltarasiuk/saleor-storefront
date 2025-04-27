@@ -20,14 +20,16 @@ interface SwitchProps extends AriaSwitchProps {
   readonly children: React.ReactNode;
 }
 
-export function Switch({children, isDisabled, ...props}: SwitchProps) {
+export function Switch({children, ...props}: SwitchProps) {
   return (
     <AriaSwitch
-      isDisabled={isDisabled}
-      {...stylex.props(
-        containerStyles.base,
-        isDisabled && containerStyles.disabled
-      )}
+      className={({isDisabled}) => {
+        const {className = ''} = stylex.props(
+          containerStyles.base,
+          isDisabled && containerStyles.disabled
+        );
+        return className;
+      }}
       {...props}>
       {({isFocusVisible, isFocused, isPressed, isSelected}) => (
         <>

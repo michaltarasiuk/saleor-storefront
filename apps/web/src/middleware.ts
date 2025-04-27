@@ -12,14 +12,14 @@ export function middleware(request: NextRequest) {
 
   let response: NextResponse;
   switch (status) {
-    case 'valid':
-      response = NextResponse.next();
-      break;
     case 'invalid':
       response = NextResponse.redirect(createLocalizedUrl(request));
       break;
     case 'missing':
       response = NextResponse.rewrite(createLocalizedUrl(request));
+      break;
+    case 'valid':
+      response = NextResponse.next();
       break;
     default:
       assertNever(status);

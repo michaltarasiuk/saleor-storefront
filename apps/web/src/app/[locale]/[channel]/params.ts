@@ -12,12 +12,9 @@ const {locales} = linguiConfigHelpers;
 
 export async function generateStaticParams() {
   const channels = await Array.fromAsync(getActiveChannels());
-
   const params: Params[] = [];
   for (const locale of locales) {
-    for (const channel of channels) {
-      params.push({locale, channel});
-    }
+    params.push(...channels.map(channel => ({locale, channel})));
   }
   return params;
 }

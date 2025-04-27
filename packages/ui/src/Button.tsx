@@ -46,7 +46,6 @@ export function Button({
   variant = 'primary',
   appearance = 'default',
   size = 'base',
-  isDisabled,
   pendingLabel,
   ...props
 }: ButtonProps) {
@@ -57,15 +56,17 @@ export function Button({
     variantHoverStyles && isKeyOf(variantHoverStyles, appearance);
   return (
     <AriaButton
-      {...stylex.props(
-        styles.base,
-        variantStyles.base,
-        variantStyles[appearance],
-        sizeStyles[size],
-        isDisabled && variantStyles.disabled,
-        hasHoverStyles && isHoverd && variantHoverStyles[appearance]
-      )}
-      isDisabled={isDisabled}
+      className={({isDisabled}) => {
+        const {className = ''} = stylex.props(
+          styles.base,
+          variantStyles.base,
+          variantStyles[appearance],
+          sizeStyles[size],
+          isDisabled && variantStyles.disabled,
+          hasHoverStyles && isHoverd && variantHoverStyles[appearance]
+        );
+        return className;
+      }}
       onHoverChange={setIsHoverd}
       {...props}>
       {({isPending}) =>

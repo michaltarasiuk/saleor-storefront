@@ -28,9 +28,7 @@ export default async function OrdersLayout({
         <Heading>
           <Trans>Orders</Trans>
         </Heading>
-        <div {...stylex.props(ordersViewToggleStyles.base)}>
-          <OrdersViewToggle />
-        </div>
+        <OrdersViewToggle style={ordersViewToggleStyles.base} />
       </InlineStack>
       <HeadingGroup>
         <OrderTabs confirmedTab={confirmed} pendingTab={pending} />

@@ -41,7 +41,7 @@ msgstr "Confirmed orders"
 msgid "Go to store"
 msgstr "Go to store"
 
-#: src/app/[locale]/[channel]/(account)/orders/_components/OrdersViewToggle.tsx:44
+#: src/app/[locale]/[channel]/(account)/orders/_components/OrdersViewToggle.tsx:50
 msgid "Grid View"
 msgstr "Grid View"
 
@@ -49,7 +49,7 @@ msgstr "Grid View"
 #~ msgid "Last Name"
 #~ msgstr "Last Name"
 
-#: src/app/[locale]/[channel]/(account)/orders/_components/OrdersViewToggle.tsx:50
+#: src/app/[locale]/[channel]/(account)/orders/_components/OrdersViewToggle.tsx:56
 msgid "List View"
 msgstr "List View"
 
@@ -61,7 +61,7 @@ msgstr "Order Tabs"
 msgid "Orders"
 msgstr "Orders"
 
-#: src/app/[locale]/[channel]/(account)/orders/_components/OrdersViewToggle.tsx:35
+#: src/app/[locale]/[channel]/(account)/orders/_components/OrdersViewToggle.tsx:40
 msgid "Orders View Toggle"
 msgstr "Orders View Toggle"
 
