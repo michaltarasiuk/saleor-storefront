@@ -22,7 +22,22 @@ export type Padding =
       PaddingInlineEnd,
     ];
 
-export function normalizePadding(padding: Padding) {
+export function getPaddingStyles(padding: Padding) {
+  const [
+    paddingBlockStart,
+    paddingBlockEnd,
+    paddingInlineStart,
+    paddingInlineEnd,
+  ] = normalizePadding(padding);
+  return [
+    paddingBlockStartStyles[paddingBlockStart],
+    paddingBlockEndStyles[paddingBlockEnd],
+    paddingInlineStartStyles[paddingInlineStart],
+    paddingInlineEndStyles[paddingInlineEnd],
+  ];
+}
+
+function normalizePadding(padding: Padding) {
   if (!isArray(padding)) {
     return [padding, padding, padding, padding];
   }
@@ -36,7 +51,7 @@ export function normalizePadding(padding: Padding) {
   }
 }
 
-export const paddingBlockStartStyles = stylex.create({
+const paddingBlockStartStyles = stylex.create({
   none: {
     paddingBlockStart: null,
   },
@@ -57,7 +72,7 @@ export const paddingBlockStartStyles = stylex.create({
   },
 });
 
-export const paddingBlockEndStyles = stylex.create({
+const paddingBlockEndStyles = stylex.create({
   none: {
     paddingBlockEnd: null,
   },
@@ -78,7 +93,7 @@ export const paddingBlockEndStyles = stylex.create({
   },
 });
 
-export const paddingInlineStartStyles = stylex.create({
+const paddingInlineStartStyles = stylex.create({
   none: {
     paddingInlineStart: null,
   },
@@ -99,7 +114,7 @@ export const paddingInlineStartStyles = stylex.create({
   },
 });
 
-export const paddingInlineEndStyles = stylex.create({
+const paddingInlineEndStyles = stylex.create({
   none: {
     paddingInlineEnd: null,
   },

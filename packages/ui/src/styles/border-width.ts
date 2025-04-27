@@ -22,7 +22,22 @@ export type BorderWidth =
       BorderInlineEndWidth,
     ];
 
-export function normalizeBorderWidth(borderWidth: BorderWidth) {
+export function getBorderWidthStyles(borderWidth: BorderWidth) {
+  const [
+    borderBlockStartWidth,
+    borderBlockEndWidth,
+    borderInlineStartWidth,
+    borderInlineEndWidth,
+  ] = normalizeBorderWidth(borderWidth);
+  return [
+    borderBlockStartWidthStyles[borderBlockStartWidth],
+    borderBlockEndWidthStyles[borderBlockEndWidth],
+    borderInlineStartWidthStyles[borderInlineStartWidth],
+    borderInlineEndWidthStyles[borderInlineEndWidth],
+  ];
+}
+
+function normalizeBorderWidth(borderWidth: BorderWidth) {
   if (!isArray(borderWidth)) {
     return [borderWidth, borderWidth, borderWidth, borderWidth];
   }
@@ -46,7 +61,7 @@ export function normalizeBorderWidth(borderWidth: BorderWidth) {
   }
 }
 
-export const borderBlockStartWidthStyles = stylex.create({
+const borderBlockStartWidthStyles = stylex.create({
   base: {
     borderBlockStartWidth: borderWidth.base,
   },
@@ -58,7 +73,7 @@ export const borderBlockStartWidthStyles = stylex.create({
   },
 });
 
-export const borderBlockEndWidthStyles = stylex.create({
+const borderBlockEndWidthStyles = stylex.create({
   base: {
     borderBlockEndWidth: borderWidth.base,
   },
@@ -70,7 +85,7 @@ export const borderBlockEndWidthStyles = stylex.create({
   },
 });
 
-export const borderInlineStartWidthStyles = stylex.create({
+const borderInlineStartWidthStyles = stylex.create({
   base: {
     borderInlineStartWidth: borderWidth.base,
   },
@@ -82,7 +97,7 @@ export const borderInlineStartWidthStyles = stylex.create({
   },
 });
 
-export const borderInlineEndWidthStyles = stylex.create({
+const borderInlineEndWidthStyles = stylex.create({
   base: {
     borderInlineEndWidth: borderWidth.base,
   },

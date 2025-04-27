@@ -10,11 +10,16 @@ export type Spacing =
   | (RowSpacing & ColumnSpacing)
   | readonly [RowSpacing, ColumnSpacing];
 
-export function normalizeSpacing(spacing: Spacing) {
+export function getSpacingStyles(spacing: Spacing) {
+  const [rowSpacing, columnSpacing] = normalizeSpacing(spacing);
+  return [spacingRowStyles[rowSpacing], spacingColumnStyles[columnSpacing]];
+}
+
+function normalizeSpacing(spacing: Spacing) {
   return !isArray(spacing) ? [spacing, spacing] : spacing;
 }
 
-export const spacingRowStyles = stylex.create({
+const spacingRowStyles = stylex.create({
   none: {
     rowGap: null,
   },
@@ -35,7 +40,7 @@ export const spacingRowStyles = stylex.create({
   },
 });
 
-export const spacingColumnStyles = stylex.create({
+const spacingColumnStyles = stylex.create({
   none: {
     columnGap: null,
   },
