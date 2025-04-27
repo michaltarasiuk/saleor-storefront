@@ -6,7 +6,9 @@ import {Badge} from './Badge';
 import {baseColors} from './variables/colors.stylex';
 import {borderWidth, cornerRadius} from './variables/tokens.stylex';
 
-interface ProductThumbnailProps extends Pick<ImageProps, 'src' | 'alt'> {
+interface ProductThumbnailProps {
+  readonly src: ImageProps['src'];
+  readonly alt: ImageProps['alt'];
   readonly badge: number;
   readonly size?: keyof typeof sizeStyles;
 }

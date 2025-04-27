@@ -17,7 +17,7 @@ interface ProgressProps {
 export function Progress({
   value,
   accessibilityLabel,
-  max = 1,
+  max = 100,
   tone = 'auto',
 }: ProgressProps) {
   if (value < 0 || !Number.isInteger(value)) {

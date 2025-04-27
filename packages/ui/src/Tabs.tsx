@@ -2,6 +2,11 @@
 
 import * as Slot from '@radix-ui/react-slot';
 import * as stylex from '@stylexjs/stylex';
+import type {
+  TabListProps,
+  TabProps as AriaTabProps,
+  TabsProps,
+} from 'react-aria-components';
 import {
   Tab as AriaTab,
   TabList as AriaTabList,
@@ -18,7 +23,7 @@ import {
 
 export {TabPanel} from 'react-aria-components';
 
-export function Tabs(props: React.ComponentProps<typeof AriaTabs>) {
+export function Tabs(props: TabsProps) {
   return (
     <AriaTabs {...stylex.props(tabsStyles.base)} {...props}>
       {props.children}
@@ -34,7 +39,9 @@ const tabsStyles = stylex.create({
   },
 });
 
-export function TabList(props: React.ComponentProps<typeof AriaTabList>) {
+export function TabList<T extends Record<PropertyKey, unknown>>(
+  props: TabListProps<T>
+) {
   return (
     <AriaTabList {...stylex.props(tabListStyles.base)} {...props}>
       {props.children}
@@ -52,7 +59,7 @@ const tabListStyles = stylex.create({
   },
 });
 
-interface TabProps extends React.ComponentProps<typeof AriaTab> {
+interface TabProps extends AriaTabProps {
   readonly children: string;
   readonly isSelected: boolean;
   readonly icon: (props: {readonly color: string}) => React.ReactNode;

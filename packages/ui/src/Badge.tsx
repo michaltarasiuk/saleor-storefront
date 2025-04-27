@@ -16,10 +16,10 @@ import {
 
 interface BadgeProps {
   readonly children: React.ReactNode;
-  readonly tone?: keyof typeof toneStyles;
-  readonly size?: keyof typeof sizeStyles;
   readonly accessibilityLabel?: string;
   readonly accessibilityVisibility?: AccessibilityVisibility;
+  readonly tone?: keyof typeof toneStyles;
+  readonly size?: keyof typeof sizeStyles;
   readonly visibility?: Visibility;
 }
 

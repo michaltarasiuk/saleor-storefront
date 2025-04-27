@@ -1,6 +1,7 @@
 'use client';
 
 import * as stylex from '@stylexjs/stylex';
+import type {ImageProps} from 'next/image';
 import {Suspense} from 'react';
 import {ErrorBoundary} from 'react-error-boundary';
 
@@ -12,8 +13,8 @@ import {baseColors} from './variables/colors.stylex';
 import {cornerRadius, spacing} from './variables/tokens.stylex';
 
 interface AvatarProps {
-  readonly src: string;
-  readonly alt: string;
+  readonly src: ImageProps['src'];
+  readonly alt: ImageProps['alt'];
   readonly initials?: string;
   readonly size?: keyof typeof sizeStyles;
 }

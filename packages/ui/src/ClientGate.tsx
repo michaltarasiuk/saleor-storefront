@@ -7,5 +7,6 @@ interface ClientGateProps {
 }
 
 export function ClientGate({children, fallback = null}: ClientGateProps) {
-  return useIsSSR() ? fallback : children();
+  const isSSR = useIsSSR();
+  return isSSR ? fallback : children();
 }
