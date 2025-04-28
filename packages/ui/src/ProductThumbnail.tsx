@@ -1,10 +1,8 @@
 import * as stylex from '@stylexjs/stylex';
 import type {ImageProps} from 'next/image';
-import Image from 'next/image';
 
 import {Badge} from './Badge';
-import {baseColors} from './variables/colors.stylex';
-import {borderWidth, cornerRadius} from './variables/tokens.stylex';
+import {Image} from './Image';
 
 interface ProductThumbnailProps {
   readonly src: ImageProps['src'];
@@ -21,7 +19,14 @@ export function ProductThumbnail({
 }: ProductThumbnailProps) {
   return (
     <div {...stylex.props(styles.base, sizeStyles[size])}>
-      <Image src={src} alt={alt} fill {...stylex.props(imageStyles.base)} />
+      <Image
+        src={src}
+        alt={alt}
+        border="base"
+        borderWidth="base"
+        cornderRadius="base"
+        fill
+      />
       <div {...stylex.props(badgeStyles.base)}>
         <Badge size={size}>{badge}</Badge>
       </div>
@@ -33,11 +38,6 @@ const styles = stylex.create({
   base: {
     position: 'relative',
     flexShrink: 0,
-    borderRadius: cornerRadius.base,
-    borderWidth: borderWidth.base,
-    borderStyle: 'solid',
-    borderColor: baseColors.border,
-    backgroundColor: baseColors.background,
   },
 });
 
@@ -49,12 +49,6 @@ const sizeStyles = stylex.create({
   base: {
     width: '64px',
     height: '64px',
-  },
-});
-
-const imageStyles = stylex.create({
-  base: {
-    borderRadius: cornerRadius.base,
   },
 });
 
