@@ -1,9 +1,9 @@
 'use client';
 
 import * as stylex from '@stylexjs/stylex';
-import {Label, ProgressBar} from 'react-aria-components';
+import {ProgressBar} from 'react-aria-components';
 
-import {Text} from './Text';
+import {Label} from './Text';
 import {baseColors, criticalColors} from './variables/colors.stylex';
 import {borderWidth} from './variables/tokens.stylex';
 
@@ -38,9 +38,9 @@ export function Progress({
               )}
             />
           </div>
-          <Text appearance={tone === 'auto' ? 'default' : 'critical'} asChild>
-            <Label>{accessibilityLabel}</Label>
-          </Text>
+          <Label appearance={tone === 'auto' ? 'default' : 'critical'}>
+            {accessibilityLabel}
+          </Label>
         </>
       )}
     </ProgressBar>

@@ -1,5 +1,5 @@
-import * as Slot from '@radix-ui/react-slot';
 import * as stylex from '@stylexjs/stylex';
+import {Label as AriaLabel} from 'react-aria-components';
 
 import {fontSizeStyles} from './styles/font-size';
 import type {AccessibilityVisibility} from './types/accessibility';
@@ -21,7 +21,6 @@ interface StyleProps {
 interface TextProps extends StyleProps {
   readonly children: React.ReactNode;
   readonly accessibilityVisibility?: AccessibilityVisibility;
-  readonly asChild?: boolean;
 }
 
 export function Text({
@@ -30,11 +29,9 @@ export function Text({
   size = 'base',
   emphasis = 'base',
   accessibilityVisibility,
-  asChild,
 }: TextProps) {
-  const Element = asChild ? Slot.Root : 'span';
   return (
-    <Element
+    <span
       aria-hidden={accessibilityVisibility === 'hidden'}
       {...stylex.props(
         styles.base,
@@ -43,7 +40,7 @@ export function Text({
         emphasisStyles[emphasis]
       )}>
       {children}
-    </Element>
+    </span>
   );
 }
 
@@ -67,6 +64,29 @@ export function TextBlock({
       )}>
       {children}
     </p>
+  );
+}
+
+interface LabelProps extends StyleProps {
+  readonly children: React.ReactNode;
+}
+
+export function Label({
+  children,
+  appearance = 'default',
+  size = 'base',
+  emphasis = 'base',
+}: LabelProps) {
+  return (
+    <AriaLabel
+      {...stylex.props(
+        styles.base,
+        apperanceStyles[appearance],
+        fontSizeStyles[size],
+        emphasisStyles[emphasis]
+      )}>
+      {children}
+    </AriaLabel>
   );
 }
 

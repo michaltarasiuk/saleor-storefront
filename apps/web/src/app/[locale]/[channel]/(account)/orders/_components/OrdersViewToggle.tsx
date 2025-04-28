@@ -3,10 +3,7 @@
 import {useLingui} from '@lingui/react/macro';
 import {GridIcon} from '@repo/ui/icons/GridIcon';
 import {ListIcon} from '@repo/ui/icons/ListIcon';
-import {
-  ToggleIconButton,
-  ToggleIconButtonGroup,
-} from '@repo/ui/ToggleIconButtonGroup';
+import {ToggleButton, ToggleButtonGroup} from '@repo/ui/ToggleButtonGroup';
 import type * as stylex from '@stylexjs/stylex';
 import {createContext, use, useState} from 'react';
 
@@ -36,7 +33,7 @@ export function OrdersViewToggle(props: OrdersViewToggleProps) {
   const {viewType, setViewType} = use(OrdersViewContext);
   const {t} = useLingui();
   return (
-    <ToggleIconButtonGroup
+    <ToggleButtonGroup
       aria-label={t`Orders View Toggle`}
       selectionMode="single"
       selectedKeys={[viewType]}
@@ -46,18 +43,16 @@ export function OrdersViewToggle(props: OrdersViewToggleProps) {
         }
       }}
       {...props}>
-      <ToggleIconButton
+      <ToggleButton
         aria-label={t`Grid View`}
         id={'grid' satisfies OrdersViewType}
-        isSelected={viewType === 'grid'}>
-        <GridIcon aria-hidden="true" />
-      </ToggleIconButton>
-      <ToggleIconButton
+        icon={GridIcon}
+      />
+      <ToggleButton
         aria-label={t`List View`}
         id={'list' satisfies OrdersViewType}
-        isSelected={viewType === 'list'}>
-        <ListIcon aria-hidden="true" />
-      </ToggleIconButton>
-    </ToggleIconButtonGroup>
+        icon={ListIcon}
+      />
+    </ToggleButtonGroup>
   );
 }

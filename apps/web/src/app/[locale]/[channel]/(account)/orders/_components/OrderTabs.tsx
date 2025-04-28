@@ -20,16 +20,10 @@ export function OrderTabs({confirmedTab, pendingTab}: OrderTabsProps) {
   return (
     <Tabs selectedKey={selectedTab} onSelectionChange={setSelectedTab}>
       <TabList aria-label={t`Order Tabs`}>
-        <Tab
-          id={confirmedTabId}
-          icon={({color}) => <OrderBoxIcon aria-hidden="true" stroke={color} />}
-          isSelected={selectedTab === confirmedTabId}>
+        <Tab id={confirmedTabId} icon={OrderBoxIcon}>
           {t`Confirmed`}
         </Tab>
-        <Tab
-          id={pendingTabId}
-          icon={({color}) => <ClockIcon aria-hidden="true" fill={color} />}
-          isSelected={selectedTab === pendingTabId}>
+        <Tab id={pendingTabId} icon={ClockIcon}>
           {t`Pending`}
         </Tab>
       </TabList>

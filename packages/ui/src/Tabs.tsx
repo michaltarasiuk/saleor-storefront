@@ -1,6 +1,5 @@
 'use client';
 
-import * as Slot from '@radix-ui/react-slot';
 import * as stylex from '@stylexjs/stylex';
 import type {
   TabListProps,
@@ -39,9 +38,7 @@ const tabsStyles = stylex.create({
   },
 });
 
-export function TabList<T extends Record<PropertyKey, unknown>>(
-  props: TabListProps<T>
-) {
+export function TabList<T extends object>(props: TabListProps<T>) {
   return (
     <AriaTabList {...stylex.props(tabListStyles.base)} {...props}>
       {props.children}
@@ -61,11 +58,10 @@ const tabListStyles = stylex.create({
 
 interface TabProps extends AriaTabProps {
   readonly children: string;
-  readonly isSelected: boolean;
-  readonly icon: (props: {readonly color: string}) => React.ReactNode;
+  readonly icon: (props: React.ComponentProps<'svg'>) => React.JSX.Element;
 }
 
-export function Tab(props: TabProps) {
+export function Tab({children, icon: Icon, ...props}: TabProps) {
   return (
     <AriaTab
       className={({isSelected}) => {
@@ -76,18 +72,10 @@ export function Tab(props: TabProps) {
         return className;
       }}
       {...props}>
-      {({isSelected}) => (
-        <>
-          <Slot.Root {...stylex.props(tabIconStyles.base)}>
-            {props.icon({
-              color: isSelected ? baseColors.accent : baseColors.textSubdued,
-            })}
-          </Slot.Root>
-          <span data-text={props.children} {...stylex.props(tabStyles.content)}>
-            {props.children}
-          </span>
-        </>
-      )}
+      <Icon aria-hidden="true" {...stylex.props(tabIconStyles.base)} />
+      <span data-text={children} {...stylex.props(tabStyles.content)}>
+        {children}
+      </span>
     </AriaTab>
   );
 }

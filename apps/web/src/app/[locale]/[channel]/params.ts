@@ -11,10 +11,9 @@ export interface Params extends Record<string, string> {
 const {locales} = linguiConfigHelpers;
 
 export async function generateStaticParams() {
-  const channels = await Array.fromAsync(getActiveChannels());
   const params: Params[] = [];
-  for (const locale of locales) {
-    params.push(...channels.map(channel => ({locale, channel})));
+  for await (const channel of getActiveChannels()) {
+    params.push(...locales.map(locale => ({locale, channel})));
   }
   return params;
 }
