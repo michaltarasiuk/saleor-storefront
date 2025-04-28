@@ -11,7 +11,7 @@ import {
 } from 'react-aria-components';
 
 import {controlColors, controlSelectedColors} from './variables/colors.stylex';
-import {cornerRadius, spacing} from './variables/tokens.stylex';
+import {borderWidth, cornerRadius, spacing} from './variables/tokens.stylex';
 
 interface ToggleButtonGroupPropsExtended
   extends Omit<AriaToggleButtonGroupProps, 'style'> {
@@ -47,9 +47,10 @@ interface ToggleButtonProps extends AriaToggleButtonProps {
 export function ToggleButton({icon: Icon, ...props}: ToggleButtonProps) {
   return (
     <AriaToggleButton
-      className={({isSelected}) => {
+      className={({isFocusVisible, isSelected}) => {
         const {className = ''} = stylex.props(
           toggleButtonStyles.base,
+          isFocusVisible && toggleButtonStyles.focusVisible,
           isSelected && toggleButtonStyles.selected
         );
         return className;
@@ -72,9 +73,16 @@ const toggleButtonStyles = stylex.create({
     border: 'none',
     borderRadius: cornerRadius.large,
     cursor: 'pointer',
+    outline: 'none',
   },
   selected: {
     backgroundColor: controlColors.background,
+  },
+  focusVisible: {
+    outlineColor: controlColors.accent,
+    outlineOffset: spacing.small600,
+    outlineStyle: 'solid',
+    outlineWidth: borderWidth.medium,
   },
 });
 

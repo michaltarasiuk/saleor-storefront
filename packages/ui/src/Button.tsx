@@ -1,7 +1,6 @@
 'use client';
 
 import {assertNever} from '@repo/utils/assert-never';
-import {isKeyOf} from '@repo/utils/is-keyof';
 import * as stylex from '@stylexjs/stylex';
 import {
   Button as AriaButton,
@@ -27,15 +26,18 @@ import {
   typographyPrimary,
 } from './variables/tokens.stylex';
 
+type Variant = 'primary' | 'secondary' | 'plain';
+type Appearance = Exclude<
+  | keyof typeof primaryStyles
+  | keyof typeof secondaryStyles
+  | keyof typeof plainStyles,
+  'base' | 'disabled' | 'hovered'
+>;
+
 interface ButtonProps extends AriaButtonProps {
   readonly children: React.ReactNode;
-  readonly variant?: 'primary' | 'secondary' | 'plain';
-  readonly appearance?: Exclude<
-    | keyof typeof primaryStyles
-    | keyof typeof secondaryStyles
-    | keyof typeof plainStyles,
-    'base' | 'disabled'
-  >;
+  readonly variant?: Variant;
+  readonly appearance?: Appearance;
   readonly size?: keyof typeof sizeStyles;
   readonly pendingLabel?: string;
 }
@@ -48,20 +50,20 @@ export function Button({
   pendingLabel,
   ...props
 }: ButtonProps) {
-  const [variantStyles, variantHoverStyles] = mapVariantToStyles(variant);
-  const iconVariantsStyles = mapVariantToIconStyles(variant);
-  const hasHoverStyles =
-    variantHoverStyles && isKeyOf(variantHoverStyles, appearance);
+  const [variantStyles, variantStateStyles] = mapVariantToStyles(variant);
+  const [iconVariantsStyles, iconVariantsStateStyles] =
+    mapVariantToIconStyles(variant);
   return (
     <AriaButton
-      className={({isDisabled, isHovered}) => {
+      className={({isFocusVisible, isDisabled, isHovered}) => {
         const {className = ''} = stylex.props(
           styles.base,
           variantStyles.base,
           variantStyles[appearance],
           sizeStyles[size],
-          isDisabled && variantStyles.disabled,
-          hasHoverStyles && isHovered && variantHoverStyles[appearance]
+          isFocusVisible && styles.focusVisible,
+          isDisabled && variantStateStyles.disabled,
+          isHovered && variantStateStyles.hovered
         );
         return className;
       }}
@@ -73,9 +75,9 @@ export function Button({
           <Spinner
             accessibilityLabel={pendingLabel}
             style={
-              typeof iconVariantsStyles[appearance] === 'function'
-                ? iconVariantsStyles[appearance](isHovered)
-                : iconVariantsStyles[appearance]
+              isHovered
+                ? iconVariantsStateStyles.hovered
+                : iconVariantsStyles.default
             }
           />
         )
@@ -84,27 +86,27 @@ export function Button({
   );
 }
 
-function mapVariantToStyles(variant: NonNullable<ButtonProps['variant']>) {
+function mapVariantToStyles(variant: Variant) {
   switch (variant) {
     case 'primary':
-      return [primaryStyles, primaryHoveredStyles] as const;
+      return [primaryStyles, primaryStateStyles] as const;
     case 'secondary':
-      return [secondaryStyles, secondaryHoveredStyles] as const;
+      return [secondaryStyles, secondaryStateStyles] as const;
     case 'plain':
-      return [plainStyles] as const;
+      return [plainStyles, plainStateStyles] as const;
     default:
       assertNever(variant);
   }
 }
 
-function mapVariantToIconStyles(variant: NonNullable<ButtonProps['variant']>) {
+function mapVariantToIconStyles(variant: Variant) {
   switch (variant) {
     case 'primary':
-      return primaryIconStyles;
+      return [primaryIconStyles, primaryIconStateStyles] as const;
     case 'secondary':
-      return secondaryIconStyles;
+      return [secondaryIconStyles, secondaryIconStateStyles] as const;
     case 'plain':
-      return plainIconStyles;
+      return [plainIconStyles, plainIconStateStyles] as const;
     default:
       assertNever(variant);
   }
@@ -123,6 +125,12 @@ const styles = stylex.create({
     borderWidth: borderWidth.base,
     borderStyle: 'solid',
     borderColor: baseColors.background,
+    outline: 'none',
+    outlineOffset: spacing.small600,
+    outlineWidth: borderWidth.medium,
+  },
+  focusVisible: {
+    outlineStyle: 'solid',
   },
 });
 
@@ -134,10 +142,20 @@ const primaryStyles = stylex.create({
     color: primaryButtonColors.text,
     backgroundColor: primaryButtonColors.background,
     borderColor: primaryButtonColors.border,
+    outlineColor: controlColors.accent,
   },
   critical: {
     color: criticalColors.textContrast,
     backgroundColor: criticalColors.critical,
+    outlineColor: criticalColors.critical,
+  },
+});
+
+const primaryStateStyles = stylex.create({
+  hovered: {
+    color: primaryButtonHoverColors.text,
+    backgroundColor: primaryButtonHoverColors.background,
+    borderColor: primaryButtonHoverColors.border,
   },
   disabled: {
     cursor: 'default',
@@ -147,20 +165,18 @@ const primaryStyles = stylex.create({
   },
 });
 
-const primaryHoveredStyles = stylex.create({
+const primaryIconStyles = stylex.create({
   default: {
-    color: primaryButtonHoverColors.text,
-    backgroundColor: primaryButtonHoverColors.background,
-    borderColor: primaryButtonHoverColors.border,
+    fill: primaryButtonColors.icon,
+  },
+  critical: {
+    fill: criticalColors.textContrast,
   },
 });
 
-const primaryIconStyles = stylex.create({
-  default: (isHoverd: boolean) => ({
-    fill: isHoverd ? primaryButtonHoverColors.icon : primaryButtonColors.icon,
-  }),
-  critical: {
-    fill: criticalColors.textContrast,
+const primaryIconStateStyles = stylex.create({
+  hovered: {
+    fill: primaryButtonHoverColors.icon,
   },
   disabled: {
     fill: controlColors.textSubdued,
@@ -180,6 +196,14 @@ const secondaryStyles = stylex.create({
     color: criticalColors.critical,
     borderColor: criticalColors.critical,
   },
+});
+
+const secondaryStateStyles = stylex.create({
+  hovered: {
+    color: secondaryButtonHoverColors.text,
+    backgroundColor: secondaryButtonHoverColors.background,
+    borderColor: secondaryButtonHoverColors.border,
+  },
   disabled: {
     cursor: 'default',
     color: controlColors.textSubdued,
@@ -187,22 +211,18 @@ const secondaryStyles = stylex.create({
   },
 });
 
-const secondaryHoveredStyles = stylex.create({
+const secondaryIconStyles = stylex.create({
   default: {
-    color: secondaryButtonHoverColors.text,
-    backgroundColor: secondaryButtonHoverColors.background,
-    borderColor: secondaryButtonHoverColors.border,
+    fill: secondaryButtonColors.icon,
+  },
+  critical: {
+    fill: criticalColors.critical,
   },
 });
 
-const secondaryIconStyles = stylex.create({
-  default: (isHoverd: boolean) => ({
-    fill: isHoverd
-      ? secondaryButtonHoverColors.icon
-      : secondaryButtonColors.icon,
-  }),
-  critical: {
-    fill: criticalColors.critical,
+const secondaryIconStateStyles = stylex.create({
+  hovered: {
+    fill: secondaryButtonHoverColors.icon,
   },
   disabled: {
     fill: controlColors.textSubdued,
@@ -211,9 +231,9 @@ const secondaryIconStyles = stylex.create({
 
 const plainStyles = stylex.create({
   base: {
+    fontWeight: typographyPrimary.base,
     textDecoration: 'underline',
     textUnderlinePosition: 'from-font',
-    fontWeight: typographyPrimary.base,
   },
   default: {
     color: baseColors.accent,
@@ -221,6 +241,10 @@ const plainStyles = stylex.create({
   critical: {
     color: criticalColors.critical,
   },
+});
+
+const plainStateStyles = stylex.create({
+  hovered: {},
   disabled: {
     cursor: 'default',
     opacity: opacity[50],
@@ -234,6 +258,10 @@ const plainIconStyles = stylex.create({
   critical: {
     fill: criticalColors.critical,
   },
+});
+
+const plainIconStateStyles = stylex.create({
+  hovered: {},
   disabled: {
     fill: controlColors.accent,
   },

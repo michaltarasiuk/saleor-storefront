@@ -26,8 +26,8 @@ msgid "Confirmed"
 msgstr "Confirmed"
 
 #: src/app/[locale]/[channel]/(account)/orders/@confirmed/page.tsx:19
-msgid "Confirmed orders"
-msgstr "Confirmed orders"
+#~ msgid "Confirmed orders"
+#~ msgstr "Confirmed orders"
 
 #: src/app/[locale]/[channel]/(account)/register/page.tsx:76
 #~ msgid "Email Address"
@@ -57,7 +57,7 @@ msgstr "List View"
 msgid "Order Tabs"
 msgstr "Order Tabs"
 
-#: src/app/[locale]/[channel]/(account)/orders/layout.tsx:29
+#: src/app/[locale]/[channel]/(account)/orders/layout.tsx:30
 msgid "Orders"
 msgstr "Orders"
 

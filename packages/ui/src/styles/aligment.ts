@@ -27,6 +27,9 @@ export const blockAlignmentStyles = stylex.create({
   baseline: {
     alignItems: 'baseline',
   },
+  stretch: {
+    alignItems: 'stretch',
+  },
 });
 
 export const inlineAlignmentStyles = stylex.create({

@@ -4,12 +4,12 @@ import {Trans, useLingui} from '@lingui/react/macro';
 import {Avatar} from '@repo/ui/Avatar';
 import {Button} from '@repo/ui/Button';
 import {Container} from '@repo/ui/Container';
+import {Image} from '@repo/ui/Image';
 import {Link} from '@repo/ui/Link';
 import {InlineStack} from '@repo/ui/Stack';
 import {baseColors} from '@repo/ui/variables/colors.stylex';
 import {spacing} from '@repo/ui/variables/tokens.stylex';
 import * as stylex from '@stylexjs/stylex';
-import Image from 'next/image';
 
 import {Routes} from '@/consts/routes';
 

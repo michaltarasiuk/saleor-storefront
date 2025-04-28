@@ -16,6 +16,7 @@ import {type CornerRadius, getCornerRadiusStyles} from './styles/corner-radius';
 import {getPaddingStyles, type Padding} from './styles/padding';
 import {getSpacingStyles, type Spacing} from './styles/spacing';
 import type {NonPresentationalAccessibilityRole} from './types/accessibility';
+import {baseColors} from './variables/colors.stylex';
 
 export function BlockStack(props: Omit<StackProps, 'direction'>) {
   return <Stack direction="block" {...props} />;
@@ -45,7 +46,7 @@ function Stack({
   accessibilityLabel,
   accessibilityRole,
   direction,
-  blockAligment = 'start',
+  blockAligment = 'stretch',
   inlineAligment = 'start',
   spacing = 'none',
   padding = 'none',
@@ -78,5 +79,6 @@ function Stack({
 const styles = stylex.create({
   base: {
     display: 'flex',
+    borderColor: baseColors.border,
   },
 });

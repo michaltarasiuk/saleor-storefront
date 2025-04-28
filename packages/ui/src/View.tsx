@@ -18,6 +18,7 @@ import {getPaddingStyles, type Padding} from './styles/padding';
 import type {NonPresentationalAccessibilityRole} from './types/accessibility';
 import type {Visibility} from './types/visibility';
 import {formatSize, type Size} from './utils/format-size';
+import {baseColors} from './variables/colors.stylex';
 
 interface ViewProps {
   readonly children: React.ReactNode;
@@ -94,6 +95,7 @@ const styles = stylex.create({
   base: {
     displayInside: 'flex',
     flexDirection: 'column',
+    borderColor: baseColors.border,
   },
   size: (
     inlineSize?: React.CSSProperties['inlineSize'],

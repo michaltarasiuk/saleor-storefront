@@ -24,6 +24,10 @@ export const spacing = stylex.defineVars({
   none: '0px',
 });
 
+export const negativeSpacing = stylex.defineVars({
+  large200: '-21px',
+});
+
 export const typographyPrimary = stylex.defineVars({
   fontFamily: 'SF Pro Text',
   base: '400',

@@ -34,11 +34,11 @@ const styles = stylex.create({
     fontSize: typographyFontSize.base,
     fontWeight: typographyPrimary.base,
     lineHeight: 1,
-    outline: 'none',
     textDecoration: 'none',
+    borderRadius: cornerRadius.base,
+    outline: 'none',
   },
   focusVisible: {
-    borderRadius: cornerRadius.base,
     outlineColor: controlColors.accent,
     outlineOffset: spacing.small400,
     outlineStyle: 'solid',

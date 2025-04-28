@@ -13,6 +13,7 @@ export function BlockSpacer({spacing = 'base'}: BlockSpacerProps) {
 const styles = stylex.create({
   base: {
     inlineSize: '100%',
+    flexShrink: 0,
   },
 });
 

@@ -13,8 +13,9 @@ import {
 } from 'react-aria-components';
 
 import type {Breakpoints} from './types/breakpoints';
-import {baseColors} from './variables/colors.stylex';
+import {baseColors, controlColors} from './variables/colors.stylex';
 import {
+  borderWidth,
   cornerRadius,
   spacing,
   typographyPrimary,
@@ -64,9 +65,10 @@ interface TabProps extends AriaTabProps {
 export function Tab({children, icon: Icon, ...props}: TabProps) {
   return (
     <AriaTab
-      className={({isSelected}) => {
+      className={({isFocusVisible, isSelected}) => {
         const {className = ''} = stylex.props(
           tabStyles.base,
+          isFocusVisible && tabStyles.focusVisible,
           isSelected && tabStyles.selected
         );
         return className;
@@ -91,8 +93,9 @@ const tabStyles = stylex.create({
     fontFamily: typographyPrimary.fontFamily,
     fontSize: typographyPrimary.base,
     fontWeight: typographyPrimary.base,
-    cursor: 'pointer',
     borderRadius: cornerRadius.base,
+    cursor: 'pointer',
+    outline: 'none',
   },
   content: {
     display: 'inline-flex',
@@ -109,6 +112,12 @@ const tabStyles = stylex.create({
     color: baseColors.accent,
     backgroundColor: baseColors.backgroundSubdued,
     fontWeight: typographyPrimary.bold,
+  },
+  focusVisible: {
+    outlineColor: controlColors.accent,
+    outlineOffset: spacing.small600,
+    outlineStyle: 'solid',
+    outlineWidth: borderWidth.medium,
   },
 });
 
