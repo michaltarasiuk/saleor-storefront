@@ -3,7 +3,10 @@
 import * as stylex from '@stylexjs/stylex';
 import {useVisuallyHidden} from 'react-aria';
 
-import {fontSizeStyles as sizeStyles} from './styles/font-size';
+import {
+  type FontSize as Size,
+  fontSizeStyles as sizeStyles,
+} from './styles/font-size';
 import type {AccessibilityVisibility} from './types/accessibility';
 import type {Visibility} from './types/visibility';
 import {baseColors, criticalColors} from './variables/colors.stylex';
@@ -19,7 +22,7 @@ interface BadgeProps {
   readonly accessibilityLabel?: string;
   readonly accessibilityVisibility?: AccessibilityVisibility;
   readonly tone?: keyof typeof toneStyles;
-  readonly size?: keyof typeof sizeStyles;
+  readonly size?: Size;
   readonly visibility?: Visibility;
 }
 

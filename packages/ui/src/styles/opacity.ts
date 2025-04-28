@@ -2,6 +2,8 @@ import * as stylex from '@stylexjs/stylex';
 
 import {opacity} from '../variables/tokens.stylex';
 
+export type Opacity = keyof typeof opacityStyles;
+
 export const opacityStyles = stylex.create({
   10: {
     opacity: opacity[10],

@@ -1,11 +1,18 @@
 import * as stylex from '@stylexjs/stylex';
 
-import {inlineAlignmentStyles} from './styles/aligment';
+import type {
+  BlockAlignment,
+  Direction,
+  InlineAlignment,
+} from './styles/aligment';
+import {directionStyles, inlineAlignmentStyles} from './styles/aligment';
 import {blockAlignmentStyles} from './styles/aligment';
+import type {Background} from './styles/background';
 import {backgroundStyles} from './styles/background';
 import type {BorderStyle} from './styles/border-style';
 import {getBorderStyleStyles} from './styles/border-style';
 import {type BorderWidth, getBorderWidthStyles} from './styles/border-width';
+import {type CornerRadius, getCornerRadiusStyles} from './styles/corner-radius';
 import {getPaddingStyles, type Padding} from './styles/padding';
 import {getSpacingStyles, type Spacing} from './styles/spacing';
 import type {NonPresentationalAccessibilityRole} from './types/accessibility';
@@ -22,14 +29,15 @@ interface StackProps {
   readonly children: React.ReactNode;
   readonly accessibilityLabel?: string;
   readonly accessibilityRole?: NonPresentationalAccessibilityRole;
-  readonly direction: keyof typeof directionStyles;
-  readonly blockAligment?: keyof typeof blockAlignmentStyles;
-  readonly inlineAligment?: keyof typeof inlineAlignmentStyles;
+  readonly direction: Direction;
+  readonly blockAligment?: BlockAlignment;
+  readonly inlineAligment?: InlineAlignment;
   readonly padding?: Padding;
   readonly spacing?: Spacing;
-  readonly background?: keyof typeof backgroundStyles;
+  readonly background?: Background;
   readonly border?: BorderStyle;
   readonly borderWidth?: BorderWidth;
+  readonly cornerRadius?: CornerRadius;
 }
 
 function Stack({
@@ -44,6 +52,7 @@ function Stack({
   background = 'transparent',
   border = 'none',
   borderWidth = 'base',
+  cornerRadius = 'none',
 }: StackProps) {
   return (
     <div
@@ -55,10 +64,11 @@ function Stack({
         blockAlignmentStyles[blockAligment],
         inlineAlignmentStyles[inlineAligment],
         backgroundStyles[background],
+        ...getPaddingStyles(padding),
+        ...getSpacingStyles(spacing),
         ...getBorderStyleStyles(border),
         ...getBorderWidthStyles(borderWidth),
-        ...getPaddingStyles(padding),
-        ...getSpacingStyles(spacing)
+        ...getCornerRadiusStyles(cornerRadius)
       )}>
       {children}
     </div>
@@ -68,14 +78,5 @@ function Stack({
 const styles = stylex.create({
   base: {
     display: 'flex',
-  },
-});
-
-const directionStyles = stylex.create({
-  block: {
-    flexDirection: 'column',
-  },
-  inline: {
-    flexDirection: 'row',
   },
 });

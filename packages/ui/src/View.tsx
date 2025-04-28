@@ -3,15 +3,20 @@
 import * as stylex from '@stylexjs/stylex';
 import {useVisuallyHidden} from 'react-aria';
 
+import type {BlockAlignment, InlineAlignment} from './styles/aligment';
 import {blockAlignmentStyles, inlineAlignmentStyles} from './styles/aligment';
+import type {Background} from './styles/background';
 import {backgroundStyles} from './styles/background';
 import {type BorderStyle, getBorderStyleStyles} from './styles/border-style';
 import {type BorderWidth, getBorderWidthStyles} from './styles/border-width';
+import {type CornerRadius, getCornerRadiusStyles} from './styles/corner-radius';
+import type {Opacity} from './styles/opacity';
 import {opacityStyles} from './styles/opacity';
+import type {Overflow} from './styles/overflow';
 import {overflowStyles} from './styles/overflow';
 import {getPaddingStyles, type Padding} from './styles/padding';
-import {type NonPresentationalAccessibilityRole} from './types/accessibility';
-import {type Visibility} from './types/visibility';
+import type {NonPresentationalAccessibilityRole} from './types/accessibility';
+import type {Visibility} from './types/visibility';
 import {formatSize, type Size} from './utils/format-size';
 
 interface ViewProps {
@@ -23,14 +28,15 @@ interface ViewProps {
   readonly maxInlineSize?: Size;
   readonly minBlockSize?: Size;
   readonly minInlineSize?: Size;
-  readonly blockAlignment?: keyof typeof blockAlignmentStyles;
-  readonly inlineAlignment?: keyof typeof inlineAlignmentStyles;
+  readonly blockAlignment?: BlockAlignment;
+  readonly inlineAlignment?: InlineAlignment;
   readonly padding?: Padding;
-  readonly background?: keyof typeof backgroundStyles;
+  readonly background?: Background;
   readonly border?: BorderStyle;
   readonly borderWidth?: BorderWidth;
-  readonly opacity?: keyof typeof opacityStyles;
-  readonly overflow?: keyof typeof overflowStyles;
+  readonly cornerRadius?: CornerRadius;
+  readonly opacity?: Opacity;
+  readonly overflow?: Overflow;
   readonly visibility?: Visibility;
 }
 
@@ -49,6 +55,7 @@ export function View({
   background = 'transparent',
   border = 'none',
   borderWidth = 'base',
+  cornerRadius = 'none',
   opacity,
   overflow = 'visible',
   visibility,
@@ -73,9 +80,10 @@ export function View({
           minBlockSize && formatSize(minBlockSize),
           minInlineSize && formatSize(minInlineSize)
         ),
+        ...getPaddingStyles(padding),
         ...getBorderStyleStyles(border),
         ...getBorderWidthStyles(borderWidth),
-        ...getPaddingStyles(padding)
+        ...getCornerRadiusStyles(cornerRadius)
       )}>
       {children}
     </div>
