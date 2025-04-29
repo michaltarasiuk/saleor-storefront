@@ -17,17 +17,17 @@ const NextConfigQueryDocument = graphql(`
   }
 `);
 
-function getDefaultChannel(channels: NextConfigQuery['channels']) {
-  const channel = (channels ?? [])
+function findDefaultChannel(channels: NextConfigQuery['channels']) {
+  const defaultChannel = (channels ?? [])
     .filter(channel => channel.isActive)
     .find(channel => channel.slug === env.DEFAULT_CHANNEL_SLUG);
 
-  if (!channel) {
+  if (!defaultChannel) {
     throw new Error(
-      `Default channel "${env.DEFAULT_CHANNEL_SLUG}" not found among active channels.`
+      `Default channel "${env.DEFAULT_CHANNEL_SLUG}" not found in the list of active channels.`
     );
   }
-  return channel;
+  return defaultChannel;
 }
 
 export default async function () {
@@ -86,7 +86,7 @@ export default async function () {
       return config;
     },
     async redirects() {
-      const defaultChannel = getDefaultChannel(channels);
+      const defaultChannel = findDefaultChannel(channels);
       return [
         {
           source: '/:locale',
