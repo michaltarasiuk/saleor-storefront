@@ -1,5 +1,4 @@
 import {match as matchLocale} from '@formatjs/intl-localematcher';
-import {assertNever} from '@repo/utils/assert-never';
 import {prependSegment, splitPathname} from '@repo/utils/pathname';
 import Negotiator from 'negotiator';
 import type {NextRequest} from 'next/server';
@@ -8,47 +7,29 @@ import {NextResponse} from 'next/server';
 import {linguiConfigHelpers} from './i18n/utils';
 
 export function middleware(request: NextRequest) {
-  const {status} = determineLocaleStatusInPathname(request.nextUrl.pathname);
-
-  let response: NextResponse;
-  switch (status) {
-    case 'invalid':
-    case 'missing':
-      response = NextResponse.redirect(createLocalizedUrl(request));
-      break;
-    case 'valid':
-      response = NextResponse.next();
-      break;
-    default:
-      assertNever(status);
+  let response = NextResponse.next();
+  if (!hasValidLocale(request.nextUrl.pathname)) {
+    const preferredLocale = getPreferredLocale(request.headers);
+    const pathnameWithLocale = prependSegment(
+      request.nextUrl.pathname,
+      preferredLocale ?? linguiConfigHelpers.defaultLocale
+    );
+    response = NextResponse.redirect(
+      new URL(pathnameWithLocale, request.nextUrl.origin)
+    );
   }
   return response;
 }
 
-function createLocalizedUrl(request: NextRequest) {
-  const userPreferredLocale = getPreferredLocale(request.headers);
-  const localizedPathname = prependSegment(
-    request.nextUrl.pathname,
-    userPreferredLocale ?? linguiConfigHelpers.defaultLocale
-  );
-  return new URL(localizedPathname, request.nextUrl.origin);
-}
-
-function determineLocaleStatusInPathname(
+function hasValidLocale(
   pathname: string,
   locales = linguiConfigHelpers.locales
 ) {
   const [localeFromPath] = splitPathname(pathname);
-
-  let status: 'valid' | 'invalid' | 'missing';
   if (!localeFromPath) {
-    status = 'missing';
-  } else if (!locales.includes(localeFromPath)) {
-    status = 'invalid';
-  } else {
-    status = 'valid';
+    return false;
   }
-  return {status};
+  return locales.includes(localeFromPath);
 }
 
 function getPreferredLocale(
