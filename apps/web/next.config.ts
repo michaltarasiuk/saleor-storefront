@@ -18,14 +18,16 @@ const NextConfigQueryDocument = graphql(`
 `);
 
 function getDefaultChannel(channels: NextConfigQuery['channels']) {
-  for (const channel of channels ?? []) {
-    if (channel.isActive && channel.slug === env.DEFAULT_CHANNEL_SLUG) {
-      return channel;
-    }
+  const channel = (channels ?? [])
+    .filter(channel => channel.isActive)
+    .find(channel => channel.slug === env.DEFAULT_CHANNEL_SLUG);
+
+  if (!channel) {
+    throw new Error(
+      `Default channel "${env.DEFAULT_CHANNEL_SLUG}" not found among active channels.`
+    );
   }
-  throw new Error(
-    `Default channel ${env.DEFAULT_CHANNEL_SLUG} not found in the list of active channels.`
-  );
+  return channel;
 }
 
 export default async function () {
