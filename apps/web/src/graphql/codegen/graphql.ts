@@ -32748,6 +32748,17 @@ export type _Service = {
   sdl?: Maybe<Scalars['String']['output']>;
 };
 
+export type NextConfigQueryVariables = Exact<{[key: string]: never}>;
+
+export type NextConfigQuery = {
+  __typename?: 'Query';
+  channels?: Array<{
+    __typename?: 'Channel';
+    slug: string;
+    isActive: boolean;
+  }> | null;
+};
+
 export type ChannelsQueryVariables = Exact<{[key: string]: never}>;
 
 export type ChannelsQuery = {
@@ -32759,6 +32770,32 @@ export type ChannelsQuery = {
   }> | null;
 };
 
+export const NextConfigDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: {kind: 'Name', value: 'NextConfig'},
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: {kind: 'Name', value: 'channels'},
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {kind: 'Field', name: {kind: 'Name', value: 'slug'}},
+                {kind: 'Field', name: {kind: 'Name', value: 'isActive'}},
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<NextConfigQuery, NextConfigQueryVariables>;
 export const ChannelsDocument = {
   kind: 'Document',
   definitions: [

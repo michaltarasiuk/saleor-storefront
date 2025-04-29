@@ -1,7 +1,13 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "ui": "tui",
-  "globalEnv": ["NODE_ENV", "NEXT_RUNTIME", "CI", "APP_TOKEN"],
+  "globalEnv": [
+    "NODE_ENV",
+    "NEXT_RUNTIME",
+    "CI",
+    "APP_TOKEN",
+    "DEFAULT_CHANNEL_SLUG"
+  ],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],

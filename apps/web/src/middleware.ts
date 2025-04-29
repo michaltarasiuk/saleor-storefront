@@ -13,10 +13,8 @@ export function middleware(request: NextRequest) {
   let response: NextResponse;
   switch (status) {
     case 'invalid':
-      response = NextResponse.redirect(createLocalizedUrl(request));
-      break;
     case 'missing':
-      response = NextResponse.rewrite(createLocalizedUrl(request));
+      response = NextResponse.redirect(createLocalizedUrl(request));
       break;
     case 'valid':
       response = NextResponse.next();
