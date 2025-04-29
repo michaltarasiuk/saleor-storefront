@@ -22,7 +22,7 @@ interface AvatarProps {
 export function Avatar({src, alt, initials, size = 'base'}: AvatarProps) {
   const fallback = initials ? (
     <Text size={size}>{initials}</Text>
-  ) : (
+  ) : ( 
     <ProfileIcon aria-hidden="true" />
   );
   return (
