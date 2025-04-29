@@ -1,10 +1,12 @@
 'use client';
-import NextImage, {
+import {
   type ImageLoaderProps,
   type ImageProps,
   type StaticImageData,
 } from 'next/image';
 import {useIsSSR} from 'react-aria';
+
+import {Image} from './Image';
 
 const DefaultWidth = 640 satisfies ImageLoaderProps['width'];
 const DefaultQuality = 75 satisfies ImageLoaderProps['quality'];
@@ -19,7 +21,7 @@ export function SuspenseImage(props: ImageProps) {
   const src = getImageSrc(props.src);
   if (!imageCache.has(src)) {
     const {promise, resolve, reject} = Promise.withResolvers();
-    const img = new Image();
+    const img = new window.Image();
     img.src = imageLoader({
       src,
       width: DefaultWidth,
@@ -36,7 +38,7 @@ export function SuspenseImage(props: ImageProps) {
     throw promise;
   }
   return (
-    <NextImage
+    <Image
       loader={imageLoaderProps =>
         imageLoader({...imageLoaderProps, width: DefaultWidth})
       }

@@ -31,7 +31,7 @@ export function ImageGroup({
           </div>
         </ImageGroupGridContext>
       );
-    case 'inlineStack': {
+    case 'inlineStack':
       return (
         <ImageGroupInlineStackContext value={true}>
           <div
@@ -41,7 +41,6 @@ export function ImageGroup({
           </div>
         </ImageGroupInlineStackContext>
       );
-    }
     default:
       assertNever(variant);
   }
