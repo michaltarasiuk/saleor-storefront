@@ -12,7 +12,6 @@ import {
   Tabs as AriaTabs,
 } from 'react-aria-components';
 
-import type {Breakpoints} from './types/breakpoints';
 import {baseColors, controlColors} from './variables/colors.stylex';
 import {
   borderWidth,
@@ -39,7 +38,9 @@ const tabsStyles = stylex.create({
   },
 });
 
-export function TabList<T extends object>(props: TabListProps<T>) {
+export function TabList<T extends Record<PropertyKey, unknown>>(
+  props: TabListProps<T>
+) {
   return (
     <AriaTabList {...stylex.props(tabListStyles.base)} {...props}>
       {props.children}
@@ -58,11 +59,10 @@ const tabListStyles = stylex.create({
 });
 
 interface TabProps extends AriaTabProps {
-  readonly children: string;
-  readonly icon: (props: React.ComponentProps<'svg'>) => React.JSX.Element;
+  readonly title: string;
 }
 
-export function Tab({children, icon: Icon, ...props}: TabProps) {
+export function Tab({title, children, ...props}: TabProps) {
   return (
     <AriaTab
       className={({isFocusVisible, isSelected}) => {
@@ -74,10 +74,14 @@ export function Tab({children, icon: Icon, ...props}: TabProps) {
         return className;
       }}
       {...props}>
-      <Icon aria-hidden="true" {...stylex.props(tabIconStyles.base)} />
-      <span data-text={children} {...stylex.props(tabStyles.content)}>
-        {children}
-      </span>
+      {props => (
+        <>
+          {typeof children === 'function' ? children(props) : children}
+          <span data-text={title} {...stylex.props(tabStyles.content)}>
+            {title}
+          </span>
+        </>
+      )}
     </AriaTab>
   );
 }
@@ -118,16 +122,5 @@ const tabStyles = stylex.create({
     outlineOffset: spacing.small600,
     outlineStyle: 'solid',
     outlineWidth: borderWidth.medium,
-  },
-});
-
-const tabIconStyles = stylex.create({
-  base: {
-    height: '18px',
-    display: {
-      default: 'none',
-      ['@media (width >= 40rem)' satisfies Breakpoints['Sm']]: 'inline',
-    },
-    flexShrink: 0,
   },
 });
