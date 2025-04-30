@@ -10,12 +10,11 @@ export interface Params extends Record<string, string> {
 
 const {locales} = linguiConfigHelpers;
 
-export async function generateStaticParams() {
-  const params: Params[] = [];
-  for await (const channel of getActiveChannels()) {
-    params.push(...locales.map(locale => ({locale, channel})));
-  }
-  return params;
+export async function generateStaticParams(): Promise<Params[]> {
+  const activeChannels = await getActiveChannels();
+  return activeChannels.flatMap(channel =>
+    locales.map(locale => ({locale, channel}))
+  );
 }
 
 const ChannelsQueryDocument = graphql(`
@@ -27,14 +26,12 @@ const ChannelsQueryDocument = graphql(`
   }
 `);
 
-async function* getActiveChannels() {
+async function getActiveChannels() {
   const {channels} = await client
     .setHeader('Authorization', `Bearer ${env.APP_TOKEN}`)
     .request(ChannelsQueryDocument);
 
-  for (const channel of channels ?? []) {
-    if (channel.isActive) {
-      yield channel.slug;
-    }
-  }
+  return (channels ?? [])
+    .filter(channel => channel.isActive)
+    .map(channel => channel.slug);
 }
