@@ -8,7 +8,6 @@ import * as stylex from '@stylexjs/stylex';
 
 import {I18nProvider} from '@/i18n/I18nProvider';
 import {getLocaleMessages, setActiveI18nInstance} from '@/i18n/utils';
-import {brandedTheme} from '@/themes/branded';
 
 import {Html} from '../_components/Html';
 import type {Params} from '../params';
@@ -36,7 +35,7 @@ export default async function AccountLayout({
       <RouterProvider>
         <QueryClientProvider>
           <Html>
-            <body {...stylex.props(bodyStyles.base, ...brandedTheme())}>
+            <body {...stylex.props(bodyStyles.base)}>
               <Header />
               <Container elementType="main" style={mainStyles.base}>
                 {children}

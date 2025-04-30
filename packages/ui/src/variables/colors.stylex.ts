@@ -15,7 +15,7 @@ export const baseColors = stylex.defineVars({
 
 export const controlColors = stylex.defineVars({
   background: '#FFFFFF',
-  backgroundSubdued: '#FFFFFF',
+  backgroundSubdued: '#F5F5F5',
   border: '#DEDEDE',
   icon: '#707070',
   text: '#000000',
