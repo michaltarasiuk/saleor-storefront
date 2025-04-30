@@ -53,9 +53,9 @@ export const primaryButtonColors = stylex.defineVars({
 });
 
 export const primaryButtonHoverColors = stylex.defineVars({
-  background: '#1773B0',
+  background: '#105989',
   backgroundSubdued: '#1773B0',
-  border: '#1773B0',
+  border: '#105989',
   icon: '#FFFFFF',
   text: '#FFFFFF',
   textSubdued: '#FFFFFF',
@@ -83,7 +83,7 @@ export const secondaryButtonHoverColors = stylex.defineVars({
   backgroundSubdued: '#FFFFFF',
   border: '#DEDEDE',
   icon: '#1773B0',
-  text: '#1773B0',
+  text: '#105989',
   textSubdued: '#1773B0',
   textContrast: '#FFFFFF',
   accent: '#1773B0',

@@ -19,7 +19,16 @@ export const animations = stylex.defineVars({
   pulse,
 });
 
-export const transition = stylex.defineVars({
-  transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
-  transitionDuration: '150ms',
+export const transitionProperties = stylex.defineVars({
+  color:
+    'color, background-color, border-color, text-decoration-color, fill, stroke',
+  shadow: 'box-shadow',
+});
+
+export const transitionDurations = stylex.defineVars({
+  default: '150ms',
+});
+
+export const transitionTimingFunctions = stylex.defineVars({
+  default: 'cubic-bezier(0.4, 0, 0.2, 1)',
 });

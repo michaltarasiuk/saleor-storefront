@@ -7,7 +7,11 @@ import {
 } from 'react-aria-components';
 
 import {Text} from './Text';
-import {transition} from './variables/animations.stylex';
+import {
+  transitionDurations,
+  transitionProperties,
+  transitionTimingFunctions,
+} from './variables/animations.stylex';
 import {controlColors} from './variables/colors.stylex';
 import {
   borderWidth,
@@ -73,8 +77,9 @@ const toggleStyles = stylex.create({
     backgroundColor: controlColors.background,
     borderRadius: cornerRadius.fullyRounded,
     boxShadow: `inset 0 0 0 ${borderWidth.base} ${controlColors.border}`,
-    transitionDuration: transition.transitionDuration,
-    transitionTimingFunction: transition.transitionTimingFunction,
+    transitionProperty: transitionProperties.shadow,
+    transitionDuration: transitionDurations.default,
+    transitionTimingFunction: transitionTimingFunctions.default,
     '::before': {
       content: '""',
       position: 'absolute',
@@ -83,8 +88,9 @@ const toggleStyles = stylex.create({
       height: '100%',
       opacity: opacity[30],
       borderRadius: cornerRadius.fullyRounded,
-      transitionDuration: transition.transitionDuration,
-      transitionTimingFunction: transition.transitionTimingFunction,
+      transitionProperty: transitionProperties.shadow,
+      transitionDuration: transitionDurations.default,
+      transitionTimingFunction: transitionTimingFunctions.default,
     },
     '::after': {
       content: "''",
@@ -94,8 +100,9 @@ const toggleStyles = stylex.create({
       height: '14px',
       borderRadius: cornerRadius.fullyRounded,
       backgroundColor: controlColors.textSubdued,
-      transitionDuration: transition.transitionDuration,
-      transitionTimingFunction: transition.transitionTimingFunction,
+      transitionProperty: transitionProperties.shadow,
+      transitionDuration: transitionDurations.default,
+      transitionTimingFunction: transitionTimingFunctions.default,
     },
   },
   focusVisible: {

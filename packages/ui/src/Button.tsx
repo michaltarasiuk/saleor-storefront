@@ -9,6 +9,11 @@ import {
 
 import {Spinner} from './Spinner';
 import {
+  transitionDurations,
+  transitionProperties,
+  transitionTimingFunctions,
+} from './variables/animations.stylex';
+import {
   baseColors,
   controlColors,
   criticalColors,
@@ -55,13 +60,14 @@ export function Button({
     mapVariantToIconStyles(variant);
   return (
     <AriaButton
-      className={({isFocusVisible, isDisabled, isHovered}) => {
+      className={({isFocusVisible, isFocused, isDisabled, isHovered}) => {
         const {className = ''} = stylex.props(
           styles.base,
           variantStyles.base,
           variantStyles[appearance],
           sizeStyles[size],
           isFocusVisible && styles.focusVisible,
+          isFocused && variantStateStyles.focused,
           isDisabled && variantStateStyles.disabled,
           isHovered && variantStateStyles.hovered
         );
@@ -128,6 +134,9 @@ const styles = stylex.create({
     outline: 'none',
     outlineOffset: spacing.small600,
     outlineWidth: borderWidth.medium,
+    transitionProperty: transitionProperties.color,
+    transitionDuration: transitionDurations.default,
+    transitionTimingFunction: transitionTimingFunctions.default,
   },
   focusVisible: {
     outlineStyle: 'solid',
@@ -152,6 +161,10 @@ const primaryStyles = stylex.create({
 });
 
 const primaryStateStyles = stylex.create({
+  focused: {
+    backgroundColor: primaryButtonHoverColors.background,
+    borderColor: primaryButtonHoverColors.border,
+  },
   hovered: {
     color: primaryButtonHoverColors.text,
     backgroundColor: primaryButtonHoverColors.background,
@@ -199,6 +212,9 @@ const secondaryStyles = stylex.create({
 });
 
 const secondaryStateStyles = stylex.create({
+  focused: {
+    color: secondaryButtonHoverColors.text,
+  },
   hovered: {
     color: secondaryButtonHoverColors.text,
     backgroundColor: secondaryButtonHoverColors.background,
@@ -244,7 +260,12 @@ const plainStyles = stylex.create({
 });
 
 const plainStateStyles = stylex.create({
-  hovered: {},
+  focused: {
+    color: secondaryButtonHoverColors.text,
+  },
+  hovered: {
+    color: secondaryButtonHoverColors.text,
+  },
   disabled: {
     cursor: 'default',
     opacity: opacity[50],

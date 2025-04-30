@@ -76,9 +76,9 @@ const brandedPrimaryButtonColors = stylex.createTheme(primaryButtonColors, {
 const brandedPrimaryButtonHoverColors = stylex.createTheme(
   primaryButtonHoverColors,
   {
-    background: '#44691E',
+    background: '#395918',
     backgroundSubdued: '#44691E',
-    border: '#44691E',
+    border: '#395918',
     icon: '#F7FAF5',
     text: '#F7FAF5',
     textSubdued: '#F7FAF5',
@@ -109,7 +109,7 @@ const brandedSecondaryButtonHoverColors = stylex.createTheme(
     backgroundSubdued: '#44691E',
     border: '#44691E',
     icon: '#44691E',
-    text: '#44691E',
+    text: '#395918',
     textSubdued: '#44691E',
     textContrast: '#FFFFFF',
     accent: '#44691E',

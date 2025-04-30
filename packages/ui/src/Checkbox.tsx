@@ -8,7 +8,11 @@ import {
 
 import {CheckmarkIcon} from './icons/CheckmarkIcon';
 import {Text} from './Text';
-import {transition} from './variables/animations.stylex';
+import {
+  transitionDurations,
+  transitionProperties,
+  transitionTimingFunctions,
+} from './variables/animations.stylex';
 import {controlColors, criticalColors} from './variables/colors.stylex';
 import {
   borderWidth,
@@ -67,9 +71,9 @@ const boxStyles = stylex.create({
     borderRadius: cornerRadius.base,
     padding: spacing.small400,
     boxShadow: `inset 0 0 0 ${borderWidth.base} ${controlColors.border}`,
-    transitionProperty: 'box-shadow',
-    transitionDuration: transition.transitionDuration,
-    transitionTimingFunction: transition.transitionTimingFunction,
+    transitionProperty: transitionProperties.shadow,
+    transitionDuration: transitionDurations.default,
+    transitionTimingFunction: transitionTimingFunctions.default,
     '::before': {
       content: '""',
       position: 'absolute',
@@ -78,9 +82,9 @@ const boxStyles = stylex.create({
       height: '100%',
       opacity: opacity[30],
       borderRadius: cornerRadius.base,
-      transitionProperty: 'box-shadow',
-      transitionDuration: transition.transitionDuration,
-      transitionTimingFunction: transition.transitionTimingFunction,
+      transitionProperty: transitionProperties.shadow,
+      transitionDuration: transitionDurations.default,
+      transitionTimingFunction: transitionTimingFunctions.default,
     },
   },
   focusVisible: {
