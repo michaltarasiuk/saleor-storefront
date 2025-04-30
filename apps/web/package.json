@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"next dev --port 3000\" \"bun run codegen --watch\"",
+    "dev": "concurrently \"next dev --port 3000\" \"bun run codegen --silent --watch\"",
     "build": "next build",
     "start": "next start",
     "lint": "next lint --max-warnings 0",
