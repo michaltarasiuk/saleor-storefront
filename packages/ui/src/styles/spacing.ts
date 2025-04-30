@@ -32,7 +32,7 @@ const spacingRowStyles = stylex.create({
     rowGap: spacing.base,
   },
   loose: {
-    rowGap: spacing.large300,
+    rowGap: spacing.large200,
   },
   extraLoose: {
     rowGap: spacing.large500,
@@ -53,7 +53,7 @@ const spacingColumnStyles = stylex.create({
     columnGap: spacing.base,
   },
   loose: {
-    columnGap: spacing.large300,
+    columnGap: spacing.large200,
   },
   extraLoose: {
     columnGap: spacing.large500,

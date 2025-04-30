@@ -53,7 +53,7 @@ const tabListStyles = stylex.create({
     display: 'flex',
     gap: spacing.base,
     backgroundColor: baseColors.background,
-    padding: spacing.large300,
+    padding: spacing.large200,
     borderRadius: cornerRadius.large,
   },
 });

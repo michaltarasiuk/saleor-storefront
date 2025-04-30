@@ -120,6 +120,7 @@ function mapVariantToIconStyles(variant: Variant) {
 
 const styles = stylex.create({
   base: {
+    width: '100%',
     display: 'inline-flex',
     justifyContent: 'center',
     alignItems: 'center',

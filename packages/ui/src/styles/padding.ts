@@ -54,7 +54,7 @@ const paddingBlockStartStyles = stylex.create({
     paddingBlockStart: spacing.base,
   },
   loose: {
-    paddingBlockStart: spacing.large300,
+    paddingBlockStart: spacing.large200,
   },
   extraLoose: {
     paddingBlockStart: spacing.large500,
@@ -75,7 +75,7 @@ const paddingBlockEndStyles = stylex.create({
     paddingBlockEnd: spacing.base,
   },
   loose: {
-    paddingBlockEnd: spacing.large300,
+    paddingBlockEnd: spacing.large200,
   },
   extraLoose: {
     paddingBlockEnd: spacing.large500,
@@ -96,7 +96,7 @@ const paddingInlineStartStyles = stylex.create({
     paddingInlineStart: spacing.base,
   },
   loose: {
-    paddingInlineStart: spacing.large300,
+    paddingInlineStart: spacing.large200,
   },
   extraLoose: {
     paddingInlineStart: spacing.large500,
@@ -117,7 +117,7 @@ const paddingInlineEndStyles = stylex.create({
     paddingInlineEnd: spacing.base,
   },
   loose: {
-    paddingInlineEnd: spacing.large300,
+    paddingInlineEnd: spacing.large200,
   },
   extraLoose: {
     paddingInlineEnd: spacing.large500,

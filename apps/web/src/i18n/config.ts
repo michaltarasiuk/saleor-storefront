@@ -1,6 +1,6 @@
 import {raise} from '@repo/utils/raise';
 
-import linguiConfig from '@/config/lingui';
+import linguiConfig from '../../lingui.config';
 
 export const linguiConfigHelpers = {
   get defaultLocale() {
