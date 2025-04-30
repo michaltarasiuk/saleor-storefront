@@ -1,7 +1,7 @@
 import {env} from '@/env';
 import {client} from '@/graphql/client';
 import {graphql} from '@/graphql/codegen';
-import {linguiConfigHelpers} from '@/i18n/utils';
+import {linguiConfigHelpers} from '@/i18n/config';
 
 export interface Params extends Record<string, string> {
   readonly locale: string;

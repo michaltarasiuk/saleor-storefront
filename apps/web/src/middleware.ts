@@ -4,7 +4,7 @@ import Negotiator from 'negotiator';
 import type {NextRequest} from 'next/server';
 import {NextResponse} from 'next/server';
 
-import {linguiConfigHelpers} from './i18n/utils';
+import {linguiConfigHelpers} from './i18n/config';
 
 export function middleware(request: NextRequest) {
   let response = NextResponse.next();

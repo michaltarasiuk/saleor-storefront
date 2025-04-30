@@ -18,6 +18,7 @@
     "@lingui/macro": "^5.3.0",
     "@lingui/react": "^5.3.0",
     "@repo/ui": "workspace:*",
+    "@repo/utils": "workspace:*",
     "@sentry/nextjs": "^9.12.0",
     "@stylexjs/open-props": "^0.11.1",
     "@stylexjs/stylex": "^0.11.1",

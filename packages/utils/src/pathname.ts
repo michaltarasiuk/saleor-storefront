@@ -1,5 +1,5 @@
 export function joinPathname(...pathname: readonly string[]) {
-  return pathname.join('/');
+  return '/' + pathname.join('/');
 }
 
 export function splitPathname(pathname: string) {

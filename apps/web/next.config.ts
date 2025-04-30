@@ -1,10 +1,12 @@
 import optimizeLocales from '@react-aria/optimize-locales-plugin';
+import {joinPathname} from '@repo/utils/pathname';
 import {withSentryConfig} from '@sentry/nextjs';
 import type {NextConfig} from 'next';
 
 import {client} from '@/graphql/client';
 import {graphql} from '@/graphql/codegen';
 import type {NextConfigQuery} from '@/graphql/codegen/graphql';
+import {linguiConfigHelpers} from '@/i18n/config';
 
 import {env} from './env';
 
@@ -87,13 +89,11 @@ export default async function () {
     },
     async redirects() {
       const defaultChannel = findDefaultChannel(channels);
-      return [
-        {
-          source: '/:locale',
-          destination: '/:locale' + `/${defaultChannel.slug}`,
-          permanent: true,
-        },
-      ];
+      return linguiConfigHelpers.locales.map(locale => ({
+        source: joinPathname(locale),
+        destination: joinPathname(locale, defaultChannel.slug),
+        permanent: true,
+      }));
     },
   };
 

@@ -4,7 +4,8 @@
     "plugins": [{"name": "next"}],
     "paths": {
       "@/*": ["./src/*"],
-      "@/env": ["./env"]
+      "@/env": ["./env"],
+      "@/config/*": ["./*.config"]
     }
   },
   "include": [
