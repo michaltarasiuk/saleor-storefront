@@ -19,7 +19,7 @@ const NextConfigQueryDocument = graphql(`
   }
 `);
 
-function findDefaultChannel(channels: NextConfigQuery['channels']) {
+function getDefaultChannel(channels: NextConfigQuery['channels']) {
   const defaultChannel = (channels ?? [])
     .filter(channel => channel.isActive)
     .find(channel => channel.slug === env.DEFAULT_CHANNEL_SLUG);
@@ -88,7 +88,8 @@ export default async function () {
       return config;
     },
     async redirects() {
-      const defaultChannel = findDefaultChannel(channels);
+      const defaultChannel = getDefaultChannel(channels);
+
       return linguiConfigHelpers.locales.map(locale => ({
         source: joinPathname(locale),
         destination: joinPathname(locale, defaultChannel.slug),
