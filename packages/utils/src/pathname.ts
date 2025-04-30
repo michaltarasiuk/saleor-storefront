@@ -1,4 +1,4 @@
-export function joinPathname(...pathname: readonly string[]) {
+export function formatPathname(...pathname: readonly string[]) {
   return '/' + pathname.join('/');
 }
 
@@ -9,5 +9,5 @@ export function splitPathname(pathname: string) {
 
 export function prependSegment(pathname: string, segment: string) {
   const segments = splitPathname(pathname);
-  return joinPathname(segment, ...segments);
+  return formatPathname(segment, ...segments);
 }

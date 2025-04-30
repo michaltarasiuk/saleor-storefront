@@ -1,5 +1,5 @@
 import optimizeLocales from '@react-aria/optimize-locales-plugin';
-import {joinPathname} from '@repo/utils/pathname';
+import {formatPathname} from '@repo/utils/pathname';
 import {withSentryConfig} from '@sentry/nextjs';
 import type {NextConfig} from 'next';
 
@@ -91,8 +91,8 @@ export default async function () {
       const defaultChannel = getDefaultChannel(channels);
 
       return linguiConfigHelpers.locales.map(locale => ({
-        source: joinPathname(locale),
-        destination: joinPathname(locale, defaultChannel.slug),
+        source: formatPathname(locale),
+        destination: formatPathname(locale, defaultChannel.slug),
         permanent: true,
       }));
     },
