@@ -1,87 +1,85 @@
+import {isArray} from '@repo/utils/is-array';
 import * as stylex from '@stylexjs/stylex';
 
-import type {
-  BlockAlignment,
-  Direction,
-  InlineAlignment,
-} from './styles/aligment';
-import {
-  blockAlignmentStyles,
-  directionStyles,
-  inlineAlignmentStyles,
-} from './styles/aligment';
 import {type Background, backgroundStyles} from './styles/background';
 import {type BorderStyle, getBorderStyleStyles} from './styles/border-style';
 import {type BorderWidth, getBorderWidthStyles} from './styles/border-width';
 import {type CornerRadius, getCornerRadiusStyles} from './styles/corner-radius';
+import {type Overflow, overflowStyles} from './styles/overflow';
 import {getPaddingStyles, type Padding} from './styles/padding';
 import {getSizeStyles, type SizeProps} from './styles/size';
 import {getSpacingStyles, type Spacing} from './styles/spacing';
 import type {NonPresentationalAccessibilityRole} from './types/accessibility';
-import {baseColors} from './variables/colors.stylex';
+import {
+  formatGridItemSize,
+  type GridItemSize,
+} from './utils/format-grid-item-size';
 
-export function BlockStack(props: Omit<StackProps, 'direction'>) {
-  return <Stack direction="block" {...props} />;
-}
+type Columns = GridItemSize[] | GridItemSize;
+type Rows = GridItemSize[] | GridItemSize;
 
-export function InlineStack(props: Omit<StackProps, 'direction'>) {
-  return <Stack direction="inline" {...props} />;
-}
-
-interface StackProps extends SizeProps {
+interface GridProps extends SizeProps {
   readonly children: React.ReactNode;
-  readonly direction: Direction;
   readonly accessibilityLabel?: string;
   readonly accessibilityRole?: NonPresentationalAccessibilityRole;
-  readonly blockAligment?: BlockAlignment;
-  readonly inlineAligment?: InlineAlignment;
-  readonly padding?: Padding;
-  readonly spacing?: Spacing;
+  readonly columns?: Columns;
+  readonly rows?: Rows;
   readonly background?: Background;
   readonly border?: BorderStyle;
   readonly borderWidth?: BorderWidth;
   readonly cornerRadius?: CornerRadius;
+  readonly overflow?: Overflow;
+  readonly padding?: Padding;
+  readonly spacing?: Spacing;
 }
 
-function Stack({
+export function Grid({
   children,
-  direction,
-  accessibilityLabel,
   accessibilityRole,
+  accessibilityLabel,
   minBlockSize,
   maxBlockSize,
   minInlineSize,
   maxInlineSize,
-  blockAligment = 'stretch',
-  inlineAligment = 'start',
-  spacing = 'none',
-  padding = 'none',
+  columns = 'fill',
+  rows = 'fill',
   background = 'transparent',
   border = 'none',
   borderWidth = 'base',
   cornerRadius = 'none',
-}: StackProps) {
+  overflow = 'visible',
+  padding = 'none',
+  spacing = 'none',
+}: GridProps) {
   return (
     <div
       role={accessibilityRole}
       aria-label={accessibilityLabel}
       {...stylex.props(
         styles.base,
-        directionStyles[direction],
-        blockAlignmentStyles[blockAligment],
-        inlineAlignmentStyles[inlineAligment],
         backgroundStyles[background],
+        overflowStyles[overflow],
+        styles.columns(
+          isArray(columns)
+            ? columns.map(formatGridItemSize).join(' ')
+            : formatGridItemSize(columns)
+        ),
+        styles.rows(
+          isArray(rows)
+            ? rows.map(formatGridItemSize).join(' ')
+            : formatGridItemSize(rows)
+        ),
         getSizeStyles({
           minBlockSize,
           maxBlockSize,
           minInlineSize,
           maxInlineSize,
         }),
-        getPaddingStyles(padding),
-        getSpacingStyles(spacing),
         getBorderStyleStyles(border),
         getBorderWidthStyles(borderWidth),
-        getCornerRadiusStyles(cornerRadius)
+        getCornerRadiusStyles(cornerRadius),
+        getPaddingStyles(padding),
+        getSpacingStyles(spacing)
       )}>
       {children}
     </div>
@@ -90,7 +88,14 @@ function Stack({
 
 const styles = stylex.create({
   base: {
-    display: 'flex',
-    borderColor: baseColors.border,
+    display: 'grid',
   },
+  columns: (
+    gridTemplateColumns: React.CSSProperties['gridTemplateColumns']
+  ) => ({
+    gridTemplateColumns,
+  }),
+  rows: (gridTemplateRows: React.CSSProperties['gridTemplateRows']) => ({
+    gridTemplateRows,
+  }),
 });

@@ -1,5 +1,4 @@
-import {spacing} from '@repo/ui/variables/tokens.stylex';
-import * as stylex from '@stylexjs/stylex';
+import {Grid} from '@repo/ui/Grid';
 
 import {setActiveI18nInstance} from '@/i18n/utils';
 
@@ -16,18 +15,10 @@ export default async function ConfirmedOrdersPage({
   const {locale} = await params;
   setActiveI18nInstance(locale);
   return (
-    <div {...stylex.props(ordersStyles.base)}>
+    <Grid columns={['fill', 'fill', 'fill']} spacing="loose">
       <Order />
       <Order />
       <Order />
-    </div>
+    </Grid>
   );
 }
-
-const ordersStyles = stylex.create({
-  base: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(3, 1fr)',
-    columnGap: spacing.large200,
-  },
-});

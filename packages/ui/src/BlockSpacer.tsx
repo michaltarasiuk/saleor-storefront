@@ -22,7 +22,7 @@ const spacingStyles = stylex.create({
     blockSize: null,
   },
   extraTight: {
-    blockSize: spacing.small400,
+    blockSize: spacing.small300,
   },
   tight: {
     blockSize: spacing.small200,

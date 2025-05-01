@@ -23,7 +23,7 @@ const spacingRowStyles = stylex.create({
     rowGap: null,
   },
   extraTight: {
-    rowGap: spacing.small400,
+    rowGap: spacing.small300,
   },
   tight: {
     rowGap: spacing.small200,
@@ -44,7 +44,7 @@ const spacingColumnStyles = stylex.create({
     columnGap: null,
   },
   extraTight: {
-    columnGap: spacing.small400,
+    columnGap: spacing.small300,
   },
   tight: {
     columnGap: spacing.small200,

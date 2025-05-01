@@ -34,7 +34,7 @@ export function SuspenseImage(props: ImageProps) {
     img.onerror = () => {
       imageCache.add(src);
       reject(new Error(`Failed to load image: ${src}`));
-    };
+    };              
     throw promise;
   }
   return (

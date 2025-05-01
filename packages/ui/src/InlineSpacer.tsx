@@ -22,7 +22,7 @@ const spacingStyles = stylex.create({
     inlineSize: null,
   },
   extraTight: {
-    inlineSize: spacing.small400,
+    inlineSize: spacing.small300,
   },
   tight: {
     inlineSize: spacing.small200,
