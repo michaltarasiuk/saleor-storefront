@@ -49,7 +49,7 @@ export function Image({
     return nextImage;
   }
   return <div {...stylex.props(containerStyles.base)}>{nextImage}</div>;
-}
+} 
 
 const imageStyles = stylex.create({
   base: {

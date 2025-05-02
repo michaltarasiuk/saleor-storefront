@@ -1,8 +1,6 @@
 import {Trans} from '@lingui/react/macro';
 import {Heading, HeadingGroup} from '@repo/ui/Heading';
 import {InlineStack} from '@repo/ui/Stack';
-import type {Breakpoints} from '@repo/ui/types/breakpoints';
-import * as stylex from '@stylexjs/stylex';
 
 import {setActiveI18nInstance} from '@/i18n/utils';
 
@@ -29,7 +27,7 @@ export default async function OrdersLayout({
         <Heading>
           <Trans>Orders</Trans>
         </Heading>
-        <OrdersViewToggle style={ordersViewToggleStyles.base} />
+        <OrdersViewToggle />
       </InlineStack>
       <HeadingGroup>
         <OrderTabs confirmedTab={confirmed} pendingTab={pending} />
@@ -37,13 +35,3 @@ export default async function OrdersLayout({
     </OrdersView>
   );
 }
-
-const ordersViewToggleStyles = stylex.create({
-  base: {
-    marginInlineStart: 'auto',
-    display: {
-      default: 'none',
-      ['@media (width >= 48rem)' satisfies Breakpoints['Md']]: 'inherit',
-    },
-  },
-});

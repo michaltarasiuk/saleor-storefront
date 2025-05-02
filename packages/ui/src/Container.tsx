@@ -1,7 +1,7 @@
 import * as stylex from '@stylexjs/stylex';
 import type {ElementType} from 'react';
 
-import type {Breakpoints} from './types/breakpoints';
+import type {Breakpoints} from './consts/breakpoints';
 import {spacing} from './variables/tokens.stylex';
 
 interface ContainerProps {

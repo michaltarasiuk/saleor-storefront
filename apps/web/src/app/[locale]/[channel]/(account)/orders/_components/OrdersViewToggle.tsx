@@ -1,11 +1,13 @@
 'use client';
 
 import {useLingui} from '@lingui/react/macro';
+import {Breakpoints} from '@repo/ui/consts/breakpoints';
+import {useMediaQuery} from '@repo/ui/hooks/use-media-query';
 import {GridIcon} from '@repo/ui/icons/GridIcon';
 import {ListIcon} from '@repo/ui/icons/ListIcon';
 import {ToggleButton, ToggleButtonGroup} from '@repo/ui/ToggleButtonGroup';
-import type * as stylex from '@stylexjs/stylex';
-import {createContext, use, useState} from 'react';
+import * as stylex from '@stylexjs/stylex';
+import {createContext, use, useEffect, useState} from 'react';
 
 type OrdersViewType = 'grid' | 'list';
 
@@ -18,6 +20,12 @@ const OrdersViewContext = createContext<{
 
 export function OrdersView({children}: {readonly children: React.ReactNode}) {
   const [viewType, setViewType] = useState<OrdersViewType>('grid');
+  const isMdBreakpointOrLarger = useMediaQuery(Breakpoints.Md);
+  useEffect(() => {
+    if (!isMdBreakpointOrLarger && viewType === 'list') {
+      setViewType('grid');
+    }
+  }, [isMdBreakpointOrLarger, viewType]);
   return (
     <OrdersViewContext value={{viewType, setViewType}}>
       {children}
@@ -25,11 +33,7 @@ export function OrdersView({children}: {readonly children: React.ReactNode}) {
   );
 }
 
-interface OrdersViewToggleProps {
-  readonly style: stylex.StyleXStyles;
-}
-
-export function OrdersViewToggle(props: OrdersViewToggleProps) {
+export function OrdersViewToggle() {
   const {viewType, setViewType} = use(OrdersViewContext);
   const {t} = useLingui();
   return (
@@ -42,7 +46,7 @@ export function OrdersViewToggle(props: OrdersViewToggleProps) {
           setViewType?.(newViewType as OrdersViewType);
         }
       }}
-      {...props}>
+      style={styles.base}>
       <ToggleButton
         aria-label={t`Grid View`}
         id={'grid' satisfies OrdersViewType}
@@ -56,3 +60,13 @@ export function OrdersViewToggle(props: OrdersViewToggleProps) {
     </ToggleButtonGroup>
   );
 }
+
+const styles = stylex.create({
+  base: {
+    marginInlineStart: 'auto',
+    display: {
+      default: 'none',
+      ['@media (width >= 48rem)' satisfies Breakpoints['Md']]: 'inherit',
+    },
+  },
+});

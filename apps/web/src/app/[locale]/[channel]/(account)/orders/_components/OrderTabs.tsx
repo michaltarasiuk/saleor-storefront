@@ -1,10 +1,10 @@
 'use client';
 
 import {useLingui} from '@lingui/react/macro';
+import type {Breakpoints} from '@repo/ui/consts/breakpoints';
 import {ClockIcon} from '@repo/ui/icons/ClockIcon';
 import {OrderBoxIcon} from '@repo/ui/icons/OrderBoxIcon';
 import {Tab, TabList, TabPanel, Tabs} from '@repo/ui/Tabs';
-import type {Breakpoints} from '@repo/ui/types/breakpoints';
 import {baseColors} from '@repo/ui/variables/colors.stylex';
 import * as stylex from '@stylexjs/stylex';
 import {useId, useState} from 'react';
