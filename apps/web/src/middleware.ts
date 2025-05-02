@@ -25,11 +25,8 @@ function hasValidLocale(
   pathname: string,
   locales = linguiConfigHelpers.locales
 ) {
-  const [localeFromPath] = splitPathname(pathname);
-  if (!localeFromPath) {
-    return false;
-  }
-  return locales.includes(localeFromPath);
+  const [locale] = splitPathname(pathname);
+  return !!locale && locales.includes(locale);
 }
 
 function getPreferredLocale(
