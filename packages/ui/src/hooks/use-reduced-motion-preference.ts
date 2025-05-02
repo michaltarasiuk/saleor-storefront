@@ -4,17 +4,21 @@ function getReducedMotionMediaQuery() {
   return window.matchMedia('(prefers-reduced-motion: reduce)');
 }
 
-function subscribeToMediaQueryChanges(onChange: () => void) {
+function subscribeReducedMotionMediaQuery(onChange: () => void) {
   const mediaQuery = getReducedMotionMediaQuery();
   mediaQuery.addEventListener('change', onChange);
   return () => mediaQuery.removeEventListener('change', onChange);
 }
 
 export function useReducedMotionPreference() {
-  const prefersReducedMotion = useSyncExternalStore(
-    subscribeToMediaQueryChanges,
-    () => getReducedMotionMediaQuery().matches,
-    () => false
+  const matches = useSyncExternalStore(
+    subscribeReducedMotionMediaQuery,
+    function getSnapshot() {
+      return getReducedMotionMediaQuery().matches;
+    },
+    function getServerSnapshot() {
+      return false;
+    }
   );
-  return prefersReducedMotion;
+  return matches;
 }
