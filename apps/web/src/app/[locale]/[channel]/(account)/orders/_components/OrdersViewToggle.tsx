@@ -20,12 +20,12 @@ const OrdersViewContext = createContext<{
 
 export function OrdersView({children}: {readonly children: React.ReactNode}) {
   const [viewType, setViewType] = useState<OrdersViewType>('grid');
-  const isMdBreakpointOrLarger = useMediaQuery(Breakpoints.Md);
+  const isMediumMedia = useMediaQuery(Breakpoints.Md);
   useEffect(() => {
-    if (!isMdBreakpointOrLarger && viewType === 'list') {
+    if (!isMediumMedia && viewType === 'list') {
       setViewType('grid');
     }
-  }, [isMdBreakpointOrLarger, viewType]);
+  }, [isMediumMedia, viewType]);
   return (
     <OrdersViewContext value={{viewType, setViewType}}>
       {children}

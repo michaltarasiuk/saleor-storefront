@@ -11,7 +11,7 @@ function createMediaQueryListener(onChange: () => void, query: string) {
 }
 
 export function useMediaQuery(breakpoint: Breakpoints[keyof Breakpoints]) {
-  const media = mapBreakpointToMedia(breakpoint);
+  const media = BreakpointToMedia[breakpoint];
   const subscribe = useCallback(
     (onStoreChange: () => void) => {
       const removeEventListener = createMediaQueryListener(
@@ -34,13 +34,10 @@ export function useMediaQuery(breakpoint: Breakpoints[keyof Breakpoints]) {
   return matches;
 }
 
-function mapBreakpointToMedia(breakpoint: Breakpoints[keyof Breakpoints]) {
-  const breakpointMap: Record<Breakpoints[keyof Breakpoints], string> = {
-    '@media (width >= 40rem)': '(min-width: 40rem)',
-    '@media (width >= 48rem)': '(min-width: 48rem)',
-    '@media (width >= 64rem)': '(min-width: 64rem)',
-    '@media (width >= 80rem)': '(min-width: 80rem)',
-    '@media (width >= 96rem)': '(min-width: 96rem)',
-  };
-  return breakpointMap[breakpoint];
-}
+const BreakpointToMedia: Record<Breakpoints[keyof Breakpoints], string> = {
+  '@media (width >= 40rem)': '(min-width: 40rem)',
+  '@media (width >= 48rem)': '(min-width: 48rem)',
+  '@media (width >= 64rem)': '(min-width: 64rem)',
+  '@media (width >= 80rem)': '(min-width: 80rem)',
+  '@media (width >= 96rem)': '(min-width: 96rem)',
+};
