@@ -5,9 +5,7 @@ import type {Breakpoints} from '../consts/breakpoints';
 function createMediaQueryListener(onChange: () => void, query: string) {
   const mediaQueryList = window.matchMedia(query);
   mediaQueryList.addEventListener('change', onChange);
-  return () => {
-    mediaQueryList.removeEventListener('change', onChange);
-  };
+  return () => mediaQueryList.removeEventListener('change', onChange);
 }
 
 export function useMediaQuery(breakpoint: Breakpoints[keyof Breakpoints]) {

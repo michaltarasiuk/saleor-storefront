@@ -7,9 +7,7 @@ function getReducedMotionMediaQuery() {
 function subscribeToMediaQueryChanges(onChange: () => void) {
   const mediaQuery = getReducedMotionMediaQuery();
   mediaQuery.addEventListener('change', onChange);
-  return function unsubscribe() {
-    mediaQuery.removeEventListener('change', onChange);
-  };
+  return () => mediaQuery.removeEventListener('change', onChange);
 }
 
 export function useReducedMotionPreference() {
