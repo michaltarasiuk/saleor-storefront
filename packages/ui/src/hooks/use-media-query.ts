@@ -1,4 +1,3 @@
-import {assertNever} from '@repo/utils/assert-never';
 import {useCallback, useSyncExternalStore} from 'react';
 
 import type {Breakpoints} from '../consts/breakpoints';
@@ -36,18 +35,12 @@ export function useMediaQuery(breakpoint: Breakpoints[keyof Breakpoints]) {
 }
 
 function mapBreakpointToMedia(breakpoint: Breakpoints[keyof Breakpoints]) {
-  switch (breakpoint) {
-    case '@media (width >= 40rem)':
-      return '(min-width: 40rem)';
-    case '@media (width >= 48rem)':
-      return '(min-width: 48rem)';
-    case '@media (width >= 64rem)':
-      return '(min-width: 64rem)';
-    case '@media (width >= 80rem)':
-      return '(min-width: 80rem)';
-    case '@media (width >= 96rem)':
-      return '(min-width: 96rem)';
-    default:
-      assertNever(breakpoint);
-  }
+  const breakpointMap: Record<Breakpoints[keyof Breakpoints], string> = {
+    '@media (width >= 40rem)': '(min-width: 40rem)',
+    '@media (width >= 48rem)': '(min-width: 48rem)',
+    '@media (width >= 64rem)': '(min-width: 64rem)',
+    '@media (width >= 80rem)': '(min-width: 80rem)',
+    '@media (width >= 96rem)': '(min-width: 96rem)',
+  };
+  return breakpointMap[breakpoint];
 }
