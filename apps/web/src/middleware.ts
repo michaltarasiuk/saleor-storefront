@@ -10,13 +10,11 @@ export function middleware(request: NextRequest) {
   let response = NextResponse.next();
   if (!hasValidLocale(request.nextUrl.pathname)) {
     const preferredLocale = getPreferredLocale(request.headers);
-    const pathnameWithLocale = prependSegment(
-      request.nextUrl.pathname,
-      preferredLocale
+    const redirectUrl = new URL(
+      prependSegment(request.nextUrl.pathname, preferredLocale),
+      request.nextUrl.origin
     );
-    response = NextResponse.redirect(
-      new URL(pathnameWithLocale, request.nextUrl.origin)
-    );
+    response = NextResponse.redirect(redirectUrl);
   }
   return response;
 }
@@ -34,21 +32,19 @@ function getPreferredLocale(
   defaultLocale = linguiConfigHelpers.defaultLocale,
   locales = linguiConfigHelpers.locales
 ) {
-  const acceptLanguageHeader = headers.get('accept-language');
-  if (!acceptLanguageHeader) {
-    return linguiConfigHelpers.defaultLocale;
-  }
-  const negotiator = new Negotiator({
-    headers: {
-      'accept-language': acceptLanguageHeader,
-    },
-  });
-  const requestedLocales = negotiator.languages();
-  const sortedLocales = locales.toSorted((a, b) => b.length - a.length);
   try {
+    const acceptLanguageHeader = headers.get('accept-language');
+    if (!acceptLanguageHeader) {
+      throw new Error('No accept-language header found');
+    }
+    const negotiator = new Negotiator({
+      headers: {'accept-language': acceptLanguageHeader},
+    });
+    const requestedLocales = negotiator.languages();
+    const sortedLocales = locales.toSorted((a, b) => b.length - a.length);
     return matchLocale(requestedLocales, sortedLocales, defaultLocale);
   } catch {
-    return linguiConfigHelpers.defaultLocale;
+    return defaultLocale;
   }
 }
 

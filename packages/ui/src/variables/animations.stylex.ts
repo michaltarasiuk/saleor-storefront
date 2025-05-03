@@ -26,7 +26,7 @@ export const transitionProperties = stylex.defineVars({
 });
 
 export const transitionDurations = stylex.defineVars({
-  default: '150ms',
+  default: stylex.types.time('150ms'),
 });
 
 export const transitionTimingFunctions = stylex.defineVars({
