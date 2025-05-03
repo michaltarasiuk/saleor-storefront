@@ -33,12 +33,12 @@ function getPreferredLocale(
   locales = linguiConfigHelpers.locales
 ) {
   try {
-    const acceptLanguageHeader = headers.get('accept-language');
-    if (!acceptLanguageHeader) {
+    const acceptLanguage = headers.get('accept-language');
+    if (!acceptLanguage) {
       throw new Error('No accept-language header found');
     }
     const negotiator = new Negotiator({
-      headers: {'accept-language': acceptLanguageHeader},
+      headers: {'accept-language': acceptLanguage},
     });
     const requestedLocales = negotiator.languages();
     const sortedLocales = locales.toSorted((a, b) => b.length - a.length);
