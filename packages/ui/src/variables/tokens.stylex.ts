@@ -25,7 +25,7 @@ export const spacing = stylex.defineVars({
 });
 
 export const negativeSpacing = stylex.defineVars({
-  large200: stylex.types.length('-21px'),
+  large200: stylex.types.length('calc(2.1rem * -0.625)'), // -21px
 });
 
 export const typographyPrimary = stylex.defineVars({
