@@ -1,7 +1,7 @@
 'use client';
 
 import {useLingui} from '@lingui/react/macro';
-import type {Breakpoints} from '@repo/ui/consts/breakpoints';
+import type {MediaQuerySizes} from '@repo/ui/consts/media-query';
 import {ClockIcon} from '@repo/ui/icons/ClockIcon';
 import {OrderBoxIcon} from '@repo/ui/icons/OrderBoxIcon';
 import {Tab, TabList, TabPanel, Tabs} from '@repo/ui/Tabs';
@@ -53,7 +53,8 @@ const tabIconStyles = stylex.create({
     height: '18px',
     display: {
       default: 'none',
-      ['@media (width >= 40rem)' satisfies Breakpoints['Sm']]: 'inline',
+      ['@media (width >= 40rem)' satisfies MediaQuerySizes['Min']['Small']]:
+        'inline',
     },
     flexShrink: 0,
   },

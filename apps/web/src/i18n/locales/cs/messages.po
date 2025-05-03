@@ -41,7 +41,7 @@ msgstr ""
 msgid "Go to store"
 msgstr ""
 
-#: src/app/[locale]/[channel]/(account)/orders/_components/OrdersViewToggle.tsx:51
+#: src/app/[locale]/[channel]/(account)/orders/_components/OrdersViewToggle.tsx:54
 msgid "Grid View"
 msgstr ""
 
@@ -69,7 +69,7 @@ msgstr ""
 msgid "Orders"
 msgstr ""
 
-#: src/app/[locale]/[channel]/(account)/orders/_components/OrdersViewToggle.tsx:41
+#: src/app/[locale]/[channel]/(account)/orders/_components/OrdersViewToggle.tsx:44
 msgid "Orders View Toggle"
 msgstr ""
 
@@ -105,7 +105,7 @@ msgstr ""
 msgid "Shipping Policy"
 msgstr ""
 
-#: src/app/[locale]/[channel]/(account)/orders/_components/OrdersViewToggle.tsx:56
+#: src/app/[locale]/[channel]/(account)/orders/_components/OrdersViewToggle.tsx:59
 msgid "Table View"
 msgstr ""
 

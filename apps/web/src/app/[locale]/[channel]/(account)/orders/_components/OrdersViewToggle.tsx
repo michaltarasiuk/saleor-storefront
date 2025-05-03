@@ -1,7 +1,10 @@
 'use client';
 
 import {useLingui} from '@lingui/react/macro';
-import {Breakpoints} from '@repo/ui/consts/breakpoints';
+import {
+  MediaQueryConditions,
+  MediaQuerySizes,
+} from '@repo/ui/consts/media-query';
 import {useMediaQuery} from '@repo/ui/hooks/use-media-query';
 import {GridIcon} from '@repo/ui/icons/GridIcon';
 import {ListIcon} from '@repo/ui/icons/ListIcon';
@@ -20,12 +23,12 @@ export const OrdersViewContext = createContext<{
 
 export function OrdersView({children}: {readonly children: React.ReactNode}) {
   const [viewType, setViewType] = useState<OrdersViewType>('grid');
-  const isMediumMedia = useMediaQuery(Breakpoints.Md);
+  const isMinMediumMedia = useMediaQuery(MediaQueryConditions.Min.Medium);
   useEffect(() => {
-    if (!isMediumMedia && viewType === 'table') {
+    if (!isMinMediumMedia && viewType === 'table') {
       setViewType('grid');
     }
-  }, [isMediumMedia, viewType]);
+  }, [isMinMediumMedia, viewType]);
   return (
     <OrdersViewContext value={{viewType, setViewType}}>
       {children}
@@ -66,7 +69,8 @@ const styles = stylex.create({
     marginInlineStart: 'auto',
     display: {
       default: 'none',
-      ['@media (width >= 48rem)' satisfies Breakpoints['Md']]: 'inherit',
+      ['@media (width >= 48rem)' satisfies MediaQuerySizes['Min']['Medium']]:
+        'inherit',
     },
   },
 });

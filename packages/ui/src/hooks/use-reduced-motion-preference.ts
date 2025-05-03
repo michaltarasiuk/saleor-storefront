@@ -5,20 +5,16 @@ function getReducedMotionMediaQuery() {
 }
 
 function subscribeReducedMotionMediaQuery(onChange: () => void) {
-  const mediaQuery = getReducedMotionMediaQuery();
-  mediaQuery.addEventListener('change', onChange);
-  return () => mediaQuery.removeEventListener('change', onChange);
+  const media = getReducedMotionMediaQuery();
+  media.addEventListener('change', onChange);
+  return () => media.removeEventListener('change', onChange);
 }
 
 export function useReducedMotionPreference() {
   const matches = useSyncExternalStore(
     subscribeReducedMotionMediaQuery,
-    function getSnapshot() {
-      return getReducedMotionMediaQuery().matches;
-    },
-    function getServerSnapshot() {
-      return false;
-    }
+    () => getReducedMotionMediaQuery().matches,
+    () => false
   );
   return matches;
 }

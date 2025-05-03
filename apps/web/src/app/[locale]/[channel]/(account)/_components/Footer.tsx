@@ -1,7 +1,7 @@
 'use client';
 
 import {Trans} from '@lingui/react/macro';
-import type {Breakpoints} from '@repo/ui/consts/breakpoints';
+import type {MediaQuerySizes} from '@repo/ui/consts/media-query';
 import {Container} from '@repo/ui/Container';
 import {Link} from '@repo/ui/Link';
 import {baseColors} from '@repo/ui/variables/colors.stylex';
@@ -43,10 +43,10 @@ const footerStyles = stylex.create({
   base: {
     width: '100%',
     marginBlockStart: 'auto',
-    borderBlockStartWidth: borderWidth.base,
+    borderBlockStartWidth: borderWidth.base as string,
     borderBlockStartStyle: 'solid',
-    borderBlockStartColor: baseColors.border,
-    paddingBlock: spacing.large200,
+    borderBlockStartColor: baseColors.border as string,
+    paddingBlock: spacing.large200 as string,
   },
 });
 
@@ -56,11 +56,13 @@ const linkListStyles = stylex.create({
     alignItems: 'center',
     flexDirection: {
       default: 'column',
-      ['@media (width >= 40rem)' satisfies Breakpoints['Sm']]: 'row',
+      ['@media (width >= 40rem)' satisfies MediaQuerySizes['Min']['Small']]:
+        'row',
     },
     gap: {
       default: spacing.base,
-      ['@media (width >= 40rem)' satisfies Breakpoints['Sm']]: spacing.large200,
+      ['@media (width >= 40rem)' satisfies MediaQuerySizes['Min']['Small']]:
+        spacing.large200,
     },
     listStyleType: 'none',
     padding: spacing.none,
