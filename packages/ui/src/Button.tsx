@@ -144,6 +144,21 @@ const styles = stylex.create({
   },
 });
 
+const sizeStyles = stylex.create({
+  small: {
+    padding: spacing.small200,
+  },
+  base: {
+    padding: spacing.base,
+  },
+  large: {
+    padding: spacing.large200,
+  },
+  extraLarge: {
+    padding: spacing.large300,
+  },
+});
+
 const primaryStyles = stylex.create({
   base: {
     fontWeight: typographyPrimary.bold,
@@ -286,20 +301,5 @@ const plainIconStateStyles = stylex.create({
   hovered: {},
   disabled: {
     fill: controlColors.accent,
-  },
-});
-
-const sizeStyles = stylex.create({
-  small: {
-    padding: spacing.small200,
-  },
-  base: {
-    padding: spacing.base,
-  },
-  large: {
-    padding: spacing.large200,
-  },
-  extraLarge: {
-    padding: spacing.large300,
   },
 });
