@@ -1,5 +1,5 @@
 import * as stylex from '@stylexjs/stylex';
-import type {LinkProps} from 'react-aria-components';
+import type {LinkProps as AriaLinkProps} from 'react-aria-components';
 import {Link as AriaLink} from 'react-aria-components';
 
 import {baseColors, controlColors} from './variables/colors.stylex';
@@ -11,17 +11,22 @@ import {
   typographyPrimary,
 } from './variables/tokens.stylex';
 
-export function Link(props: LinkProps) {
+interface LinkProps extends Omit<AriaLinkProps, 'style'> {
+  readonly style: stylex.StyleXStyles;
+}
+
+export function Link({style, ...props}: LinkProps) {
   return (
     <AriaLink
-      {...props}
       className={({isFocusVisible}) => {
         const {className = ''} = stylex.props(
+          style,
           styles.base,
           isFocusVisible && styles.focusVisible
         );
         return className;
-      }}>
+      }}
+      {...props}>
       {props.children}
     </AriaLink>
   );

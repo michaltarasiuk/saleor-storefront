@@ -25,7 +25,7 @@ function GlobalNav() {
   const {t} = useLingui();
   return (
     <Container elementType="nav" style={globalNavStyles.base}>
-      <Link href={Routes.Home} {...stylex.props(companyLogoLinkStyles.base)}>
+      <Link href={Routes.Home} style={companyLogoLinkStyles.base}>
         <Image
           src="/plant-logo.png"
           alt={t`Company Logo`}

@@ -4,9 +4,10 @@
   "globalEnv": [
     "NODE_ENV",
     "NEXT_RUNTIME",
-    "CI",
     "APP_TOKEN",
-    "DEFAULT_CHANNEL_SLUG"
+    "CI",
+    "DEFAULT_CHANNEL_SLUG",
+    "IMAGE_REMOTE_HOSTNAMES"
   ],
   "tasks": {
     "build": {

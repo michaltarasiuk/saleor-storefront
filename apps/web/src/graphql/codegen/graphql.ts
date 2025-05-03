@@ -32748,9 +32748,9 @@ export type _Service = {
   sdl?: Maybe<Scalars['String']['output']>;
 };
 
-export type NextConfigQueryVariables = Exact<{[key: string]: never}>;
+export type StoreConfigQueryVariables = Exact<{[key: string]: never}>;
 
-export type NextConfigQuery = {
+export type StoreConfigQuery = {
   __typename?: 'Query';
   channels?: Array<{
     __typename?: 'Channel';
@@ -32770,13 +32770,13 @@ export type ChannelsQuery = {
   }> | null;
 };
 
-export const NextConfigDocument = {
+export const StoreConfigDocument = {
   kind: 'Document',
   definitions: [
     {
       kind: 'OperationDefinition',
       operation: 'query',
-      name: {kind: 'Name', value: 'NextConfig'},
+      name: {kind: 'Name', value: 'StoreConfig'},
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
@@ -32795,7 +32795,7 @@ export const NextConfigDocument = {
       },
     },
   ],
-} as unknown as DocumentNode<NextConfigQuery, NextConfigQueryVariables>;
+} as unknown as DocumentNode<StoreConfigQuery, StoreConfigQueryVariables>;
 export const ChannelsDocument = {
   kind: 'Document',
   definitions: [

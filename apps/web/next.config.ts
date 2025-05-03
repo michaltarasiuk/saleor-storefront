@@ -1,3 +1,4 @@
+import {getConfig as getLinguiConfig} from '@lingui/conf';
 import optimizeLocales from '@react-aria/optimize-locales-plugin';
 import {formatPathname} from '@repo/utils/pathname';
 import {withSentryConfig} from '@sentry/nextjs';
@@ -5,46 +6,23 @@ import type {NextConfig} from 'next';
 
 import {client} from '@/graphql/client';
 import {graphql} from '@/graphql/codegen';
-import type {NextConfigQuery} from '@/graphql/codegen/graphql';
-import {linguiConfigHelpers} from '@/i18n/config';
+import type {StoreConfigQuery} from '@/graphql/codegen/graphql';
 
 import {env} from './env';
 
-const NextConfigQueryDocument = graphql(`
-  query NextConfig {
-    channels {
-      slug
-      isActive
-    }
-  }
-`);
-
-function getDefaultChannel(channels: NextConfigQuery['channels']) {
-  const defaultChannel = (channels ?? [])
-    .filter(channel => channel.isActive)
-    .find(channel => channel.slug === env.DEFAULT_CHANNEL_SLUG);
-
-  if (!defaultChannel) {
-    throw new Error(
-      `Default channel "${env.DEFAULT_CHANNEL_SLUG}" not found in the list of active channels.`
-    );
-  }
-  return defaultChannel;
-}
-
-export default async function () {
-  const {channels} = await client
-    .setHeader('Authorization', `Bearer ${env.APP_TOKEN}`)
-    .request(NextConfigQueryDocument);
+export default async function nextConfig() {
+  const {channels} = await getStoreConfig();
+  const {locales} = getLinguiConfig();
 
   const nextConfig: NextConfig = {
     experimental: {
-      nodeMiddleware: true,
       swcPlugins: [['@lingui/swc-plugin', {}]],
     },
     transpilePackages: ['@stylexjs/open-props'],
     images: {
-      remotePatterns: [{hostname: 'avatars.githubusercontent.com'}],
+      remotePatterns: env.IMAGE_REMOTE_HOSTNAMES.map(hostname => ({
+        hostname,
+      })),
     },
     webpack(config, {dev, isServer}) {
       config.module.rules.push({
@@ -90,7 +68,7 @@ export default async function () {
     async redirects() {
       const defaultChannel = getDefaultChannel(channels);
 
-      return linguiConfigHelpers.locales.map(locale => ({
+      return locales.map(locale => ({
         source: formatPathname(locale),
         destination: formatPathname(locale, defaultChannel.slug),
         permanent: true,
@@ -107,4 +85,27 @@ export default async function () {
     disableLogger: true,
     automaticVercelMonitors: true,
   });
+}
+
+async function getStoreConfig() {
+  const StoreConfigQueryDocument = graphql(`
+    query StoreConfig {
+      channels {
+        slug
+        isActive
+      }
+    }
+  `);
+  return await client
+    .setHeader('Authorization', `Bearer ${env.APP_TOKEN}`)
+    .request(StoreConfigQueryDocument);
+}
+
+function getDefaultChannel(channels: StoreConfigQuery['channels']) {
+  for (const channel of channels ?? []) {
+    if (channel.isActive && channel.slug === env.DEFAULT_CHANNEL_SLUG) {
+      return channel;
+    }
+  }
+  throw new Error('DEFAULT_CHANNEL_SLUG does not match any active channel.');
 }
