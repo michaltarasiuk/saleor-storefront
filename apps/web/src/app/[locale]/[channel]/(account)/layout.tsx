@@ -14,7 +14,6 @@ import {Html} from '../_components/Html';
 import type {Params} from '../params';
 import {Footer} from './_components/Footer';
 import {Header} from './_components/Header';
-import {QueryClientProvider} from './_components/QueryClientProvider';
 
 export {generateStaticParams} from '../params';
 
@@ -34,18 +33,16 @@ export default async function AccountLayout({
   return (
     <I18nProvider locale={locale} messages={getLocaleMessages(locale)}>
       <RouterProvider>
-        <QueryClientProvider>
-          <Html>
-            <body {...stylex.props(bodyStyles.base, ...brandedTheme())}>
-              <Header />
-              <Container elementType="main" style={mainStyles.base}>
-                {children}
-              </Container>
-              <BlockSpacer spacing="extraLoose" />
-              <Footer />
-            </body>
-          </Html>
-        </QueryClientProvider>
+        <Html>
+          <body {...stylex.props(bodyStyles.base, ...brandedTheme())}>
+            <Header />
+            <Container elementType="main" style={mainStyles.base}>
+              {children}
+            </Container>
+            <BlockSpacer spacing="extraLoose" />
+            <Footer />
+          </body>
+        </Html>
       </RouterProvider>
     </I18nProvider>
   );
