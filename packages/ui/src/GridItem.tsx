@@ -10,7 +10,7 @@ import {getSizeStyles, type SizeProps} from './styles/size';
 import type {NonPresentationalAccessibilityRole} from './types/accessibility';
 
 interface GridItemProps extends SizeProps {
-  readonly children: React.ReactNode;
+  readonly children?: React.ReactNode;
   readonly accessibilityRole?: NonPresentationalAccessibilityRole;
   readonly columnSpan?: number;
   readonly rowSpan?: number;

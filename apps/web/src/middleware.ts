@@ -12,7 +12,7 @@ export function middleware(request: NextRequest) {
     const preferredLocale = getPreferredLocale(request.headers);
     const pathnameWithLocale = prependSegment(
       request.nextUrl.pathname,
-      preferredLocale ?? linguiConfigHelpers.defaultLocale
+      preferredLocale
     );
     response = NextResponse.redirect(
       new URL(pathnameWithLocale, request.nextUrl.origin)
@@ -36,7 +36,7 @@ function getPreferredLocale(
 ) {
   const acceptLanguageHeader = headers.get('accept-language');
   if (!acceptLanguageHeader) {
-    return;
+    return linguiConfigHelpers.defaultLocale;
   }
   const negotiator = new Negotiator({
     headers: {
@@ -48,7 +48,7 @@ function getPreferredLocale(
   try {
     return matchLocale(requestedLocales, sortedLocales, defaultLocale);
   } catch {
-    return;
+    return linguiConfigHelpers.defaultLocale;
   }
 }
 

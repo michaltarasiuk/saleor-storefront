@@ -90,6 +90,9 @@ const styles = stylex.create({
   base: {
     display: 'grid',
   },
+  none: {
+    display: 'none',
+  },
   columns: (
     gridTemplateColumns: React.CSSProperties['gridTemplateColumns']
   ) => ({

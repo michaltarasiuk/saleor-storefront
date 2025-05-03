@@ -1,9 +1,7 @@
-import {Grid} from '@repo/ui/Grid';
-
 import {setActiveI18nInstance} from '@/i18n/utils';
 
 import type {Params} from '../../../params';
-import {Order} from './_components/Order';
+import {OrderList} from '../_components/OrderList';
 
 interface ConfirmedOrdersPageProps {
   readonly params: Promise<Params>;
@@ -14,11 +12,5 @@ export default async function ConfirmedOrdersPage({
 }: ConfirmedOrdersPageProps) {
   const {locale} = await params;
   setActiveI18nInstance(locale);
-  return (
-    <Grid columns={['fill', 'fill', 'fill']} spacing="loose">
-      <Order />
-      <Order />
-      <Order />
-    </Grid>
-  );
+  return <OrderList />;
 }

@@ -9,9 +9,9 @@ import {ToggleButton, ToggleButtonGroup} from '@repo/ui/ToggleButtonGroup';
 import * as stylex from '@stylexjs/stylex';
 import {createContext, use, useEffect, useState} from 'react';
 
-type OrdersViewType = 'grid' | 'list';
+type OrdersViewType = 'grid' | 'table';
 
-const OrdersViewContext = createContext<{
+export const OrdersViewContext = createContext<{
   viewType: OrdersViewType;
   setViewType?: React.Dispatch<React.SetStateAction<OrdersViewType>>;
 }>({
@@ -22,7 +22,7 @@ export function OrdersView({children}: {readonly children: React.ReactNode}) {
   const [viewType, setViewType] = useState<OrdersViewType>('grid');
   const isMediumMedia = useMediaQuery(Breakpoints.Md);
   useEffect(() => {
-    if (!isMediumMedia && viewType === 'list') {
+    if (!isMediumMedia && viewType === 'table') {
       setViewType('grid');
     }
   }, [isMediumMedia, viewType]);
@@ -53,8 +53,8 @@ export function OrdersViewToggle() {
         icon={GridIcon}
       />
       <ToggleButton
-        aria-label={t`List View`}
-        id={'list' satisfies OrdersViewType}
+        aria-label={t`Table View`}
+        id={'table' satisfies OrdersViewType}
         icon={ListIcon}
       />
     </ToggleButtonGroup>
