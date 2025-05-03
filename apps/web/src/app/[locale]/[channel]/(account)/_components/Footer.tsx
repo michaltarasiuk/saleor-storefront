@@ -56,12 +56,11 @@ const linkListStyles = stylex.create({
     alignItems: 'center',
     flexDirection: {
       default: 'column',
-      ['@media (width >= 40rem)' satisfies MediaQuerySizes['Min']['Small']]:
-        'row',
+      ['@media (width >= 40rem)' satisfies MediaQuerySizes['Small']]: 'row',
     },
     gap: {
       default: spacing.base,
-      ['@media (width >= 40rem)' satisfies MediaQuerySizes['Min']['Small']]:
+      ['@media (width >= 40rem)' satisfies MediaQuerySizes['Small']]:
         spacing.large200,
     },
     listStyleType: 'none',
