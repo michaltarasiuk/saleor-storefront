@@ -12,7 +12,7 @@ import {
 } from './variables/tokens.stylex';
 
 interface LinkProps extends Omit<AriaLinkProps, 'style'> {
-  readonly style: stylex.StyleXStyles;
+  readonly style?: stylex.StyleXStyles;
 }
 
 export function Link({style, ...props}: LinkProps) {
