@@ -3,7 +3,7 @@
 import * as stylex from '@stylexjs/stylex';
 import {useVisuallyHidden} from 'react-aria';
 
-import {useReducedMotionPreference} from './hooks/use-reduced-motion-preference';
+import {usePrefersReducedMotion} from './hooks/use-prefers-reduced-motion';
 import {SpinnerIcon} from './icons/SpinnerIcon';
 import {Text} from './Text';
 import {animations} from './variables/animations.stylex';
@@ -19,9 +19,9 @@ export function Spinner({
   size = 'base',
   style,
 }: SpinnerProps) {
-  const reducedMotionPreference = useReducedMotionPreference();
+  const prefersReducedMotion = usePrefersReducedMotion();
   const {visuallyHiddenProps} = useVisuallyHidden();
-  if (!reducedMotionPreference) {
+  if (!prefersReducedMotion) {
     return (
       <div {...stylex.props(styles.base, sizeStyles[size])}>
         <SpinnerIcon aria-hidden="true" {...stylex.props(style)} />

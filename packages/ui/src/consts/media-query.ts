@@ -18,4 +18,4 @@ export const MediaQueryConditions = {
     ExtraLarge: '(min-width: 80rem)',
     ExtraExtraLarge: '(min-width: 96rem)',
   },
-};
+} as const;
