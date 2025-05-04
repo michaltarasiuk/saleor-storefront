@@ -41,9 +41,9 @@ interface ViewProps extends SizeProps {
   readonly inlineAlignment?: InlineAlignment;
   readonly padding?: MaybeShorthandProperty<Padding>;
   readonly background?: Background;
-  readonly border?: BorderStyle;
-  readonly borderWidth?: BorderWidth;
-  readonly cornerRadius?: CornerRadius;
+  readonly border?: MaybeShorthandProperty<BorderStyle>;
+  readonly borderWidth?: MaybeShorthandProperty<BorderWidth>;
+  readonly cornerRadius?: MaybeShorthandProperty<CornerRadius>;
   readonly opacity?: Opacity;
   readonly overflow?: Overflow;
   readonly visibility?: Visibility;
