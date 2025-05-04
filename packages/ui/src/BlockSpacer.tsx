@@ -1,7 +1,7 @@
 import * as stylex from '@stylexjs/stylex';
 
 import type {MediaQuerySizes} from './consts/media-query';
-import {type Spacing, SpacingTokens} from './styles/spacing.stylex';
+import {getSpacingToken, type Spacing} from './styles/spacing.stylex';
 
 interface BlockSpacerProps {
   readonly spacing?: Spacing;
@@ -12,7 +12,7 @@ export function BlockSpacer({spacing = 'base'}: BlockSpacerProps) {
     <div
       {...stylex.props(
         styles.base,
-        spacingStyles.default(SpacingTokens[spacing])
+        spacingStyles.default(getSpacingToken(spacing))
       )}
     />
   );

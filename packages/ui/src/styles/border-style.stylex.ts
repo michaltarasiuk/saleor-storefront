@@ -1,21 +1,12 @@
 import {assertNever} from '@repo/utils/assert-never';
 import {isArray} from '@repo/utils/is-array';
 import * as stylex from '@stylexjs/stylex';
+import type {DataType} from 'csstype';
 
 import type {MediaQuerySizes} from '../consts/media-query';
 import type {MaybeShorthandProperty} from '../types/shorthand';
 
-export type BorderStyle = keyof typeof BorderStyleTokens;
-
-const BorderStyleTokens = {
-  base: 'solid',
-  dashed: 'dashed',
-  dotted: 'dotted',
-  none: 'none',
-} satisfies Record<
-  string,
-  React.CSSProperties[`border${'Block' | 'Inline'}${'Start' | 'End'}Style`]
->;
+export type BorderStyle = 'base' | 'dashed' | 'dotted' | 'none';
 
 export function getBorderStyleStyles(
   borderStyle: MaybeShorthandProperty<BorderStyle>
@@ -23,10 +14,10 @@ export function getBorderStyleStyles(
   const [blockStart, inlineEnd, blockEnd, inlineStart] =
     normalizeBorderStyle(borderStyle);
   return [
-    borderBlockStartStyleStyles.default(BorderStyleTokens[blockStart]),
-    borderInlineEndStyleStyles.default(BorderStyleTokens[inlineEnd]),
-    borderBlockEndStyleStyles.default(BorderStyleTokens[blockEnd]),
-    borderInlineStartStyleStyles.default(BorderStyleTokens[inlineStart]),
+    borderBlockStartStyleStyles.default(getBorderStyleToken(blockStart)),
+    borderInlineEndStyleStyles.default(getBorderStyleToken(inlineEnd)),
+    borderBlockEndStyleStyles.default(getBorderStyleToken(blockEnd)),
+    borderInlineStartStyleStyles.default(getBorderStyleToken(inlineStart)),
   ];
 }
 
@@ -46,6 +37,21 @@ function normalizeBorderStyle(
       ] as const;
     case 4:
       return borderStyle;
+    default:
+      assertNever(borderStyle);
+  }
+}
+
+function getBorderStyleToken(borderStyle: BorderStyle): DataType.LineStyle {
+  switch (borderStyle) {
+    case 'base':
+      return 'solid';
+    case 'dashed':
+      return 'dashed';
+    case 'dotted':
+      return 'dotted';
+    case 'none':
+      return 'none';
     default:
       assertNever(borderStyle);
   }

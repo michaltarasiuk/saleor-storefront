@@ -1,3 +1,4 @@
+import {assertNever} from '@repo/utils/assert-never';
 import {isArray} from '@repo/utils/is-array';
 import * as stylex from '@stylexjs/stylex';
 
@@ -5,27 +6,43 @@ import type {MediaQuerySizes} from '../consts/media-query';
 import type {MaybeShorthandProperty} from '../types/shorthand';
 import {spacing} from '../variables/tokens.stylex';
 
-export type Spacing = keyof typeof SpacingTokens;
-
-export const SpacingTokens = {
-  none: spacing.none,
-  extraTight: spacing.small300,
-  tight: spacing.small200,
-  base: spacing.base,
-  loose: spacing.large200,
-  extraLoose: spacing.large500,
-} satisfies Record<string, React.CSSProperties[`${'column' | 'row'}Gap`]>;
+export type Spacing =
+  | 'none'
+  | 'extraTight'
+  | 'tight'
+  | 'base'
+  | 'loose'
+  | 'extraLoose';
 
 export function getSpacingStyles(spacing: MaybeShorthandProperty<Spacing>) {
   const [rowSpacing, columnSpacing] = normalizeSpacing(spacing);
   return [
-    spacingRowStyles.default(SpacingTokens[rowSpacing]),
-    spacingColumnStyles.default(SpacingTokens[columnSpacing]),
+    spacingRowStyles.default(getSpacingToken(rowSpacing)),
+    spacingColumnStyles.default(getSpacingToken(columnSpacing)),
   ];
 }
 
 function normalizeSpacing(spacing: MaybeShorthandProperty<Spacing>) {
   return !isArray(spacing) ? [spacing, spacing] : spacing;
+}
+
+export function getSpacingToken(spacingKey: Spacing) {
+  switch (spacingKey) {
+    case 'none':
+      return spacing.none;
+    case 'extraTight':
+      return spacing.small300;
+    case 'tight':
+      return spacing.small200;
+    case 'base':
+      return spacing.base;
+    case 'loose':
+      return spacing.large200;
+    case 'extraLoose':
+      return spacing.large500;
+    default:
+      assertNever(spacingKey);
+  }
 }
 
 const spacingRowStyles = stylex.create({

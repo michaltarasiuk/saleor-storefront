@@ -6,18 +6,7 @@ import type {MediaQuerySizes} from '../consts/media-query';
 import type {MaybeShorthandProperty} from '../types/shorthand';
 import {cornerRadius} from '../variables/tokens.stylex';
 
-export type CornerRadius = keyof typeof CornerRadiusTokens;
-
-const CornerRadiusTokens = {
-  none: cornerRadius.none,
-  small: cornerRadius.small,
-  base: cornerRadius.base,
-  large: cornerRadius.large,
-  fullyRounded: cornerRadius.fullyRounded,
-} satisfies Record<
-  string,
-  React.CSSProperties[`border${'Start' | 'End'}${'Start' | 'End'}Radius`]
->;
+export type CornerRadius = 'none' | 'small' | 'base' | 'large' | 'fullyRounded';
 
 export function getCornerRadiusStyles(
   cornerRadius: MaybeShorthandProperty<CornerRadius>
@@ -25,10 +14,12 @@ export function getCornerRadiusStyles(
   const [startStart, endEnd, startEnd, endStart] =
     normalizeCornerRadius(cornerRadius);
   return [
-    borderStartStartCornerRadiusStyles.default(CornerRadiusTokens[startStart]),
-    borderEndEndCornerRadiusStyles.default(CornerRadiusTokens[endEnd]),
-    borderStartEndCornerRadiusStyles.default(CornerRadiusTokens[startEnd]),
-    borderEndStartCornerRadiusStyles.default(CornerRadiusTokens[endStart]),
+    borderStartStartCornerRadiusStyles.default(
+      getCornerRadiusToken(startStart)
+    ),
+    borderEndEndCornerRadiusStyles.default(getCornerRadiusToken(endEnd)),
+    borderStartEndCornerRadiusStyles.default(getCornerRadiusToken(startEnd)),
+    borderEndStartCornerRadiusStyles.default(getCornerRadiusToken(endStart)),
   ];
 }
 
@@ -50,6 +41,23 @@ function normalizeCornerRadius(
       return cornerRadius;
     default:
       assertNever(cornerRadius);
+  }
+}
+
+function getCornerRadiusToken(cornerRadiusKey: CornerRadius) {
+  switch (cornerRadiusKey) {
+    case 'none':
+      return cornerRadius.none;
+    case 'small':
+      return cornerRadius.small;
+    case 'base':
+      return cornerRadius.base;
+    case 'large':
+      return cornerRadius.large;
+    case 'fullyRounded':
+      return cornerRadius.fullyRounded;
+    default:
+      assertNever(cornerRadiusKey);
   }
 }
 

@@ -6,28 +6,22 @@ import type {MediaQuerySizes} from '../consts/media-query';
 import type {MaybeShorthandProperty} from '../types/shorthand';
 import {spacing} from '../variables/tokens.stylex';
 
-export type Padding = keyof typeof PaddingTokens;
-
-const PaddingTokens = {
-  none: spacing.none,
-  extraTight: spacing.small300,
-  tight: spacing.small200,
-  base: spacing.base,
-  loose: spacing.large200,
-  extraLoose: spacing.large500,
-} satisfies Record<
-  string,
-  React.CSSProperties[`padding${'Block' | 'Inline'}${'Start' | 'End'}`]
->;
+export type Padding =
+  | 'none'
+  | 'extraTight'
+  | 'tight'
+  | 'base'
+  | 'loose'
+  | 'extraLoose';
 
 export function getPaddingStyles(padding: MaybeShorthandProperty<Padding>) {
   const [blockStart, inlineEnd, blockEnd, inlineStart] =
     normalizePadding(padding);
   return [
-    paddingBlockStartStyles.default(PaddingTokens[blockStart]),
-    paddingInlineEndStyles.default(PaddingTokens[inlineEnd]),
-    paddingBlockEndStyles.default(PaddingTokens[blockEnd]),
-    paddingInlineStartStyles.default(PaddingTokens[inlineStart]),
+    paddingBlockStartStyles.default(getPaddingToken(blockStart)),
+    paddingInlineEndStyles.default(getPaddingToken(inlineEnd)),
+    paddingBlockEndStyles.default(getPaddingToken(blockEnd)),
+    paddingInlineStartStyles.default(getPaddingToken(inlineStart)),
   ];
 }
 
@@ -40,6 +34,25 @@ function normalizePadding(padding: MaybeShorthandProperty<Padding>) {
       return [padding[1], padding[0], padding[1], padding[0]] as const;
     case 4:
       return padding;
+    default:
+      assertNever(padding);
+  }
+}
+
+function getPaddingToken(padding: Padding) {
+  switch (padding) {
+    case 'none':
+      return spacing.none;
+    case 'extraTight':
+      return spacing.small300;
+    case 'tight':
+      return spacing.small200;
+    case 'base':
+      return spacing.base;
+    case 'loose':
+      return spacing.large200;
+    case 'extraLoose':
+      return spacing.large500;
     default:
       assertNever(padding);
   }

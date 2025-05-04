@@ -6,16 +6,7 @@ import type {MediaQuerySizes} from '../consts/media-query';
 import type {MaybeShorthandProperty} from '../types/shorthand';
 import {borderWidth} from '../variables/tokens.stylex';
 
-export type BorderWidth = keyof typeof BorderWidthTokens;
-
-const BorderWidthTokens = {
-  base: borderWidth.base,
-  medium: borderWidth.medium,
-  thick: borderWidth.thick,
-} satisfies Record<
-  string,
-  React.CSSProperties[`border${'Block' | 'Inline'}${'Start' | 'End'}Width`]
->;
+export type BorderWidth = 'base' | 'medium' | 'thick';
 
 export function getBorderWidthStyles(
   borderWidth: MaybeShorthandProperty<BorderWidth>
@@ -23,10 +14,10 @@ export function getBorderWidthStyles(
   const [blockStart, inlineEnd, blockEnd, inlineStart] =
     normalizeBorderWidth(borderWidth);
   return [
-    borderBlockStartWidthStyles.default(BorderWidthTokens[blockStart]),
-    borderInlineEndWidthStyles.default(BorderWidthTokens[inlineEnd]),
-    borderBlockEndWidthStyles.default(BorderWidthTokens[blockEnd]),
-    borderInlineStartWidthStyles.default(BorderWidthTokens[inlineStart]),
+    borderBlockStartWidthStyles.default(getBorderWidthToken(blockStart)),
+    borderInlineEndWidthStyles.default(getBorderWidthToken(inlineEnd)),
+    borderBlockEndWidthStyles.default(getBorderWidthToken(blockEnd)),
+    borderInlineStartWidthStyles.default(getBorderWidthToken(inlineStart)),
   ];
 }
 
@@ -48,6 +39,19 @@ function normalizeBorderWidth(
       return borderWidth;
     default:
       assertNever(borderWidth);
+  }
+}
+
+function getBorderWidthToken(borderWidthKey: BorderWidth) {
+  switch (borderWidthKey) {
+    case 'base':
+      return borderWidth.base;
+    case 'medium':
+      return borderWidth.medium;
+    case 'thick':
+      return borderWidth.thick;
+    default:
+      assertNever(borderWidthKey);
   }
 }
 
