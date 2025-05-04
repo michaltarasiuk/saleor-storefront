@@ -38,6 +38,7 @@ const spacingStyles = stylex.create({
     blockSize: NormalizedMediaQueryStyle<React.CSSProperties['blockSize']>
   ) => ({
     blockSize: {
+      default: blockSize.default,
       ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
         blockSize.small,
       ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:

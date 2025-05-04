@@ -84,6 +84,7 @@ const borderBlockStartStyleStyles = stylex.create({
     >
   ) => ({
     borderBlockStartStyle: {
+      default: borderBlockStartStyle.default,
       ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
         borderBlockStartStyle.small,
       ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
@@ -105,6 +106,7 @@ const borderBlockEndStyleStyles = stylex.create({
     >
   ) => ({
     borderBlockEndStyle: {
+      default: borderBlockEndStyle.default,
       ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
         borderBlockEndStyle.small,
       ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
@@ -126,6 +128,7 @@ const borderInlineStartStyleStyles = stylex.create({
     >
   ) => ({
     borderBlockEndStyle: {
+      default: borderInlineStartStyle.default,
       ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
         borderInlineStartStyle.small,
       ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
@@ -147,6 +150,7 @@ const borderInlineEndStyleStyles = stylex.create({
     >
   ) => ({
     borderInlineEndStyle: {
+      default: borderInlineEndStyle.default,
       ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
         borderInlineEndStyle.small,
       ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:

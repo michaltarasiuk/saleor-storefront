@@ -60,6 +60,7 @@ export function getSpacingToken(spacingKey: Spacing) {
 const spacingRowStyles = stylex.create({
   base: (rowGap: NormalizedMediaQueryStyle<React.CSSProperties['rowGap']>) => ({
     rowGap: {
+      default: rowGap.default,
       ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
         rowGap.small,
       ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
@@ -79,6 +80,7 @@ const spacingColumnStyles = stylex.create({
     columnGap: NormalizedMediaQueryStyle<React.CSSProperties['columnGap']>
   ) => ({
     columnGap: {
+      default: columnGap.default,
       ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
         columnGap.small,
       ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:

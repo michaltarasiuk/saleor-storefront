@@ -86,6 +86,7 @@ const borderStartStartCornerRadiusStyles = stylex.create({
     >
   ) => ({
     borderStartStartRadius: {
+      default: borderStartStartRadius.default,
       ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
         borderStartStartRadius.small,
       ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
@@ -107,6 +108,7 @@ const borderStartEndCornerRadiusStyles = stylex.create({
     >
   ) => ({
     borderStartEndRadius: {
+      default: borderStartEndRadius.default,
       ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
         borderStartEndRadius.small,
       ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
@@ -128,6 +130,7 @@ const borderEndStartCornerRadiusStyles = stylex.create({
     >
   ) => ({
     borderEndStartRadius: {
+      default: borderEndStartRadius.default,
       ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
         borderEndStartRadius.small,
       ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
@@ -149,6 +152,7 @@ const borderEndEndCornerRadiusStyles = stylex.create({
     >
   ) => ({
     borderEndEndRadius: {
+      default: borderEndEndRadius.default,
       ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
         borderEndEndRadius.small,
       ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:

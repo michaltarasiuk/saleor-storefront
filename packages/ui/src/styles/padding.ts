@@ -85,6 +85,7 @@ const paddingBlockStartStyles = stylex.create({
     >
   ) => ({
     paddingBlockStart: {
+      default: paddingBlockStart.default,
       ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
         paddingBlockStart.small,
       ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
@@ -106,6 +107,7 @@ const paddingBlockEndStyles = stylex.create({
     >
   ) => ({
     paddingBlockEnd: {
+      default: paddingBlockEnd.default,
       ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
         paddingBlockEnd.small,
       ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
@@ -127,6 +129,7 @@ const paddingInlineStartStyles = stylex.create({
     >
   ) => ({
     paddingInlineStart: {
+      default: paddingInlineStart.default,
       ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
         paddingInlineStart.small,
       ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
@@ -148,6 +151,7 @@ const paddingInlineEndStyles = stylex.create({
     >
   ) => ({
     paddingInlineEnd: {
+      default: paddingInlineEnd.default,
       ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
         paddingInlineEnd.small,
       ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:

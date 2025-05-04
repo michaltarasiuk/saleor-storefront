@@ -45,6 +45,7 @@ const minBlockSizeStyles = stylex.create({
     minBlockSize: NormalizedMediaQueryStyle<React.CSSProperties['minBlockSize']>
   ) => ({
     minBlockSize: {
+      default: minBlockSize.default,
       ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
         minBlockSize.small,
       ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
@@ -64,6 +65,7 @@ const maxBlockSizeStyles = stylex.create({
     maxBlockSize: NormalizedMediaQueryStyle<React.CSSProperties['maxBlockSize']>
   ) => ({
     maxBlockSize: {
+      default: maxBlockSize.default,
       ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
         maxBlockSize.small,
       ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
@@ -85,6 +87,7 @@ const minInlineSizeStyles = stylex.create({
     >
   ) => ({
     minInlineSize: {
+      default: minInlineSize.default,
       ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
         minInlineSize.small,
       ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
@@ -106,6 +109,7 @@ const maxInlineSizeStyles = stylex.create({
     >
   ) => ({
     maxInlineSize: {
+      default: maxInlineSize.default,
       ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
         maxInlineSize.small,
       ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:

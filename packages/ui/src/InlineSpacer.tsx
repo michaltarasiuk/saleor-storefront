@@ -38,6 +38,7 @@ const spacingStyles = stylex.create({
     inlineSize: NormalizedMediaQueryStyle<React.CSSProperties['inlineSize']>
   ) => ({
     inlineSize: {
+      default: inlineSize.default,
       ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
         inlineSize.small,
       ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
