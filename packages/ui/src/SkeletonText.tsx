@@ -1,6 +1,6 @@
 import * as stylex from '@stylexjs/stylex';
 
-import type {fontSizeStyles} from './styles/font-size';
+import type {fontSizeStyles} from './styles/font-size.stylex';
 import {Text} from './Text';
 import {animations} from './variables/animations.stylex';
 import {baseColors} from './variables/colors.stylex';

@@ -2,7 +2,7 @@ import {assertNever} from '@repo/utils/assert-never';
 import * as stylex from '@stylexjs/stylex';
 
 import {SkeletonText} from './SkeletonText';
-import type {fontSizeStyles} from './styles/font-size';
+import type {fontSizeStyles} from './styles/font-size.stylex';
 import {animations} from './variables/animations.stylex';
 import {spacing} from './variables/tokens.stylex';
 

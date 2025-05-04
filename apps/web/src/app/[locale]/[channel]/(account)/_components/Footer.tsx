@@ -15,22 +15,22 @@ export function Footer() {
     <Container elementType="footer" style={footerStyles.base}>
       <ul {...stylex.props(linkListStyles.list)}>
         <li>
-          <Link href={Routes.RefundPolicy}>
+          <Link href={Routes.refundPolicy}>
             <Trans>Refund Policy</Trans>
           </Link>
         </li>
         <li>
-          <Link href={Routes.ShippingPolicy}>
+          <Link href={Routes.shippingPolicy}>
             <Trans>Shipping Policy</Trans>
           </Link>
         </li>
         <li>
-          <Link href={Routes.PrivacyPolicy}>
+          <Link href={Routes.privacyPolicy}>
             <Trans>Privacy Policy</Trans>
           </Link>
         </li>
         <li>
-          <Link href={Routes.TermsOfService}>
+          <Link href={Routes.termsOfService}>
             <Trans>Terms of Service</Trans>
           </Link>
         </li>
@@ -56,11 +56,11 @@ const linkListStyles = stylex.create({
     alignItems: 'center',
     flexDirection: {
       default: 'column',
-      ['@media (width >= 40rem)' satisfies MediaQuerySizes['Small']]: 'row',
+      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]: 'row',
     },
     gap: {
       default: spacing.base,
-      ['@media (width >= 40rem)' satisfies MediaQuerySizes['Small']]:
+      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
         spacing.large200,
     },
     listStyleType: 'none',

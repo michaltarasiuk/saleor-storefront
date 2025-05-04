@@ -1,7 +1,7 @@
 import * as stylex from '@stylexjs/stylex';
 import {Label as AriaLabel} from 'react-aria-components';
 
-import {fontSizeStyles} from './styles/font-size';
+import {fontSizeStyles} from './styles/font-size.stylex';
 import type {AccessibilityVisibility} from './types/accessibility';
 import {
   baseColors,

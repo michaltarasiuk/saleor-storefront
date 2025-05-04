@@ -1,13 +1,21 @@
 import * as stylex from '@stylexjs/stylex';
 
-import {spacing} from './variables/tokens.stylex';
+import type {MediaQuerySizes} from './consts/media-query';
+import {type Spacing, SpacingTokens} from './styles/spacing.stylex';
 
 interface BlockSpacerProps {
-  readonly spacing?: keyof typeof spacingStyles;
+  readonly spacing?: Spacing;
 }
 
 export function BlockSpacer({spacing = 'base'}: BlockSpacerProps) {
-  return <div {...stylex.props(styles.base, spacingStyles[spacing])} />;
+  return (
+    <div
+      {...stylex.props(
+        styles.base,
+        spacingStyles.default(SpacingTokens[spacing])
+      )}
+    />
+  );
 }
 
 const styles = stylex.create({
@@ -18,22 +26,32 @@ const styles = stylex.create({
 });
 
 const spacingStyles = stylex.create({
-  none: {
-    blockSize: null,
-  },
-  extraTight: {
-    blockSize: spacing.small300,
-  },
-  tight: {
-    blockSize: spacing.small200,
-  },
-  base: {
-    blockSize: spacing.base,
-  },
-  loose: {
-    blockSize: spacing.large300,
-  },
-  extraLoose: {
-    blockSize: spacing.large500,
-  },
+  default: (blockSize: React.CSSProperties['blockSize']) => ({
+    blockSize,
+  }),
+  small: (blockSize: React.CSSProperties['blockSize']) => ({
+    ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]: {
+      blockSize,
+    },
+  }),
+  medium: (blockSize: React.CSSProperties['blockSize']) => ({
+    ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]: {
+      blockSize,
+    },
+  }),
+  large: (blockSize: React.CSSProperties['blockSize']) => ({
+    ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]: {
+      blockSize,
+    },
+  }),
+  extraLarge: (blockSize: React.CSSProperties['blockSize']) => ({
+    ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]: {
+      blockSize,
+    },
+  }),
+  extraExtraLarge: (blockSize: React.CSSProperties['blockSize']) => ({
+    ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]: {
+      blockSize,
+    },
+  }),
 });

@@ -1,17 +1,17 @@
 export type MediaQuerySizes = typeof MediaQuerySizes;
 
 export const MediaQuerySizes = {
-  Small: '@media (width >= 40rem)',
-  Medium: '@media (width >= 48rem)',
-  Large: '@media (width >= 64rem)',
-  ExtraLarge: '@media (width >= 80rem)',
-  ExtraExtraLarge: '@media (width >= 96rem)',
+  small: '@media (width >= 40rem)',
+  medium: '@media (width >= 48rem)',
+  large: '@media (width >= 64rem)',
+  extraLarge: '@media (width >= 80rem)',
+  extraExtraLarge: '@media (width >= 96rem)',
 } as const;
 
 export const MediaQueryConditions = {
-  Small: '(min-width: 40rem)',
-  Medium: '(min-width: 48rem)',
-  Large: '(min-width: 64rem)',
-  ExtraLarge: '(min-width: 80rem)',
-  ExtraExtraLarge: '(min-width: 96rem)',
+  small: '(min-width: 40rem)',
+  medium: '(min-width: 48rem)',
+  large: '(min-width: 64rem)',
+  extraLarge: '(min-width: 80rem)',
+  extraExtraLarge: '(min-width: 96rem)',
 } as const;

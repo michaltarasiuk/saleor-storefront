@@ -8,18 +8,28 @@ import {
   ImageGroupGridContext,
   ImageGroupInlineStackContext,
 } from './ImageGroup';
-import {type BorderStyle, getBorderStyleStyles} from './styles/border-style';
-import {type BorderWidth, getBorderWidthStyles} from './styles/border-width';
-import {type CornerRadius, getCornerRadiusStyles} from './styles/corner-radius';
+import {
+  type BorderStyle,
+  getBorderStyleStyles,
+} from './styles/border-style.stylex';
+import {
+  type BorderWidth,
+  getBorderWidthStyles,
+} from './styles/border-width.stylex';
+import {
+  type CornerRadius,
+  getCornerRadiusStyles,
+} from './styles/corner-radius.stylex';
 import type {AccessibilityRole} from './types/accessibility';
+import type {MaybeShorthandProperty} from './types/shorthand';
 import {baseColors} from './variables/colors.stylex';
 import {negativeSpacing} from './variables/tokens.stylex';
 
 interface ImageProps extends NextImageProps {
   readonly accessibilityRole?: Extract<AccessibilityRole, 'decorative'>;
-  readonly border?: BorderStyle;
-  readonly borderWidth?: BorderWidth;
-  readonly cornderRadius?: CornerRadius;
+  readonly border?: MaybeShorthandProperty<BorderStyle>;
+  readonly borderWidth?: MaybeShorthandProperty<BorderWidth>;
+  readonly cornderRadius?: MaybeShorthandProperty<CornerRadius>;
 }
 
 export function Image({
@@ -49,7 +59,7 @@ export function Image({
     return nextImage;
   }
   return <div {...stylex.props(containerStyles.base)}>{nextImage}</div>;
-} 
+}
 
 const imageStyles = stylex.create({
   base: {

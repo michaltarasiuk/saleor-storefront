@@ -1,15 +1,25 @@
 import {isArray} from '@repo/utils/is-array';
 import * as stylex from '@stylexjs/stylex';
 
-import {type Background, backgroundStyles} from './styles/background';
-import {type BorderStyle, getBorderStyleStyles} from './styles/border-style';
-import {type BorderWidth, getBorderWidthStyles} from './styles/border-width';
-import {type CornerRadius, getCornerRadiusStyles} from './styles/corner-radius';
-import {type Overflow, overflowStyles} from './styles/overflow';
-import {getPaddingStyles, type Padding} from './styles/padding';
-import {getSizeStyles, type SizeProps} from './styles/size';
-import {getSpacingStyles, type Spacing} from './styles/spacing';
+import {type Background, backgroundStyles} from './styles/background.stylex';
+import {
+  type BorderStyle,
+  getBorderStyleStyles,
+} from './styles/border-style.stylex';
+import {
+  type BorderWidth,
+  getBorderWidthStyles,
+} from './styles/border-width.stylex';
+import {
+  type CornerRadius,
+  getCornerRadiusStyles,
+} from './styles/corner-radius.stylex';
+import {type Overflow, overflowStyles} from './styles/overflow.stylex';
+import {getPaddingStyles, type Padding} from './styles/padding.stylex';
+import {getSizeStyles, type SizeProps} from './styles/size.stylex';
+import {getSpacingStyles, type Spacing} from './styles/spacing.stylex';
 import type {NonPresentationalAccessibilityRole} from './types/accessibility';
+import type {MaybeShorthandProperty} from './types/shorthand';
 import {
   formatGridItemSize,
   type GridItemSize,
@@ -25,12 +35,12 @@ interface GridProps extends SizeProps {
   readonly columns?: Columns;
   readonly rows?: Rows;
   readonly background?: Background;
-  readonly border?: BorderStyle;
-  readonly borderWidth?: BorderWidth;
-  readonly cornerRadius?: CornerRadius;
+  readonly border?: MaybeShorthandProperty<BorderStyle>;
+  readonly borderWidth?: MaybeShorthandProperty<BorderWidth>;
+  readonly cornerRadius?: MaybeShorthandProperty<CornerRadius>;
   readonly overflow?: Overflow;
-  readonly padding?: Padding;
-  readonly spacing?: Spacing;
+  readonly padding?: MaybeShorthandProperty<Padding>;
+  readonly spacing?: MaybeShorthandProperty<Spacing>;
 }
 
 export function Grid({

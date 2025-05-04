@@ -53,7 +53,7 @@ const tabIconStyles = stylex.create({
     height: '18px',
     display: {
       default: 'none',
-      ['@media (width >= 40rem)' satisfies MediaQuerySizes['Small']]: 'inline',
+      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]: 'inline',
     },
     flexShrink: 0,
   },

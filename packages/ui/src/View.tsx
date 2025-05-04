@@ -8,16 +8,26 @@ import {
   blockAlignmentStyles,
   type InlineAlignment,
   inlineAlignmentStyles,
-} from './styles/aligment';
-import {type Background, backgroundStyles} from './styles/background';
-import {type BorderStyle, getBorderStyleStyles} from './styles/border-style';
-import {type BorderWidth, getBorderWidthStyles} from './styles/border-width';
-import {type CornerRadius, getCornerRadiusStyles} from './styles/corner-radius';
-import {type Opacity, opacityStyles} from './styles/opacity';
-import {type Overflow, overflowStyles} from './styles/overflow';
-import {getPaddingStyles, type Padding} from './styles/padding';
-import {getSizeStyles, type SizeProps} from './styles/size';
+} from './styles/aligment.stylex';
+import {type Background, backgroundStyles} from './styles/background.stylex';
+import {
+  type BorderStyle,
+  getBorderStyleStyles,
+} from './styles/border-style.stylex';
+import {
+  type BorderWidth,
+  getBorderWidthStyles,
+} from './styles/border-width.stylex';
+import {
+  type CornerRadius,
+  getCornerRadiusStyles,
+} from './styles/corner-radius.stylex';
+import {type Opacity, opacityStyles} from './styles/opacity.stylex';
+import {type Overflow, overflowStyles} from './styles/overflow.stylex';
+import {getPaddingStyles, type Padding} from './styles/padding.stylex';
+import {getSizeStyles, type SizeProps} from './styles/size.stylex';
 import type {NonPresentationalAccessibilityRole} from './types/accessibility';
+import type {MaybeShorthandProperty} from './types/shorthand';
 import type {Visibility} from './types/visibility';
 import type {Size} from './utils/format-size';
 import {baseColors} from './variables/colors.stylex';
@@ -29,7 +39,7 @@ interface ViewProps extends SizeProps {
   readonly inlineSize?: Extract<Size, 'fill'>;
   readonly blockAlignment?: BlockAlignment;
   readonly inlineAlignment?: InlineAlignment;
-  readonly padding?: Padding;
+  readonly padding?: MaybeShorthandProperty<Padding>;
   readonly background?: Background;
   readonly border?: BorderStyle;
   readonly borderWidth?: BorderWidth;

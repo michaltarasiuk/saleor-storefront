@@ -25,16 +25,16 @@ const styles = stylex.create({
     margin: '0 auto',
     paddingInline: {
       default: spacing.large200,
-      ['@media (width >= 40rem)' satisfies MediaQuerySizes['Small']]:
+      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
         spacing.none,
     },
     maxWidth: {
-      ['@media (width >= 40rem)' satisfies MediaQuerySizes['Small']]: '40rem',
-      ['@media (width >= 48rem)' satisfies MediaQuerySizes['Medium']]: '48rem',
-      ['@media (width >= 64rem)' satisfies MediaQuerySizes['Large']]: '64rem',
-      ['@media (width >= 80rem)' satisfies MediaQuerySizes['ExtraLarge']]:
+      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]: '40rem',
+      ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]: '48rem',
+      ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]: '64rem',
+      ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]:
         '80rem',
-      ['@media (width >= 96rem)' satisfies MediaQuerySizes['ExtraExtraLarge']]:
+      ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]:
         '96rem',
     },
   },

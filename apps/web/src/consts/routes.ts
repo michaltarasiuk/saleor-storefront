@@ -1,7 +1,7 @@
 export const Routes = {
-  Home: '/',
-  RefundPolicy: '/refund-policy',
-  ShippingPolicy: '/shipping-policy',
-  PrivacyPolicy: '/privacy-policy',
-  TermsOfService: '/terms-of-service',
+  home: '/',
+  refundPolicy: '/refund-policy',
+  shippingPolicy: '/shipping-policy',
+  privacyPolicy: '/privacy-policy',
+  termsOfService: '/terms-of-service',
 };

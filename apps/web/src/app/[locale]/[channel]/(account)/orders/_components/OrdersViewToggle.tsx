@@ -23,12 +23,12 @@ export const OrdersViewContext = createContext<{
 
 export function OrdersView({children}: {readonly children: React.ReactNode}) {
   const [viewType, setViewType] = useState<OrdersViewType>('grid');
-  const isMinMediumMedia = useMediaQuery(MediaQueryConditions.Medium);
+  const isMediumUpMedia = useMediaQuery(MediaQueryConditions.medium);
   useEffect(() => {
-    if (!isMinMediumMedia && viewType === 'table') {
+    if (!isMediumUpMedia && viewType === 'table') {
       setViewType('grid');
     }
-  }, [isMinMediumMedia, viewType]);
+  }, [isMediumUpMedia, viewType]);
   return (
     <OrdersViewContext value={{viewType, setViewType}}>
       {children}
@@ -69,7 +69,7 @@ const styles = stylex.create({
     marginInlineStart: 'auto',
     display: {
       default: 'none',
-      ['@media (width >= 48rem)' satisfies MediaQuerySizes['Medium']]:
+      ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
         'inherit',
     },
   },
