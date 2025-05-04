@@ -1,29 +1,26 @@
 import * as stylex from '@stylexjs/stylex';
+import {Label as AriaLabel} from 'react-aria-components';
 
 import {type Apperance, apperanceStyles} from './styles/apperance';
 import {type Emphasis, emphasisStyles} from './styles/emphasis';
 import {type FontSize, fontSizeStyles} from './styles/font-size';
-import type {AccessibilityVisibility} from './types/accessibility';
 import {typographyPrimary} from './variables/tokens.stylex';
 
-interface TextProps {
+interface LabelProps {
   readonly children: React.ReactNode;
-  readonly accessibilityVisibility?: AccessibilityVisibility;
   readonly size?: FontSize;
   readonly appearance?: Apperance;
   readonly emphasis?: Emphasis;
 }
 
-export function Text({
+export function Label({
   children,
-  accessibilityVisibility,
   appearance = 'default',
   size = 'base',
   emphasis = 'base',
-}: TextProps) {
+}: LabelProps) {
   return (
-    <span
-      aria-hidden={accessibilityVisibility === 'hidden'}
+    <AriaLabel
       {...stylex.props(
         styles.base,
         apperanceStyles[appearance],
@@ -31,26 +28,7 @@ export function Text({
         emphasisStyles[emphasis]
       )}>
       {children}
-    </span>
-  );
-}
-
-export function TextBlock({
-  children,
-  appearance = 'default',
-  size = 'base',
-  emphasis = 'base',
-}: Omit<TextProps, 'accessibilityVisibility'>) {
-  return (
-    <p
-      {...stylex.props(
-        styles.base,
-        apperanceStyles[appearance],
-        fontSizeStyles[size],
-        emphasisStyles[emphasis]
-      )}>
-      {children}
-    </p>
+    </AriaLabel>
   );
 }
 

@@ -1,7 +1,7 @@
 import * as stylex from '@stylexjs/stylex';
 
 import type {MediaQuerySizes} from './consts/media-query';
-import {getSpacingToken, type Spacing} from './styles/spacing.stylex';
+import {getSpacingToken, type Spacing} from './styles/spacing';
 import {
   type NormalizedMediaQueryStyle,
   normalizeMediaQueryStyle,

@@ -8,18 +8,9 @@ import {
   ImageGroupGridContext,
   ImageGroupInlineStackContext,
 } from './ImageGroup';
-import {
-  type BorderStyle,
-  getBorderStyleStyles,
-} from './styles/border-style.stylex';
-import {
-  type BorderWidth,
-  getBorderWidthStyles,
-} from './styles/border-width.stylex';
-import {
-  type CornerRadius,
-  getCornerRadiusStyles,
-} from './styles/corner-radius.stylex';
+import {type BorderStyle, getBorderStyleStyles} from './styles/border-style';
+import {type BorderWidth, getBorderWidthStyles} from './styles/border-width';
+import {type CornerRadius, getCornerRadiusStyles} from './styles/corner-radius';
 import type {AccessibilityRole} from './types/accessibility';
 import type {MaybeShorthandProperty} from './types/shorthand';
 import {baseColors} from './variables/colors.stylex';

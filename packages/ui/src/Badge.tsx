@@ -6,7 +6,7 @@ import {useVisuallyHidden} from 'react-aria';
 import {
   type FontSize as Size,
   fontSizeStyles as sizeStyles,
-} from './styles/font-size.stylex';
+} from './styles/font-size';
 import type {AccessibilityVisibility} from './types/accessibility';
 import type {Visibility} from './types/visibility';
 import {baseColors, criticalColors} from './variables/colors.stylex';

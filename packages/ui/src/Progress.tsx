@@ -3,7 +3,7 @@
 import * as stylex from '@stylexjs/stylex';
 import {ProgressBar} from 'react-aria-components';
 
-import {Label} from './Text';
+import {Label} from './Label';
 import {baseColors, criticalColors} from './variables/colors.stylex';
 import {borderWidth} from './variables/tokens.stylex';
 
