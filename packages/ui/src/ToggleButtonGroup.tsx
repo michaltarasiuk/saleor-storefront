@@ -13,15 +13,12 @@ import {
 import {controlColors, controlSelectedColors} from './variables/colors.stylex';
 import {borderWidth, cornerRadius, spacing} from './variables/tokens.stylex';
 
-interface ToggleButtonGroupPropsExtended
+interface ToggleButtonGroupProps
   extends Omit<AriaToggleButtonGroupProps, 'style'> {
   readonly style?: stylex.StyleXStyles;
 }
 
-export function ToggleButtonGroup({
-  style,
-  ...props
-}: ToggleButtonGroupPropsExtended) {
+export function ToggleButtonGroup({style, ...props}: ToggleButtonGroupProps) {
   return (
     <AriaToggleButtonGroup
       {...props}

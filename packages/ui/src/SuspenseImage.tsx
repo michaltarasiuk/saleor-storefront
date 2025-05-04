@@ -1,8 +1,8 @@
 'use client';
-import {
-  type ImageLoaderProps,
-  type ImageProps,
-  type StaticImageData,
+import type {
+  ImageLoaderProps,
+  ImageProps,
+  StaticImageData,
 } from 'next/image';
 import {useIsSSR} from 'react-aria';
 

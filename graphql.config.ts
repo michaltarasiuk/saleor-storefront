@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import type {IGraphQLConfig} from 'graphql-config';
+import {type IGraphQLConfig} from 'graphql-config';
 import {z} from 'zod';
 
 const WebAppEnvironmentVariablesSchema = z.object({

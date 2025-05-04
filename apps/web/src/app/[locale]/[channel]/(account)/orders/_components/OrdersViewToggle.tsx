@@ -3,7 +3,7 @@
 import {useLingui} from '@lingui/react/macro';
 import {
   MediaQueryConditions,
-  MediaQuerySizes,
+  type MediaQuerySizes,
 } from '@repo/ui/consts/media-query';
 import {useMediaQuery} from '@repo/ui/hooks/use-media-query';
 import {GridIcon} from '@repo/ui/icons/GridIcon';
