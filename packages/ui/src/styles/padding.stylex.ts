@@ -4,6 +4,10 @@ import * as stylex from '@stylexjs/stylex';
 
 import type {MediaQuerySizes} from '../consts/media-query';
 import type {MaybeShorthandProperty} from '../types/shorthand';
+import {
+  type NormalizedMediaQueryStyle,
+  normalizeMediaQueryStyle,
+} from '../utils/media-query';
 import {spacing} from '../variables/tokens.stylex';
 
 export type Padding =
@@ -18,10 +22,26 @@ export function getPaddingStyles(padding: MaybeShorthandProperty<Padding>) {
   const [blockStart, inlineEnd, blockEnd, inlineStart] =
     normalizePadding(padding);
   return [
-    paddingBlockStartStyles.default(getPaddingToken(blockStart)),
-    paddingInlineEndStyles.default(getPaddingToken(inlineEnd)),
-    paddingBlockEndStyles.default(getPaddingToken(blockEnd)),
-    paddingInlineStartStyles.default(getPaddingToken(inlineStart)),
+    paddingBlockStartStyles.base(
+      normalizeMediaQueryStyle({
+        default: getPaddingToken(blockStart),
+      })
+    ),
+    paddingInlineEndStyles.base(
+      normalizeMediaQueryStyle({
+        default: getPaddingToken(inlineEnd),
+      })
+    ),
+    paddingBlockEndStyles.base(
+      normalizeMediaQueryStyle({
+        default: getPaddingToken(blockEnd),
+      })
+    ),
+    paddingInlineStartStyles.base(
+      normalizeMediaQueryStyle({
+        default: getPaddingToken(inlineStart),
+      })
+    ),
   ];
 }
 
@@ -59,137 +79,85 @@ function getPaddingToken(padding: Padding) {
 }
 
 const paddingBlockStartStyles = stylex.create({
-  default: (paddingBlockStart: React.CSSProperties['paddingBlockStart']) => ({
-    paddingBlockStart,
-  }),
-  small: (paddingBlockStart: React.CSSProperties['paddingBlockStart']) => ({
-    ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]: {
-      paddingBlockStart,
-    },
-  }),
-  medium: (paddingBlockStart: React.CSSProperties['paddingBlockStart']) => ({
-    ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]: {
-      paddingBlockStart,
-    },
-  }),
-  large: (paddingBlockStart: React.CSSProperties['paddingBlockStart']) => ({
-    ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]: {
-      paddingBlockStart,
-    },
-  }),
-  extraLarge: (
-    paddingBlockStart: React.CSSProperties['paddingBlockStart']
+  base: (
+    paddingBlockStart: NormalizedMediaQueryStyle<
+      React.CSSProperties['paddingBlockStart']
+    >
   ) => ({
-    ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]: {
-      paddingBlockStart,
-    },
-  }),
-  extraExtraLarge: (
-    paddingBlockStart: React.CSSProperties['paddingBlockStart']
-  ) => ({
-    ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]: {
-      paddingBlockStart,
+    paddingBlockStart: {
+      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
+        paddingBlockStart.small,
+      ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
+        paddingBlockStart.medium,
+      ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]:
+        paddingBlockStart.large,
+      ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]:
+        paddingBlockStart.extraLarge,
+      ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]:
+        paddingBlockStart.extraExtraLarge,
     },
   }),
 });
 
 const paddingBlockEndStyles = stylex.create({
-  default: (paddingBlockEnd: React.CSSProperties['paddingBlockEnd']) => ({
-    paddingBlockEnd,
-  }),
-  small: (paddingBlockEnd: React.CSSProperties['paddingBlockEnd']) => ({
-    ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]: {
-      paddingBlockEnd,
-    },
-  }),
-  medium: (paddingBlockEnd: React.CSSProperties['paddingBlockEnd']) => ({
-    ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]: {
-      paddingBlockEnd,
-    },
-  }),
-  large: (paddingBlockEnd: React.CSSProperties['paddingBlockEnd']) => ({
-    ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]: {
-      paddingBlockEnd,
-    },
-  }),
-  extraLarge: (paddingBlockEnd: React.CSSProperties['paddingBlockEnd']) => ({
-    ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]: {
-      paddingBlockEnd,
-    },
-  }),
-  extraExtraLarge: (
-    paddingBlockEnd: React.CSSProperties['paddingBlockEnd']
+  base: (
+    paddingBlockEnd: NormalizedMediaQueryStyle<
+      React.CSSProperties['paddingBlockEnd']
+    >
   ) => ({
-    ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]: {
-      paddingBlockEnd,
+    paddingBlockEnd: {
+      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
+        paddingBlockEnd.small,
+      ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
+        paddingBlockEnd.medium,
+      ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]:
+        paddingBlockEnd.large,
+      ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]:
+        paddingBlockEnd.extraLarge,
+      ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]:
+        paddingBlockEnd.extraExtraLarge,
     },
   }),
 });
 
 const paddingInlineStartStyles = stylex.create({
-  default: (paddingInlineStart: React.CSSProperties['paddingInlineStart']) => ({
-    paddingInlineStart,
-  }),
-  small: (paddingInlineStart: React.CSSProperties['paddingInlineStart']) => ({
-    ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]: {
-      paddingInlineStart,
-    },
-  }),
-  medium: (paddingInlineStart: React.CSSProperties['paddingInlineStart']) => ({
-    ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]: {
-      paddingInlineStart,
-    },
-  }),
-  large: (paddingInlineStart: React.CSSProperties['paddingInlineStart']) => ({
-    ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]: {
-      paddingInlineStart,
-    },
-  }),
-  extraLarge: (
-    paddingInlineStart: React.CSSProperties['paddingInlineStart']
+  base: (
+    paddingInlineStart: NormalizedMediaQueryStyle<
+      React.CSSProperties['paddingInlineStart']
+    >
   ) => ({
-    ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]: {
-      paddingInlineStart,
-    },
-  }),
-  extraExtraLarge: (
-    paddingInlineStart: React.CSSProperties['paddingInlineStart']
-  ) => ({
-    ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]: {
-      paddingInlineStart,
+    paddingInlineStart: {
+      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
+        paddingInlineStart.small,
+      ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
+        paddingInlineStart.medium,
+      ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]:
+        paddingInlineStart.large,
+      ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]:
+        paddingInlineStart.extraLarge,
+      ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]:
+        paddingInlineStart.extraExtraLarge,
     },
   }),
 });
 
 const paddingInlineEndStyles = stylex.create({
-  default: (paddingInlineEnd: React.CSSProperties['paddingInlineEnd']) => ({
-    paddingInlineEnd,
-  }),
-  small: (paddingInlineEnd: React.CSSProperties['paddingInlineEnd']) => ({
-    ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]: {
-      paddingInlineEnd,
-    },
-  }),
-  medium: (paddingInlineEnd: React.CSSProperties['paddingInlineEnd']) => ({
-    ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]: {
-      paddingInlineEnd,
-    },
-  }),
-  large: (paddingInlineEnd: React.CSSProperties['paddingInlineEnd']) => ({
-    ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]: {
-      paddingInlineEnd,
-    },
-  }),
-  extraLarge: (paddingInlineEnd: React.CSSProperties['paddingInlineEnd']) => ({
-    ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]: {
-      paddingInlineEnd,
-    },
-  }),
-  extraExtraLarge: (
-    paddingInlineEnd: React.CSSProperties['paddingInlineEnd']
+  base: (
+    paddingInlineEnd: NormalizedMediaQueryStyle<
+      React.CSSProperties['paddingInlineEnd']
+    >
   ) => ({
-    ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]: {
-      paddingInlineEnd,
+    paddingInlineEnd: {
+      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
+        paddingInlineEnd.small,
+      ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
+        paddingInlineEnd.medium,
+      ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]:
+        paddingInlineEnd.large,
+      ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]:
+        paddingInlineEnd.extraLarge,
+      ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]:
+        paddingInlineEnd.extraExtraLarge,
     },
   }),
 });

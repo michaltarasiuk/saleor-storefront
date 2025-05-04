@@ -4,6 +4,10 @@ import * as stylex from '@stylexjs/stylex';
 
 import type {MediaQuerySizes} from '../consts/media-query';
 import type {MaybeShorthandProperty} from '../types/shorthand';
+import {
+  type NormalizedMediaQueryStyle,
+  normalizeMediaQueryStyle,
+} from '../utils/media-query';
 import {cornerRadius} from '../variables/tokens.stylex';
 
 export type CornerRadius = 'none' | 'small' | 'base' | 'large' | 'fullyRounded';
@@ -14,12 +18,26 @@ export function getCornerRadiusStyles(
   const [startStart, endEnd, startEnd, endStart] =
     normalizeCornerRadius(cornerRadius);
   return [
-    borderStartStartCornerRadiusStyles.default(
-      getCornerRadiusToken(startStart)
+    borderStartStartCornerRadiusStyles.base(
+      normalizeMediaQueryStyle({
+        default: getCornerRadiusToken(startStart),
+      })
     ),
-    borderEndEndCornerRadiusStyles.default(getCornerRadiusToken(endEnd)),
-    borderStartEndCornerRadiusStyles.default(getCornerRadiusToken(startEnd)),
-    borderEndStartCornerRadiusStyles.default(getCornerRadiusToken(endStart)),
+    borderEndEndCornerRadiusStyles.base(
+      normalizeMediaQueryStyle({
+        default: getCornerRadiusToken(endEnd),
+      })
+    ),
+    borderStartEndCornerRadiusStyles.base(
+      normalizeMediaQueryStyle({
+        default: getCornerRadiusToken(startEnd),
+      })
+    ),
+    borderEndStartCornerRadiusStyles.base(
+      normalizeMediaQueryStyle({
+        default: getCornerRadiusToken(endStart),
+      })
+    ),
   ];
 }
 
@@ -62,157 +80,85 @@ function getCornerRadiusToken(cornerRadiusKey: CornerRadius) {
 }
 
 const borderStartStartCornerRadiusStyles = stylex.create({
-  default: (
-    borderStartStartRadius: React.CSSProperties['borderStartStartRadius']
+  base: (
+    borderStartStartRadius: NormalizedMediaQueryStyle<
+      React.CSSProperties['borderStartStartRadius']
+    >
   ) => ({
-    borderStartStartRadius,
-  }),
-  small: (
-    borderStartStartRadius: React.CSSProperties['borderStartStartRadius']
-  ) => ({
-    ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]: {
-      borderStartStartRadius,
-    },
-  }),
-  medium: (
-    borderStartStartRadius: React.CSSProperties['borderStartStartRadius']
-  ) => ({
-    ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]: {
-      borderStartStartRadius,
-    },
-  }),
-  large: (
-    borderStartStartRadius: React.CSSProperties['borderStartStartRadius']
-  ) => ({
-    ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]: {
-      borderStartStartRadius,
-    },
-  }),
-  extraLarge: (
-    borderStartStartRadius: React.CSSProperties['borderStartStartRadius']
-  ) => ({
-    ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]: {
-      borderStartStartRadius,
-    },
-  }),
-  extraExtraLarge: borderStartStartRadius => ({
-    ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]: {
-      borderStartStartRadius,
+    borderStartStartRadius: {
+      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
+        borderStartStartRadius.small,
+      ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
+        borderStartStartRadius.medium,
+      ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]:
+        borderStartStartRadius.large,
+      ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]:
+        borderStartStartRadius.extraLarge,
+      ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]:
+        borderStartStartRadius.extraExtraLarge,
     },
   }),
 });
 
 const borderStartEndCornerRadiusStyles = stylex.create({
-  default: (
-    borderStartEndRadius: React.CSSProperties['borderStartEndRadius']
+  base: (
+    borderStartEndRadius: NormalizedMediaQueryStyle<
+      React.CSSProperties['borderStartEndRadius']
+    >
   ) => ({
-    borderStartEndRadius,
-  }),
-  small: (
-    borderStartEndRadius: React.CSSProperties['borderStartEndRadius']
-  ) => ({
-    ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]: {
-      borderStartEndRadius,
-    },
-  }),
-  medium: (
-    borderStartEndRadius: React.CSSProperties['borderStartEndRadius']
-  ) => ({
-    ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]: {
-      borderStartEndRadius,
-    },
-  }),
-  large: (
-    borderStartEndRadius: React.CSSProperties['borderStartEndRadius']
-  ) => ({
-    ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]: {
-      borderStartEndRadius,
-    },
-  }),
-  extraLarge: (
-    borderStartEndRadius: React.CSSProperties['borderStartEndRadius']
-  ) => ({
-    ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]: {
-      borderStartEndRadius,
-    },
-  }),
-  extraExtraLarge: borderStartStartRadius => ({
-    ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]: {
-      borderStartStartRadius,
+    borderStartEndRadius: {
+      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
+        borderStartEndRadius.small,
+      ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
+        borderStartEndRadius.medium,
+      ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]:
+        borderStartEndRadius.large,
+      ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]:
+        borderStartEndRadius.extraLarge,
+      ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]:
+        borderStartEndRadius.extraExtraLarge,
     },
   }),
 });
 
 const borderEndStartCornerRadiusStyles = stylex.create({
-  default: (
-    borderEndStartRadius: React.CSSProperties['borderEndStartRadius']
+  base: (
+    borderEndStartRadius: NormalizedMediaQueryStyle<
+      React.CSSProperties['borderEndStartRadius']
+    >
   ) => ({
-    borderEndStartRadius,
-  }),
-  small: (
-    borderEndStartRadius: React.CSSProperties['borderEndStartRadius']
-  ) => ({
-    ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]: {
-      borderEndStartRadius,
-    },
-  }),
-  medium: (
-    borderEndStartRadius: React.CSSProperties['borderEndStartRadius']
-  ) => ({
-    ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]: {
-      borderEndStartRadius,
-    },
-  }),
-  large: (
-    borderEndStartRadius: React.CSSProperties['borderEndStartRadius']
-  ) => ({
-    ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]: {
-      borderEndStartRadius,
-    },
-  }),
-  extraLarge: (
-    borderEndStartRadius: React.CSSProperties['borderEndStartRadius']
-  ) => ({
-    ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]: {
-      borderEndStartRadius,
-    },
-  }),
-  extraExtraLarge: borderStartStartRadius => ({
-    ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]: {
-      borderStartStartRadius,
+    borderEndStartRadius: {
+      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
+        borderEndStartRadius.small,
+      ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
+        borderEndStartRadius.medium,
+      ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]:
+        borderEndStartRadius.large,
+      ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]:
+        borderEndStartRadius.extraLarge,
+      ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]:
+        borderEndStartRadius.extraExtraLarge,
     },
   }),
 });
 
 const borderEndEndCornerRadiusStyles = stylex.create({
-  default: (borderEndEndRadius: React.CSSProperties['borderEndEndRadius']) => ({
-    borderEndEndRadius,
-  }),
-  small: (borderEndEndRadius: React.CSSProperties['borderEndEndRadius']) => ({
-    ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]: {
-      borderEndEndRadius,
-    },
-  }),
-  medium: (borderEndEndRadius: React.CSSProperties['borderEndEndRadius']) => ({
-    ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]: {
-      borderEndEndRadius,
-    },
-  }),
-  large: (borderEndEndRadius: React.CSSProperties['borderEndEndRadius']) => ({
-    ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]: {
-      borderEndEndRadius,
-    },
-  }),
-  extraLarge: (
-    borderEndEndRadius: React.CSSProperties['borderEndEndRadius']
+  base: (
+    borderEndEndRadius: NormalizedMediaQueryStyle<
+      React.CSSProperties['borderEndEndRadius']
+    >
   ) => ({
-    ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]: {
-      borderEndEndRadius,
-    },
-  }),
-  extraExtraLarge: borderStartStartRadius => ({
-    ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]: {
-      borderStartStartRadius,
+    borderEndEndRadius: {
+      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
+        borderEndEndRadius.small,
+      ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
+        borderEndEndRadius.medium,
+      ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]:
+        borderEndEndRadius.large,
+      ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]:
+        borderEndEndRadius.extraLarge,
+      ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]:
+        borderEndEndRadius.extraExtraLarge,
     },
   }),
 });

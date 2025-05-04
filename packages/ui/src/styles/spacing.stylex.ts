@@ -4,6 +4,10 @@ import * as stylex from '@stylexjs/stylex';
 
 import type {MediaQuerySizes} from '../consts/media-query';
 import type {MaybeShorthandProperty} from '../types/shorthand';
+import {
+  type NormalizedMediaQueryStyle,
+  normalizeMediaQueryStyle,
+} from '../utils/media-query';
 import {spacing} from '../variables/tokens.stylex';
 
 export type Spacing =
@@ -17,8 +21,16 @@ export type Spacing =
 export function getSpacingStyles(spacing: MaybeShorthandProperty<Spacing>) {
   const [rowSpacing, columnSpacing] = normalizeSpacing(spacing);
   return [
-    spacingRowStyles.default(getSpacingToken(rowSpacing)),
-    spacingColumnStyles.default(getSpacingToken(columnSpacing)),
+    spacingRowStyles.base(
+      normalizeMediaQueryStyle({
+        default: getSpacingToken(rowSpacing),
+      })
+    ),
+    spacingColumnStyles.base(
+      normalizeMediaQueryStyle({
+        default: getSpacingToken(columnSpacing),
+      })
+    ),
   ];
 }
 
@@ -46,63 +58,37 @@ export function getSpacingToken(spacingKey: Spacing) {
 }
 
 const spacingRowStyles = stylex.create({
-  default: (rowGap: React.CSSProperties['rowGap']) => ({
-    rowGap,
-  }),
-  small: (rowGap: React.CSSProperties['rowGap']) => ({
-    ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]: {
-      rowGap,
-    },
-  }),
-  medium: (rowGap: React.CSSProperties['rowGap']) => ({
-    ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]: {
-      rowGap,
-    },
-  }),
-  large: (rowGap: React.CSSProperties['rowGap']) => ({
-    ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]: {
-      rowGap,
-    },
-  }),
-  extraLarge: (rowGap: React.CSSProperties['rowGap']) => ({
-    ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]: {
-      rowGap,
-    },
-  }),
-  extraExtraLarge: (rowGap: React.CSSProperties['rowGap']) => ({
-    ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]: {
-      rowGap,
+  base: (rowGap: NormalizedMediaQueryStyle<React.CSSProperties['rowGap']>) => ({
+    rowGap: {
+      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
+        rowGap.small,
+      ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
+        rowGap.medium,
+      ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]:
+        rowGap.large,
+      ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]:
+        rowGap.extraLarge,
+      ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]:
+        rowGap.extraExtraLarge,
     },
   }),
 });
 
 const spacingColumnStyles = stylex.create({
-  default: (columnGap: React.CSSProperties['columnGap']) => ({
-    columnGap,
-  }),
-  small: (columnGap: React.CSSProperties['columnGap']) => ({
-    ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]: {
-      columnGap,
-    },
-  }),
-  medium: (columnGap: React.CSSProperties['columnGap']) => ({
-    ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]: {
-      columnGap,
-    },
-  }),
-  large: (columnGap: React.CSSProperties['columnGap']) => ({
-    ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]: {
-      columnGap,
-    },
-  }),
-  extraLarge: (columnGap: React.CSSProperties['columnGap']) => ({
-    ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]: {
-      columnGap,
-    },
-  }),
-  extraExtraLarge: (columnGap: React.CSSProperties['columnGap']) => ({
-    ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]: {
-      columnGap,
+  base: (
+    columnGap: NormalizedMediaQueryStyle<React.CSSProperties['columnGap']>
+  ) => ({
+    columnGap: {
+      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
+        columnGap.small,
+      ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
+        columnGap.medium,
+      ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]:
+        columnGap.large,
+      ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]:
+        columnGap.extraLarge,
+      ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]:
+        columnGap.extraExtraLarge,
     },
   }),
 });

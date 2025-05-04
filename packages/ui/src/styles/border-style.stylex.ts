@@ -5,6 +5,10 @@ import type {DataType} from 'csstype';
 
 import type {MediaQuerySizes} from '../consts/media-query';
 import type {MaybeShorthandProperty} from '../types/shorthand';
+import {
+  type NormalizedMediaQueryStyle,
+  normalizeMediaQueryStyle,
+} from '../utils/media-query';
 
 export type BorderStyle = 'base' | 'dashed' | 'dotted' | 'none';
 
@@ -14,10 +18,26 @@ export function getBorderStyleStyles(
   const [blockStart, inlineEnd, blockEnd, inlineStart] =
     normalizeBorderStyle(borderStyle);
   return [
-    borderBlockStartStyleStyles.default(getBorderStyleToken(blockStart)),
-    borderInlineEndStyleStyles.default(getBorderStyleToken(inlineEnd)),
-    borderBlockEndStyleStyles.default(getBorderStyleToken(blockEnd)),
-    borderInlineStartStyleStyles.default(getBorderStyleToken(inlineStart)),
+    borderBlockStartStyleStyles.base(
+      normalizeMediaQueryStyle({
+        default: getBorderStyleToken(blockStart),
+      })
+    ),
+    borderInlineEndStyleStyles.base(
+      normalizeMediaQueryStyle({
+        default: getBorderStyleToken(inlineEnd),
+      })
+    ),
+    borderBlockEndStyleStyles.base(
+      normalizeMediaQueryStyle({
+        default: getBorderStyleToken(blockEnd),
+      })
+    ),
+    borderInlineStartStyleStyles.base(
+      normalizeMediaQueryStyle({
+        default: getBorderStyleToken(inlineStart),
+      })
+    ),
   ];
 }
 
@@ -58,169 +78,85 @@ function getBorderStyleToken(borderStyle: BorderStyle): DataType.LineStyle {
 }
 
 const borderBlockStartStyleStyles = stylex.create({
-  default: (
-    borderBlockStartStyle: React.CSSProperties['borderBlockStartStyle']
+  base: (
+    borderBlockStartStyle: NormalizedMediaQueryStyle<
+      React.CSSProperties['borderBlockStartStyle']
+    >
   ) => ({
-    borderBlockStartStyle,
-  }),
-  small: (
-    borderBlockStartStyle: React.CSSProperties['borderBlockStartStyle']
-  ) => ({
-    ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]: {
-      borderBlockStartStyle,
-    },
-  }),
-  medium: (
-    borderBlockStartStyle: React.CSSProperties['borderBlockStartStyle']
-  ) => ({
-    ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]: {
-      borderBlockStartStyle,
-    },
-  }),
-  large: (
-    borderBlockStartStyle: React.CSSProperties['borderBlockStartStyle']
-  ) => ({
-    ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]: {
-      borderBlockStartStyle,
-    },
-  }),
-  extraLarge: (
-    borderBlockStartStyle: React.CSSProperties['borderBlockStartStyle']
-  ) => ({
-    ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]: {
-      borderBlockStartStyle,
-    },
-  }),
-  extraExtraLarge: (
-    borderBlockStartStyle: React.CSSProperties['borderBlockStartStyle']
-  ) => ({
-    ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]: {
-      borderBlockStartStyle,
+    borderBlockStartStyle: {
+      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
+        borderBlockStartStyle.small,
+      ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
+        borderBlockStartStyle.medium,
+      ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]:
+        borderBlockStartStyle.large,
+      ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]:
+        borderBlockStartStyle.extraLarge,
+      ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]:
+        borderBlockStartStyle.extraExtraLarge,
     },
   }),
 });
 
 const borderBlockEndStyleStyles = stylex.create({
-  default: (
-    borderBlockEndStyle: React.CSSProperties['borderBlockEndStyle']
+  base: (
+    borderBlockEndStyle: NormalizedMediaQueryStyle<
+      React.CSSProperties['borderBlockEndStyle']
+    >
   ) => ({
-    borderBlockEndStyle,
-  }),
-  small: (borderBlockEndStyle: React.CSSProperties['borderBlockEndStyle']) => ({
-    ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]: {
-      borderBlockEndStyle,
-    },
-  }),
-  medium: (
-    borderBlockEndStyle: React.CSSProperties['borderBlockEndStyle']
-  ) => ({
-    ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]: {
-      borderBlockEndStyle,
-    },
-  }),
-  large: (borderBlockEndStyle: React.CSSProperties['borderBlockEndStyle']) => ({
-    ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]: {
-      borderBlockEndStyle,
-    },
-  }),
-  extraLarge: (
-    borderBlockEndStyle: React.CSSProperties['borderBlockEndStyle']
-  ) => ({
-    ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]: {
-      borderBlockEndStyle,
-    },
-  }),
-  extraExtraLarge: (
-    borderBlockEndStyle: React.CSSProperties['borderBlockEndStyle']
-  ) => ({
-    ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]: {
-      borderBlockEndStyle,
+    borderBlockEndStyle: {
+      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
+        borderBlockEndStyle.small,
+      ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
+        borderBlockEndStyle.medium,
+      ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]:
+        borderBlockEndStyle.large,
+      ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]:
+        borderBlockEndStyle.extraLarge,
+      ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]:
+        borderBlockEndStyle.extraExtraLarge,
     },
   }),
 });
 
 const borderInlineStartStyleStyles = stylex.create({
-  default: (
-    borderInlineStartStyle: React.CSSProperties['borderInlineStartStyle']
+  base: (
+    borderInlineStartStyle: NormalizedMediaQueryStyle<
+      React.CSSProperties['borderInlineStartStyle']
+    >
   ) => ({
-    borderInlineStartStyle,
-  }),
-  small: (
-    borderInlineStartStyle: React.CSSProperties['borderInlineStartStyle']
-  ) => ({
-    ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]: {
-      borderInlineStartStyle,
-    },
-  }),
-  medium: (
-    borderInlineStartStyle: React.CSSProperties['borderInlineStartStyle']
-  ) => ({
-    ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]: {
-      borderInlineStartStyle,
-    },
-  }),
-  large: (
-    borderInlineStartStyle: React.CSSProperties['borderInlineStartStyle']
-  ) => ({
-    ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]: {
-      borderInlineStartStyle,
-    },
-  }),
-  extraLarge: (
-    borderInlineStartStyle: React.CSSProperties['borderInlineStartStyle']
-  ) => ({
-    ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]: {
-      borderInlineStartStyle,
-    },
-  }),
-  extraExtraLarge: (
-    borderInlineStartStyle: React.CSSProperties['borderInlineStartStyle']
-  ) => ({
-    ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]: {
-      borderInlineStartStyle,
+    borderBlockEndStyle: {
+      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
+        borderInlineStartStyle.small,
+      ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
+        borderInlineStartStyle.medium,
+      ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]:
+        borderInlineStartStyle.large,
+      ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]:
+        borderInlineStartStyle.extraLarge,
+      ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]:
+        borderInlineStartStyle.extraExtraLarge,
     },
   }),
 });
 
 const borderInlineEndStyleStyles = stylex.create({
-  default: (
-    borderInlineEndStyle: React.CSSProperties['borderInlineEndStyle']
+  base: (
+    borderInlineEndStyle: NormalizedMediaQueryStyle<
+      React.CSSProperties['borderInlineEndStyle']
+    >
   ) => ({
-    borderInlineEndStyle,
-  }),
-  small: (
-    borderInlineEndStyle: React.CSSProperties['borderInlineEndStyle']
-  ) => ({
-    ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]: {
-      borderInlineEndStyle,
-    },
-  }),
-  medium: (
-    borderInlineEndStyle: React.CSSProperties['borderInlineEndStyle']
-  ) => ({
-    ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]: {
-      borderInlineEndStyle,
-    },
-  }),
-  large: (
-    borderInlineEndStyle: React.CSSProperties['borderInlineEndStyle']
-  ) => ({
-    ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]: {
-      borderInlineEndStyle,
-    },
-  }),
-  extraLarge: (
-    borderInlineEndStyle: React.CSSProperties['borderInlineEndStyle']
-  ) => ({
-    ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]: {
-      borderInlineEndStyle,
-    },
-  }),
-  extraExtraLarge: (
-    borderInlineEndStyle: React.CSSProperties['borderInlineEndStyle']
-  ) => ({
-    ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]: {
-      borderInlineEndStyle,
+    borderInlineEndStyle: {
+      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
+        borderInlineEndStyle.small,
+      ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
+        borderInlineEndStyle.medium,
+      ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]:
+        borderInlineEndStyle.large,
+      ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]:
+        borderInlineEndStyle.extraLarge,
+      ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]:
+        borderInlineEndStyle.extraExtraLarge,
     },
   }),
 });

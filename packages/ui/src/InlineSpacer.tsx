@@ -2,6 +2,10 @@ import * as stylex from '@stylexjs/stylex';
 
 import type {MediaQuerySizes} from './consts/media-query';
 import {getSpacingToken, type Spacing} from './styles/spacing.stylex';
+import {
+  type NormalizedMediaQueryStyle,
+  normalizeMediaQueryStyle,
+} from './utils/media-query';
 
 interface InlineSpacerProps {
   readonly spacing?: Spacing;
@@ -12,7 +16,11 @@ export function InlineSpacer({spacing = 'base'}: InlineSpacerProps) {
     <div
       {...stylex.props(
         styles.base,
-        spacingStyles.default(getSpacingToken(spacing))
+        spacingStyles.base(
+          normalizeMediaQueryStyle({
+            default: getSpacingToken(spacing),
+          })
+        )
       )}
     />
   );
@@ -26,32 +34,20 @@ const styles = stylex.create({
 });
 
 const spacingStyles = stylex.create({
-  default: (inlineSize: React.CSSProperties['blockSize']) => ({
-    inlineSize,
-  }),
-  small: (inlineSize: React.CSSProperties['blockSize']) => ({
-    ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]: {
-      inlineSize,
-    },
-  }),
-  medium: (inlineSize: React.CSSProperties['blockSize']) => ({
-    ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]: {
-      inlineSize,
-    },
-  }),
-  large: (inlineSize: React.CSSProperties['blockSize']) => ({
-    ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]: {
-      inlineSize,
-    },
-  }),
-  extraLarge: (inlineSize: React.CSSProperties['blockSize']) => ({
-    ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]: {
-      inlineSize,
-    },
-  }),
-  extraExtraLarge: (inlineSize: React.CSSProperties['blockSize']) => ({
-    ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]: {
-      inlineSize,
+  base: (
+    inlineSize: NormalizedMediaQueryStyle<React.CSSProperties['inlineSize']>
+  ) => ({
+    inlineSize: {
+      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
+        inlineSize.small,
+      ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
+        inlineSize.medium,
+      ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]:
+        inlineSize.large,
+      ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]:
+        inlineSize.extraLarge,
+      ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]:
+        inlineSize.extraExtraLarge,
     },
   }),
 });
