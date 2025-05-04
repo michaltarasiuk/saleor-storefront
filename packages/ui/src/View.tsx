@@ -20,14 +20,12 @@ import {getSizeStyles, type SizeProps} from './styles/size';
 import type {NonPresentationalAccessibilityRole} from './types/accessibility';
 import type {MaybeShorthandProperty} from './types/shorthand';
 import type {Visibility} from './types/visibility';
-import type {Size} from './utils/format-size';
 import {baseColors} from './variables/colors.stylex';
 
 interface ViewProps extends SizeProps {
   readonly children: React.ReactNode;
   readonly accessibilityLabel?: string;
   readonly accessibilityRole?: NonPresentationalAccessibilityRole;
-  readonly inlineSize?: Extract<Size, 'fill'>;
   readonly blockAlignment?: BlockAlignment;
   readonly inlineAlignment?: InlineAlignment;
   readonly padding?: MaybeShorthandProperty<Padding>;
@@ -44,7 +42,6 @@ export function View({
   children,
   accessibilityLabel,
   accessibilityRole,
-  inlineSize,
   minBlockSize,
   maxBlockSize,
   minInlineSize,
@@ -73,7 +70,6 @@ export function View({
         inlineAlignmentStyles[inlineAlignment],
         overflowStyles[overflow],
         opacity && opacityStyles[opacity],
-        styles.inlineSize(inlineSize),
         getSizeStyles({
           minBlockSize,
           maxBlockSize,
@@ -96,7 +92,4 @@ const styles = stylex.create({
     flexDirection: 'column',
     borderColor: baseColors.border,
   },
-  inlineSize: (inlineSize: React.CSSProperties['inlineSize']) => ({
-    inlineSize,
-  }),
 });
