@@ -2,7 +2,6 @@
 
 import {Trans} from '@lingui/react/macro';
 import type {MediaQuerySizes} from '@repo/ui/consts/media-query';
-import {Container} from '@repo/ui/Container';
 import {Link} from '@repo/ui/Link';
 import {baseColors} from '@repo/ui/variables/colors.stylex';
 import {borderWidth, spacing} from '@repo/ui/variables/tokens.stylex';
@@ -12,7 +11,7 @@ import {Routes} from '@/consts/routes';
 
 export function Footer() {
   return (
-    <Container elementType="footer" style={footerStyles.base}>
+    <footer {...stylex.props(footerStyles.base)}>
       <ul {...stylex.props(linkListStyles.list)}>
         <li>
           <Link href={Routes.refundPolicy}>
@@ -35,7 +34,7 @@ export function Footer() {
           </Link>
         </li>
       </ul>
-    </Container>
+    </footer>
   );
 }
 

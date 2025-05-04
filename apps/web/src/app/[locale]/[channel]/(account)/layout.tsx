@@ -36,11 +36,11 @@ export default async function AccountLayout({
         <Html>
           <body {...stylex.props(bodyStyles.base, ...brandedTheme())}>
             <Header />
-            <Container elementType="main" style={mainStyles.base}>
-              {children}
+            <Container style={layoutStyles.base}>
+              <main {...stylex.props(mainStyles.base)}>{children}</main>
+              <BlockSpacer spacing="extraLoose" />
+              <Footer />
             </Container>
-            <BlockSpacer spacing="extraLoose" />
-            <Footer />
           </body>
         </Html>
       </RouterProvider>
@@ -50,9 +50,15 @@ export default async function AccountLayout({
 
 const bodyStyles = stylex.create({
   base: {
+    backgroundColor: baseColors.backgroundSubdued as string,
+  },
+});
+
+const layoutStyles = stylex.create({
+  base: {
+    height: '100%',
     display: 'flex',
     flexDirection: 'column',
-    backgroundColor: baseColors.backgroundSubdued,
   },
 });
 

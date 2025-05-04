@@ -85,7 +85,7 @@ msgstr ""
 #~ msgid "Pending orders"
 #~ msgstr ""
 
-#: src/app/[locale]/[channel]/(account)/_components/Footer.tsx:29
+#: src/app/[locale]/[channel]/(account)/_components/Footer.tsx:28
 msgid "Privacy Policy"
 msgstr ""
 
@@ -93,7 +93,7 @@ msgstr ""
 #~ msgid "Profile"
 #~ msgstr ""
 
-#: src/app/[locale]/[channel]/(account)/_components/Footer.tsx:19
+#: src/app/[locale]/[channel]/(account)/_components/Footer.tsx:18
 msgid "Refund Policy"
 msgstr ""
 
@@ -101,7 +101,7 @@ msgstr ""
 #~ msgid "Register"
 #~ msgstr ""
 
-#: src/app/[locale]/[channel]/(account)/_components/Footer.tsx:24
+#: src/app/[locale]/[channel]/(account)/_components/Footer.tsx:23
 msgid "Shipping Policy"
 msgstr ""
 
@@ -109,7 +109,7 @@ msgstr ""
 msgid "Table View"
 msgstr ""
 
-#: src/app/[locale]/[channel]/(account)/_components/Footer.tsx:34
+#: src/app/[locale]/[channel]/(account)/_components/Footer.tsx:33
 msgid "Terms of Service"
 msgstr ""
 

@@ -22,6 +22,7 @@ export function Container({
 
 const styles = stylex.create({
   base: {
+    width: '100%',
     margin: '0 auto',
     paddingInline: {
       default: spacing.large200,
