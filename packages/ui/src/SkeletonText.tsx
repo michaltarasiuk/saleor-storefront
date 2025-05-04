@@ -1,13 +1,13 @@
 import * as stylex from '@stylexjs/stylex';
 
-import type {fontSizeStyles} from './styles/font-size';
+import type {FontSize} from './styles/font-size';
 import {Text} from './Text';
 import {animations} from './variables/animations.stylex';
 import {baseColors} from './variables/colors.stylex';
 import {cornerRadius} from './variables/tokens.stylex';
 
 interface SkeletonTextProps {
-  readonly size?: keyof typeof fontSizeStyles;
+  readonly size?: FontSize;
   readonly style?: stylex.StyleXStyles;
 }
 
