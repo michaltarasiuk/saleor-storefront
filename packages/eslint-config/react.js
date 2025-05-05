@@ -35,4 +35,15 @@ export const config = [
       'react/react-in-jsx-scope': 'off',
     },
   },
+  {
+    rules: {
+      'react/function-component-definition': [
+        'error',
+        {
+          namedComponents: 'function-declaration',
+          unnamedComponents: 'function-expression',
+        },
+      ],
+    },
+  },
 ];
