@@ -14,6 +14,24 @@ export const config = [
   ...tseslint.configs.recommended,
   {
     rules: {
+      camelcase: 'error',
+      eqeqeq: 'error',
+      yoda: ['error', 'never'],
+      'capitalized-comments': 'error',
+      'default-case': 'error',
+      'no-await-in-loop': 'error',
+      'no-console': ['error', {allow: ['warn', 'error']}],
+      'no-duplicate-imports': 'error',
+      'no-useless-assignment': 'error',
+      'object-shorthand': 'error',
+      'operator-assignment': 'error',
+      'prefer-arrow-callback': 'error',
+      'prefer-const': 'error',
+      'require-await': 'error',
+    },
+  },
+  {
+    rules: {
       '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
       '@typescript-eslint/consistent-type-imports': [
         'error',
@@ -37,24 +55,6 @@ export const config = [
     rules: {
       'simple-import-sort/exports': 'error',
       'simple-import-sort/imports': 'error',
-    },
-  },
-  {
-    rules: {
-      camelcase: 'error',
-      eqeqeq: 'error',
-      yoda: ['error', 'never'],
-      'capitalized-comments': 'error',
-      'default-case': 'error',
-      'no-await-in-loop': 'error',
-      'no-console': ['error', {allow: ['warn', 'error']}],
-      'no-duplicate-imports': 'error',
-      'no-useless-assignment': 'error',
-      'object-shorthand': 'error',
-      'operator-assignment': 'error',
-      'prefer-arrow-callback': 'error',
-      'prefer-const': 'error',
-      'require-await': 'error',
     },
   },
   {
