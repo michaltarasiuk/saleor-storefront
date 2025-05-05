@@ -1,9 +1,5 @@
 'use client';
-import type {
-  ImageLoaderProps,
-  ImageProps,
-  StaticImageData,
-} from 'next/image';
+import type {ImageLoaderProps, ImageProps, StaticImageData} from 'next/image';
 import {useIsSSR} from 'react-aria';
 
 import {Image} from './Image';
@@ -34,7 +30,7 @@ export function SuspenseImage(props: ImageProps) {
     img.onerror = () => {
       imageCache.add(src);
       reject(new Error(`Failed to load image: ${src}`));
-    };              
+    };
     throw promise;
   }
   return (
