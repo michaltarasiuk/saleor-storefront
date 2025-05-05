@@ -1,16 +1,16 @@
 import type {MediaQuerySizes} from '../consts/media-query';
 
-export type MediaQueryStyle<T> = {
+export type ResponsiveStyle<T> = {
   readonly default: T;
 } & {
   readonly [k in keyof typeof MediaQuerySizes]?: T;
 };
 
-export type NormalizedMediaQueryStyle<T> = Required<MediaQueryStyle<T>>;
+export type NormalizedResponsiveStyle<T> = Required<ResponsiveStyle<T>>;
 
-export function normalizeMediaQueryStyle<T>(
-  styles: MediaQueryStyle<T>
-): NormalizedMediaQueryStyle<T> {
+export function normalizeResponsiveStyle<T>(
+  styles: ResponsiveStyle<T>
+): NormalizedResponsiveStyle<T> {
   const normalizedStyles = {
     default: styles.default,
     small: styles.small ?? styles.default,

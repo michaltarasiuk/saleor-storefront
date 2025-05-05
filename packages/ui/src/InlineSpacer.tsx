@@ -3,9 +3,9 @@ import * as stylex from '@stylexjs/stylex';
 import type {MediaQuerySizes} from './consts/media-query';
 import {getSpacingToken, type Spacing} from './styles/spacing';
 import {
-  type NormalizedMediaQueryStyle,
-  normalizeMediaQueryStyle,
-} from './utils/media-query';
+  type NormalizedResponsiveStyle,
+  normalizeResponsiveStyle,
+} from './utils/responsive';
 
 interface InlineSpacerProps {
   readonly spacing?: Spacing;
@@ -17,7 +17,7 @@ export function InlineSpacer({spacing = 'base'}: InlineSpacerProps) {
       {...stylex.props(
         styles.base,
         spacingStyles.base(
-          normalizeMediaQueryStyle({
+          normalizeResponsiveStyle({
             default: getSpacingToken(spacing),
           })
         )
@@ -35,7 +35,7 @@ const styles = stylex.create({
 
 const spacingStyles = stylex.create({
   base: (
-    inlineSize: NormalizedMediaQueryStyle<React.CSSProperties['inlineSize']>
+    inlineSize: NormalizedResponsiveStyle<React.CSSProperties['inlineSize']>
   ) => ({
     inlineSize: {
       default: inlineSize.default,

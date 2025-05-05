@@ -3,9 +3,9 @@ import * as stylex from '@stylexjs/stylex';
 import type {MediaQuerySizes} from '../consts/media-query';
 import {formatSize, type Size} from '../utils/format-size';
 import {
-  type NormalizedMediaQueryStyle,
-  normalizeMediaQueryStyle,
-} from '../utils/media-query';
+  type NormalizedResponsiveStyle,
+  normalizeResponsiveStyle,
+} from '../utils/responsive';
 
 export interface SizeProps {
   readonly minBlockSize?: Size;
@@ -23,26 +23,26 @@ export function getSizeStyles({
   return [
     !!minBlockSize &&
       minBlockSizeStyles.base(
-        normalizeMediaQueryStyle({default: formatSize(minBlockSize)})
+        normalizeResponsiveStyle({default: formatSize(minBlockSize)})
       ),
     !!maxBlockSize &&
       maxBlockSizeStyles.base(
-        normalizeMediaQueryStyle({default: formatSize(maxBlockSize)})
+        normalizeResponsiveStyle({default: formatSize(maxBlockSize)})
       ),
     !!minInlineSize &&
       minInlineSizeStyles.base(
-        normalizeMediaQueryStyle({default: formatSize(minInlineSize)})
+        normalizeResponsiveStyle({default: formatSize(minInlineSize)})
       ),
     !!maxInlineSize &&
       maxInlineSizeStyles.base(
-        normalizeMediaQueryStyle({default: formatSize(maxInlineSize)})
+        normalizeResponsiveStyle({default: formatSize(maxInlineSize)})
       ),
   ];
 }
 
 const minBlockSizeStyles = stylex.create({
   base: (
-    minBlockSize: NormalizedMediaQueryStyle<React.CSSProperties['minBlockSize']>
+    minBlockSize: NormalizedResponsiveStyle<React.CSSProperties['minBlockSize']>
   ) => ({
     minBlockSize: {
       default: minBlockSize.default,
@@ -62,7 +62,7 @@ const minBlockSizeStyles = stylex.create({
 
 const maxBlockSizeStyles = stylex.create({
   base: (
-    maxBlockSize: NormalizedMediaQueryStyle<React.CSSProperties['maxBlockSize']>
+    maxBlockSize: NormalizedResponsiveStyle<React.CSSProperties['maxBlockSize']>
   ) => ({
     maxBlockSize: {
       default: maxBlockSize.default,
@@ -82,7 +82,7 @@ const maxBlockSizeStyles = stylex.create({
 
 const minInlineSizeStyles = stylex.create({
   base: (
-    minInlineSize: NormalizedMediaQueryStyle<
+    minInlineSize: NormalizedResponsiveStyle<
       React.CSSProperties['minInlineSize']
     >
   ) => ({
@@ -104,7 +104,7 @@ const minInlineSizeStyles = stylex.create({
 
 const maxInlineSizeStyles = stylex.create({
   base: (
-    maxInlineSize: NormalizedMediaQueryStyle<
+    maxInlineSize: NormalizedResponsiveStyle<
       React.CSSProperties['maxInlineSize']
     >
   ) => ({

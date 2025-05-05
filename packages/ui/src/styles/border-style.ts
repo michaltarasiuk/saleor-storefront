@@ -6,9 +6,9 @@ import type {DataType} from 'csstype';
 import type {MediaQuerySizes} from '../consts/media-query';
 import type {MaybeShorthandProperty} from '../types/shorthand';
 import {
-  type NormalizedMediaQueryStyle,
-  normalizeMediaQueryStyle,
-} from '../utils/media-query';
+  type NormalizedResponsiveStyle,
+  normalizeResponsiveStyle,
+} from '../utils/responsive';
 
 export type BorderStyle = 'base' | 'dashed' | 'dotted' | 'none';
 
@@ -19,22 +19,22 @@ export function getBorderStyleStyles(
     normalizeBorderStyle(borderStyle);
   return [
     borderBlockStartStyleStyles.base(
-      normalizeMediaQueryStyle({
+      normalizeResponsiveStyle({
         default: getBorderStyleToken(blockStart),
       })
     ),
     borderInlineEndStyleStyles.base(
-      normalizeMediaQueryStyle({
+      normalizeResponsiveStyle({
         default: getBorderStyleToken(inlineEnd),
       })
     ),
     borderBlockEndStyleStyles.base(
-      normalizeMediaQueryStyle({
+      normalizeResponsiveStyle({
         default: getBorderStyleToken(blockEnd),
       })
     ),
     borderInlineStartStyleStyles.base(
-      normalizeMediaQueryStyle({
+      normalizeResponsiveStyle({
         default: getBorderStyleToken(inlineStart),
       })
     ),
@@ -79,7 +79,7 @@ function getBorderStyleToken(borderStyle: BorderStyle): DataType.LineStyle {
 
 const borderBlockStartStyleStyles = stylex.create({
   base: (
-    borderBlockStartStyle: NormalizedMediaQueryStyle<
+    borderBlockStartStyle: NormalizedResponsiveStyle<
       React.CSSProperties['borderBlockStartStyle']
     >
   ) => ({
@@ -101,7 +101,7 @@ const borderBlockStartStyleStyles = stylex.create({
 
 const borderBlockEndStyleStyles = stylex.create({
   base: (
-    borderBlockEndStyle: NormalizedMediaQueryStyle<
+    borderBlockEndStyle: NormalizedResponsiveStyle<
       React.CSSProperties['borderBlockEndStyle']
     >
   ) => ({
@@ -123,7 +123,7 @@ const borderBlockEndStyleStyles = stylex.create({
 
 const borderInlineStartStyleStyles = stylex.create({
   base: (
-    borderInlineStartStyle: NormalizedMediaQueryStyle<
+    borderInlineStartStyle: NormalizedResponsiveStyle<
       React.CSSProperties['borderInlineStartStyle']
     >
   ) => ({
@@ -145,7 +145,7 @@ const borderInlineStartStyleStyles = stylex.create({
 
 const borderInlineEndStyleStyles = stylex.create({
   base: (
-    borderInlineEndStyle: NormalizedMediaQueryStyle<
+    borderInlineEndStyle: NormalizedResponsiveStyle<
       React.CSSProperties['borderInlineEndStyle']
     >
   ) => ({

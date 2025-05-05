@@ -5,9 +5,9 @@ import * as stylex from '@stylexjs/stylex';
 import type {MediaQuerySizes} from '../consts/media-query';
 import type {MaybeShorthandProperty} from '../types/shorthand';
 import {
-  type NormalizedMediaQueryStyle,
-  normalizeMediaQueryStyle,
-} from '../utils/media-query';
+  type NormalizedResponsiveStyle,
+  normalizeResponsiveStyle,
+} from '../utils/responsive';
 import {spacing} from '../variables/tokens.stylex';
 
 export type Padding =
@@ -23,22 +23,22 @@ export function getPaddingStyles(padding: MaybeShorthandProperty<Padding>) {
     normalizePadding(padding);
   return [
     paddingBlockStartStyles.base(
-      normalizeMediaQueryStyle({
+      normalizeResponsiveStyle({
         default: getPaddingToken(blockStart),
       })
     ),
     paddingInlineEndStyles.base(
-      normalizeMediaQueryStyle({
+      normalizeResponsiveStyle({
         default: getPaddingToken(inlineEnd),
       })
     ),
     paddingBlockEndStyles.base(
-      normalizeMediaQueryStyle({
+      normalizeResponsiveStyle({
         default: getPaddingToken(blockEnd),
       })
     ),
     paddingInlineStartStyles.base(
-      normalizeMediaQueryStyle({
+      normalizeResponsiveStyle({
         default: getPaddingToken(inlineStart),
       })
     ),
@@ -80,7 +80,7 @@ function getPaddingToken(padding: Padding) {
 
 const paddingBlockStartStyles = stylex.create({
   base: (
-    paddingBlockStart: NormalizedMediaQueryStyle<
+    paddingBlockStart: NormalizedResponsiveStyle<
       React.CSSProperties['paddingBlockStart']
     >
   ) => ({
@@ -102,7 +102,7 @@ const paddingBlockStartStyles = stylex.create({
 
 const paddingBlockEndStyles = stylex.create({
   base: (
-    paddingBlockEnd: NormalizedMediaQueryStyle<
+    paddingBlockEnd: NormalizedResponsiveStyle<
       React.CSSProperties['paddingBlockEnd']
     >
   ) => ({
@@ -124,7 +124,7 @@ const paddingBlockEndStyles = stylex.create({
 
 const paddingInlineStartStyles = stylex.create({
   base: (
-    paddingInlineStart: NormalizedMediaQueryStyle<
+    paddingInlineStart: NormalizedResponsiveStyle<
       React.CSSProperties['paddingInlineStart']
     >
   ) => ({
@@ -146,7 +146,7 @@ const paddingInlineStartStyles = stylex.create({
 
 const paddingInlineEndStyles = stylex.create({
   base: (
-    paddingInlineEnd: NormalizedMediaQueryStyle<
+    paddingInlineEnd: NormalizedResponsiveStyle<
       React.CSSProperties['paddingInlineEnd']
     >
   ) => ({

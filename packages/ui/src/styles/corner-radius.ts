@@ -5,9 +5,9 @@ import * as stylex from '@stylexjs/stylex';
 import type {MediaQuerySizes} from '../consts/media-query';
 import type {MaybeShorthandProperty} from '../types/shorthand';
 import {
-  type NormalizedMediaQueryStyle,
-  normalizeMediaQueryStyle,
-} from '../utils/media-query';
+  type NormalizedResponsiveStyle,
+  normalizeResponsiveStyle,
+} from '../utils/responsive';
 import {cornerRadius} from '../variables/tokens.stylex';
 
 export type CornerRadius = 'none' | 'small' | 'base' | 'large' | 'fullyRounded';
@@ -19,22 +19,22 @@ export function getCornerRadiusStyles(
     normalizeCornerRadius(cornerRadius);
   return [
     borderStartStartCornerRadiusStyles.base(
-      normalizeMediaQueryStyle({
+      normalizeResponsiveStyle({
         default: getCornerRadiusToken(startStart),
       })
     ),
     borderEndEndCornerRadiusStyles.base(
-      normalizeMediaQueryStyle({
+      normalizeResponsiveStyle({
         default: getCornerRadiusToken(endEnd),
       })
     ),
     borderStartEndCornerRadiusStyles.base(
-      normalizeMediaQueryStyle({
+      normalizeResponsiveStyle({
         default: getCornerRadiusToken(startEnd),
       })
     ),
     borderEndStartCornerRadiusStyles.base(
-      normalizeMediaQueryStyle({
+      normalizeResponsiveStyle({
         default: getCornerRadiusToken(endStart),
       })
     ),
@@ -81,7 +81,7 @@ function getCornerRadiusToken(cornerRadiusKey: CornerRadius) {
 
 const borderStartStartCornerRadiusStyles = stylex.create({
   base: (
-    borderStartStartRadius: NormalizedMediaQueryStyle<
+    borderStartStartRadius: NormalizedResponsiveStyle<
       React.CSSProperties['borderStartStartRadius']
     >
   ) => ({
@@ -103,7 +103,7 @@ const borderStartStartCornerRadiusStyles = stylex.create({
 
 const borderStartEndCornerRadiusStyles = stylex.create({
   base: (
-    borderStartEndRadius: NormalizedMediaQueryStyle<
+    borderStartEndRadius: NormalizedResponsiveStyle<
       React.CSSProperties['borderStartEndRadius']
     >
   ) => ({
@@ -125,7 +125,7 @@ const borderStartEndCornerRadiusStyles = stylex.create({
 
 const borderEndStartCornerRadiusStyles = stylex.create({
   base: (
-    borderEndStartRadius: NormalizedMediaQueryStyle<
+    borderEndStartRadius: NormalizedResponsiveStyle<
       React.CSSProperties['borderEndStartRadius']
     >
   ) => ({
@@ -147,7 +147,7 @@ const borderEndStartCornerRadiusStyles = stylex.create({
 
 const borderEndEndCornerRadiusStyles = stylex.create({
   base: (
-    borderEndEndRadius: NormalizedMediaQueryStyle<
+    borderEndEndRadius: NormalizedResponsiveStyle<
       React.CSSProperties['borderEndEndRadius']
     >
   ) => ({

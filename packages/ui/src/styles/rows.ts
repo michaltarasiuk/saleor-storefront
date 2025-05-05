@@ -6,15 +6,15 @@ import {
   type GridItemSize,
 } from '../utils/format-grid-item-size';
 import {
-  type NormalizedMediaQueryStyle,
-  normalizeMediaQueryStyle,
-} from '../utils/media-query';
+  type NormalizedResponsiveStyle,
+  normalizeResponsiveStyle,
+} from '../utils/responsive';
 
 export type Rows = GridItemSize[] | GridItemSize;
 
 export function getRowsStyles(rows: Rows) {
   return rowsStyles.base(
-    normalizeMediaQueryStyle({
+    normalizeResponsiveStyle({
       default: formatGridItemSizes(rows),
     })
   );
@@ -22,7 +22,7 @@ export function getRowsStyles(rows: Rows) {
 
 const rowsStyles = stylex.create({
   base: (
-    gridTemplateRows: NormalizedMediaQueryStyle<
+    gridTemplateRows: NormalizedResponsiveStyle<
       React.CSSProperties['gridTemplateRows']
     >
   ) => ({

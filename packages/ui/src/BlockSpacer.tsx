@@ -3,9 +3,9 @@ import * as stylex from '@stylexjs/stylex';
 import type {MediaQuerySizes} from './consts/media-query';
 import {getSpacingToken, type Spacing} from './styles/spacing';
 import {
-  type NormalizedMediaQueryStyle,
-  normalizeMediaQueryStyle,
-} from './utils/media-query';
+  type NormalizedResponsiveStyle,
+  normalizeResponsiveStyle,
+} from './utils/responsive';
 
 interface BlockSpacerProps {
   readonly spacing?: Spacing;
@@ -17,7 +17,7 @@ export function BlockSpacer({spacing = 'base'}: BlockSpacerProps) {
       {...stylex.props(
         styles.base,
         spacingStyles.base(
-          normalizeMediaQueryStyle({
+          normalizeResponsiveStyle({
             default: getSpacingToken(spacing),
           })
         )
@@ -35,7 +35,7 @@ const styles = stylex.create({
 
 const spacingStyles = stylex.create({
   base: (
-    blockSize: NormalizedMediaQueryStyle<React.CSSProperties['blockSize']>
+    blockSize: NormalizedResponsiveStyle<React.CSSProperties['blockSize']>
   ) => ({
     blockSize: {
       default: blockSize.default,

@@ -5,9 +5,9 @@ import * as stylex from '@stylexjs/stylex';
 import type {MediaQuerySizes} from '../consts/media-query';
 import type {MaybeShorthandProperty} from '../types/shorthand';
 import {
-  type NormalizedMediaQueryStyle,
-  normalizeMediaQueryStyle,
-} from '../utils/media-query';
+  type NormalizedResponsiveStyle,
+  normalizeResponsiveStyle,
+} from '../utils/responsive';
 import {spacing} from '../variables/tokens.stylex';
 
 export type Spacing =
@@ -22,12 +22,12 @@ export function getSpacingStyles(spacing: MaybeShorthandProperty<Spacing>) {
   const [rowSpacing, columnSpacing] = normalizeSpacing(spacing);
   return [
     spacingRowStyles.base(
-      normalizeMediaQueryStyle({
+      normalizeResponsiveStyle({
         default: getSpacingToken(rowSpacing),
       })
     ),
     spacingColumnStyles.base(
-      normalizeMediaQueryStyle({
+      normalizeResponsiveStyle({
         default: getSpacingToken(columnSpacing),
       })
     ),
@@ -58,7 +58,7 @@ export function getSpacingToken(spacingKey: Spacing) {
 }
 
 const spacingRowStyles = stylex.create({
-  base: (rowGap: NormalizedMediaQueryStyle<React.CSSProperties['rowGap']>) => ({
+  base: (rowGap: NormalizedResponsiveStyle<React.CSSProperties['rowGap']>) => ({
     rowGap: {
       default: rowGap.default,
       ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
@@ -77,7 +77,7 @@ const spacingRowStyles = stylex.create({
 
 const spacingColumnStyles = stylex.create({
   base: (
-    columnGap: NormalizedMediaQueryStyle<React.CSSProperties['columnGap']>
+    columnGap: NormalizedResponsiveStyle<React.CSSProperties['columnGap']>
   ) => ({
     columnGap: {
       default: columnGap.default,
