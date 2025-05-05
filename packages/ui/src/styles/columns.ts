@@ -1,8 +1,9 @@
+import {toArray} from '@repo/utils/to-array';
 import * as stylex from '@stylexjs/stylex';
 
 import type {ViewportInlineSizes} from '../consts/responsive';
 import {
-  formatGridItemSizes,
+  formatGridItemSize,
   type GridItemSize,
 } from '../utils/format-grid-item-size';
 import {
@@ -15,7 +16,7 @@ export type Columns = GridItemSize[] | GridItemSize;
 export function getColumnsStyles(columns: Columns) {
   return columnsStyles.base(
     normalizeResponsiveStyle({
-      default: formatGridItemSizes(columns),
+      default: toArray(columns).map(formatGridItemSize).join(' '),
     })
   );
 }
