@@ -56,7 +56,6 @@ const bodyStyles = stylex.create({
 
 const layoutStyles = stylex.create({
   base: {
-    height: '100%',
     display: 'flex',
     flexDirection: 'column',
   },
