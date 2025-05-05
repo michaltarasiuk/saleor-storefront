@@ -1,7 +1,6 @@
 import * as stylex from '@stylexjs/stylex';
 
-import type {Size} from './utils/format-size';
-import {formatSize} from './utils/format-size';
+import {formatSize, type Size} from './utils/format-size';
 import {animations} from './variables/animations.stylex';
 import {baseColors} from './variables/colors.stylex';
 import {cornerRadius} from './variables/tokens.stylex';

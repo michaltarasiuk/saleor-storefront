@@ -1,13 +1,11 @@
 import * as stylex from '@stylexjs/stylex';
 
-import type {
-  BlockAlignment,
-  Direction,
-  InlineAlignment,
-} from './styles/aligment';
 import {
+  type BlockAlignment,
   blockAlignmentStyles,
+  type Direction,
   directionStyles,
+  type InlineAlignment,
   inlineAlignmentStyles,
 } from './styles/aligment';
 import {type Background, backgroundStyles} from './styles/background';

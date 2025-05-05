@@ -1,6 +1,8 @@
 import * as stylex from '@stylexjs/stylex';
-import type {LinkProps as AriaLinkProps} from 'react-aria-components';
-import {Link as AriaLink} from 'react-aria-components';
+import {
+  Link as AriaLink,
+  type LinkProps as AriaLinkProps,
+} from 'react-aria-components';
 
 import {baseColors, controlColors} from './variables/colors.stylex';
 import {

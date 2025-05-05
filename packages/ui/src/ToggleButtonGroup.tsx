@@ -1,13 +1,11 @@
 'use client';
 
 import * as stylex from '@stylexjs/stylex';
-import type {
-  ToggleButtonGroupProps as AriaToggleButtonGroupProps,
-  ToggleButtonProps as AriaToggleButtonProps,
-} from 'react-aria-components';
 import {
   ToggleButton as AriaToggleButton,
   ToggleButtonGroup as AriaToggleButtonGroup,
+  type ToggleButtonGroupProps as AriaToggleButtonGroupProps,
+  type ToggleButtonProps as AriaToggleButtonProps,
 } from 'react-aria-components';
 
 import {controlColors, controlSelectedColors} from './variables/colors.stylex';

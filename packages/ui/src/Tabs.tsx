@@ -1,15 +1,13 @@
 'use client';
 
 import * as stylex from '@stylexjs/stylex';
-import type {
-  TabListProps,
-  TabProps as AriaTabProps,
-  TabsProps,
-} from 'react-aria-components';
 import {
   Tab as AriaTab,
   TabList as AriaTabList,
+  type TabListProps,
+  type TabProps as AriaTabProps,
   Tabs as AriaTabs,
+  type TabsProps,
 } from 'react-aria-components';
 
 import {baseColors, controlColors} from './variables/colors.stylex';
