@@ -2,7 +2,7 @@ import {assertNever} from '@repo/utils/assert-never';
 import {isArray} from '@repo/utils/is-array';
 import * as stylex from '@stylexjs/stylex';
 
-import type {MediaQuerySizes} from '../consts/media-query';
+import type {ViewportInlineSizes} from '../consts/responsive';
 import type {MaybeShorthandProperty} from '../types/shorthand';
 import {
   type NormalizedResponsiveStyle,
@@ -61,15 +61,15 @@ const spacingRowStyles = stylex.create({
   base: (rowGap: NormalizedResponsiveStyle<React.CSSProperties['rowGap']>) => ({
     rowGap: {
       default: rowGap.default,
-      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
+      ['@media (width >= 40rem)' satisfies ViewportInlineSizes['small']]:
         rowGap.small,
-      ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
+      ['@media (width >= 48rem)' satisfies ViewportInlineSizes['medium']]:
         rowGap.medium,
-      ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]:
+      ['@media (width >= 64rem)' satisfies ViewportInlineSizes['large']]:
         rowGap.large,
-      ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]:
+      ['@media (width >= 80rem)' satisfies ViewportInlineSizes['extraLarge']]:
         rowGap.extraLarge,
-      ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]:
+      ['@media (width >= 96rem)' satisfies ViewportInlineSizes['extraExtraLarge']]:
         rowGap.extraExtraLarge,
     },
   }),
@@ -81,15 +81,15 @@ const spacingColumnStyles = stylex.create({
   ) => ({
     columnGap: {
       default: columnGap.default,
-      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
+      ['@media (width >= 40rem)' satisfies ViewportInlineSizes['small']]:
         columnGap.small,
-      ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
+      ['@media (width >= 48rem)' satisfies ViewportInlineSizes['medium']]:
         columnGap.medium,
-      ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]:
+      ['@media (width >= 64rem)' satisfies ViewportInlineSizes['large']]:
         columnGap.large,
-      ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]:
+      ['@media (width >= 80rem)' satisfies ViewportInlineSizes['extraLarge']]:
         columnGap.extraLarge,
-      ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]:
+      ['@media (width >= 96rem)' satisfies ViewportInlineSizes['extraExtraLarge']]:
         columnGap.extraExtraLarge,
     },
   }),

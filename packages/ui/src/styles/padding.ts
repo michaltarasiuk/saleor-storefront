@@ -2,7 +2,7 @@ import {assertNever} from '@repo/utils/assert-never';
 import {isArray} from '@repo/utils/is-array';
 import * as stylex from '@stylexjs/stylex';
 
-import type {MediaQuerySizes} from '../consts/media-query';
+import type {ViewportInlineSizes} from '../consts/responsive';
 import type {MaybeShorthandProperty} from '../types/shorthand';
 import {
   type NormalizedResponsiveStyle,
@@ -86,15 +86,15 @@ const paddingBlockStartStyles = stylex.create({
   ) => ({
     paddingBlockStart: {
       default: paddingBlockStart.default,
-      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
+      ['@media (width >= 40rem)' satisfies ViewportInlineSizes['small']]:
         paddingBlockStart.small,
-      ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
+      ['@media (width >= 48rem)' satisfies ViewportInlineSizes['medium']]:
         paddingBlockStart.medium,
-      ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]:
+      ['@media (width >= 64rem)' satisfies ViewportInlineSizes['large']]:
         paddingBlockStart.large,
-      ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]:
+      ['@media (width >= 80rem)' satisfies ViewportInlineSizes['extraLarge']]:
         paddingBlockStart.extraLarge,
-      ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]:
+      ['@media (width >= 96rem)' satisfies ViewportInlineSizes['extraExtraLarge']]:
         paddingBlockStart.extraExtraLarge,
     },
   }),
@@ -108,15 +108,15 @@ const paddingBlockEndStyles = stylex.create({
   ) => ({
     paddingBlockEnd: {
       default: paddingBlockEnd.default,
-      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
+      ['@media (width >= 40rem)' satisfies ViewportInlineSizes['small']]:
         paddingBlockEnd.small,
-      ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
+      ['@media (width >= 48rem)' satisfies ViewportInlineSizes['medium']]:
         paddingBlockEnd.medium,
-      ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]:
+      ['@media (width >= 64rem)' satisfies ViewportInlineSizes['large']]:
         paddingBlockEnd.large,
-      ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]:
+      ['@media (width >= 80rem)' satisfies ViewportInlineSizes['extraLarge']]:
         paddingBlockEnd.extraLarge,
-      ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]:
+      ['@media (width >= 96rem)' satisfies ViewportInlineSizes['extraExtraLarge']]:
         paddingBlockEnd.extraExtraLarge,
     },
   }),
@@ -130,15 +130,15 @@ const paddingInlineStartStyles = stylex.create({
   ) => ({
     paddingInlineStart: {
       default: paddingInlineStart.default,
-      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
+      ['@media (width >= 40rem)' satisfies ViewportInlineSizes['small']]:
         paddingInlineStart.small,
-      ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
+      ['@media (width >= 48rem)' satisfies ViewportInlineSizes['medium']]:
         paddingInlineStart.medium,
-      ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]:
+      ['@media (width >= 64rem)' satisfies ViewportInlineSizes['large']]:
         paddingInlineStart.large,
-      ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]:
+      ['@media (width >= 80rem)' satisfies ViewportInlineSizes['extraLarge']]:
         paddingInlineStart.extraLarge,
-      ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]:
+      ['@media (width >= 96rem)' satisfies ViewportInlineSizes['extraExtraLarge']]:
         paddingInlineStart.extraExtraLarge,
     },
   }),
@@ -152,15 +152,15 @@ const paddingInlineEndStyles = stylex.create({
   ) => ({
     paddingInlineEnd: {
       default: paddingInlineEnd.default,
-      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
+      ['@media (width >= 40rem)' satisfies ViewportInlineSizes['small']]:
         paddingInlineEnd.small,
-      ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
+      ['@media (width >= 48rem)' satisfies ViewportInlineSizes['medium']]:
         paddingInlineEnd.medium,
-      ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]:
+      ['@media (width >= 64rem)' satisfies ViewportInlineSizes['large']]:
         paddingInlineEnd.large,
-      ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]:
+      ['@media (width >= 80rem)' satisfies ViewportInlineSizes['extraLarge']]:
         paddingInlineEnd.extraLarge,
-      ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]:
+      ['@media (width >= 96rem)' satisfies ViewportInlineSizes['extraExtraLarge']]:
         paddingInlineEnd.extraExtraLarge,
     },
   }),

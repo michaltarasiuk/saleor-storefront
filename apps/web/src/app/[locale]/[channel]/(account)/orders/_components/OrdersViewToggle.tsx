@@ -1,11 +1,8 @@
 'use client';
 
 import {useLingui} from '@lingui/react/macro';
-import {
-  MediaQueryConditions,
-  type MediaQuerySizes,
-} from '@repo/ui/consts/media-query';
-import {useMediaQuery} from '@repo/ui/hooks/use-media-query';
+import {ViewportInlineSizes} from '@repo/ui/consts/responsive';
+import {useViewportInlineSize} from '@repo/ui/hooks/use-media-query';
 import {GridIcon} from '@repo/ui/icons/GridIcon';
 import {ListIcon} from '@repo/ui/icons/ListIcon';
 import {ToggleButton, ToggleButtonGroup} from '@repo/ui/ToggleButtonGroup';
@@ -23,12 +20,12 @@ export const OrdersViewContext = createContext<{
 
 export function OrdersView({children}: {readonly children: React.ReactNode}) {
   const [viewType, setViewType] = useState<OrdersViewType>('grid');
-  const isMediumUpMedia = useMediaQuery(MediaQueryConditions.medium);
+  const isMediumUp = useViewportInlineSize(ViewportInlineSizes.medium);
   useEffect(() => {
-    if (!isMediumUpMedia && viewType === 'table') {
+    if (!isMediumUp && viewType === 'table') {
       setViewType('grid');
     }
-  }, [isMediumUpMedia, viewType]);
+  }, [isMediumUp, viewType]);
   return (
     <OrdersViewContext value={{viewType, setViewType}}>
       {children}
@@ -69,7 +66,7 @@ const styles = stylex.create({
     marginInlineStart: 'auto',
     display: {
       default: 'none',
-      ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
+      ['@media (width >= 48rem)' satisfies ViewportInlineSizes['medium']]:
         'inherit',
     },
   },

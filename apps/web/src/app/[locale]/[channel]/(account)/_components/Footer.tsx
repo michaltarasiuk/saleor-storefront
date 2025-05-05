@@ -1,7 +1,7 @@
 'use client';
 
 import {Trans} from '@lingui/react/macro';
-import type {MediaQuerySizes} from '@repo/ui/consts/media-query';
+import type {ViewportInlineSizes} from '@repo/ui/consts/responsive';
 import {Link} from '@repo/ui/Link';
 import {baseColors} from '@repo/ui/variables/colors.stylex';
 import {borderWidth, spacing} from '@repo/ui/variables/tokens.stylex';
@@ -55,11 +55,11 @@ const linkListStyles = stylex.create({
     alignItems: 'center',
     flexDirection: {
       default: 'column',
-      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]: 'row',
+      ['@media (width >= 40rem)' satisfies ViewportInlineSizes['small']]: 'row',
     },
     gap: {
       default: spacing.base,
-      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
+      ['@media (width >= 40rem)' satisfies ViewportInlineSizes['small']]:
         spacing.large200,
     },
     listStyleType: 'none',

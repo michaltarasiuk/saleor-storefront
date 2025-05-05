@@ -3,7 +3,7 @@ import {isArray} from '@repo/utils/is-array';
 import * as stylex from '@stylexjs/stylex';
 import type {DataType} from 'csstype';
 
-import type {MediaQuerySizes} from '../consts/media-query';
+import type {ViewportInlineSizes} from '../consts/responsive';
 import type {MaybeShorthandProperty} from '../types/shorthand';
 import {
   type NormalizedResponsiveStyle,
@@ -85,15 +85,15 @@ const borderBlockStartStyleStyles = stylex.create({
   ) => ({
     borderBlockStartStyle: {
       default: borderBlockStartStyle.default,
-      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
+      ['@media (width >= 40rem)' satisfies ViewportInlineSizes['small']]:
         borderBlockStartStyle.small,
-      ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
+      ['@media (width >= 48rem)' satisfies ViewportInlineSizes['medium']]:
         borderBlockStartStyle.medium,
-      ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]:
+      ['@media (width >= 64rem)' satisfies ViewportInlineSizes['large']]:
         borderBlockStartStyle.large,
-      ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]:
+      ['@media (width >= 80rem)' satisfies ViewportInlineSizes['extraLarge']]:
         borderBlockStartStyle.extraLarge,
-      ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]:
+      ['@media (width >= 96rem)' satisfies ViewportInlineSizes['extraExtraLarge']]:
         borderBlockStartStyle.extraExtraLarge,
     },
   }),
@@ -107,15 +107,15 @@ const borderBlockEndStyleStyles = stylex.create({
   ) => ({
     borderBlockEndStyle: {
       default: borderBlockEndStyle.default,
-      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
+      ['@media (width >= 40rem)' satisfies ViewportInlineSizes['small']]:
         borderBlockEndStyle.small,
-      ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
+      ['@media (width >= 48rem)' satisfies ViewportInlineSizes['medium']]:
         borderBlockEndStyle.medium,
-      ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]:
+      ['@media (width >= 64rem)' satisfies ViewportInlineSizes['large']]:
         borderBlockEndStyle.large,
-      ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]:
+      ['@media (width >= 80rem)' satisfies ViewportInlineSizes['extraLarge']]:
         borderBlockEndStyle.extraLarge,
-      ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]:
+      ['@media (width >= 96rem)' satisfies ViewportInlineSizes['extraExtraLarge']]:
         borderBlockEndStyle.extraExtraLarge,
     },
   }),
@@ -129,15 +129,15 @@ const borderInlineStartStyleStyles = stylex.create({
   ) => ({
     borderBlockEndStyle: {
       default: borderInlineStartStyle.default,
-      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
+      ['@media (width >= 40rem)' satisfies ViewportInlineSizes['small']]:
         borderInlineStartStyle.small,
-      ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
+      ['@media (width >= 48rem)' satisfies ViewportInlineSizes['medium']]:
         borderInlineStartStyle.medium,
-      ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]:
+      ['@media (width >= 64rem)' satisfies ViewportInlineSizes['large']]:
         borderInlineStartStyle.large,
-      ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]:
+      ['@media (width >= 80rem)' satisfies ViewportInlineSizes['extraLarge']]:
         borderInlineStartStyle.extraLarge,
-      ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]:
+      ['@media (width >= 96rem)' satisfies ViewportInlineSizes['extraExtraLarge']]:
         borderInlineStartStyle.extraExtraLarge,
     },
   }),
@@ -151,15 +151,15 @@ const borderInlineEndStyleStyles = stylex.create({
   ) => ({
     borderInlineEndStyle: {
       default: borderInlineEndStyle.default,
-      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
+      ['@media (width >= 40rem)' satisfies ViewportInlineSizes['small']]:
         borderInlineEndStyle.small,
-      ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
+      ['@media (width >= 48rem)' satisfies ViewportInlineSizes['medium']]:
         borderInlineEndStyle.medium,
-      ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]:
+      ['@media (width >= 64rem)' satisfies ViewportInlineSizes['large']]:
         borderInlineEndStyle.large,
-      ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]:
+      ['@media (width >= 80rem)' satisfies ViewportInlineSizes['extraLarge']]:
         borderInlineEndStyle.extraLarge,
-      ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]:
+      ['@media (width >= 96rem)' satisfies ViewportInlineSizes['extraExtraLarge']]:
         borderInlineEndStyle.extraExtraLarge,
     },
   }),

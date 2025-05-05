@@ -1,7 +1,7 @@
 import * as stylex from '@stylexjs/stylex';
 import type {ElementType} from 'react';
 
-import type {MediaQuerySizes} from './consts/media-query';
+import type {ViewportInlineSizes} from './consts/responsive';
 import {spacing} from './variables/tokens.stylex';
 
 interface ContainerProps {
@@ -26,16 +26,19 @@ const styles = stylex.create({
     margin: '0 auto',
     paddingInline: {
       default: spacing.large200,
-      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
+      ['@media (width >= 40rem)' satisfies ViewportInlineSizes['small']]:
         spacing.none,
     },
     maxWidth: {
-      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]: '40rem',
-      ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]: '48rem',
-      ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]: '64rem',
-      ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]:
+      ['@media (width >= 40rem)' satisfies ViewportInlineSizes['small']]:
+        '40rem',
+      ['@media (width >= 48rem)' satisfies ViewportInlineSizes['medium']]:
+        '48rem',
+      ['@media (width >= 64rem)' satisfies ViewportInlineSizes['large']]:
+        '64rem',
+      ['@media (width >= 80rem)' satisfies ViewportInlineSizes['extraLarge']]:
         '80rem',
-      ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]:
+      ['@media (width >= 96rem)' satisfies ViewportInlineSizes['extraExtraLarge']]:
         '96rem',
     },
   },

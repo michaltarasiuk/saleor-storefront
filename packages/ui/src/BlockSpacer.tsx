@@ -1,6 +1,6 @@
 import * as stylex from '@stylexjs/stylex';
 
-import type {MediaQuerySizes} from './consts/media-query';
+import type {ViewportInlineSizes} from './consts/responsive';
 import {getSpacingToken, type Spacing} from './styles/spacing';
 import {
   type NormalizedResponsiveStyle,
@@ -39,15 +39,15 @@ const spacingStyles = stylex.create({
   ) => ({
     blockSize: {
       default: blockSize.default,
-      ['@media (width >= 40rem)' satisfies MediaQuerySizes['small']]:
+      ['@media (width >= 40rem)' satisfies ViewportInlineSizes['small']]:
         blockSize.small,
-      ['@media (width >= 48rem)' satisfies MediaQuerySizes['medium']]:
+      ['@media (width >= 48rem)' satisfies ViewportInlineSizes['medium']]:
         blockSize.medium,
-      ['@media (width >= 64rem)' satisfies MediaQuerySizes['large']]:
+      ['@media (width >= 64rem)' satisfies ViewportInlineSizes['large']]:
         blockSize.large,
-      ['@media (width >= 80rem)' satisfies MediaQuerySizes['extraLarge']]:
+      ['@media (width >= 80rem)' satisfies ViewportInlineSizes['extraLarge']]:
         blockSize.extraLarge,
-      ['@media (width >= 96rem)' satisfies MediaQuerySizes['extraExtraLarge']]:
+      ['@media (width >= 96rem)' satisfies ViewportInlineSizes['extraExtraLarge']]:
         blockSize.extraExtraLarge,
     },
   }),

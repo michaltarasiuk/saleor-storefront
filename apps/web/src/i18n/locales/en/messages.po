@@ -41,7 +41,7 @@ msgstr "Confirmed"
 msgid "Go to store"
 msgstr "Go to store"
 
-#: src/app/[locale]/[channel]/(account)/orders/_components/OrdersViewToggle.tsx:54
+#: src/app/[locale]/[channel]/(account)/orders/_components/OrdersViewToggle.tsx:51
 msgid "Grid View"
 msgstr "Grid View"
 
@@ -69,7 +69,7 @@ msgstr "Order Tabs"
 msgid "Orders"
 msgstr "Orders"
 
-#: src/app/[locale]/[channel]/(account)/orders/_components/OrdersViewToggle.tsx:44
+#: src/app/[locale]/[channel]/(account)/orders/_components/OrdersViewToggle.tsx:41
 msgid "Orders View Toggle"
 msgstr "Orders View Toggle"
 
@@ -105,7 +105,7 @@ msgstr "Refund Policy"
 msgid "Shipping Policy"
 msgstr "Shipping Policy"
 
-#: src/app/[locale]/[channel]/(account)/orders/_components/OrdersViewToggle.tsx:59
+#: src/app/[locale]/[channel]/(account)/orders/_components/OrdersViewToggle.tsx:56
 msgid "Table View"
 msgstr "Table View"
 

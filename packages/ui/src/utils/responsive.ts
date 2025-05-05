@@ -1,9 +1,9 @@
-import type {MediaQuerySizes} from '../consts/media-query';
+import type {ViewportInlineSizes} from '../consts/responsive';
 
 export type ResponsiveStyle<T> = {
   readonly default: T;
 } & {
-  readonly [k in keyof typeof MediaQuerySizes]?: T;
+  readonly [k in keyof typeof ViewportInlineSizes]?: T;
 };
 
 export type NormalizedResponsiveStyle<T> = Required<ResponsiveStyle<T>>;
