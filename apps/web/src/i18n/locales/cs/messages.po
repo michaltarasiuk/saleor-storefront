@@ -13,6 +13,10 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:50
+msgid "3 items"
+msgstr ""
+
 #: src/app/[locale]/[channel]/(account)/register/page.tsx:30
 #~ msgid "Account Register"
 #~ msgstr ""
@@ -46,8 +50,8 @@ msgid "Grid View"
 msgstr ""
 
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrderList.tsx:95
-msgid "Items"
-msgstr ""
+#~ msgid "Items"
+#~ msgstr ""
 
 #: src/app/[locale]/[channel]/(account)/register/page.tsx:70
 #~ msgid "Last Name"
@@ -58,8 +62,8 @@ msgstr ""
 #~ msgstr ""
 
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrderList.tsx:90
-msgid "Order"
-msgstr ""
+#~ msgid "Order"
+#~ msgstr ""
 
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrderTabs.tsx:25
 msgid "Order Tabs"
@@ -114,8 +118,8 @@ msgid "Terms of Service"
 msgstr ""
 
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrderList.tsx:100
-msgid "Total"
-msgstr ""
+#~ msgid "Total"
+#~ msgstr ""
 
 #: src/app/[locale]/[channel]/(account)/_components/Header.tsx:40
 msgid "User Avatar"

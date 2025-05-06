@@ -18,7 +18,7 @@ export async function generateStaticParams() {
   return params;
 }
 
-const ChannelsQueryDocument = graphql(`
+const ChannelsQuery = graphql(`
   query Channels {
     channels {
       slug
@@ -30,7 +30,7 @@ const ChannelsQueryDocument = graphql(`
 async function* getActiveChannels() {
   const {channels} = await client
     .setHeader('Authorization', `Bearer ${env.APP_TOKEN}`)
-    .request(ChannelsQueryDocument);
+    .request(ChannelsQuery);
 
   for (const channel of channels ?? []) {
     if (channel.isActive) {

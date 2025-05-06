@@ -14,7 +14,6 @@ export const config = [
   ...tseslint.configs.recommended,
   {
     rules: {
-      camelcase: 'error',
       eqeqeq: 'error',
       yoda: ['error', 'never'],
       'capitalized-comments': 'error',
