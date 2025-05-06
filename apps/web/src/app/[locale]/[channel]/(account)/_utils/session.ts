@@ -3,7 +3,7 @@ import {cookies} from 'next/headers';
 export async function getAuthorization() {
   const accessToken = await getAccessToken();
   if (!accessToken) {
-    throw new Error('Access token not found');
+    return;
   }
   return ['Authorization', `Bearer ${accessToken}`] as const;
 }

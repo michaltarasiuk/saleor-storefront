@@ -10,84 +10,81 @@ import type {StoreConfigQuery} from '@/graphql/codegen/graphql';
 
 import {env} from './env';
 
-export default async function nextConfig() {
-  const {channels} = await getStoreConfig();
-  const {locales} = getLinguiConfig();
+const nextConfig: NextConfig = {
+  experimental: {
+    authInterrupts: true,
+    swcPlugins: [['@lingui/swc-plugin', {}]],
+  },
+  transpilePackages: ['@stylexjs/open-props'],
+  images: {
+    remotePatterns: env.IMAGE_REMOTE_HOSTNAMES.map(hostname => ({
+      hostname,
+    })),
+  },
+  webpack(config, {dev, isServer}) {
+    config.module.rules.push({
+      test: /\.po$/,
+      use: {
+        loader: '@lingui/loader',
+      },
+    });
+    if (!isServer) {
+      config.plugins.push(optimizeLocales.webpack({locales: []}));
+    }
 
-  const nextConfig: NextConfig = {
-    experimental: {
-      swcPlugins: [['@lingui/swc-plugin', {}]],
-    },
-    transpilePackages: ['@stylexjs/open-props'],
-    images: {
-      remotePatterns: env.IMAGE_REMOTE_HOSTNAMES.map(hostname => ({
-        hostname,
-      })),
-    },
-    webpack(config, {dev, isServer}) {
-      config.module.rules.push({
-        test: /\.po$/,
-        use: {
-          loader: '@lingui/loader',
-        },
-      });
-      if (!isServer) {
-        config.plugins.push(optimizeLocales.webpack({locales: []}));
-      }
-
-      config.module.rules.push({
-        test: /\.(ts|tsx)$/,
-        exclude: /node_modules(?!\/@stylexjs\/open-props)/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              parserOpts: {
-                plugins: ['typescript', 'jsx'],
-              },
-              plugins: [
-                [
-                  '@stylexjs/babel-plugin',
-                  {
-                    dev,
-                    runtimeInjection: false,
-                    genConditionalClasses: true,
-                    treeshakeCompensation: true,
-                    unstable_moduleResolution: {
-                      type: 'commonJS',
-                    },
-                  },
-                ],
-              ],
+    config.module.rules.push({
+      test: /\.(ts|tsx)$/,
+      exclude: /node_modules(?!\/@stylexjs\/open-props)/,
+      use: [
+        {
+          loader: 'babel-loader',
+          options: {
+            parserOpts: {
+              plugins: ['typescript', 'jsx'],
             },
+            plugins: [
+              [
+                '@stylexjs/babel-plugin',
+                {
+                  dev,
+                  runtimeInjection: false,
+                  genConditionalClasses: true,
+                  treeshakeCompensation: true,
+                  unstable_moduleResolution: {
+                    type: 'commonJS',
+                  },
+                },
+              ],
+            ],
           },
-        ],
-      });
-      return config;
-    },
-    async redirects() {
-      const defaultChannel = getDefaultChannel(channels);
+        },
+      ],
+    });
+    return config;
+  },
+  async redirects() {
+    const {channels} = await getStoreConfig();
+    const defaultChannel = getDefaultChannel(channels);
 
-      return locales.map(locale => ({
-        source: formatPathname(locale),
-        destination: formatPathname(locale, defaultChannel.slug),
-        permanent: true,
-      }));
-    },
-  };
+    return getLinguiConfig().locales.map(locale => ({
+      source: formatPathname(locale),
+      destination: formatPathname(locale, defaultChannel.slug),
+      permanent: true,
+    }));
+  },
+};
 
-  return withSentryConfig(nextConfig, {
-    org: 'saleor-he',
-    project: 'javascript-nextjs',
-    silent: !env.CI,
-    widenClientFileUpload: true,
-    tunnelRoute: '/monitoring',
-    disableLogger: true,
-    automaticVercelMonitors: true,
-  });
-}
+export default withSentryConfig(nextConfig, {
+  org: 'saleor-he',
+  project: 'javascript-nextjs',
+  silent: !env.CI,
+  widenClientFileUpload: true,
+  tunnelRoute: '/monitoring',
+  disableLogger: true,
+  automaticVercelMonitors: true,
+});
 
-async function getStoreConfig() {
+function getStoreConfig() {
   const StoreConfigQuery = graphql(`
     query StoreConfig {
       channels {
@@ -96,7 +93,7 @@ async function getStoreConfig() {
       }
     }
   `);
-  return await client
+  return client
     .setHeader('Authorization', `Bearer ${env.APP_TOKEN}`)
     .request(StoreConfigQuery);
 }

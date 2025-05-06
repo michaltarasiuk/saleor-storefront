@@ -32759,17 +32759,6 @@ export type StoreConfigQuery = {
   }> | null;
 };
 
-export type OrderCard_OrderFragmentFragment = {
-  __typename?: 'Order';
-  number: string;
-} & {' $fragmentName'?: 'OrderCard_OrderFragmentFragment'};
-
-export type OrderList_UserFragmentFragment = ({__typename?: 'User'} & {
-  ' $fragmentRefs'?: {
-    OrdersGrid_UserFragmentFragment: OrdersGrid_UserFragmentFragment;
-  };
-}) & {' $fragmentName'?: 'OrderList_UserFragmentFragment'};
-
 export type OrderListQueryVariables = Exact<{[key: string]: never}>;
 
 export type OrderListQuery = {
@@ -32782,6 +32771,17 @@ export type OrderListQuery = {
       })
     | null;
 };
+
+export type OrderCard_OrderFragmentFragment = {
+  __typename?: 'Order';
+  number: string;
+} & {' $fragmentName'?: 'OrderCard_OrderFragmentFragment'};
+
+export type OrderList_UserFragmentFragment = ({__typename?: 'User'} & {
+  ' $fragmentRefs'?: {
+    OrdersGrid_UserFragmentFragment: OrdersGrid_UserFragmentFragment;
+  };
+}) & {' $fragmentName'?: 'OrderList_UserFragmentFragment'};
 
 export type OrdersGrid_UserFragmentFragment = {
   __typename?: 'User';
