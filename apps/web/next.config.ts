@@ -88,7 +88,7 @@ export default async function nextConfig() {
 }
 
 async function getStoreConfig() {
-  const StoreConfigQueryDocument = graphql(`
+  const StoreConfigQuery = graphql(`
     query StoreConfig {
       channels {
         slug
@@ -98,7 +98,7 @@ async function getStoreConfig() {
   `);
   return await client
     .setHeader('Authorization', `Bearer ${env.APP_TOKEN}`)
-    .request(StoreConfigQueryDocument);
+    .request(StoreConfigQuery);
 }
 
 function getDefaultChannel(channels: StoreConfigQuery['channels']) {

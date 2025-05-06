@@ -1,7 +1,7 @@
 import {setActiveI18nInstance} from '@/i18n/utils';
 
 import type {Params} from '../../../params';
-import {OrderList} from '../_components/OrderList';
+import {OrderListQuery} from '../_components/OrderList';
 
 interface ConfirmedOrdersPageProps {
   readonly params: Promise<Params>;
@@ -12,5 +12,5 @@ export default async function ConfirmedOrdersPage({
 }: ConfirmedOrdersPageProps) {
   const {locale} = await params;
   setActiveI18nInstance(locale);
-  return <OrderList />;
+  return <OrderListQuery />;
 }

@@ -32759,6 +32759,45 @@ export type StoreConfigQuery = {
   }> | null;
 };
 
+export type OrderListQueryVariables = Exact<{[key: string]: never}>;
+
+export type OrderListQuery = {
+  __typename?: 'Query';
+  user?:
+    | ({__typename?: 'User'} & {
+        ' $fragmentRefs'?: {
+          OrderList_UserFragmentFragment: OrderList_UserFragmentFragment;
+        };
+      })
+    | null;
+};
+
+export type OrderList_UserFragmentFragment = ({__typename?: 'User'} & {
+  ' $fragmentRefs'?: {
+    OrdersGrid_UserFragmentFragment: OrdersGrid_UserFragmentFragment;
+  };
+}) & {' $fragmentName'?: 'OrderList_UserFragmentFragment'};
+
+export type OrdersGrid_UserFragmentFragment = {
+  __typename?: 'User';
+  orders?: {
+    __typename?: 'OrderCountableConnection';
+    edges: Array<{
+      __typename?: 'OrderCountableEdge';
+      node: {__typename?: 'Order'; id: string} & {
+        ' $fragmentRefs'?: {
+          OrderCard_OrderFragmentFragment: OrderCard_OrderFragmentFragment;
+        };
+      };
+    }>;
+  } | null;
+} & {' $fragmentName'?: 'OrdersGrid_UserFragmentFragment'};
+
+export type OrderCard_OrderFragmentFragment = {
+  __typename?: 'Order';
+  number: string;
+} & {' $fragmentName'?: 'OrderCard_OrderFragmentFragment'};
+
 export type ChannelsQueryVariables = Exact<{[key: string]: never}>;
 
 export type ChannelsQuery = {
@@ -32770,6 +32809,166 @@ export type ChannelsQuery = {
   }> | null;
 };
 
+export const OrderCard_OrderFragmentFragmentDoc = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'FragmentDefinition',
+      name: {kind: 'Name', value: 'OrderCard_OrderFragment'},
+      typeCondition: {kind: 'NamedType', name: {kind: 'Name', value: 'Order'}},
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [{kind: 'Field', name: {kind: 'Name', value: 'number'}}],
+      },
+    },
+  ],
+} as unknown as DocumentNode<OrderCard_OrderFragmentFragment, unknown>;
+export const OrdersGrid_UserFragmentFragmentDoc = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'FragmentDefinition',
+      name: {kind: 'Name', value: 'OrdersGrid_UserFragment'},
+      typeCondition: {kind: 'NamedType', name: {kind: 'Name', value: 'User'}},
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: {kind: 'Name', value: 'orders'},
+            arguments: [
+              {
+                kind: 'Argument',
+                name: {kind: 'Name', value: 'first'},
+                value: {kind: 'IntValue', value: '10'},
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: {kind: 'Name', value: 'edges'},
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: {kind: 'Name', value: 'node'},
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {kind: 'Field', name: {kind: 'Name', value: 'id'}},
+                            {
+                              kind: 'FragmentSpread',
+                              name: {
+                                kind: 'Name',
+                                value: 'OrderCard_OrderFragment',
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: {kind: 'Name', value: 'OrderCard_OrderFragment'},
+      typeCondition: {kind: 'NamedType', name: {kind: 'Name', value: 'Order'}},
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [{kind: 'Field', name: {kind: 'Name', value: 'number'}}],
+      },
+    },
+  ],
+} as unknown as DocumentNode<OrdersGrid_UserFragmentFragment, unknown>;
+export const OrderList_UserFragmentFragmentDoc = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'FragmentDefinition',
+      name: {kind: 'Name', value: 'OrderList_UserFragment'},
+      typeCondition: {kind: 'NamedType', name: {kind: 'Name', value: 'User'}},
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'FragmentSpread',
+            name: {kind: 'Name', value: 'OrdersGrid_UserFragment'},
+          },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: {kind: 'Name', value: 'OrderCard_OrderFragment'},
+      typeCondition: {kind: 'NamedType', name: {kind: 'Name', value: 'Order'}},
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [{kind: 'Field', name: {kind: 'Name', value: 'number'}}],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: {kind: 'Name', value: 'OrdersGrid_UserFragment'},
+      typeCondition: {kind: 'NamedType', name: {kind: 'Name', value: 'User'}},
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: {kind: 'Name', value: 'orders'},
+            arguments: [
+              {
+                kind: 'Argument',
+                name: {kind: 'Name', value: 'first'},
+                value: {kind: 'IntValue', value: '10'},
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: {kind: 'Name', value: 'edges'},
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: {kind: 'Name', value: 'node'},
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {kind: 'Field', name: {kind: 'Name', value: 'id'}},
+                            {
+                              kind: 'FragmentSpread',
+                              name: {
+                                kind: 'Name',
+                                value: 'OrderCard_OrderFragment',
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<OrderList_UserFragmentFragment, unknown>;
 export const StoreConfigDocument = {
   kind: 'Document',
   definitions: [
@@ -32796,6 +32995,109 @@ export const StoreConfigDocument = {
     },
   ],
 } as unknown as DocumentNode<StoreConfigQuery, StoreConfigQueryVariables>;
+export const OrderListDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: {kind: 'Name', value: 'OrderList'},
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: {kind: 'Name', value: 'user'},
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: {kind: 'Name', value: 'OrderList_UserFragment'},
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: {kind: 'Name', value: 'OrderCard_OrderFragment'},
+      typeCondition: {kind: 'NamedType', name: {kind: 'Name', value: 'Order'}},
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [{kind: 'Field', name: {kind: 'Name', value: 'number'}}],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: {kind: 'Name', value: 'OrdersGrid_UserFragment'},
+      typeCondition: {kind: 'NamedType', name: {kind: 'Name', value: 'User'}},
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: {kind: 'Name', value: 'orders'},
+            arguments: [
+              {
+                kind: 'Argument',
+                name: {kind: 'Name', value: 'first'},
+                value: {kind: 'IntValue', value: '10'},
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: {kind: 'Name', value: 'edges'},
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: {kind: 'Name', value: 'node'},
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {kind: 'Field', name: {kind: 'Name', value: 'id'}},
+                            {
+                              kind: 'FragmentSpread',
+                              name: {
+                                kind: 'Name',
+                                value: 'OrderCard_OrderFragment',
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: {kind: 'Name', value: 'OrderList_UserFragment'},
+      typeCondition: {kind: 'NamedType', name: {kind: 'Name', value: 'User'}},
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'FragmentSpread',
+            name: {kind: 'Name', value: 'OrdersGrid_UserFragment'},
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<OrderListQuery, OrderListQueryVariables>;
 export const ChannelsDocument = {
   kind: 'Document',
   definitions: [
