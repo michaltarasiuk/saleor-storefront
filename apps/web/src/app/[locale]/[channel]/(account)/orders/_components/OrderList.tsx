@@ -7,6 +7,7 @@ import {graphql, useFragment} from '@/graphql/codegen';
 import type {OrderListQuery} from '@/graphql/codegen/graphql';
 
 import {OrdersGrid, OrdersGridSkeleton} from './OrdersGrid';
+import {OrdersTable, OrdersTableSkeleton} from './OrdersTable';
 import {OrdersViewContext} from './OrdersViewToggle';
 
 const OrderList_UserFragment = graphql(`
@@ -30,7 +31,7 @@ export function OrderList({orderListPromise}: OrderListProps) {
     case 'grid':
       return <OrdersGrid user={me} />;
     case 'table':
-      return null;
+      return <OrdersTable />;
     default:
       assertNever(viewType);
   }
@@ -42,8 +43,7 @@ export function OrderListSkeleton() {
     case 'grid':
       return <OrdersGridSkeleton />;
     case 'table':
-      return null;
+      return <OrdersTableSkeleton />;
     default:
-      assertNever(viewType);
   }
 }
