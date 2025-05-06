@@ -45,5 +45,6 @@ export function OrderListSkeleton() {
     case 'table':
       return <OrdersTableSkeleton />;
     default:
+      assertNever(viewType);
   }
 }
