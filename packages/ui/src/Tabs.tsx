@@ -10,6 +10,7 @@ import {
   type TabsProps,
 } from 'react-aria-components';
 
+import {leadingStyles} from './styles/leading';
 import {baseColors, controlColors} from './variables/colors.stylex';
 import {
   borderWidth,
@@ -75,7 +76,9 @@ export function Tab({title, children, ...props}: TabProps) {
       {props => (
         <>
           {typeof children === 'function' ? children(props) : children}
-          <span data-text={title} {...stylex.props(tabStyles.content)}>
+          <span
+            data-text={title}
+            {...stylex.props(tabStyles.content, leadingStyles.base)}>
             {title}
           </span>
         </>

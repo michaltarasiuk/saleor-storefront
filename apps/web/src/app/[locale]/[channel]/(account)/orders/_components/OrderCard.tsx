@@ -11,7 +11,7 @@ import {baseColors} from '@repo/ui/variables/colors.stylex';
 
 import {type FragmentType, graphql, useFragment} from '@/graphql/codegen';
 
-const OrderCard_OrderFragment = graphql(/* GraphQL */ `
+const OrderCard_OrderFragment = graphql(`
   fragment OrderCard_OrderFragment on Order {
     number
   }
@@ -82,7 +82,7 @@ export function OrderCardSkeleton() {
           <SkeletonImage blockSize={18} />
         </GridItem>
         <GridItem>
-          <SkeletonText />
+          <SkeletonText inlineSize="large" />
         </GridItem>
         <GridItem />
         <GridItem>
@@ -90,7 +90,7 @@ export function OrderCardSkeleton() {
         </GridItem>
       </Grid>
       <BlockStack>
-        <SkeletonText />
+        <SkeletonText inlineSize="base" />
         <SkeletonText />
       </BlockStack>
       <SkeletonText />

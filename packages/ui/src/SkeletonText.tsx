@@ -8,12 +8,19 @@ import {cornerRadius} from './variables/tokens.stylex';
 
 interface SkeletonTextProps {
   readonly size?: FontSize;
+  readonly inlineSize?: keyof typeof inlineSizeStyles;
   readonly style?: stylex.StyleXStyles;
 }
 
-export function SkeletonText({size = 'base', style}: SkeletonTextProps) {
+export function SkeletonText({
+  size = 'base',
+  inlineSize = 'small',
+  style,
+}: SkeletonTextProps) {
   return (
-    <div aria-hidden="true" {...stylex.props(styles.base, style)}>
+    <div
+      aria-hidden="true"
+      {...stylex.props(styles.base, inlineSizeStyles[inlineSize], style)}>
       <Text size={size}>{'\u200B'}</Text>
     </div>
   );
@@ -22,6 +29,7 @@ export function SkeletonText({size = 'base', style}: SkeletonTextProps) {
 const styles = stylex.create({
   base: {
     position: 'relative',
+    maxInlineSize: '100%',
     '::after': {
       content: '',
       position: 'absolute',
@@ -35,5 +43,17 @@ const styles = stylex.create({
       animationDuration: animationDurations.long,
       animationIterationCount: 'infinite',
     },
+  },
+});
+
+const inlineSizeStyles = stylex.create({
+  small: {
+    inlineSize: '5rem',
+  },
+  base: {
+    inlineSize: '11rem',
+  },
+  large: {
+    inlineSize: '16rem',
   },
 });
