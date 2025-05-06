@@ -3,7 +3,7 @@ import * as stylex from '@stylexjs/stylex';
 
 import {SkeletonText} from './SkeletonText';
 import type {FontSize} from './styles/font-size';
-import {animations} from './variables/animations.stylex';
+import {animationDurations, animations} from './variables/animations.stylex';
 import {spacing} from './variables/tokens.stylex';
 
 interface SkeletonTextBlockProps {
@@ -34,7 +34,7 @@ const skeletonTextBlockStyles = stylex.create({
     display: 'flex',
     flexDirection: 'column',
     animation: animations.pulse,
-    animationDuration: '2s',
+    animationDuration: animationDurations.long,
     animationIterationCount: 'infinite',
   },
   gap: (gap: string) => ({gap}),

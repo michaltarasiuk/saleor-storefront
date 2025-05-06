@@ -2,7 +2,7 @@ import * as stylex from '@stylexjs/stylex';
 
 import type {FontSize} from './styles/font-size';
 import {Text} from './Text';
-import {animations} from './variables/animations.stylex';
+import {animationDurations, animations} from './variables/animations.stylex';
 import {baseColors} from './variables/colors.stylex';
 import {cornerRadius} from './variables/tokens.stylex';
 
@@ -24,7 +24,7 @@ const styles = stylex.create({
     backgroundColor: baseColors.border,
     borderRadius: cornerRadius.base,
     animation: animations.pulse,
-    animationDuration: '2s',
+    animationDuration: animationDurations.long,
     animationIterationCount: 'infinite',
   },
 });

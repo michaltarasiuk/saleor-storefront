@@ -19,6 +19,11 @@ export const animations = stylex.defineVars({
   pulse,
 });
 
+export const animationDurations = stylex.defineVars({
+  base: stylex.types.time('1s'),
+  long: stylex.types.time('2s'),
+});
+
 export const transitionProperties = stylex.defineVars({
   color:
     'color, background-color, border-color, text-decoration-color, fill, stroke',
@@ -26,7 +31,7 @@ export const transitionProperties = stylex.defineVars({
 });
 
 export const transitionDurations = stylex.defineVars({
-  default: stylex.types.time('150ms'),
+  base: stylex.types.time('150ms'),
 });
 
 export const transitionTimingFunctions = stylex.defineVars({

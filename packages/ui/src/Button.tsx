@@ -8,6 +8,7 @@ import {
 } from 'react-aria-components';
 
 import {Spinner} from './Spinner';
+import {leadingStyles} from './styles/leading';
 import {
   transitionDurations,
   transitionProperties,
@@ -64,6 +65,7 @@ export function Button({
         const {className = ''} = stylex.props(
           styles.base,
           variantStyles.base,
+          leadingStyles.base,
           variantStyles[appearance],
           sizeStyles[size],
           isFocusVisible && styles.focusVisible,
@@ -136,7 +138,7 @@ const styles = stylex.create({
     outlineOffset: spacing.small600,
     outlineWidth: borderWidth.medium,
     transitionProperty: transitionProperties.color,
-    transitionDuration: transitionDurations.default,
+    transitionDuration: transitionDurations.base,
     transitionTimingFunction: transitionTimingFunctions.default,
   },
   focusVisible: {

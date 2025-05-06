@@ -6,7 +6,7 @@ import {useVisuallyHidden} from 'react-aria';
 import {usePrefersReducedMotion} from './hooks/use-prefers-reduced-motion';
 import {SpinnerIcon} from './icons/SpinnerIcon';
 import {Text} from './Text';
-import {animations} from './variables/animations.stylex';
+import {animationDurations, animations} from './variables/animations.stylex';
 
 interface SpinnerProps {
   readonly accessibilityLabel?: string;
@@ -38,7 +38,7 @@ const styles = stylex.create({
   base: {
     flexShrink: 0,
     animation: animations.spin,
-    animationDuration: '1s',
+    animationDuration: animationDurations.base,
     animationIterationCount: 'infinite',
   },
 });

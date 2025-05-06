@@ -1,7 +1,7 @@
 import * as stylex from '@stylexjs/stylex';
 
 import {formatSize, type Size} from './utils/format-size';
-import {animations} from './variables/animations.stylex';
+import {animationDurations, animations} from './variables/animations.stylex';
 import {baseColors} from './variables/colors.stylex';
 import {cornerRadius} from './variables/tokens.stylex';
 
@@ -30,7 +30,7 @@ const styles = stylex.create({
     backgroundColor: baseColors.border,
     borderRadius: cornerRadius.base,
     animation: animations.pulse,
-    animationDuration: '2s',
+    animationDuration: animationDurations.base,
     animationIterationCount: 'infinite',
   },
   size: (

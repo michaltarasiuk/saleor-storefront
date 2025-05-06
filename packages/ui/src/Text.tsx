@@ -3,6 +3,7 @@ import * as stylex from '@stylexjs/stylex';
 import {type Apperance, apperanceStyles} from './styles/apperance';
 import {type Emphasis, emphasisStyles} from './styles/emphasis';
 import {type FontSize, fontSizeStyles} from './styles/font-size';
+import {leadingStyles} from './styles/leading';
 import type {AccessibilityVisibility} from './types/accessibility';
 import {typographyPrimary} from './variables/tokens.stylex';
 
@@ -26,6 +27,7 @@ export function Text({
       aria-hidden={accessibilityVisibility === 'hidden'}
       {...stylex.props(
         styles.base,
+        leadingStyles.base,
         apperanceStyles[appearance],
         fontSizeStyles[size],
         emphasisStyles[emphasis]
@@ -45,6 +47,7 @@ export function TextBlock({
     <p
       {...stylex.props(
         styles.base,
+        leadingStyles.base,
         apperanceStyles[appearance],
         fontSizeStyles[size],
         emphasisStyles[emphasis]

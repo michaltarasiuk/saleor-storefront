@@ -1,5 +1,11 @@
 import * as stylex from '@stylexjs/stylex';
 
+import {
+  type BlockAlignment,
+  blockAlignmentStyles,
+  type InlineAlignment,
+  inlineAlignmentStyles,
+} from './styles/aligment';
 import {type Background, backgroundStyles} from './styles/background';
 import {type BorderStyle, getBorderStyleStyles} from './styles/border-style';
 import {type BorderWidth, getBorderWidthStyles} from './styles/border-width';
@@ -19,6 +25,8 @@ interface GridProps extends SizeProps {
   readonly accessibilityRole?: NonPresentationalAccessibilityRole;
   readonly columns?: Columns;
   readonly rows?: Rows;
+  readonly blockAlignment?: BlockAlignment;
+  readonly inlineAlignment?: InlineAlignment;
   readonly background?: Background;
   readonly border?: MaybeShorthandProperty<BorderStyle>;
   readonly borderWidth?: MaybeShorthandProperty<BorderWidth>;
@@ -38,6 +46,8 @@ export function Grid({
   maxInlineSize,
   columns = 'fill',
   rows = 'fill',
+  blockAlignment = 'start',
+  inlineAlignment = 'start',
   background = 'transparent',
   border = 'none',
   borderWidth = 'base',
@@ -52,6 +62,8 @@ export function Grid({
       aria-label={accessibilityLabel}
       {...stylex.props(
         styles.base,
+        blockAlignmentStyles[blockAlignment],
+        inlineAlignmentStyles[inlineAlignment],
         backgroundStyles[background],
         overflowStyles[overflow],
         getColumnsStyles(columns),

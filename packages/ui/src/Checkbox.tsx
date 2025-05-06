@@ -72,7 +72,7 @@ const boxStyles = stylex.create({
     padding: spacing.small400,
     boxShadow: `inset 0 0 0 ${borderWidth.base} ${controlColors.border}`,
     transitionProperty: transitionProperties.shadow,
-    transitionDuration: transitionDurations.default,
+    transitionDuration: transitionDurations.base,
     transitionTimingFunction: transitionTimingFunctions.default,
     '::before': {
       content: '""',
@@ -83,7 +83,7 @@ const boxStyles = stylex.create({
       opacity: opacity[30],
       borderRadius: cornerRadius.base,
       transitionProperty: transitionProperties.shadow,
-      transitionDuration: transitionDurations.default,
+      transitionDuration: transitionDurations.base,
       transitionTimingFunction: transitionTimingFunctions.default,
     },
   },

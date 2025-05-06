@@ -5,6 +5,7 @@ import * as stylex from '@stylexjs/stylex';
 import {createContext, use} from 'react';
 import {Heading as AriaHeading} from 'react-aria-components';
 
+import {leadingStyles} from './styles/leading';
 import type {AccessibilityRole} from './types/accessibility';
 import {baseColors} from './variables/colors.stylex';
 import {
@@ -53,6 +54,7 @@ export function Heading({
       level={staticHeadingLevel ?? headingLevel}
       {...stylex.props(
         styles.base,
+        leadingStyles.small,
         inlineAlignmentStyles[inlineAlignment],
         isKeyOf(levelStyles, headingLevel) && levelStyles[headingLevel]
       )}>
@@ -67,7 +69,6 @@ const styles = stylex.create({
     fontFamily: typographyPrimary.fontFamily,
     fontSize: typographyFontSize.base,
     fontWeight: typographySecondary.bold,
-    lineHeight: '120%',
   },
 });
 

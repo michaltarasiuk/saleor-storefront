@@ -78,7 +78,7 @@ const toggleStyles = stylex.create({
     borderRadius: cornerRadius.fullyRounded,
     boxShadow: `inset 0 0 0 ${borderWidth.base} ${controlColors.border}`,
     transitionProperty: transitionProperties.shadow,
-    transitionDuration: transitionDurations.default,
+    transitionDuration: transitionDurations.base,
     transitionTimingFunction: transitionTimingFunctions.default,
     '::before': {
       content: '""',
@@ -89,7 +89,7 @@ const toggleStyles = stylex.create({
       opacity: opacity[30],
       borderRadius: cornerRadius.fullyRounded,
       transitionProperty: transitionProperties.shadow,
-      transitionDuration: transitionDurations.default,
+      transitionDuration: transitionDurations.base,
       transitionTimingFunction: transitionTimingFunctions.default,
     },
     '::after': {
@@ -101,7 +101,7 @@ const toggleStyles = stylex.create({
       borderRadius: cornerRadius.fullyRounded,
       backgroundColor: controlColors.textSubdued,
       transitionProperty: transitionProperties.shadow,
-      transitionDuration: transitionDurations.default,
+      transitionDuration: transitionDurations.base,
       transitionTimingFunction: transitionTimingFunctions.default,
     },
   },

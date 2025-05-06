@@ -4,6 +4,7 @@ import {Label as AriaLabel} from 'react-aria-components';
 import {type Apperance, apperanceStyles} from './styles/apperance';
 import {type Emphasis, emphasisStyles} from './styles/emphasis';
 import {type FontSize, fontSizeStyles} from './styles/font-size';
+import {leadingStyles} from './styles/leading';
 import {typographyPrimary} from './variables/tokens.stylex';
 
 interface LabelProps {
@@ -23,6 +24,7 @@ export function Label({
     <AriaLabel
       {...stylex.props(
         styles.base,
+        leadingStyles.extraSmall,
         apperanceStyles[appearance],
         fontSizeStyles[size],
         emphasisStyles[emphasis]

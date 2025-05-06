@@ -4,6 +4,7 @@ import {
   type LinkProps as AriaLinkProps,
 } from 'react-aria-components';
 
+import {leadingStyles} from './styles/leading';
 import {baseColors, controlColors} from './variables/colors.stylex';
 import {
   borderWidth,
@@ -22,8 +23,9 @@ export function Link({style, ...props}: LinkProps) {
     <AriaLink
       className={({isFocusVisible}) => {
         const {className = ''} = stylex.props(
-          style,
           styles.base,
+          leadingStyles.extraSmall,
+          style,
           isFocusVisible && styles.focusVisible
         );
         return className;
@@ -40,7 +42,6 @@ const styles = stylex.create({
     fontFamily: typographyPrimary.fontFamily,
     fontSize: typographyFontSize.base,
     fontWeight: typographyPrimary.base,
-    lineHeight: 1,
     textDecoration: 'none',
     borderRadius: cornerRadius.base,
     outline: 'none',
