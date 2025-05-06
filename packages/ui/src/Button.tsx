@@ -241,7 +241,7 @@ const secondaryStateStyles = stylex.create({
   disabled: {
     cursor: 'default',
     color: controlColors.textSubdued,
-    borderColor: controlColors.border,
+    borderColor: baseColors.border,
   },
 });
 
