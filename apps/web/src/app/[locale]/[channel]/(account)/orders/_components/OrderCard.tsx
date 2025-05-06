@@ -3,6 +3,8 @@ import {Button} from '@repo/ui/Button';
 import {Grid} from '@repo/ui/Grid';
 import {GridItem} from '@repo/ui/GridItem';
 import {SuccessIcon} from '@repo/ui/icons/SuccessIcon';
+import {SkeletonImage} from '@repo/ui/SkeletonImage';
+import {SkeletonText} from '@repo/ui/SkeletonText';
 import {BlockStack, InlineStack} from '@repo/ui/Stack';
 import {Text} from '@repo/ui/Text';
 import {baseColors} from '@repo/ui/variables/colors.stylex';
@@ -30,6 +32,7 @@ export function OrderCard(props: OrderCardProps) {
       <Grid
         columns={[18, 'fill']}
         rows={['auto', 'auto']}
+        blockAlignment="center"
         background="subdued"
         cornerRadius="base"
         padding="loose"
@@ -40,7 +43,7 @@ export function OrderCard(props: OrderCardProps) {
         <GridItem>
           <Text emphasis="bold">Confirmed</Text>
         </GridItem>
-        <div />
+        <GridItem />
         <GridItem>
           <Text>Updated Oct 17</Text>
         </GridItem>
@@ -67,7 +70,36 @@ export function OrderCardSkeleton() {
       cornerRadius="large"
       padding="loose"
       spacing="loose">
-      {null}
+      <Grid
+        columns={[18, 'fill']}
+        rows={['auto', 'auto']}
+        blockAlignment="center"
+        background="subdued"
+        cornerRadius="base"
+        padding="loose"
+        spacing={['none', 'extraTight']}>
+        <GridItem>
+          <SkeletonImage blockSize={18} />
+        </GridItem>
+        <GridItem>
+          <SkeletonText />
+        </GridItem>
+        <GridItem />
+        <GridItem>
+          <SkeletonText />
+        </GridItem>
+      </Grid>
+      <BlockStack>
+        <SkeletonText />
+        <SkeletonText />
+      </BlockStack>
+      <SkeletonText />
+      <InlineStack spacing="base">
+        <Button isDisabled>Pay Now</Button>
+        <Button variant="secondary" isDisabled>
+          Manage
+        </Button>
+      </InlineStack>
     </BlockStack>
   );
 }

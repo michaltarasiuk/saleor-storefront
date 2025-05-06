@@ -21,10 +21,19 @@ export function SkeletonText({size = 'base', style}: SkeletonTextProps) {
 
 const styles = stylex.create({
   base: {
-    backgroundColor: baseColors.border,
-    borderRadius: cornerRadius.base,
-    animation: animations.pulse,
-    animationDuration: animationDurations.long,
-    animationIterationCount: 'infinite',
+    position: 'relative',
+    '::after': {
+      content: '',
+      position: 'absolute',
+      height: '75%',
+      width: '100%',
+      top: '50%',
+      transform: 'translateY(-50%)',
+      backgroundColor: baseColors.border,
+      borderRadius: cornerRadius.base,
+      animation: animations.pulse,
+      animationDuration: animationDurations.long,
+      animationIterationCount: 'infinite',
+    },
   },
 });

@@ -30,7 +30,7 @@ const styles = stylex.create({
     backgroundColor: baseColors.border,
     borderRadius: cornerRadius.base,
     animation: animations.pulse,
-    animationDuration: animationDurations.base,
+    animationDuration: animationDurations.long,
     animationIterationCount: 'infinite',
   },
   size: (
