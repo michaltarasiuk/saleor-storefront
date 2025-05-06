@@ -1,7 +1,7 @@
 import {setActiveI18nInstance} from '@/i18n/utils';
 
 import type {Params} from '../../../params';
-import {OrderListQuery} from '../_components/OrderList';
+import {OrderListQuery} from '../_components/OrderListQuery';
 
 interface PendingOrdersPageProps {
   readonly params: Promise<Params>;

@@ -1,31 +1,13 @@
 'use client';
 
 import {assertNever} from '@repo/utils/assert-never';
-import {Suspense, use} from 'react';
+import {use} from 'react';
 
-import {client} from '@/graphql/client';
 import {graphql, useFragment} from '@/graphql/codegen';
 import type {OrderListQuery} from '@/graphql/codegen/graphql';
 
-import {OrdersGrid} from './OrdersGrid';
+import {OrdersGrid, OrdersGridSkeleton} from './OrdersGrid';
 import {OrdersViewContext} from './OrdersViewToggle';
-
-const OrderList_Query = graphql(`
-  query OrderList {
-    user {
-      ...OrderList_UserFragment
-    }
-  }
-`);
-
-export function OrderListQuery() {
-  const orderListPromise = client.request(OrderList_Query);
-  return (
-    <Suspense fallback={<OrderListSkeleton />}>
-      <OrderList orderListPromise={orderListPromise} />
-    </Suspense>
-  );
-}
 
 const OrderList_UserFragment = graphql(`
   fragment OrderList_UserFragment on User {
@@ -37,16 +19,16 @@ interface OrderListProps {
   readonly orderListPromise: Promise<OrderListQuery>;
 }
 
-function OrderList({orderListPromise}: OrderListProps) {
+export function OrderList({orderListPromise}: OrderListProps) {
   const orderList = use(orderListPromise);
-  const user = useFragment(OrderList_UserFragment, orderList.user);
-  if (!user) {
+  const me = useFragment(OrderList_UserFragment, orderList.me);
+  if (!me) {
     throw new Error('User not found');
   }
   const {viewType} = use(OrdersViewContext);
   switch (viewType) {
     case 'grid':
-      return <OrdersGrid user={user} />;
+      return <OrdersGrid user={me} />;
     case 'table':
       return null;
     default:
@@ -54,6 +36,14 @@ function OrderList({orderListPromise}: OrderListProps) {
   }
 }
 
-function OrderListSkeleton() {
-  return null;
+export function OrderListSkeleton() {
+  const {viewType} = use(OrdersViewContext);
+  switch (viewType) {
+    case 'grid':
+      return <OrdersGridSkeleton />;
+    case 'table':
+      return null;
+    default:
+      assertNever(viewType);
+  }
 }

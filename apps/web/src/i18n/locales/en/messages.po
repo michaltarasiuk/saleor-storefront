@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/app/[locale]/[channel]/(account)/orders/_components/OrdersGrid.tsx:78
+#: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:50
 msgid "3 items"
 msgstr "3 items"
 
