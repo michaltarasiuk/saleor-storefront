@@ -16,8 +16,8 @@ import {TypedDocumentNode as DocumentNode} from '@graphql-typed-document-node/co
 type Documents = {
   '\n    query StoreConfig {\n      channels {\n        slug\n        isActive\n      }\n    }\n  ': typeof types.StoreConfigDocument;
   '\n  query OrderList {\n    me {\n      ...OrderList_UserFragment\n    }\n  }\n': typeof types.OrderListDocument;
-  '\n  fragment OrderCard_OrderFragment on Order {\n    number\n    ...OrderIcon_OrderFragment\n    ...OrderStatusText_OrderFragment\n  }\n': typeof types.OrderCard_OrderFragmentFragmentDoc;
-  '\n  fragment OrderStatusText_OrderFragment on Order {\n    status\n  }\n': typeof types.OrderStatusText_OrderFragmentFragmentDoc;
+  '\n  fragment OrderCard_OrderFragment on Order {\n    number\n    statusDisplay\n    ...OrderItemsCountProps_OrderFragment\n    ...OrderIcon_OrderFragment\n  }\n': typeof types.OrderCard_OrderFragmentFragmentDoc;
+  '\n  fragment OrderItemsCountProps_OrderFragment on Order {\n    lines {\n      quantity\n    }\n  }\n': typeof types.OrderItemsCountProps_OrderFragmentFragmentDoc;
   '\n  fragment OrderIcon_OrderFragment on Order {\n    status\n  }\n': typeof types.OrderIcon_OrderFragmentFragmentDoc;
   '\n  fragment OrderList_UserFragment on User {\n    ...OrdersGrid_UserFragment\n  }\n': typeof types.OrderList_UserFragmentFragmentDoc;
   '\n  fragment OrdersGrid_UserFragment on User {\n    orders(first: 10) {\n      edges {\n        node {\n          id\n          ...OrderCard_OrderFragment\n        }\n      }\n    }\n  }\n': typeof types.OrdersGrid_UserFragmentFragmentDoc;
@@ -28,10 +28,10 @@ const documents: Documents = {
     types.StoreConfigDocument,
   '\n  query OrderList {\n    me {\n      ...OrderList_UserFragment\n    }\n  }\n':
     types.OrderListDocument,
-  '\n  fragment OrderCard_OrderFragment on Order {\n    number\n    ...OrderIcon_OrderFragment\n    ...OrderStatusText_OrderFragment\n  }\n':
+  '\n  fragment OrderCard_OrderFragment on Order {\n    number\n    statusDisplay\n    ...OrderItemsCountProps_OrderFragment\n    ...OrderIcon_OrderFragment\n  }\n':
     types.OrderCard_OrderFragmentFragmentDoc,
-  '\n  fragment OrderStatusText_OrderFragment on Order {\n    status\n  }\n':
-    types.OrderStatusText_OrderFragmentFragmentDoc,
+  '\n  fragment OrderItemsCountProps_OrderFragment on Order {\n    lines {\n      quantity\n    }\n  }\n':
+    types.OrderItemsCountProps_OrderFragmentFragmentDoc,
   '\n  fragment OrderIcon_OrderFragment on Order {\n    status\n  }\n':
     types.OrderIcon_OrderFragmentFragmentDoc,
   '\n  fragment OrderList_UserFragment on User {\n    ...OrdersGrid_UserFragment\n  }\n':
@@ -72,14 +72,14 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: '\n  fragment OrderCard_OrderFragment on Order {\n    number\n    ...OrderIcon_OrderFragment\n    ...OrderStatusText_OrderFragment\n  }\n'
-): (typeof documents)['\n  fragment OrderCard_OrderFragment on Order {\n    number\n    ...OrderIcon_OrderFragment\n    ...OrderStatusText_OrderFragment\n  }\n'];
+  source: '\n  fragment OrderCard_OrderFragment on Order {\n    number\n    statusDisplay\n    ...OrderItemsCountProps_OrderFragment\n    ...OrderIcon_OrderFragment\n  }\n'
+): (typeof documents)['\n  fragment OrderCard_OrderFragment on Order {\n    number\n    statusDisplay\n    ...OrderItemsCountProps_OrderFragment\n    ...OrderIcon_OrderFragment\n  }\n'];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: '\n  fragment OrderStatusText_OrderFragment on Order {\n    status\n  }\n'
-): (typeof documents)['\n  fragment OrderStatusText_OrderFragment on Order {\n    status\n  }\n'];
+  source: '\n  fragment OrderItemsCountProps_OrderFragment on Order {\n    lines {\n      quantity\n    }\n  }\n'
+): (typeof documents)['\n  fragment OrderItemsCountProps_OrderFragment on Order {\n    lines {\n      quantity\n    }\n  }\n'];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

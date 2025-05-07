@@ -32775,17 +32775,18 @@ export type OrderListQuery = {
 export type OrderCard_OrderFragmentFragment = ({
   __typename?: 'Order';
   number: string;
+  statusDisplay: string;
 } & {
   ' $fragmentRefs'?: {
+    OrderItemsCountProps_OrderFragmentFragment: OrderItemsCountProps_OrderFragmentFragment;
     OrderIcon_OrderFragmentFragment: OrderIcon_OrderFragmentFragment;
-    OrderStatusText_OrderFragmentFragment: OrderStatusText_OrderFragmentFragment;
   };
 }) & {' $fragmentName'?: 'OrderCard_OrderFragmentFragment'};
 
-export type OrderStatusText_OrderFragmentFragment = {
+export type OrderItemsCountProps_OrderFragmentFragment = {
   __typename?: 'Order';
-  status: OrderStatus;
-} & {' $fragmentName'?: 'OrderStatusText_OrderFragmentFragment'};
+  lines: Array<{__typename?: 'OrderLine'; quantity: number}>;
+} & {' $fragmentName'?: 'OrderItemsCountProps_OrderFragmentFragment'};
 
 export type OrderIcon_OrderFragmentFragment = {
   __typename?: 'Order';
@@ -32824,6 +32825,34 @@ export type ChannelsQuery = {
   }> | null;
 };
 
+export const OrderItemsCountProps_OrderFragmentFragmentDoc = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'FragmentDefinition',
+      name: {kind: 'Name', value: 'OrderItemsCountProps_OrderFragment'},
+      typeCondition: {kind: 'NamedType', name: {kind: 'Name', value: 'Order'}},
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: {kind: 'Name', value: 'lines'},
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {kind: 'Field', name: {kind: 'Name', value: 'quantity'}},
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  OrderItemsCountProps_OrderFragmentFragment,
+  unknown
+>;
 export const OrderIcon_OrderFragmentFragmentDoc = {
   kind: 'Document',
   definitions: [
@@ -32838,20 +32867,6 @@ export const OrderIcon_OrderFragmentFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<OrderIcon_OrderFragmentFragment, unknown>;
-export const OrderStatusText_OrderFragmentFragmentDoc = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'FragmentDefinition',
-      name: {kind: 'Name', value: 'OrderStatusText_OrderFragment'},
-      typeCondition: {kind: 'NamedType', name: {kind: 'Name', value: 'Order'}},
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [{kind: 'Field', name: {kind: 'Name', value: 'status'}}],
-      },
-    },
-  ],
-} as unknown as DocumentNode<OrderStatusText_OrderFragmentFragment, unknown>;
 export const OrderCard_OrderFragmentFragmentDoc = {
   kind: 'Document',
   definitions: [
@@ -32863,13 +32878,34 @@ export const OrderCard_OrderFragmentFragmentDoc = {
         kind: 'SelectionSet',
         selections: [
           {kind: 'Field', name: {kind: 'Name', value: 'number'}},
+          {kind: 'Field', name: {kind: 'Name', value: 'statusDisplay'}},
+          {
+            kind: 'FragmentSpread',
+            name: {kind: 'Name', value: 'OrderItemsCountProps_OrderFragment'},
+          },
           {
             kind: 'FragmentSpread',
             name: {kind: 'Name', value: 'OrderIcon_OrderFragment'},
           },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: {kind: 'Name', value: 'OrderItemsCountProps_OrderFragment'},
+      typeCondition: {kind: 'NamedType', name: {kind: 'Name', value: 'Order'}},
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
           {
-            kind: 'FragmentSpread',
-            name: {kind: 'Name', value: 'OrderStatusText_OrderFragment'},
+            kind: 'Field',
+            name: {kind: 'Name', value: 'lines'},
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {kind: 'Field', name: {kind: 'Name', value: 'quantity'}},
+              ],
+            },
           },
         ],
       },
@@ -32877,15 +32913,6 @@ export const OrderCard_OrderFragmentFragmentDoc = {
     {
       kind: 'FragmentDefinition',
       name: {kind: 'Name', value: 'OrderIcon_OrderFragment'},
-      typeCondition: {kind: 'NamedType', name: {kind: 'Name', value: 'Order'}},
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [{kind: 'Field', name: {kind: 'Name', value: 'status'}}],
-      },
-    },
-    {
-      kind: 'FragmentDefinition',
-      name: {kind: 'Name', value: 'OrderStatusText_OrderFragment'},
       typeCondition: {kind: 'NamedType', name: {kind: 'Name', value: 'Order'}},
       selectionSet: {
         kind: 'SelectionSet',
@@ -32951,16 +32978,27 @@ export const OrdersGrid_UserFragmentFragmentDoc = {
     },
     {
       kind: 'FragmentDefinition',
-      name: {kind: 'Name', value: 'OrderIcon_OrderFragment'},
+      name: {kind: 'Name', value: 'OrderItemsCountProps_OrderFragment'},
       typeCondition: {kind: 'NamedType', name: {kind: 'Name', value: 'Order'}},
       selectionSet: {
         kind: 'SelectionSet',
-        selections: [{kind: 'Field', name: {kind: 'Name', value: 'status'}}],
+        selections: [
+          {
+            kind: 'Field',
+            name: {kind: 'Name', value: 'lines'},
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {kind: 'Field', name: {kind: 'Name', value: 'quantity'}},
+              ],
+            },
+          },
+        ],
       },
     },
     {
       kind: 'FragmentDefinition',
-      name: {kind: 'Name', value: 'OrderStatusText_OrderFragment'},
+      name: {kind: 'Name', value: 'OrderIcon_OrderFragment'},
       typeCondition: {kind: 'NamedType', name: {kind: 'Name', value: 'Order'}},
       selectionSet: {
         kind: 'SelectionSet',
@@ -32975,13 +33013,14 @@ export const OrdersGrid_UserFragmentFragmentDoc = {
         kind: 'SelectionSet',
         selections: [
           {kind: 'Field', name: {kind: 'Name', value: 'number'}},
+          {kind: 'Field', name: {kind: 'Name', value: 'statusDisplay'}},
           {
             kind: 'FragmentSpread',
-            name: {kind: 'Name', value: 'OrderIcon_OrderFragment'},
+            name: {kind: 'Name', value: 'OrderItemsCountProps_OrderFragment'},
           },
           {
             kind: 'FragmentSpread',
-            name: {kind: 'Name', value: 'OrderStatusText_OrderFragment'},
+            name: {kind: 'Name', value: 'OrderIcon_OrderFragment'},
           },
         ],
       },
@@ -33007,16 +33046,27 @@ export const OrderList_UserFragmentFragmentDoc = {
     },
     {
       kind: 'FragmentDefinition',
-      name: {kind: 'Name', value: 'OrderIcon_OrderFragment'},
+      name: {kind: 'Name', value: 'OrderItemsCountProps_OrderFragment'},
       typeCondition: {kind: 'NamedType', name: {kind: 'Name', value: 'Order'}},
       selectionSet: {
         kind: 'SelectionSet',
-        selections: [{kind: 'Field', name: {kind: 'Name', value: 'status'}}],
+        selections: [
+          {
+            kind: 'Field',
+            name: {kind: 'Name', value: 'lines'},
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {kind: 'Field', name: {kind: 'Name', value: 'quantity'}},
+              ],
+            },
+          },
+        ],
       },
     },
     {
       kind: 'FragmentDefinition',
-      name: {kind: 'Name', value: 'OrderStatusText_OrderFragment'},
+      name: {kind: 'Name', value: 'OrderIcon_OrderFragment'},
       typeCondition: {kind: 'NamedType', name: {kind: 'Name', value: 'Order'}},
       selectionSet: {
         kind: 'SelectionSet',
@@ -33031,13 +33081,14 @@ export const OrderList_UserFragmentFragmentDoc = {
         kind: 'SelectionSet',
         selections: [
           {kind: 'Field', name: {kind: 'Name', value: 'number'}},
+          {kind: 'Field', name: {kind: 'Name', value: 'statusDisplay'}},
           {
             kind: 'FragmentSpread',
-            name: {kind: 'Name', value: 'OrderIcon_OrderFragment'},
+            name: {kind: 'Name', value: 'OrderItemsCountProps_OrderFragment'},
           },
           {
             kind: 'FragmentSpread',
-            name: {kind: 'Name', value: 'OrderStatusText_OrderFragment'},
+            name: {kind: 'Name', value: 'OrderIcon_OrderFragment'},
           },
         ],
       },
@@ -33150,16 +33201,27 @@ export const OrderListDocument = {
     },
     {
       kind: 'FragmentDefinition',
-      name: {kind: 'Name', value: 'OrderIcon_OrderFragment'},
+      name: {kind: 'Name', value: 'OrderItemsCountProps_OrderFragment'},
       typeCondition: {kind: 'NamedType', name: {kind: 'Name', value: 'Order'}},
       selectionSet: {
         kind: 'SelectionSet',
-        selections: [{kind: 'Field', name: {kind: 'Name', value: 'status'}}],
+        selections: [
+          {
+            kind: 'Field',
+            name: {kind: 'Name', value: 'lines'},
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {kind: 'Field', name: {kind: 'Name', value: 'quantity'}},
+              ],
+            },
+          },
+        ],
       },
     },
     {
       kind: 'FragmentDefinition',
-      name: {kind: 'Name', value: 'OrderStatusText_OrderFragment'},
+      name: {kind: 'Name', value: 'OrderIcon_OrderFragment'},
       typeCondition: {kind: 'NamedType', name: {kind: 'Name', value: 'Order'}},
       selectionSet: {
         kind: 'SelectionSet',
@@ -33174,13 +33236,14 @@ export const OrderListDocument = {
         kind: 'SelectionSet',
         selections: [
           {kind: 'Field', name: {kind: 'Name', value: 'number'}},
+          {kind: 'Field', name: {kind: 'Name', value: 'statusDisplay'}},
           {
             kind: 'FragmentSpread',
-            name: {kind: 'Name', value: 'OrderIcon_OrderFragment'},
+            name: {kind: 'Name', value: 'OrderItemsCountProps_OrderFragment'},
           },
           {
             kind: 'FragmentSpread',
-            name: {kind: 'Name', value: 'OrderStatusText_OrderFragment'},
+            name: {kind: 'Name', value: 'OrderIcon_OrderFragment'},
           },
         ],
       },

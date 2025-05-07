@@ -13,17 +13,21 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:66
-msgid "3 items"
+#: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:102
+msgid "{totalItems} items"
 msgstr ""
+
+#: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:66
+#~ msgid "3 items"
+#~ msgstr ""
 
 #: src/app/[locale]/[channel]/(account)/register/page.tsx:30
 #~ msgid "Account Register"
 #~ msgstr ""
 
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:99
-msgid "Canceld"
-msgstr ""
+#~ msgid "Canceld"
+#~ msgstr ""
 
 #: src/app/[locale]/[channel]/(account)/_components/Header.tsx:31
 msgid "Company Logo"
@@ -38,24 +42,24 @@ msgstr ""
 #~ msgstr ""
 
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:101
-msgid "Draft"
-msgstr ""
+#~ msgid "Draft"
+#~ msgstr ""
 
 #: src/app/[locale]/[channel]/(account)/register/page.tsx:76
 #~ msgid "Email Address"
 #~ msgstr ""
 
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:103
-msgid "Expired"
-msgstr ""
+#~ msgid "Expired"
+#~ msgstr ""
 
 #: src/app/[locale]/[channel]/(account)/register/page.tsx:64
 #~ msgid "First Name"
 #~ msgstr ""
 
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:109
-msgid "Fulfilled"
-msgstr ""
+#~ msgid "Fulfilled"
+#~ msgstr ""
 
 #: src/app/[locale]/[channel]/(account)/_components/Header.tsx:44
 msgid "Go to store"
@@ -103,8 +107,8 @@ msgid "Orders View Toggle"
 msgstr ""
 
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:111
-msgid "Partially Fulfilled"
-msgstr ""
+#~ msgid "Partially Fulfilled"
+#~ msgstr ""
 
 #: src/app/[locale]/[channel]/(account)/register/page.tsx:82
 #~ msgid "Password"
@@ -141,8 +145,8 @@ msgstr ""
 
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:113
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:115
-msgid "Returned"
-msgstr ""
+#~ msgid "Returned"
+#~ msgstr ""
 
 #: src/app/[locale]/[channel]/(account)/_components/Footer.tsx:23
 msgid "Shipping Policy"
@@ -161,12 +165,12 @@ msgstr ""
 #~ msgstr ""
 
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:105
-msgid "Unconfirmed"
-msgstr ""
+#~ msgid "Unconfirmed"
+#~ msgstr ""
 
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:107
-msgid "Unfulfilled"
-msgstr ""
+#~ msgid "Unfulfilled"
+#~ msgstr ""
 
 #: src/app/[locale]/[channel]/(account)/_components/Header.tsx:40
 msgid "User Avatar"

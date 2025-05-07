@@ -13,17 +13,21 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:102
+msgid "{totalItems} items"
+msgstr "{totalItems} items"
+
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:66
-msgid "3 items"
-msgstr "3 items"
+#~ msgid "3 items"
+#~ msgstr "3 items"
 
 #: src/app/[locale]/[channel]/(account)/register/page.tsx:30
 #~ msgid "Account Register"
 #~ msgstr "Account Register"
 
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:99
-msgid "Canceld"
-msgstr "Canceld"
+#~ msgid "Canceld"
+#~ msgstr "Canceld"
 
 #: src/app/[locale]/[channel]/(account)/_components/Header.tsx:31
 msgid "Company Logo"
@@ -38,24 +42,24 @@ msgstr "Confirmed"
 #~ msgstr "Confirmed orders"
 
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:101
-msgid "Draft"
-msgstr "Draft"
+#~ msgid "Draft"
+#~ msgstr "Draft"
 
 #: src/app/[locale]/[channel]/(account)/register/page.tsx:76
 #~ msgid "Email Address"
 #~ msgstr "Email Address"
 
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:103
-msgid "Expired"
-msgstr "Expired"
+#~ msgid "Expired"
+#~ msgstr "Expired"
 
 #: src/app/[locale]/[channel]/(account)/register/page.tsx:64
 #~ msgid "First Name"
 #~ msgstr "First Name"
 
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:109
-msgid "Fulfilled"
-msgstr "Fulfilled"
+#~ msgid "Fulfilled"
+#~ msgstr "Fulfilled"
 
 #: src/app/[locale]/[channel]/(account)/_components/Header.tsx:44
 msgid "Go to store"
@@ -103,8 +107,8 @@ msgid "Orders View Toggle"
 msgstr "Orders View Toggle"
 
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:111
-msgid "Partially Fulfilled"
-msgstr "Partially Fulfilled"
+#~ msgid "Partially Fulfilled"
+#~ msgstr "Partially Fulfilled"
 
 #: src/app/[locale]/[channel]/(account)/register/page.tsx:82
 #~ msgid "Password"
@@ -141,8 +145,8 @@ msgstr "Refund Policy"
 
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:113
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:115
-msgid "Returned"
-msgstr "Returned"
+#~ msgid "Returned"
+#~ msgstr "Returned"
 
 #: src/app/[locale]/[channel]/(account)/_components/Footer.tsx:23
 msgid "Shipping Policy"
@@ -161,12 +165,12 @@ msgstr "Terms of Service"
 #~ msgstr "Total"
 
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:105
-msgid "Unconfirmed"
-msgstr "Unconfirmed"
+#~ msgid "Unconfirmed"
+#~ msgstr "Unconfirmed"
 
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:107
-msgid "Unfulfilled"
-msgstr "Unfulfilled"
+#~ msgid "Unfulfilled"
+#~ msgstr "Unfulfilled"
 
 #: src/app/[locale]/[channel]/(account)/_components/Header.tsx:40
 msgid "User Avatar"

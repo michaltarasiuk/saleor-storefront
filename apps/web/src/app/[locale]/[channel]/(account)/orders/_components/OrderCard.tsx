@@ -19,8 +19,9 @@ import {OrderStatus} from '@/graphql/codegen/graphql';
 const OrderCard_OrderFragment = graphql(`
   fragment OrderCard_OrderFragment on Order {
     number
+    statusDisplay
+    ...OrderItemsCountProps_OrderFragment
     ...OrderIcon_OrderFragment
-    ...OrderStatusText_OrderFragment
   }
 `);
 
@@ -29,7 +30,10 @@ interface OrderCardProps {
 }
 
 export function OrderCard(props: OrderCardProps) {
-  const {number, ...order} = useFragment(OrderCard_OrderFragment, props.order);
+  const {number, statusDisplay, ...order} = useFragment(
+    OrderCard_OrderFragment,
+    props.order
+  );
   return (
     <BlockStack
       background="base"
@@ -52,9 +56,7 @@ export function OrderCard(props: OrderCardProps) {
           />
         </GridItem>
         <GridItem>
-          <Text emphasis="bold">
-            <OrderStatusText order={order} />
-          </Text>
+          <Text emphasis="bold">{statusDisplay}</Text>
         </GridItem>
         <GridItem />
         <GridItem>
@@ -62,9 +64,7 @@ export function OrderCard(props: OrderCardProps) {
         </GridItem>
       </Grid>
       <BlockStack>
-        <Text emphasis="bold">
-          <Trans>3 items</Trans>
-        </Text>
+        <OrderItemsCount order={order} />
         <Text appearance="subdued">
           <Trans>Order #{number}</Trans>
         </Text>
@@ -82,40 +82,26 @@ export function OrderCard(props: OrderCardProps) {
   );
 }
 
-const OrderStatusText_OrderFragment = graphql(`
-  fragment OrderStatusText_OrderFragment on Order {
-    status
+const OrderItemsCountProps_OrderFragment = graphql(`
+  fragment OrderItemsCountProps_OrderFragment on Order {
+    lines {
+      quantity
+    }
   }
 `);
 
-interface OrderStatusTextProps {
-  readonly order: FragmentType<typeof OrderStatusText_OrderFragment>;
+interface OrderItemsCountProps {
+  readonly order: FragmentType<typeof OrderItemsCountProps_OrderFragment>;
 }
 
-function OrderStatusText(props: OrderStatusTextProps) {
-  const {status} = useFragment(OrderStatusText_OrderFragment, props.order);
-  switch (status) {
-    case OrderStatus.Canceled:
-      return <Trans>Canceld</Trans>;
-    case OrderStatus.Draft:
-      return <Trans>Draft</Trans>;
-    case OrderStatus.Expired:
-      return <Trans>Expired</Trans>;
-    case OrderStatus.Unconfirmed:
-      return <Trans>Unconfirmed</Trans>;
-    case OrderStatus.Unfulfilled:
-      return <Trans>Unfulfilled</Trans>;
-    case OrderStatus.Fulfilled:
-      return <Trans>Fulfilled</Trans>;
-    case OrderStatus.PartiallyFulfilled:
-      return <Trans>Partially Fulfilled</Trans>;
-    case OrderStatus.Returned:
-      return <Trans>Returned</Trans>;
-    case OrderStatus.PartiallyReturned:
-      return <Trans>Returned</Trans>;
-    default:
-      assertNever(status);
-  }
+function OrderItemsCount({order}: OrderItemsCountProps) {
+  const {lines} = useFragment(OrderItemsCountProps_OrderFragment, order);
+  const totalItems = lines.reduce((acc, {quantity}) => acc + quantity, 0);
+  return (
+    <Text emphasis="bold">
+      <Trans>{totalItems} items</Trans>
+    </Text>
+  );
 }
 
 const OrderIcon_OrderFragment = graphql(`
