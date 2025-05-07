@@ -2,7 +2,8 @@ import {Grid} from '@repo/ui/Grid';
 
 import {type FragmentType, graphql, useFragment} from '@/graphql/codegen';
 
-import {OrderCard, OrderCardSkeleton} from './OrderCard';
+import {OrderCard} from './OrderCard';
+import {OrderCardSkeleton} from './OrderCardSkeleton';
 
 const OrdersGrid_UserFragment = graphql(`
   fragment OrdersGrid_UserFragment on User {

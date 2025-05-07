@@ -36,7 +36,7 @@ export function OrderTabs({confirmedTab, pendingTab}: OrderTabsProps) {
           {({isSelected}) => (
             <ClockIcon
               aria-hidden="true"
-              fill={isSelected ? baseColors.accent : baseColors.textSubdued}
+              stroke={isSelected ? baseColors.accent : baseColors.textSubdued}
               {...stylex.props(tabIconStyles.base)}
             />
           )}

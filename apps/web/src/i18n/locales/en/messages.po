@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:53
+#: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:65
 msgid "3 items"
 msgstr "3 items"
 
@@ -26,6 +26,7 @@ msgid "Company Logo"
 msgstr "Company Logo"
 
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrderTabs.tsx:26
+#: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:55
 msgid "Confirmed"
 msgstr "Confirmed"
 
@@ -61,9 +62,18 @@ msgstr "Grid View"
 #~ msgid "List View"
 #~ msgstr "List View"
 
+#: src/app/[locale]/[channel]/(account)/orders/_components/OrderCardSkeleton.tsx:45
+#: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:77
+msgid "Manage"
+msgstr "Manage"
+
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrderList.tsx:90
 #~ msgid "Order"
 #~ msgstr "Order"
+
+#: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:68
+msgid "Order #{number}"
+msgstr "Order #{number}"
 
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrderTabs.tsx:25
 msgid "Order Tabs"
@@ -80,6 +90,11 @@ msgstr "Orders View Toggle"
 #: src/app/[locale]/[channel]/(account)/register/page.tsx:82
 #~ msgid "Password"
 #~ msgstr "Password"
+
+#: src/app/[locale]/[channel]/(account)/orders/_components/OrderCardSkeleton.tsx:42
+#: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:74
+msgid "Pay Now"
+msgstr "Pay Now"
 
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrderTabs.tsx:35
 msgid "Pending"

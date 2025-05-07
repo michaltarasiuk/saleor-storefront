@@ -6,6 +6,7 @@ export function GridIcon(props: React.ComponentProps<'svg'>) {
       xmlns="http://www.w3.org/2000/svg"
       height="100%"
       viewBox="0 0 18 18"
+      preserveAspectRatio="xMidYMid meet"
       fill="none"
       stroke={baseColors.icon}
       {...props}>

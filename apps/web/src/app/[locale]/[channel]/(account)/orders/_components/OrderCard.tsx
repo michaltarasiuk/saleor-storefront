@@ -2,18 +2,24 @@ import {Trans} from '@lingui/react/macro';
 import {Button} from '@repo/ui/Button';
 import {Grid} from '@repo/ui/Grid';
 import {GridItem} from '@repo/ui/GridItem';
+import {ClockIcon} from '@repo/ui/icons/ClockIcon';
+import {ErrorIcon} from '@repo/ui/icons/ErrorIcon';
+import {HollowCircleIcon} from '@repo/ui/icons/HollowCircleIcon';
+import {InfoIcon} from '@repo/ui/icons/InfoIcon';
+import {ReturnIcon} from '@repo/ui/icons/ReturnIcon';
 import {SuccessIcon} from '@repo/ui/icons/SuccessIcon';
-import {SkeletonImage} from '@repo/ui/SkeletonImage';
-import {SkeletonText} from '@repo/ui/SkeletonText';
 import {BlockStack, InlineStack} from '@repo/ui/Stack';
 import {Text} from '@repo/ui/Text';
 import {baseColors} from '@repo/ui/variables/colors.stylex';
+import {assertNever} from '@repo/utils/assert-never';
 
 import {type FragmentType, graphql, useFragment} from '@/graphql/codegen';
+import {OrderStatus} from '@/graphql/codegen/graphql';
 
 const OrderCard_OrderFragment = graphql(`
   fragment OrderCard_OrderFragment on Order {
     number
+    ...OrderIcon_OrderFragment
   }
 `);
 
@@ -22,7 +28,7 @@ interface OrderCardProps {
 }
 
 export function OrderCard(props: OrderCardProps) {
-  const order = useFragment(OrderCard_OrderFragment, props.order);
+  const {number, ...order} = useFragment(OrderCard_OrderFragment, props.order);
   return (
     <BlockStack
       background="base"
@@ -38,10 +44,16 @@ export function OrderCard(props: OrderCardProps) {
         padding="loose"
         spacing={['none', 'extraTight']}>
         <GridItem>
-          <SuccessIcon aria-hidden="true" stroke={baseColors.icon} />
+          <OrderIcon
+            aria-hidden="true"
+            stroke={baseColors.icon}
+            order={order}
+          />
         </GridItem>
         <GridItem>
-          <Text emphasis="bold">Confirmed</Text>
+          <Text emphasis="bold">
+            <Trans>Confirmed</Trans>
+          </Text>
         </GridItem>
         <GridItem />
         <GridItem>
@@ -52,54 +64,52 @@ export function OrderCard(props: OrderCardProps) {
         <Text emphasis="bold">
           <Trans>3 items</Trans>
         </Text>
-        <Text appearance="subdued">Order #{order.number}</Text>
+        <Text appearance="subdued">
+          <Trans>Order #{number}</Trans>
+        </Text>
       </BlockStack>
       <Text emphasis="bold">$75.55</Text>
       <InlineStack spacing="base">
-        <Button>Pay Now</Button>
-        <Button variant="secondary">Manage</Button>
+        <Button>
+          <Trans>Pay Now</Trans>
+        </Button>
+        <Button variant="secondary">
+          <Trans>Manage</Trans>
+        </Button>
       </InlineStack>
     </BlockStack>
   );
 }
 
-export function OrderCardSkeleton() {
-  return (
-    <BlockStack
-      background="base"
-      cornerRadius="large"
-      padding="loose"
-      spacing="loose">
-      <Grid
-        columns={[18, 'fill']}
-        rows={['auto', 'auto']}
-        blockAlignment="center"
-        background="subdued"
-        cornerRadius="base"
-        padding="loose"
-        spacing={['none', 'extraTight']}>
-        <GridItem>
-          <SkeletonImage blockSize={18} />
-        </GridItem>
-        <GridItem>
-          <SkeletonText inlineSize="large" />
-        </GridItem>
-        <GridItem />
-        <GridItem>
-          <SkeletonText />
-        </GridItem>
-      </Grid>
-      <BlockStack>
-        <SkeletonText inlineSize="base" />
-        <SkeletonText />
-      </BlockStack>
-      <SkeletonText />
-      <InlineStack spacing="base">
-        <Button isDisabled>Pay Now</Button>
-        <Button variant="secondary" isDisabled>
-          Manage
-        </Button>
-      </InlineStack>
-    </BlockStack>
-  );
+const OrderIcon_OrderFragment = graphql(`
+  fragment OrderIcon_OrderFragment on Order {
+    status
+  }
+`);
+
+interface OrderIconProps extends Omit<React.ComponentProps<'svg'>, 'order'> {
+  readonly order: FragmentType<typeof OrderIcon_OrderFragment>;
+}
+
+function OrderIcon({order, ...props}: OrderIconProps) {
+  const {status} = useFragment(OrderIcon_OrderFragment, order);
+  switch (status) {
+    case OrderStatus.Canceled:
+      return <ErrorIcon {...props} />;
+    case OrderStatus.Draft:
+    case OrderStatus.Unfulfilled:
+      return <HollowCircleIcon {...props} />;
+    case OrderStatus.Expired:
+      return <ClockIcon {...props} />;
+    case OrderStatus.Unconfirmed:
+      return <InfoIcon {...props} />;
+    case OrderStatus.Returned:
+    case OrderStatus.PartiallyReturned:
+      return <ReturnIcon {...props} />;
+    case OrderStatus.Fulfilled:
+    case OrderStatus.PartiallyFulfilled:
+      return <SuccessIcon {...props} />;
+    default:
+      assertNever(status);
+  }
 }
