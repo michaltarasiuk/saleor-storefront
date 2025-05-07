@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:101
+#: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:102
 msgid "{totalItems} items"
 msgstr ""
 
@@ -82,7 +82,7 @@ msgstr ""
 #~ msgstr ""
 
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrderCardSkeleton.tsx:45
-#: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:77
+#: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:78
 msgid "Manage"
 msgstr ""
 
@@ -90,7 +90,7 @@ msgstr ""
 #~ msgid "Order"
 #~ msgstr ""
 
-#: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:68
+#: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:69
 msgid "Order #{number}"
 msgstr ""
 
@@ -115,7 +115,7 @@ msgstr ""
 #~ msgstr ""
 
 #: src/app/[locale]/[channel]/(account)/orders/_components/OrderCardSkeleton.tsx:42
-#: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:74
+#: src/app/[locale]/[channel]/(account)/orders/_components/OrderCard.tsx:75
 msgid "Pay Now"
 msgstr ""
 

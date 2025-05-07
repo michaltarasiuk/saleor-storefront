@@ -7,6 +7,7 @@ import {ErrorIcon} from '@repo/ui/icons/ErrorIcon';
 import {HollowCircleIcon} from '@repo/ui/icons/HollowCircleIcon';
 import {InfoIcon} from '@repo/ui/icons/InfoIcon';
 import {ReturnIcon} from '@repo/ui/icons/ReturnIcon';
+import {SuccessIcon} from '@repo/ui/icons/SuccessIcon';
 import {BlockStack, InlineStack} from '@repo/ui/Stack';
 import {Text} from '@repo/ui/Text';
 import {baseColors} from '@repo/ui/variables/colors.stylex';
@@ -124,12 +125,13 @@ function OrderIcon({order, ...props}: OrderIconProps) {
     case OrderStatus.Expired:
       return <ClockIcon {...props} />;
     case OrderStatus.Unconfirmed:
-    case OrderStatus.Fulfilled:
-    case OrderStatus.PartiallyFulfilled:
       return <InfoIcon {...props} />;
     case OrderStatus.Returned:
     case OrderStatus.PartiallyReturned:
       return <ReturnIcon {...props} />;
+    case OrderStatus.Fulfilled:
+    case OrderStatus.PartiallyFulfilled:
+      return <SuccessIcon {...props} />;
     default:
       assertNever(status);
   }
