@@ -20,6 +20,7 @@ const OrderCard_OrderFragment = graphql(`
   fragment OrderCard_OrderFragment on Order {
     number
     ...OrderIcon_OrderFragment
+    ...OrderStatusText_OrderFragment
   }
 `);
 
@@ -52,7 +53,7 @@ export function OrderCard(props: OrderCardProps) {
         </GridItem>
         <GridItem>
           <Text emphasis="bold">
-            <Trans>Confirmed</Trans>
+            <OrderStatusText order={order} />
           </Text>
         </GridItem>
         <GridItem />
@@ -79,6 +80,42 @@ export function OrderCard(props: OrderCardProps) {
       </InlineStack>
     </BlockStack>
   );
+}
+
+const OrderStatusText_OrderFragment = graphql(`
+  fragment OrderStatusText_OrderFragment on Order {
+    status
+  }
+`);
+
+interface OrderStatusTextProps {
+  readonly order: FragmentType<typeof OrderStatusText_OrderFragment>;
+}
+
+function OrderStatusText(props: OrderStatusTextProps) {
+  const {status} = useFragment(OrderStatusText_OrderFragment, props.order);
+  switch (status) {
+    case OrderStatus.Canceled:
+      return <Trans>Canceld</Trans>;
+    case OrderStatus.Draft:
+      return <Trans>Draft</Trans>;
+    case OrderStatus.Expired:
+      return <Trans>Expired</Trans>;
+    case OrderStatus.Unconfirmed:
+      return <Trans>Unconfirmed</Trans>;
+    case OrderStatus.Unfulfilled:
+      return <Trans>Unfulfilled</Trans>;
+    case OrderStatus.Fulfilled:
+      return <Trans>Fulfilled</Trans>;
+    case OrderStatus.PartiallyFulfilled:
+      return <Trans>Partially Fulfilled</Trans>;
+    case OrderStatus.Returned:
+      return <Trans>Returned</Trans>;
+    case OrderStatus.PartiallyReturned:
+      return <Trans>Returned</Trans>;
+    default:
+      assertNever(status);
+  }
 }
 
 const OrderIcon_OrderFragment = graphql(`
