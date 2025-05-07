@@ -16,7 +16,7 @@ export function BlockSpacer({spacing = 'base'}: BlockSpacerProps) {
     <div
       {...stylex.props(
         styles.base,
-        spacingStyles.base(
+        styles.spacing(
           normalizeResponsiveStyle({
             default: getSpacingToken(spacing),
           })
@@ -31,10 +31,7 @@ const styles = stylex.create({
     inlineSize: '100%',
     flexShrink: 0,
   },
-});
-
-const spacingStyles = stylex.create({
-  base: (
+  spacing: (
     blockSize: NormalizedResponsiveStyle<React.CSSProperties['blockSize']>
   ) => ({
     blockSize: {

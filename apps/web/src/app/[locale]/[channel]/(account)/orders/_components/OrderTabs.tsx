@@ -28,7 +28,7 @@ export function OrderTabs({confirmedTab, pendingTab}: OrderTabsProps) {
             <OrderBoxIcon
               aria-hidden="true"
               stroke={isSelected ? baseColors.accent : baseColors.textSubdued}
-              {...stylex.props(tabIconStyles.base)}
+              {...stylex.props(styles.tabIconStyles)}
             />
           )}
         </Tab>
@@ -37,7 +37,7 @@ export function OrderTabs({confirmedTab, pendingTab}: OrderTabsProps) {
             <ClockIcon
               aria-hidden="true"
               stroke={isSelected ? baseColors.accent : baseColors.textSubdued}
-              {...stylex.props(tabIconStyles.base)}
+              {...stylex.props(styles.tabIconStyles)}
             />
           )}
         </Tab>
@@ -48,8 +48,8 @@ export function OrderTabs({confirmedTab, pendingTab}: OrderTabsProps) {
   );
 }
 
-const tabIconStyles = stylex.create({
-  base: {
+const styles = stylex.create({
+  tabIconStyles: {
     height: '18px',
     display: {
       default: 'none',

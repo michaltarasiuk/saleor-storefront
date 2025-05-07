@@ -16,7 +16,7 @@ export function InlineSpacer({spacing = 'base'}: InlineSpacerProps) {
     <div
       {...stylex.props(
         styles.base,
-        spacingStyles.base(
+        styles.spacing(
           normalizeResponsiveStyle({
             default: getSpacingToken(spacing),
           })
@@ -31,10 +31,7 @@ const styles = stylex.create({
     blockSize: '100%',
     flexShrink: 0,
   },
-});
-
-const spacingStyles = stylex.create({
-  base: (
+  spacing: (
     inlineSize: NormalizedResponsiveStyle<React.CSSProperties['inlineSize']>
   ) => ({
     inlineSize: {

@@ -11,8 +11,8 @@ import {Routes} from '@/consts/routes';
 
 export function Footer() {
   return (
-    <footer {...stylex.props(footerStyles.base)}>
-      <ul {...stylex.props(linkListStyles.list)}>
+    <footer {...stylex.props(styles.footer)}>
+      <ul {...stylex.props(styles.linkList)}>
         <li>
           <Link href={Routes.refundPolicy}>
             <Trans>Refund Policy</Trans>
@@ -38,8 +38,8 @@ export function Footer() {
   );
 }
 
-const footerStyles = stylex.create({
-  base: {
+const styles = stylex.create({
+  footer: {
     width: '100%',
     marginBlockStart: 'auto',
     borderBlockStartWidth: borderWidth.base,
@@ -47,10 +47,7 @@ const footerStyles = stylex.create({
     borderBlockStartColor: baseColors.border,
     paddingBlock: spacing.large200,
   },
-});
-
-const linkListStyles = stylex.create({
-  list: {
+  linkList: {
     display: 'flex',
     alignItems: 'center',
     flexDirection: {

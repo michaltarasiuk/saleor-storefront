@@ -26,15 +26,6 @@ export function ToggleButtonGroup({style, ...props}: ToggleButtonGroupProps) {
   );
 }
 
-const toggleButtonGroupStyles = stylex.create({
-  base: {
-    display: 'flex',
-    gap: spacing.small200,
-    padding: spacing.small500,
-    borderRadius: cornerRadius.large,
-  },
-});
-
 interface ToggleButtonProps extends AriaToggleButtonProps {
   readonly icon: (props: React.ComponentProps<'svg'>) => React.JSX.Element;
 }
@@ -60,6 +51,15 @@ export function ToggleButton({icon: Icon, ...props}: ToggleButtonProps) {
     </AriaToggleButton>
   );
 }
+
+const toggleButtonGroupStyles = stylex.create({
+  base: {
+    display: 'flex',
+    gap: spacing.small200,
+    padding: spacing.small500,
+    borderRadius: cornerRadius.large,
+  },
+});
 
 const toggleButtonStyles = stylex.create({
   base: {

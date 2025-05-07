@@ -34,10 +34,10 @@ export default async function AccountLayout({
     <I18nProvider locale={locale} messages={getLocaleMessages(locale)}>
       <RouterProvider>
         <Html>
-          <body {...stylex.props(bodyStyles.base, ...brandedTheme())}>
+          <body {...stylex.props(styles.body, ...brandedTheme())}>
             <Header />
-            <Container style={layoutStyles.base}>
-              <main {...stylex.props(mainStyles.base)}>{children}</main>
+            <Container style={styles.layout}>
+              <main {...stylex.props(styles.main)}>{children}</main>
               <BlockSpacer spacing="extraLoose" />
               <Footer />
             </Container>
@@ -48,21 +48,15 @@ export default async function AccountLayout({
   );
 }
 
-const bodyStyles = stylex.create({
-  base: {
+const styles = stylex.create({
+  body: {
     backgroundColor: baseColors.backgroundSubdued,
   },
-});
-
-const layoutStyles = stylex.create({
-  base: {
+  layout: {
     display: 'flex',
     flexDirection: 'column',
   },
-});
-
-const mainStyles = stylex.create({
-  base: {
+  main: {
     display: 'flex',
     flexDirection: 'column',
     flexGrow: 1,

@@ -15,7 +15,7 @@ import {Routes} from '@/consts/routes';
 
 export function Header() {
   return (
-    <header {...stylex.props(headerStyles.base)}>
+    <header {...stylex.props(styles.header)}>
       <GlobalNav />
     </header>
   );
@@ -24,8 +24,8 @@ export function Header() {
 function GlobalNav() {
   const {t} = useLingui();
   return (
-    <Container elementType="nav" style={globalNavStyles.base}>
-      <Link href={Routes.home} style={companyLogoLinkStyles.base}>
+    <Container elementType="nav" style={styles.globalNav}>
+      <Link href={Routes.home} style={styles.companyLogoLink}>
         <Image
           src="/plant-logo.png"
           alt={t`Company Logo`}
@@ -48,23 +48,17 @@ function GlobalNav() {
   );
 }
 
-const headerStyles = stylex.create({
-  base: {
+const styles = stylex.create({
+  header: {
     backgroundColor: baseColors.background,
     paddingBlock: spacing.large400,
   },
-});
-
-const globalNavStyles = stylex.create({
-  base: {
+  globalNav: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-});
-
-const companyLogoLinkStyles = stylex.create({
-  base: {
+  companyLogoLink: {
     flexShrink: 0,
   },
 });

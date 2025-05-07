@@ -27,7 +27,7 @@ interface CheckboxProps extends AriaCheckboxProps {
 
 export function Checkbox({children, ...props}: CheckboxProps) {
   return (
-    <AriaCheckbox {...stylex.props(containerStyles.base)} {...props}>
+    <AriaCheckbox {...stylex.props(styles.container)} {...props}>
       {({isFocusVisible, isFocused, isInvalid, isPressed, isSelected}) => (
         <>
           <div
@@ -39,10 +39,7 @@ export function Checkbox({children, ...props}: CheckboxProps) {
               isInvalid && boxStyles.invalid,
               isSelected && boxStyles.selected
             )}>
-            <CheckmarkIcon
-              aria-hidden="true"
-              {...stylex.props(iconStyles.base)}
-            />
+            <CheckmarkIcon aria-hidden="true" {...stylex.props(styles.icon)} />
           </div>
           <Text>{children}</Text>
         </>
@@ -51,14 +48,17 @@ export function Checkbox({children, ...props}: CheckboxProps) {
   );
 }
 
-const containerStyles = stylex.create({
-  base: {
+const styles = stylex.create({
+  container: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     gap: spacing.small100,
     width: 'fit-content',
     cursor: 'pointer',
+  },
+  icon: {
+    stroke: controlColors.accentContrast,
   },
 });
 
@@ -103,11 +103,5 @@ const boxStyles = stylex.create({
   },
   selected: {
     boxShadow: `inset 0 0 0 1.6rem ${controlColors.decorative}`,
-  },
-});
-
-const iconStyles = stylex.create({
-  base: {
-    stroke: controlColors.accentContrast,
   },
 });

@@ -29,14 +29,6 @@ export function Tabs(props: TabsProps) {
   );
 }
 
-const tabsStyles = stylex.create({
-  base: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: spacing.large300,
-  },
-});
-
 export function TabList<T extends Record<PropertyKey, unknown>>(
   props: TabListProps<T>
 ) {
@@ -86,6 +78,14 @@ export function Tab({title, children, ...props}: TabProps) {
     </AriaTab>
   );
 }
+
+const tabsStyles = stylex.create({
+  base: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: spacing.large300,
+  },
+});
 
 const tabStyles = stylex.create({
   base: {
