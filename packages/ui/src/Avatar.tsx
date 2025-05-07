@@ -1,42 +1,56 @@
 'use client';
 
 import * as stylex from '@stylexjs/stylex';
+import dynamic from 'next/dynamic';
 import type {ImageProps} from 'next/image';
-import {Suspense} from 'react';
+import {createContext, use} from 'react';
 import {ErrorBoundary} from 'react-error-boundary';
 
-import {ClientGate} from './ClientGate';
 import {ProfileIcon} from './icons/ProfileIcon';
-import {SuspenseImage} from './SuspenseImage';
 import {Text} from './Text';
 import {baseColors} from './variables/colors.stylex';
 import {cornerRadius, spacing} from './variables/tokens.stylex';
 
-interface AvatarProps {
+const AvatarFallbackContext = createContext<AvatarFallbackProps>({});
+
+const SuspenseImage = dynamic(
+  () => import('./SuspenseImage').then(module => module.SuspenseImage),
+  {
+    ssr: false,
+    loading: function Loading() {
+      return <AvatarFallback {...use(AvatarFallbackContext)} />;
+    },
+  }
+);
+
+interface AvatarProps extends AvatarFallbackProps {
   readonly src: ImageProps['src'];
   readonly alt: ImageProps['alt'];
+}
+
+export function Avatar({src, alt, initials, size = 'base'}: AvatarProps) {
+  const fallback = <AvatarFallback initials={initials} size={size} />;
+  return (
+    <AvatarFallbackContext value={{initials, size}}>
+      <div {...stylex.props(styles.base, sizeStyles[size])}>
+        <ErrorBoundary fallback={fallback}>
+          <SuspenseImage src={src} alt={alt} fill />
+        </ErrorBoundary>
+      </div>
+    </AvatarFallbackContext>
+  );
+}
+
+interface AvatarFallbackProps {
   readonly initials?: string;
   readonly size?: keyof typeof sizeStyles;
 }
 
-export function Avatar({src, alt, initials, size = 'base'}: AvatarProps) {
-  const fallback = initials ? (
+function AvatarFallback({initials, size}: AvatarFallbackProps) {
+  return initials ? (
     <Text size={size}>{initials}</Text>
   ) : (
     <ProfileIcon aria-hidden="true" />
-  );
-  return (
-    <div {...stylex.props(styles.base, sizeStyles[size])}>
-      <ClientGate fallback={fallback}>
-        {() => (
-          <ErrorBoundary fallback={fallback}>
-            <Suspense fallback={fallback}>
-              <SuspenseImage src={src} alt={alt} fill />
-            </Suspense>
-          </ErrorBoundary>
-        )}
-      </ClientGate>
-    </div>
   );
 }
 
