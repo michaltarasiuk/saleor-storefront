@@ -50,7 +50,7 @@ export default async function AccountLayout({
 
 const bodyStyles = stylex.create({
   base: {
-    backgroundColor: baseColors.backgroundSubdued as string,
+    backgroundColor: baseColors.backgroundSubdued,
   },
 });
 

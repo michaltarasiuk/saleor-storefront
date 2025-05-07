@@ -42,10 +42,10 @@ const footerStyles = stylex.create({
   base: {
     width: '100%',
     marginBlockStart: 'auto',
-    borderBlockStartWidth: borderWidth.base as string,
+    borderBlockStartWidth: borderWidth.base,
     borderBlockStartStyle: 'solid',
-    borderBlockStartColor: baseColors.border as string,
-    paddingBlock: spacing.large200 as string,
+    borderBlockStartColor: baseColors.border,
+    paddingBlock: spacing.large200,
   },
 });
 
