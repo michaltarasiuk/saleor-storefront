@@ -29,11 +29,11 @@ interface AvatarProps extends AvatarFallbackProps {
 }
 
 export function Avatar({src, alt, initials, size = 'base'}: AvatarProps) {
-  const fallback = <AvatarFallback initials={initials} size={size} />;
   return (
     <AvatarFallbackContext value={{initials, size}}>
       <div {...stylex.props(styles.base, sizeStyles[size])}>
-        <ErrorBoundary fallback={fallback}>
+        <ErrorBoundary
+          fallback={<AvatarFallback initials={initials} size={size} />}>
           <SuspenseImage src={src} alt={alt} fill />
         </ErrorBoundary>
       </div>
