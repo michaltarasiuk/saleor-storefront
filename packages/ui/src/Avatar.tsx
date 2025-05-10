@@ -14,7 +14,7 @@ import {cornerRadius, spacing} from './variables/tokens.stylex';
 const AvatarFallbackContext = createContext<AvatarFallbackProps>({});
 
 const SuspenseImage = dynamic(
-  () => import('./SuspenseImage').then(module => module.SuspenseImage),
+  () => import('suspense-next-image').then(module => module.SuspenseImage),
   {
     ssr: false,
     loading: function Loading() {

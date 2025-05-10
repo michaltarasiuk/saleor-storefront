@@ -100,6 +100,7 @@
         "react-aria-components": "^1.7.1",
         "react-dom": "^19.1.0",
         "react-error-boundary": "^5.0.0",
+        "suspense-next-image": "^1.0.1",
       },
       "devDependencies": {
         "@repo/eslint-config": "workspace:*",
@@ -1987,6 +1988,8 @@
     "supports-color": ["supports-color@8.1.1", "", { "dependencies": { "has-flag": "^4.0.0" } }, "sha512-MpUEN2OodtUzxvKQl72cUF7RQ5EiHsGvSsVG0ia9c5RbWGL2CI4C7EpPS8UTBIplnlzZiNuV56w+FuNxy3ty2Q=="],
 
     "supports-preserve-symlinks-flag": ["supports-preserve-symlinks-flag@1.0.0", "", {}, "sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w=="],
+
+    "suspense-next-image": ["suspense-next-image@1.0.1", "", { "peerDependencies": { "next": ">=12", "react": ">=18" } }, "sha512-0jFuYg5wt8RFQeW5Nx2ifPZU6rUSK2KlynclOg5U0/4/NHeu1JB6IVJl00AukPbUnZDpLjLe8gBEickOMmRyDA=="],
 
     "swap-case": ["swap-case@2.0.2", "", { "dependencies": { "tslib": "^2.0.3" } }, "sha512-kc6S2YS/2yXbtkSMunBtKdah4VFETZ8Oh6ONSmSd9bRxhqTrtARUCBUiWXH3xVPpvR7tz2CSnkuXVE42EcGnMw=="],
 
